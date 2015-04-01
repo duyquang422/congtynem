@@ -74,14 +74,7 @@
                                 ?>
                                 <div class="sm_new_price"><?php echo $val['price']?> VNĐ</div>
                             </div>
-                            <?php
-                                $urlOptions = array('module' => 'products', 'controller' => 'index',
-                                                    'action' => 'detail',
-                                                    'title' => $val['alias'],
-                                                    'id' => $val['id']);
-                                $linkDetail = $this->url($urlOptions, '');
-                            ?>
-                            <a href="<?php echo $linkDetail ?>">
+                            <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
                                 <div class="info info-<?php echo $key ?>" style="display:none">
                                     <span>
                                         Mã sản phẩm: <?php echo $val['code']?><br>	
