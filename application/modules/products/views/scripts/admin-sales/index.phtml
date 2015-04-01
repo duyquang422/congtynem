@@ -1,0 +1,103 @@
+<form name="appForm" method="post" action="">
+
+                        <?php echo $this->render('toolbarInvoice.php')?>
+                        <div class="clr"></div>
+                        <?php  echo $this->render('sublink.php')?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+                                <table class="adminlist">
+                                    <thead>
+                                        <tr>
+                                            <th width="43" >
+                                            	<input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
+                                           	</th>
+                                            <th width="200"><?php echo $this->translate('Guest name')?></th>
+                                            <th width="200"><?php echo $this->translate('Email')?></th>
+                                            <th width="120"><?php echo $this->translate('Phone')?></th>
+                                            <th><?php echo $this->translate('Content')?></th>
+                                            <th width="50"><?php echo $this->translate('Status') ?></th>
+                                            <th width="90"><?php echo $this->translate('Control')?></th>
+                                            <th width="34">ID</th>
+                                        </tr>
+                                    </thead>
+									<?php
+										foreach($this->Items as $key => $val){											
+											$title  		= $val['title'];
+											if ($val['hits'] == 0){
+												$imgNew			= '<img src="'.$this->imgUrl. "/icon/icon-new.gif".'" />';
+												$title 	= '<strong style="color:#532a02">'.$title.'</strong> ' . $imgNew;
+											}
+											$name  			= $val['name'];
+											$email  		= $val['email'];
+											$phone  		= $val['phone'];
+											$content  		= $val['content'];
+											$id		  		= $val['id'];
+											
+											$status 			= $val['status'];											
+											if ($status == 1) {
+												$linkStatus = $this->baseUrl ( $this->currentController . '/status/type/0/id/' . $id );
+												$status = $this->cmsAjaxButton('ajax-active-item', 'Active', 'Inactive *'. $name . '*', $linkStatus, $id);
+											} else {
+												$linkStatus = $this->baseUrl ( $this->currentController . '/status/type/1/id/' . $id );
+												$status = $this->cmsAjaxButton('ajax-inactive-item', 'Inactive', 'Active *'. $name . '*', $linkStatus, $id);
+											}
+											
+											$linkDelete		= $this->baseUrl($this->currentController . '/delete/id/' . $id);
+											$btnDelete =  $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *'. $name . '*', $linkDelete, $id);
+										
+											$strIconButton	= $btnDelete;
+											
+											$cid			= $this->formCheckbox('cid[]',$val['id']);
+											$cls = 'row0';
+											if($key%2 != 0){
+												$cls = 'row1';
+											}
+									?>
+                                    <tr class="even <?php echo $cls ?>">						
+                                       <td align="center"><?php echo $cid;?></td>
+                                       <td align="center"><?php echo $name;?></td>
+                                       <td align="center"><?php echo $email;?></td>
+                                       <td align="center"><?php echo $phone;?></td>
+                                       <td align="center"><?php echo $content;?></td>
+                                       <td align="center"><?php echo $status;?></td>
+                                       <td align="center"><?php echo $strIconButton;?></td>
+                                       <td align="center"><?php echo $id;?></td>
+                                    </tr>
+                                    <?php 
+										}
+                                    ?>
+                                    <!-- BEGIN: PAGINATION (FOOT) -->
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="19">
+                                                <div class="container">
+                                                    <div class="pagination">
+                                                        
+                                                        <div class="limit"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>					
+                                    </tfoot>				<!-- END: PAGINATION (FOOT) -->
+                                </table>
+                                <!-- Area 4: In du lieu lay tu database - End -->
+
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

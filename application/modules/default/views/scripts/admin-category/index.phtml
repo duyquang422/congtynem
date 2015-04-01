@@ -1,0 +1,175 @@
+<?php
+$ssFilter = $this->arrParam['ssFilter'];
+$action_link = $this->baseUrl($this->currentController . '/filter/type/order');
+$lblGroup_name = $this->cmsLinkSort($this->translate('Group name'), 'g.group_name', $ssFilter, $this->imgUrl . '/icon', $action_link);
+
+$lblOrder = $this->cmsLinkSort($this->translate('Order'), 'g.order', $ssFilter, $this->imgUrl . '/icon', $action_link);
+
+$lblMembers = $this->cmsLinkSort($this->translate('Member'), 'members', $ssFilter, $this->imgUrl . '/icon', $action_link);
+
+$lblId = $this->cmsLinkSort('ID', 'id', $ssFilter, $this->imgUrl . '/icon', $action_link);
+
+
+if ($ssFilter['col'] != 'g.group_name') {
+    $linkOder = $this->baseUrl($this->currentController . '/filter/type/order/col/g.group_name/by/DESC');
+    $iconSort = $this->imgUrl . '/icon/arrow_down.png';
+} else {
+    if ($ssFilter['order'] == 'DESC') {
+        $by = 'ASC';
+        $iconSort = $this->imgUrl . '/icon/arrow_down.png';
+    } else {
+        $by = 'DESC';
+        $iconSort = $this->imgUrl . '/icon/arrow_up.png';
+    }
+    $linkOder = $this->baseUrl($this->currentController .
+            '/filter/type/order/col/g.group_name/by/' . $by);
+}
+
+//CREATE SEARCH AREA
+$keywords = $this->formText('keywords', $ssFilter['keywords'], array('class' => 'txtshort'));
+$linkSearch = $this->baseUrl($this->currentController . '/filter/type/search/key/1');
+$btnSearch = $this->formButton('search-now', 'Search now', array('onclick' => "OnSubmitForm('" . $linkSearch . "')"));
+$linkResetSearch = $this->baseUrl($this->currentController . '/filter/type/search/key/0');
+$btnResetSearch = $this->formButton('clear-keywords', 'Clear', array('onclick' => "OnSubmitForm('" . $linkResetSearch . "')"));
+$strSearch = $keywords . ' ' . $btnSearch . ' ' . $btnResetSearch;
+?>
+<form name="appForm" method="post" action="">
+<?php echo $this->render('toolbar.php') ?>
+    <div class="clr"></div>
+<?php echo $this->render('sublink.php') ?>
+
+    <!-- BEGIN: CONTENT -->
+    <div id="element-box">
+        <div class="t">
+            <div class="t">
+                <div class="t"></div>
+            </div>
+        </div>
+        <div class="m">
+            <!-- BEGIN: ELEMENT BOX -->
+            <div id="filters">
+                <div>
+<?php echo $strSearch; ?>
+                </div>
+            </div>	
+            <!-- Area 4: In du lieu lay tu database -->
+            <table class="adminlist">
+                <thead>
+                    <tr>
+                        <th width="5" >
+                            <input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
+                        </th>
+                        <th width="150">Tên Chuyên Mục</th>
+                        <th width="300">Mô Tả</th>
+                        <th width="20">Cấp Chuyên Mục</th>
+                        <th width="20">sắp Xếp</th>
+                        <th width="20">Trạng Thái</th>						
+                        <th width="77">Chức năng</th>
+                        <th width="20">ID</th>
+                    </tr>
+                </thead>
+<?php
+$ordering = array();
+foreach ($this->Items as $val) {
+    $ordering[$val['parent']][] = $val['id'];
+}
+$i=0;
+foreach ($this->Items as $key => $val) {
+    $orderKey = array_search($val['id'], $ordering[$val['parent']]);
+    $id = $val['id'];
+    if ($val['level'] == 1) {
+        $strCategory = $val['name'];
+    } else {
+        $strCategory = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $val['level'] - 1) . ' - ' . $val['name'];
+    }
+    $parent = $val['parent'];
+    $description = $val['description'];
+    $level = $val['level'];
+    $status = $val['status'];
+    if ($status == 1) {
+        $linkStatus = $this->baseUrl($this->currentController . '/status/type/0/id/' . $id);
+        $status = $this->cmsAjaxButton('ajax-active-item', 'Active', 'Inactive *' . $name . '*', $linkStatus, $id);
+    } else {
+        $linkStatus = $this->baseUrl($this->currentController . '/status/type/1/id/' . $id);
+        $status = $this->cmsAjaxButton('ajax-inactive-item', 'Inactive', 'Active *' . $name . '*', $linkStatus, $id);
+    }
+    $linkInfo = $this->baseUrl($this->currentController . '/info/id/' . $id);
+    $btnInfo = $this->cmsIconButton('View Item', $this->imgUrl . '/icon_info.png', $linkInfo);
+
+    $linkEdit = $this->baseUrl($this->currentController . '/edit/id/' . $id);
+    $btnEdit = $this->cmsIconButton('Edit Item', $this->imgUrl . '/icon_edit.png', $linkEdit);
+
+    $linkDelete = $this->baseUrl($this->currentController . '/delete/id/' . $id);
+    $btnDelete = $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *' . $name . '*', $linkDelete, $id);
+
+    $strIconButton = $btnInfo . ' ' . $btnEdit . ' ' . $btnDelete;
+
+    $cid = $this->formCheckbox('cid[]', $val['id']);
+    $cls = 'row0';
+    if ($key % 2 != 0) {
+        $cls = 'row1';
+    }
+    $orderString = '<input value="' . ($orderKey + 1) . '" name="order[]" size="4" class="order-menu">';
+    ?>
+                    <tr class="even <?php echo $cls ?>">						
+                        <td align="center"><a href=""><?php echo $cid; ?></a></td>
+                        <td align="left" class="name"><?php echo $strCategory ?></td>
+                        <td align="left"><?php echo $description ?></td>
+                        <td align="center"><?php echo $level ?></td>
+                        <td align="center">
+                            <?php
+                                $count = count($ordering[$val['id']]);
+                                if($val['level']==2){
+                                    $i++;   
+                                }
+                                if($val['level']==1)
+                                    $i=0;
+                                if(($i>1 || $val['level']==1) && $orderKey > 0)
+                                    echo '<a href="'.$this->baseUrl($this->currentController. '/move-up/id/'. $val['id']).'" ><i class="icon-up"></i></a>';
+                                if(($val['level'] == 2 
+                                    && count($ordering[$val['parent']]) > 1
+                                    && $orderKey + 1 < count($ordering[$val['parent']]))
+                                    || $val['level']==1
+                                    && $orderKey + 1 < count($ordering[$val['parent']]))
+                                    echo '<a href="'.$this->baseUrl($this->currentController. '/move-down/id/'. $val['id']).'"><i class="icon-down"></i></a>';
+                            ?>
+                            <?php echo $orderString ?>
+                        </td>
+                        <td align="center"><?php echo $status ?></td>
+                        <td align="center"><?php echo $strIconButton ?></td>
+                        <td align="center"><?php echo $val['id'] ?></td>
+                    </tr>
+                        <?php
+                    }
+                    ?>
+                <!-- BEGIN: PAGINATION (FOOT) -->
+                <tfoot>
+                    <tr>
+                        <td colspan="9">
+                            <div class="container">
+                                <div class="pagination">
+                <?php
+                $currentUrl = $this->baseUrl($this->currentController . '/index');
+                echo $this->paginationControl($this->panigator, 'Sliding', 'pagination.phtml', array('currentUrl' => $currentUrl));
+//                                                        
+                ?>
+                                    <div class="limit"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>					
+                </tfoot>				<!-- END: PAGINATION (FOOT) -->
+            </table>
+            <!-- Area 4: In du lieu lay tu database - End -->
+
+            <!-- END: ELEMENT BOX -->	
+            <div class="clr"></div>
+        </div>
+        <div class="b">
+            <div class="b">
+                <div class="b"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: 	CONTENT -->
+</form>

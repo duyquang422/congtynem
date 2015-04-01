@@ -1,0 +1,75 @@
+<div class='right width-78'>
+	<div class='box-right-pro width-100'>
+		<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Tin tức</p></div>
+				<?php
+					$items		= $this->Items;
+					if(!empty($items)){
+				?>
+                            <div class="cnt-right-news">
+                            	<?php
+                            		foreach ($items as $key => $value) {
+                            			$cutTring 	= new Zendvn_File_CutTring();
+										$title 		= $value['name'];
+										$title 		= str_replace("\\"," ",$title);
+										//$title 		= $cutTring -> cutTring(50, $title, null);
+										$alt		= str_replace("\\","",$value['alt_seo']);
+										if(empty($value['alt_seo'])) $alt = str_replace("\\","",$value['name']);
+										
+										$sumTmp 	= $value['summary'];
+			                    		$sumTmp 	= str_replace("\\"," ",$sumTmp);
+							            $summary 	= $cutTring->cutTring(450,$sumTmp,null);
+										
+										if(!empty($value['picture'])){
+					                    	$linkImg	= FILES_URL . '/news/images450x450/' . $value['picture'];
+					                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" width="110" alt="'.$alt.'" />';
+					                    }else{
+					                    	$linkImg	= $this->imgUrl . '/no-image.jpg';
+					                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" width="110" alt="'.$alt.'" />';
+					                    }
+										
+										$lang = $this->arrParam['lang'];
+					                    if(empty($lang)){
+					                    	$lang = 'vi';
+					                    }else{
+					                    	$lang = $this->arrParam['lang'];
+					                    }
+					                 	$urlOptions = array('module'=>'news','controller'=>'index',
+																	'action'=>'detail',
+																	'nname'=>$value['alias_name'],
+																	'title'=>$value['alias'],
+					                    							'nid'=> $value['menu_id'],
+																	'id'=>$value['id'],
+					                   								'lang'=>$lang);
+					                   	$linkDetail = $this->url($urlOptions,'news-detail');
+                            	?>
+                                    <div class="box-news">
+                                        <div class="bor-img width-25">
+                                            <a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+                                        </div>
+                                        <div class="desc">
+                                            <h2><a href="<?php echo $linkDetail?>"><?php echo $title?></a></h2>
+                                            <p><?php echo $summary?></p>
+                                            <a class="read-more" href="<?php echo $linkDetail?>">...Chi tiết</a>
+                                        </div>
+                                    </div>
+                                <?php
+                            		} 
+                                ?>
+                                <!--..........curent_page............ -->
+		                        <div class="cur-page mar-top-10 width-100">
+							        <?php
+							        	$paginator = $this->arrParam['paginator'];
+										$itemCountPerPage = $paginator['itemCountPerPage'];
+			                        	if($this->total > $itemCountPerPage){
+			                        		$currentUrl = $this->baseUrl($this->currentController . '/index');
+			                        		echo $this->paginationControl($this->panigator,'Sliding','curentpage.phtml',array('currentUrl'=>$currentUrl,'arrParam'=>$this->arrParam));
+			                        	}
+			                        ?>
+							    </div>
+								<!--..........curent_page............-->
+                            </div>
+                        </div>
+<?php 
+	}
+?>
+</div>

@@ -1,0 +1,203 @@
+<?php
+	$ssFilter = $this->arrParam['ssFilter'];
+	$langTmp = $ssFilter['lang'];
+	$lang = '';
+	if(!empty($langTmp)){
+		$lang = '/lang/' . $langTmp;
+	}
+	//Lấy thông số trang hiện tại
+	$url = Zend_Controller_Front::getInstance()->getRequest()->getPathInfo();	
+	$options = $this->tblGroupCategory;
+	$linktblCat = $this->baseUrl($this->currentController . '/filter/type/cat');
+	$GroupCategory = $this->cmsSelect('category_id',$ssFilter['category_id'],$options,array('onchange'=>"OnSubmitForm('" . $linktblCat . "')"));
+	$tblGroupCategory = $this->translate('Group') . ': ' . $GroupCategory ;		
+	if($ssFilter['col'] != 'g.group_name'){		
+		$linkOder =  $this->baseUrl($this->currentController . '/filter/type/order/col/g.group_name/by/DESC');
+		$iconSort = $this->imgUrl . '/icon/arrow_down.png';
+	}else{
+		if($ssFilter['order'] == 'DESC'){
+			$by = 'ASC';
+			$iconSort = $this->imgUrl . '/icon/arrow_down.png';
+		}else{
+			$by = 'DESC';
+			$iconSort = $this->imgUrl . '/icon/arrow_up.png';
+		}
+		
+		$linkOder =  $this->baseUrl($this->currentController . 
+									'/filter/type/order/col/g.group_name/by/' . $by);
+	}
+	$action_link 	= $this->baseUrl($this->currentController . '/filter/type/order');
+	$lblID 		= $this->cmsLinkSort('ID','id',$ssFilter,
+										$this->imgUrl . '/icon',$action_link);
+	
+	//CREATE SEARCH AREA
+	$keywords = $this->formText('keywords',$ssFilter['keywords'],array('class'=>'txtshort'));
+	$linkSearch = $this->baseUrl($this->currentController . '/filter/type/search/key/1');
+	$btnSearch = $this->formButton('search-now',$this->translate('Search'),
+									array('onclick'=>"OnSubmitForm('" . $linkSearch . "')"));
+	$linkResetSearch = $this->baseUrl($this->currentController . '/filter/type/search/key/0');							
+	$btnResetSearch = $this->formButton('clear-keywords',$this->translate('Clear'),
+									array('onclick'=>"OnSubmitForm('" . $linkResetSearch . "')"));	
+	$strSearch = $keywords . ' ' . $btnSearch . ' ' . $btnResetSearch;																	
+?>
+<form name="appForm" method="post" action="">
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+								<div id="filters">
+									<div style="float: left">
+										<?php echo $strSearch;?>
+									</div>
+									<div style="float: right">
+										<?php echo $tblGroupCategory;?>
+									</div>
+								</div>	
+
+                                <!-- Area 4: In du lieu lay tu database -->
+                                <table class="adminlist">
+                                    <thead>
+                                        <tr>
+                                            <th width="43" >
+                                            	<input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
+                                           	</th>
+                                            <th><?php echo $this->translate('Product name') ?></th>
+                                            <th width="70"><?php echo $this->translate('Special') ?></th>
+                                            <th width="50"><?php echo $this->translate('Status') ?></th>
+                                            <th width="50"><?php echo $this->translate('Order') ?></th>
+                                            <th width="100"><?php echo $this->translate('Menu') ?></th>
+                                            <th width="70"><?php echo $this->translate('Price') ?> (VND)</th>
+                                            <th width="70"><?php echo $this->translate('Sale Off') ?> (VND)</th>
+                                            <th width="50"><?php echo $this->translate('Hits') ?></th>
+                                            <th width="60"><?php echo $this->translate('Creat By') ?></th>
+                                            <th width="60"><?php echo $this->translate('Control') ?></th>
+                                            <th width="30"><?php echo $lblID ;?></th>
+                                        </tr>
+                                    </thead>
+									<?php 
+										foreach($this->Items as $key => $val){
+											$id 		= $val['id'];
+											$name 		= str_replace("\\","",$val['name']);
+											$price 		= $this->formText('price[' . $val['id'] . ']' ,$val['price'],array('style'=>'width: 60px; text-align: center;'));
+											$selloff 	= $this->formText('selloff[' . $val['id'] . ']' ,$val['selloff'],array('style'=>'width: 60px; text-align: center;'));
+											
+											
+											$tblcategory_name 	= $this->cmsSelect('menu_id['.$id.']',$val['menu_id'],$options,NULL);
+											$tblcategory_name	= str_replace("\\","",$tblcategory_name);
+											$hits				= $val['hits'];
+											$created_by			= $val['user_name'];
+											$status 			= $val['status'];											
+											if ($status == 1) {
+												$linkStatus = $this->baseUrl ( $this->currentController . '/status/type/0/id/' . $id );
+												$status = $this->cmsAjaxButton('ajax-active-item', 'Active', 'Inactive *'. $name . '*', $linkStatus, $id);
+											} else {
+												$linkStatus = $this->baseUrl ( $this->currentController . '/status/type/1/id/' . $id );
+												$status = $this->cmsAjaxButton('ajax-inactive-item', 'Inactive', 'Active *'. $name . '*', $linkStatus, $id);
+											}
+											
+											$favorites 	= $val['favorites'];											
+											if($favorites == 1){	
+												$linkfavorites = $this->baseUrl($this->currentController . '/favorites/type/0/id/' . $id);											
+												$favorites = $this->cmsAjaxButton('ajax-favorites-item', 'Yes', 'No *'. $name . '*', $linkfavorites, $id);
+											}else{
+												$linkfavorites = $this->baseUrl($this->currentController . '/favorites/type/1/id/' . $id);
+												$favorites = $this->cmsAjaxButton('ajax-nofavorites-item', 'No', 'Yes *'. $name . '*', $linkfavorites, $id);
+											}
+											
+											$special 	= $val['special'];											
+											if($special == 1){	
+												$linkSpecial = $this->baseUrl($this->currentController . '/special/type/0/id/' . $id);											
+												//$special = $this->cmsIconButton('Yes', $this->imgUrl . '/icon/active.png',$linkSpecial);
+												$special = $this->cmsAjaxButton('ajax-special-item', 'Yes', 'No *'. $name . '*', $linkSpecial, $id);
+											}else{
+												$linkSpecial = $this->baseUrl($this->currentController . '/special/type/1/id/' . $id);
+												$special = $this->cmsAjaxButton('ajax-nospecial-item', 'No', 'Yes *'. $name . '*', $linkSpecial, $id);
+											}
+											
+											$featured 			= $val['featured'];											
+											if ($featured == 1) {
+												$linkfeatured = $this->baseUrl ( $this->currentController . '/featured/type/0/id/' . $id );
+												$featured = $this->cmsAjaxButton('ajax-featured-item', 'Featured', 'Nofeatured *'. $name . '*', $linkfeatured, $id);
+											} else {
+												$linkfeatured = $this->baseUrl ( $this->currentController . '/featured/type/1/id/' . $id );
+												$featured = $this->cmsAjaxButton('ajax-nofeatured-item', 'Nofeatured', 'Featured *'. $name . '*', $linkfeatured, $id);
+											}
+																						
+											$order 			= $this->formText('order[' . $val['id'] . ']' ,$val['order'],array('style'=>'width: 30px; text-align: center;'));
+											
+											$linkInfo		= $this->baseUrl($this->currentController . '/info/id/' . $id . $lang);											
+											$btnInfo		= $this->cmsIconButton('View Item',$this->imgUrl . '/icon_info.png',$linkInfo);
+											
+											$linkEdit		= $this->baseUrl($this->currentController . '/edit/id/' . $id . $lang);
+											$btnEdit		= $this->cmsIconButton('Edit Item',$this->imgUrl . '/icon_edit.png',$linkEdit);
+											
+											$linkDelete		= $this->baseUrl($this->currentController . '/delete/id/' . $id . $lang);
+											$btnDelete =  $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *'. $name . '*', $linkDelete, $id);
+										
+											$strIconButton	= $btnInfo . ' ' . $btnEdit . ' ' . $btnDelete;
+											
+											$cid			= $this->formCheckbox('cid[]',$val['id']);
+											
+											$cls = 'row0';
+											if($key%2 != 0){
+												$cls = 'row1';
+											}
+									?>
+                                    <tr class="even <?php echo $cls ?>">						
+                                        <td align="center"><?php echo $cid;?></td>
+                                        <td align="left"><a href="<?php echo $linkEdit?>"><?php echo $name;?></a></td>
+                                        <td align="center"><?php echo $special;?></td>
+                                        <td align="center"><?php echo $status;?></td>
+                                        <td align="center"><?php echo $order;?></td>
+                                        <td align="center"><?php echo $tblcategory_name;?></td>
+                                        <td align="center"><?php echo $price;?></td>
+                                        <td align="center" style="font-weight: bold; color: red;"><?php echo $selloff;?></td>
+                                        <td align="center"><?php echo $hits;?></td>
+                                        <td align="center"><?php echo $created_by;?></td>
+                                        <td align="center"><?php echo $strIconButton;?></td>
+                                        <td align="center"><?php echo $id;?></td>
+                                    </tr>
+                                    <?php 
+										}
+                                    ?>
+                                    <!-- BEGIN: PAGINATION (FOOT) -->
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="19">
+                                                <div class="container">
+                                                    <div class="pagination">
+                                                        <?php 
+                                                        	$currentUrl = $this->baseUrl($this->currentController . '/index');
+                                                        	echo $this->paginationControl($this->panigator,'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl));
+                                                        ?>
+                                                        <div class="limit"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>					
+                                    </tfoot>				
+                                    <!-- END: PAGINATION (FOOT) -->
+                                </table>
+                                <!-- Area 4: In du lieu lay tu database - End -->
+
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

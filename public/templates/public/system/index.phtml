@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php echo $this->headTitle()?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <?php echo $this->headScript() ?>
+    </head>
+    <body>
+    <section>
+        <?php include_once 'html/header.php';?>
+    </section>
+    <section id="sidebar">
+        <div class="container">
+            <?php include_once 'html/sidebar.php';?>
+        </div>
+    </section>
+    <section id="fieldSection">
+        <?php include_once 'html/logo_manufacturers.php';?>
+    </section>
+    <section id="listProduct">
+        <?php include_once 'html/product.php'?>
+    </section>
+     <section id="fixed">
+         <?php include_once 'html/function.php';?>
+     </section>
+        <section id="footer">
+         <?php include_once 'html/footer.php';?>
+     </section>
+    </body>
+</html>

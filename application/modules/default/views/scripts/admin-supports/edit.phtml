@@ -1,0 +1,53 @@
+<?php 
+	$name 			= $this->formText('name',$this->Item['name'],array('class'=>'txtmedium'));
+	$phone 			= $this->formText('phone',$this->Item['phone'],array('class'=>'txtmedium'));
+	$manage 		= $this->formText('manage',$this->Item['manage'],array('class'=>'txtmedium'));
+	$nick 			= $this->formText('nick',$this->Item['nick'],array('class'=>'txtmedium'));
+	$type 			= $this->formRadio('type',$this->Item['type'],null,array('Yahoo','Skype'), ' ');
+	$options 		= array($this->translate('Inactive'),$this->translate('Active'));
+	$status 		= $this->formRadio('status',$this->Item['status'],null,$options, ' ');	
+	$Input = array(
+					array('Label'=>$this->translate('Name'),'input'=>$name,'info'=>0),
+					array('Label'=>$this->translate('Phone'),'input'=>$phone,'info'=>0),
+					array('Label'=>$this->translate('Job'),'input'=>$manage,'info'=>0),
+					array('Label'=>$this->translate('Nick'),'input'=>$nick,'info'=>0),
+					array('Label'=>$this->translate('Type'),'input'=>$type,'info'=>0),
+					array('Label'=>$this->translate('Status'),'input'=>$status,'info'=>0)
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        
+                        <?php echo $errors;?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                            <div class="adminheader">Detail</div>								
+								<?php echo $this->partialLoop('rows.php',$Input);?>                                
+							</div>
+							
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

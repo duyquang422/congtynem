@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+       <tu tuid='Sort'><tuv xml:lang="vi"><seg>Sắp xếp</seg></tuv></tu>
+       <tu tuid='Active'><tuv xml:lang="vi"><seg>Bật</seg></tuv></tu> 
+       <tu tuid='Inactive'><tuv xml:lang="vi"><seg>Tắt</seg></tuv></tu> 
+       <tu tuid='Add'><tuv xml:lang="vi"><seg>Thêm</seg></tuv></tu> 
+       <tu tuid='Delete'><tuv xml:lang="vi"><seg>Xóa</seg></tuv></tu> 
+       <tu tuid='Help'><tuv xml:lang="vi"><seg>Trợ giúp</seg></tuv></tu> 
+       <tu tuid='Edit'><tuv xml:lang="vi"><seg>Chỉnh sửa</seg></tuv></tu> 
+       <tu tuid='Save'><tuv xml:lang="vi"><seg>Lưu</seg></tuv></tu> 
+       <tu tuid='Cancel'><tuv xml:lang="vi"><seg>Hủy</seg></tuv></tu> 
+       <tu tuid='Back'><tuv xml:lang="vi"><seg>Lùi lại</seg></tuv></tu> 
+       <tu tuid='Information'><tuv xml:lang="vi"><seg>Thông tin</seg></tuv></tu>
+       <tu tuid='Save Close'><tuv xml:lang="vi"><seg>Lưu &amp; Đóng</seg></tuv></tu>
+   </body>  
+</tmx>

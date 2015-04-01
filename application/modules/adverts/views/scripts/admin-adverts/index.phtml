@@ -1,0 +1,181 @@
+<?php
+	$ssFilter = $this->arrParam['ssFilter'];
+	$langTmp = $ssFilter['lang'];
+	$lang = '';
+	if(!empty($langTmp)){
+		$lang = '/lang/' . $langTmp;
+	} 
+?>
+<form name="appForm" method="post" action="">
+                        <?php
+                        	include 'includes/group_id.php'; 
+                        	echo $this->render('toolbar.php')
+                        ?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+                                <table class="adminlist">
+                                    <thead>
+                                        <tr>
+                                            <th width="43" >
+                                            	<input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
+                                           	</th>
+                                            <th><?php echo $this->translate('Name')?></th>
+                                            <th><?php echo $this->translate('Type')?></th>
+                                            <th width="120"><?php echo $this->translate('Position')?></th>
+                                            <th width="80"><?php echo $this->translate('Start')?></th>
+                                            <th width="80"><?php echo $this->translate('End')?></th>
+                                            <th width="80"><?php echo $this->translate('Special')?></th>
+                                            <th width="50"><?php echo $this->translate('Status')?></th>
+                                            <th width="50"><?php echo $this->translate('Order')?></th>
+                                            <th width="80"><?php echo $this->translate('Resize') . ' (px)'?></th>
+                                            <th width="100"><?php echo $this->translate('Price') . ' (VND)'?></th>
+                                            <th width="100"><?php echo $this->translate('Sale Off') . ' (VND)'?></th>
+                                            <th width="90"><?php echo $this->translate('Control')?></th>
+                                            <th width="34">ID</th>
+                                        </tr>
+                                    </thead>
+									<?php
+										$i =0 ;
+										foreach($this->Items as $key => $val){
+											$i++;
+											$id 			= $val['id'];
+											$name 			= $val['name'];
+											$resize 		= $val['resize'];
+											$price 			= number_format($val['price'],null);
+											$selloff 		= number_format($val['selloff'],null);
+											$start 			= $this->formText('start[' . $val['id'] . ']' ,$val['start'],array('style'=>'width: 80px; text-align: center;'));
+											$end 			= $this->formText('end[' . $val['id'] . ']' ,$val['end'],array('style'=>'width: 80px; text-align: center;'));
+											$position = $this->formSelect('position['.$id.']',$val['position'],array('style'=>'width: 90px; text-align: center;'),$this->tblPositions);
+											$status 		= $val['status'];
+											if($status == 1){
+												$linkStatus = '';
+												if($group_id == 1) $linkStatus = $this->baseUrl($this->currentController . '/status/type/0/id/' . $id);
+												//$status = $this->cmsIconButton('Active', $this->imgUrl . '/icon/active.png',$linkStatus);
+												$status = $this->cmsAjaxButton('ajax-active-item', 'Active', 'Inactive *'. $name . '*', $linkStatus, $id);
+											}else{
+												$linkStatus = '';
+												if($group_id == 1) $linkStatus = $this->baseUrl($this->currentController . '/status/type/1/id/' . $id);
+												$status = $this->cmsAjaxButton('ajax-inactive-item', 'Inactive', 'Active *'. $name . '*', $linkStatus, $id);
+											}
+											
+											$special 	= $val['special'];											
+											if($special == 1){	
+												$linkSpecial = '';
+												if($group_id == 1) $linkSpecial = $this->baseUrl($this->currentController . '/special/type/0/id/' . $id);											
+												$special = $this->cmsAjaxButton('ajax-special-item', 'Yes', 'No *'. $name . '*', $linkSpecial, $id);
+											}else{
+												$linkSpecial = '';
+												if($group_id == 1) $linkSpecial = $this->baseUrl($this->currentController . '/special/type/1/id/' . $id);
+												$special = $this->cmsAjaxButton('ajax-nospecial-item', 'No', 'Yes *'. $name . '*', $linkSpecial, $id);
+											}
+											
+											$type 		= $val['type'];
+											if ($type == 0) {
+												$type = 'Hình ảnh';
+											} else {
+												$type = 'Flash';
+											}
+											
+											$order 			= $this->formText('order[' . $val['id'] . ']' ,$val['order'],array('style'=>'width: 30px; text-align: center;'));
+											$linkInfo		= $this->baseUrl($this->currentController . '/info/id/' . $id . $lang);											
+											$btnInfo		= $this->cmsIconButton('View Item',$this->imgUrl . '/icon_info.png',$linkInfo);
+											$linkEdit		= $this->baseUrl($this->currentController . '/edit/id/' . $id . $lang);
+											$btnEdit		= $this->cmsIconButton('Edit Item',$this->imgUrl . '/icon_edit.png',$linkEdit);
+											$linkDelete		= $this->baseUrl($this->currentController . '/delete/id/' . $id . $lang);
+											$btnDelete 		=  $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *'. $name . '*', $linkDelete, $id);
+											$strIconButton = '<i>......</i>';
+											if($id == $memberInfo || $group_id == 1) $strIconButton	= $btnEdit . ' ' . $btnDelete;
+											$cid			= $this->formCheckbox('cid[]',$val['id']);
+									?>
+
+                                    <tr class="even">						
+                                        <td align="center"><?php echo $cid;?></td>
+                                        <td align="left"><a href="<?php echo $linkEdit?>"><?php echo $name;?></a></td>
+                                        <td align="left"><?php echo $type;?></td>
+                                        <td align="center"><?php echo $position;?></td>
+                                        <td align="center"><?php echo $start;?></td>
+                                        <td align="center"><?php echo $end;?></td>
+                                        <td align="center"><?php echo $special;?></td>
+                                        <td align="center"><?php echo $status;?></td>
+                                        <td align="center"><?php echo $order;?></td>
+                                        <td align="center"><?php echo $resize;?></td>
+                                        <td align="center"><?php echo $price;?></td>
+                                        <td align="center"><?php echo $selloff ;?></td>
+                                        <td align="center"><?php echo $strIconButton;?></td>
+                                        <td align="center"><?php echo $id;?></td>
+                                    </tr>
+
+                                    <?php 
+
+										}
+
+                                    ?>
+
+                                    <!-- BEGIN: PAGINATION (FOOT) -->
+
+                                    <tfoot>
+
+                                        <tr>
+
+                                            <td colspan="19">
+
+                                                <div class="container">
+
+                                                    <div class="pagination">
+
+                                                        <?php 
+
+                                                        	//$currentUrl = $this->baseUrl($this->currentController . '/index');
+
+                                                        	//echo $this->paginationControl($this->panigator,'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl));
+
+                                                        ?>
+
+                                                        <div class="limit"></div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>					
+
+                                    </tfoot>				<!-- END: PAGINATION (FOOT) -->
+
+                                </table>
+
+                                <!-- Area 4: In du lieu lay tu database - End -->
+
+
+
+                                <!-- END: ELEMENT BOX -->	
+
+                              <div class="clr"></div>
+
+                            </div>
+
+                            <div class="b">
+
+                                <div class="b">
+
+                                    <div class="b"></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- END: 	CONTENT -->
+
+                    </form>

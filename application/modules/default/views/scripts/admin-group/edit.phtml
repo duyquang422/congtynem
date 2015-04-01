@@ -1,0 +1,85 @@
+<?php 
+	$group_name 	= $this->formText('group_name',$this->Item['group_name'],array('class'=>'txtmedium'));
+	//$avatar 		= $this->formFile('avatar',array('style'=>'width: 250px'));
+	//$ranking 		= $this->formFile('ranking',array('style'=>'width: 250px'));
+	$options 		= array($this->translate('No'),$this->translate('Yes'));
+	$group_acp 		= $this->formRadio('group_acp',$this->Item['group_acp'],null,$options, ' ');
+	$group_default 	= $this->formRadio('group_default',$this->Item['group_default'],null,$options, ' ');
+	$options 		= array($this->translate('Inactive'),$this->translate('Active'));
+	$status 		= $this->formRadio('status',$this->Item['status'],null,$options, ' ');
+	$order 			= $this->formText('order',$this->Item['order'],array('class'=>'txtshort'));
+	
+	//Avatar
+	$inputInfo 	= array('name'=>'avatar');
+	$imgArr 	= !empty($this->Item['avatar'])?array( FILES_URL . '/group/images100x100/'.$this->Item['avatar']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['avatar'])){
+	  	$urlimage   = FILES_URL . '/group/images100x100/'. $this->Item['avatar'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$avatar  = $imgimage ."<br/>" . $this->formFile('avatar',array('style'=>'margin-left:173px'));
+	}else{
+		$avatar  = $this->formFile('avatar',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_avatar = $this->formHidden('current_stadium_avatar',$this->Item['avatar']);
+ 	
+ 	//ranking
+	$inputInfo 	= array('name'=>'ranking');
+	$imgArr 	= !empty($this->Item['ranking'])?array( FILES_URL . '/group/images100x100/'.$this->Item['ranking']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['ranking'])){
+	  	$urlimage   = FILES_URL . '/group/images100x100/'. $this->Item['ranking'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$ranking  = $imgimage ."<br/>" . $this->formFile('ranking',array('style'=>'margin-left:173px'));
+	}else{
+		$ranking  = $this->formFile('ranking',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_ranking = $this->formHidden('current_stadium_ranking',$this->Item['ranking']);
+	
+	
+	$Input = array(
+					array('Label'=>$this->translate('Group name'),'input'=>$group_name),
+					array('Label'=>$this->translate('Avatar'),'input'=>$avatar),
+					array('Label'=>$this->translate('Ranking'),'input'=>$ranking),
+					array('Label'=>$this->translate('Group ACP'),'input'=>$group_acp),
+					array('Label'=>$this->translate('Group Default'),'input'=>$group_default),
+					array('Label'=>$this->translate('Status'),'input'=>$status),
+					array('Label'=>$this->translate('Order'),'input'=>$order)
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        
+                        <?php echo $errors;?>
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                            <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                             	<div class="adminheader">Detail</div>								
+									<?php echo $this->partialLoop('rows.php',$Input);?>
+									<?php 
+										echo $current_stadium_avatar;
+										echo $current_stadium_ranking; 
+									?>                       
+								</div>							
+                            <!-- END: ELEMENT BOX -->	
+                            <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

@@ -1,0 +1,66 @@
+<?php
+	$item 		= $this->Item;
+	$name 		= $item['title'];
+	$summary 	= $item['summary'];
+	$summary 	= str_replace("\\"," ",$summary);
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	
+	if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/about/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/about/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }else{
+	    $linkImg	= FILES_URL . '/about/images100x100/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }
+?>
+<script type="text/javascript">
+		function fancyBox(elem){
+			elem = $(elem);
+			if (!elem.data("fancybox")) {
+				elem.data("fancybox", true);
+				elem.fancybox({
+					'titleShow' 	: false,
+					'transitionIn'	: 'elastic',
+					'transitionOut'	: 'elastic',
+					'centerOnScroll': true
+				}).trigger('click');
+			}
+			return false; 
+		}
+	</script>
+<!-----------------CONTENT (START) ------------------>
+                <div class="content-left bag-white">
+                	<div class="detail">
+                    	<!--------------------BOX CONTENT (Start) -------------------->
+                        <div class="box-cnt col-0 mar-top-20">
+                            <div class="bor-img">
+                                <a onclick="return fancyBox(this);" id="various1" href="#inline1" title="<?php echo $name?>"><?php echo $picture?></a>
+                            </div>
+                            <div class="desc">
+                                <h1 class="color-blue"><?php echo $name?></h1>
+                                <p class="summary"><?php echo $summary?></p>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="cnt-detail">
+                        	<!--<h1 class="color-blue"><?php echo $name?></h1>-->
+                        	<?php echo $content?>
+                            
+                            
+                        </div>
+                        <!--------------------BOX CONTENT (End) ----------------------> 
+                    </div>
+                </div>
+                <!-----------------CONTENT (END) -------------------->
+                
+				<div style="display: none;">
+					<div id="inline1" style="width:auto;height:auto;overflow:auto;">
+							<?php echo $image?>
+					</div>
+				</div>

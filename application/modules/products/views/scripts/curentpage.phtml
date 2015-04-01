@@ -1,0 +1,66 @@
+<?php
+	$arrParam 		= $this->arrParam ;
+	$lang 			= $arrParam['lang'];
+	$curPage 		= $arrParam['page'];
+	$action 		= $arrParam['action'];
+	$name 			= $arrParam['name'];
+	$cid 			= $arrParam['cid'];
+	$mod_default 	= 'san-pham';
+	$type 			= $arrParam['type'];
+	$units 			= $arrParam['units'];
+	$u_id 			= $arrParam['u_id'];
+	$u  			= $units . '-' . $u_id;
+	$baseUrl 		= $this->baseUrl();
+	
+	$publisher 		= $arrParam['publisher'];
+	
+ 	
+    $linkStart 			= $baseUrl . '/' . $mod_default . '-' . $this->first . '.html';
+    if(!empty($type)) $linkStart = $baseUrl . '/' . $mod_default . '-' . $type .'-' . $this->first . '.html';
+    if(!empty($units)) $linkStart = $baseUrl . '/' . $mod_default . '-' . $u .'-' . $this->first . '.html';
+    if(!empty($publisher)) $linkStart = $baseUrl . '/' . $mod_default . '-' . $publisher .'-' . $this->first . '.html';
+    if($action != 'index') $linkStart = $baseUrl .'/' . $mod_default . '/' . $cid . '-' . $name . '-' . $lang . '-' . $this->first . '.html';
+    
+    $linkEnd 	= $baseUrl . '/' . $mod_default . '-' . $this->last . '.html';
+    if(!empty($type)) $linkEnd = $baseUrl . '/' . $mod_default . '-' . $type .'-' . $this->last . '.html';
+    if(!empty($units)) $linkEnd = $baseUrl . '/' . $mod_default . '-' . $u .'-' . $this->last . '.html';
+    if(!empty($publisher)) $linkEnd = $baseUrl . '/' . $mod_default . '-' . $publisher .'-' . $this->last . '.html';
+    if($action 		!= 'index') $linkEnd = $baseUrl .'/' . $mod_default . '/' . $cid . '-' . $name . '-' . $lang . '-' . $this->last . '.html';
+    
+	$linkPrevious = '#';
+	if(isset($this->previous)){
+		$linkPrevious 	 = $baseUrl . '/' . $mod_default . '-' . $this->previous . '.html';
+		if(!empty($type)) $linkPrevious = $baseUrl . '/' . $mod_default . '-' . $type .'-' . $this->previous . '.html';
+		if(!empty($units)) $linkPrevious = $baseUrl . '/' . $mod_default . '-' . $u .'-' . $this->previous . '.html';
+		if(!empty($publisher)) $linkPrevious = $baseUrl . '/' . $mod_default . '-' . $publisher .'-' . $this->previous . '.html';
+		if($action 		!= 'index') $linkPrevious = $baseUrl .'/' . $mod_default . '/' . $cid . '-' . $name . '-' . $lang . '-' . $this->previous . '.html';
+	}
+	$linkNext = '#';
+	if(isset($this->next)){
+		$linkNext 	= $baseUrl . '/' . $mod_default . '-' . $this->next . '.html';
+		if(!empty($type)) $linkNext = $baseUrl . '/' . $mod_default . '-' . $type .'-' . $this->next . '.html';
+		if(!empty($units)) $linkNext = $baseUrl . '/' . $mod_default . '-' . $u .'-' . $this->next . '.html';
+		if(!empty($publisher)) $linkNext = $baseUrl . '/' . $mod_default . '-' . $publisher .'-' . $this->next . '.html';
+		if($action != 'index') $linkNext = $baseUrl .'/' . $mod_default . '/' .$cid . '-' . $name . '-' . $lang . '-' . $this->next . '.html';
+	}	
+	$strPage  = '';
+	foreach ($this->pagesInRange as $key){
+		if($this->current == $key){
+			$strPage .= '<li class="page active"><span>' . $key .'</span></li>';
+		}else{
+			$linkPage = $baseUrl . '/' . $mod_default . '-' . $key  . '.html';
+			if(!empty($type)) $linkPage = $baseUrl . '/' . $mod_default . '-' . $type .'-' . $key . '.html';
+			if(!empty($units)) $linkPage = $baseUrl . '/' . $mod_default . '-' . $u .'-' . $key . '.html';
+			if(!empty($publisher)) $linkPage = $baseUrl . '/' . $mod_default . '-' . $publisher .'-' . $key . '.html';
+			if($action != 'index') $linkPage = $baseUrl .'/' . $mod_default . '/' .$cid . '-' . $name . '-' . $lang . '-' . $key . '.html';
+			$strPage .= '<li class="page"><a id="cur_page" href="' . $linkPage . '">' . $key .'</a></li>';
+		}
+	}
+?>
+<ul class="nav-cur">
+    <li class="start"><a href="<?php echo $linkStart?>"><span></span></a></li>
+    <li class="prev"><a href="<?php echo $linkPrevious;?>"><span></span></a></li>
+    <?php echo $strPage;?>
+    <li class="next"><a href="<?php echo $linkNext;?>"><span></span></a></li>
+    <li class="end"><a href="<?php echo $linkEnd?>"><span></span></a></li>
+</ul>

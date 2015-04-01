@@ -1,0 +1,51 @@
+<?php
+	$arrParam = $this->arrParam ;
+	$lang = $arrParam['lang'];
+	if(empty($lang)){
+		$lang = 'vi';
+	}
+	$curPage = $arrParam['page'];
+	$action = $arrParam['action'];
+	$name = $arrParam['name'];
+	$tid = $arrParam['tid'];
+	$mod_default = 'tintuc';
+	$baseUrl = $this->baseUrl();
+	
+	if (strlen(strstr($curUrl, '/page/')) > 0) {
+       $temp = explode('/page/', $curUrl);
+       $curUrl = $temp[0];
+    }
+    $linkStart 	= $baseUrl . '/' . $lang .'-' . $mod_default . '-' . $this->first . '.html';
+    if($action 		!= 'index') $linkStart = $baseUrl .'/' . $mod_default . '/' . $tid . '-' . $name . '-' . $lang . '-' . $this->first . '.html';
+    
+    $linkEnd 	= $baseUrl . '/' . $lang .'-' . $mod_default . '-' . $this->last . '.html';
+    if($action 		!= 'index') $linkEnd = $baseUrl .'/' . $mod_default . '/' . $tid . '-' . $name . '-' . $lang . '-' . $this->last . '.html';
+    
+	$linkPrevious = '#';
+	if(isset($this->previous)){
+		$linkPrevious 	 = $baseUrl . '/' . $lang .'-' . $mod_default . '-' . $this->previous . '.html';
+		if($action 		!= 'index') $linkPrevious = $baseUrl .'/' . $mod_default . '/' . $tid . '-' . $name . '-' . $lang . '-' . $this->previous . '.html';
+	}
+	$linkNext = '#';
+	if(isset($this->next)){
+		$linkNext 	= $baseUrl . '/' . $lang .'-' . $mod_default . '-' . $this->next . '.html';
+		if($action != 'index') $linkNext = $baseUrl .'/' . $mod_default . '/' .$tid . '-' . $name . '-' . $lang . '-' . $this->next . '.html';
+	}	
+	$strPage  = '';
+	foreach ($this->pagesInRange as $key){
+		if($this->current == $key){
+			$strPage .= '<li class="page active"><span>' . $key .'</span></li>';
+		}else{
+			$linkPage = $baseUrl . '/' . $lang .'-' . $mod_default . '-' . $key  . '.html';
+			if($action != 'index') $linkPage = $baseUrl .'/' . $mod_default . '/' .$tid . '-' . $name . '-' . $lang . '-' . $key . '.html';
+			$strPage .= '<li class="page"><a id="cur_page" href="' . $linkPage . '">' . $key .'</a></li>';
+		}
+	}
+?>
+<ul class="nav-cur">
+    <li class="start"><a href="<?php echo $linkStart?>"><span></span></a></li>
+    <li class="prev"><a href="<?php echo $linkPrevious;?>"><span></span></a></li>
+    <?php echo $strPage;?>
+    <li class="next"><a href="<?php echo $linkNext;?>"><span></span></a></li>
+    <li class="end"><a href="<?php echo $linkEnd?>"><span></span></a></li>
+</ul>

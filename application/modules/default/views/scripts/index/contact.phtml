@@ -1,0 +1,142 @@
+<?php
+	$fulname	=	$this->formText('fullname',$this->Item['fullname'],array("class"=>"text"));
+	$email		=	$this->formText('email',$this->Item['email'],array("class"=>"text"));
+	$title		= 	$this->formText('title',$this->Item['title'],array("class"=>"text"));
+	$message	= 	$this->formTextarea('message',$this->Item['message'],array('rows'=>10));	
+	$captcha 	= 	$this->captcha;
+	$txtCaptcha = 	$this->formText('captcha','');
+	$txtID 		= 	$this->formHidden('captchaID',$this->captcha_id);		
+	$urlCaptch		 = $this->baseUrl('default/index/captcha-image');	
+	$inputCaptcha	= $this->formText('captcha',null,array("class"=>"code"));
+	$submit			= $this->formSubmit('submit','Gửi mail',array("class"=>"submit"));
+	$linkContact	= $this->baseUrl('default/index/contact');
+	
+	if (count ( $this->messageError ) > 0) {
+		$errors = $this->formErrors ( $this->messageError, array ('id' => 'errors' ) );
+	}
+?>
+<div class='right width-78'>
+	<div class='box-right-pro width-100'>
+		<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Liên hệ</p></div>
+			    <div class="detail bag-white mar-0">
+			    	<?php
+			    		$tblContact = new Zendvn_Models_Contact();
+			    		$items	= $tblContact->listItem($this->arrParam,array('task'=>'public'));
+			    		if(!empty($items)){
+			    			foreach ($items as $key => $value) {
+			    			$mar_top = '';
+			    			if($key !=0)$mar_top = 'nar-top-10';
+			    			if(!empty($value['title'])) $name = "<div class='sub-contact'>" . $value['title']. "</div>";
+			    			if(!empty($value['address'])) $address = "<p><b>Địa chỉ: </b>" . str_replace("\\","",$value['address']). "</p>";
+			    			if(!empty($value['phone'])) $phone = "<p><b>Điện thoại: </b>" . str_replace("\\","",$value['phone']). "</p>";
+			    			if(!empty($value['fax'])) $fax = "<p><b>Fax: </b>" . str_replace("\\","",$value['fax']). "</p>";
+			    			if(!empty($value['code'])) $code = "<p><b>Mã số thuế: </b>" . str_replace("\\","",$value['code']). "</p>";
+			    			if(!empty($value['hotline'])) $hotline = "<p><b>Hotline: </b>" . str_replace("\\","",$value['hotline']). "</p>";
+			    			if(!empty($value['email'])) $email2 = "<p><b>Email: </b>" . str_replace("\\","",$value['email']). "</p>";
+			    			$nick_yahoo = explode(',', $value['yahoo']);
+			    			$nick_skype = explode(',', $value['skype']);
+			    			if(!empty($value['website'])) $website = "<p><b>Website: </b>" . str_replace("\\","",$value['website']). "</p>";
+			    			if(!empty($value['content'])) $content = "<p><span><b>Ghi chú: </b></span><span>" . str_replace("\\","",$value['content']). "</span></p>";
+			    	?>
+			    	<div class='info-contact <?php echo $mar_top?>'>
+			    		<?php echo $name?>
+			    		<?php echo $address?>
+			    		<?php echo $phone?>
+			    		<?php echo $fax?>
+			    		<?php echo $code?>
+			    		<?php echo $hotline?>
+			    		<?php echo $email2?>
+			    		<?php
+			    			if($nick_yahoo == ''){
+			    				echo '<p><b>Yahoo:  </b>';
+			    				foreach ($nick_yahoo as $val) {
+			    		?>
+				    		<a href="ymsgr:sendIM?<?php echo $val; ?>" >
+		                    	<img height='15px' src="http://opi.yahoo.com/online?u=<?php echo $val;?>&m=g&t=1" alt="Louis Le - gia công mỹ nghệ" />
+		                	</a>
+			    		<?php 
+			    				}
+			    				echo '</p>';
+			    			}
+			    		?>
+			    		
+			    		<?php
+			    			if(nick_skype == ''){
+			    				echo '<p><b>Skype:  </b>';
+			    				foreach ($nick_skype as $valSky) {
+			    		?>
+		                	<a href="skype:<?php echo $valSky;?>?call">
+		                    	<img height='30' src="http://mystatus.skype.com/balloon/<?php echo $valSky;?>" style="border: none;" alt="My status" />
+		                	</a>
+			    		<?php 
+			    				}
+			    				echo '</p>';
+			    			}
+			    		?>
+			    		<?php echo $website?>
+			    		<?php echo $content?>
+			    	</div>
+			    	<?php 
+			    			}
+			    		}
+			    	?>
+				    <div class="contact">
+				    <?php 
+				        if(empty($this->messages[0])):?>
+				         <form action="<?php echo $linkContact;?>" method="post"  enctype="multipart/form-data">
+				             <div class="lev">
+				                 <span>Họ và tên: </span><?php echo $fulname;?>
+				                 <div><?php if(!empty($this->messageError['fullname'])):echo '<p class="msg_error">'.$this->messageError['fullname'].'</p>';endif;?></div>
+				             </div>
+				             <div class="lev">
+				                 <span>Email: </span><?php echo $email;?>
+				                 <div><?php if(!empty($this->messageError['email'])):echo '<p class="msg_error">'.$this->messageError['email'].'</p>';endif;?></div>
+				             </div>
+				             <div class="lev">
+				                 <span>Tiêu đề: </span><?php echo $title?>
+				                 <div><?php if(!empty($this->messageError['title'])):echo '<p class="msg_error">'.$this->messageError['title'].'</p>';endif;?></div>
+				             </div>
+				             <div class="lev">
+				                 <span>Nội dung: </span><?php echo $message;?>
+				                 <div><?php if(!empty($this->messageError['message'])):echo '<p class="msg_error">'.$this->messageError['message'].'</p>';endif;?></div>
+				             </div>
+				             <div class="lev">
+				                  <span>Mã xác nhận: </span>
+				                  <div>
+				                  	<?php echo $inputCaptcha;?>                            	
+				                  	<?php if(!empty($this->messageError['captcha'])):echo '<p class="msg_error">'.$this->messageError['captcha'].'</p>';endif;?>
+				                  </div>	
+				             </div>
+				             <div class="lev">
+				             	<div>
+									<div class="border-img"><?php echo $txtID . $captcha;?></div>
+				             	  </div>
+				             </div>
+				             <div class="lev">
+				             	<div><?php echo $submit;?></div>
+				             </div>
+				          </form>
+				      <?php else:
+				           echo '<div class="notice">'.$this->messages[0].'</div>';
+				      endif;?>
+				      </div>
+				</div>
+				</div>
+				</div>
+<script>
+	function getData(data){
+		$('.border-img').html(data);
+		return false;
+	}
+	
+	function refreshCaptcha(){
+		var captchaID = $("#captchaID").val();
+		$.get('<?php echo $urlCaptch . '/captchaID/';?>'+captchaID,getData);
+	}
+	$(document).ready(function(){
+		$('#refresh').click(function(e){
+			e.preventDefault();
+			refreshCaptcha();
+		});
+	});
+</script>

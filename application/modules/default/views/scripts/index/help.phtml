@@ -1,0 +1,83 @@
+<?php
+	$item 		= $this->Item;
+	$title 		= $item['title'];
+	$summary 	= $item['summary'];
+	$summary 	= str_replace("\\"," ",$summary);
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	
+	if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/about/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/about/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }else{
+	    $linkImg	= FILES_URL . '/about/images100x100/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }
+?>
+<script type="text/javascript">
+		function fancyBox(elem){
+			elem = $(elem);
+			if (!elem.data("fancybox")) {
+				elem.data("fancybox", true);
+				elem.fancybox({
+					'titleShow' 	: false,
+					'transitionIn'	: 'elastic',
+					'transitionOut'	: 'elastic',
+					'centerOnScroll': true
+				}).trigger('click');
+			}
+			return false; 
+		}
+	</script>
+<div class="right width-75 float-right">
+	<div class="group width-100 detail">
+		<div class='box-detail'>
+                        <div class="box-cnt col-0">
+                            <div class="bor-img width-25">
+                                <a onclick="return fancyBox(this);" id="various1" href="#inline1" title="<?php echo $name?>"><?php echo $picture?></a>
+                            </div>
+                            <div class="desc">
+                                <h1 class="color-blue"><?php echo $title?></h1>
+                                <p class="summary"><?php echo $summary?></p>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="cnt-detail">
+                        	<?php echo $content ?>
+                        	<div class='clear'></div>
+                            
+                        </div>
+                        <div class='relate mar-top-20'>
+                        	<?php
+                            		$tblHelp	= new Zendvn_Models_Help();
+                            		$items 		= $tblHelp->listItem($this->arrParam,array('task'=>'admin-index')); 
+                            		if (!empty($items)){
+                            ?>
+                        	<h3>Xẹm thêm trợ giúp</h3>
+                        	<ul>
+                        		<?php
+                            			foreach ($items as $value) {
+                            				$title		= str_replace("\\","",$value['title']);
+                            				$urlOptions = array('module'=>'default','controller'=>'index',
+																				'action'=>'help',
+																				'title'=>$value['alias'],
+																				'id'=>$value['id'],
+							                    								'lang'=>$lang);
+							                $linkDetail = $this->url($urlOptions,'default');
+                            	?>
+                                <li><a title='<?php echo $title?>' href="<?php echo $linkDetail?>"><?php echo $title?></a></li>
+                                <?php 
+                            			}
+                            	?>
+                        	</ul>
+                        	<?php }?>
+                        </div>
+                        
+    	</div>
+	</div>
+</div>

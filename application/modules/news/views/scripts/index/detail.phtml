@@ -1,0 +1,306 @@
+<?php
+	$ssFilter = $this->arrParam['ssFilter'];
+	$langTmp = $ssFilter['lang'];
+	if($langTmp == ''){
+		$langTmp = 'vi';
+	}else{
+		$langTmp = $ssFilter['lang'];
+	}
+	
+	$page = 1;
+	
+	$lang = $this->arrParam['lang'];
+    if(empty($lang)){
+    	$lang = 'vi';
+    }else{
+    	$lang = $this->arrParam['lang'];
+    }
+	
+	$urlHome 		= array('module'=>'default','controller'=>'index','action'=>'index','lang'=>$langTmp);
+   	$linkHome 		= $this->url($urlHome,'home');
+?>
+
+<?php
+	$item = $this->Item;
+	$name 		= $item['name'];
+	$name 		= str_replace("\\"," ",$name);
+	$summary 	= $item['summary'];
+	$summary 	= str_replace("\\"," ",$summary);
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	$created 	= $item['created'];
+	
+	$alt		= str_replace("\\","",$item['alt_seo']);
+	if(empty($item['alt_seo'])) $alt = str_replace("\\","",$item['name']);
+	
+	$tmpFileDown 	= $item['file_download'];
+	$linkFile		= FILES_URL . '/documents/' . $tmpFileDown;
+	if(!empty($tmpFileDown)) $showFileDown	= '<a title="'. $tmpFileDown.'" class="icon-download" href="'.$linkFile.'"><span></span>hãy nhấn vào để download tài liệu</a>';
+	
+	if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/news/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/news/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img style="max-width:600px" src="'. $linkImg2 .'" alt="'.$alt.'" />';
+    }else{
+	    $linkImg	= FILES_URL . '/news/images100x100/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+    }
+    $cat 		= $this->Cat;
+    $category	= $cat['name'];
+    $urlOptions = array('module'=>'news','controller'=>'index',
+						'action'=>'category',
+                    	'cid'=> $cat['id'],
+						'name'=>$cat['alias'],
+                    	'lang'=>$lang,
+                    	'page'=>$page);
+   	$linkDetail = $this->url($urlOptions,'news-category');
+   	$id = $item['id'];
+?>
+<script type="text/javascript">
+		function fancyBox(elem){
+			elem = $(elem);
+			if (!elem.data("fancybox")) {
+				elem.data("fancybox", true);
+				elem.fancybox({
+					'titleShow' 	: false,
+					'transitionIn'	: 'elastic',
+					'transitionOut'	: 'elastic',
+					'centerOnScroll': true
+				}).trigger('click');
+			}
+			return false; 
+		}
+	</script>
+<div class='right width-78'>
+	<div class='box-right-pro width-100'>
+						<?php
+							 $pubTitle 	= '<h2><a title="'.$category.'" class="color-blue" href="'.$linkDetail.'"> '.$category.'<span> &#187; </span></a></h2> '; 
+						?>
+                		<div class="sub-box-right"><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><a class="color-blue" href="<?php echo $linkHome?>">Home &#187; </a><?php echo $pubTitle?> <h1><?php echo $name?></h1></div>
+                    	<!--------------------BOX CONTENT (Start) -------------------->
+                        <div class="news-about">
+                            <div class="bor-img width-35">
+                                <a onclick="return fancyBox(this);" id="various1" href="#inline1" title="<?php echo $name?>"><?php echo $picture?></a>
+                            </div>
+                            <div class="desc">
+                                <h1 class="color-blue"><?php echo $name?></h1>
+                                <p class="creat-day"><?php echo $created?></p>
+                                <p class="summary"><?php echo $summary?></p>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="cnt-news-detail">
+                        	<!--<h1 class="color-blue"><?php echo $name?></h1>-->
+                        	<?php 
+//                        		$tmpVideo = $this->Item['video'];
+//								$link	= FILES_URL . '/videos/' . $tmpVideo;
+//								if(!empty($tmpVideo)){
+//									echo $video = '<div class="box-video"><a class="video" href="'. $link .'" id="player"></a></div>';
+//								}
+                        	?>
+                        	<?php 
+//                        		if ($this->Item['show'] == 1){
+//                        			echo $video;
+//                        		}
+                        	?>
+                        	<?php
+                        		if($this->Item['show'] == 0){
+	                        		$tmpVideo = $this->Item['video'];
+									$link	= FILES_URL . '/videos/' . $tmpVideo;
+	                        		if(!empty($tmpVideo)){
+                        	?>
+                        	<video width="320" height="240" controls>
+							  <source src="<?php echo $link?>">
+							</video> 
+							<?php
+                        			}
+                        		}
+                        		if($this->Item['show'] == 1){
+                        			if(!empty($this->Item['youtube'])){
+                        				$youtube 		= $this->Item['youtube'];
+										$tmpYoutube		= strstr($youtube, '=');
+										$idYoutube 		= substr($tmpYoutube,1);
+										$urlYoutube		= '<iframe width="420" height="315" src="//www.youtube.com/embed/'.$idYoutube.'" frameborder="0" allowfullscreen></iframe>';
+                        				echo $urlYoutube;
+                        			}
+                        		}
+							?>
+                        	<?php echo $content . $showFileDown?>
+                        	<div class='clear'></div>
+							<div class='cnt-info-contact'>
+                        		<div class='sub-info-contact'>Thông tin liên hệ</div>
+                        		<h2>HỆ THỐNG PHÂN PHỐI NỆM TRỰC TUYẾN TẠI CONGTYNEM.COM</h2>
+                        		<?php
+									$tblContact	= new Zendvn_Models_Contact();
+									$contact	= $tblContact->listItem($this->arrParam,array('task'=>'public'));
+									if (!empty($contact)){
+										foreach ($contact as $key => $value){
+											$title		= str_replace("\\","",$value['title']);
+											$address  	= str_replace("\\","",$value['address']);
+								?>
+                        		<p><b><?php echo $title?></b></p>
+								<p>ĐC : <?php echo $address?></p>
+								<?php
+										}
+									}
+								?>
+								<?php
+									$tblContact	= new Zendvn_Models_Contact();
+									$contact	= $tblContact->listItem($this->arrParam,array('task'=>'row'));
+									$hotline	= str_replace("\\","",$contact['hotline']);
+									$phone  	= str_replace("\\","",$contact['phone']);
+									$code  		= str_replace("\\","",$contact['code']);
+									$mail  		= str_replace("\\","",$contact['email']);
+									$fax  		= str_replace("\\","",$contact['fax']);
+									$website  	= str_replace("\\","",$contact['website']);
+								?>
+								<p>Hotline : <?php echo $hotline?>  -  Tel : <?php echo $phone?></p>
+								<p>Mã số thuế : <?php echo $code?>  - Mail : <?php echo $mail?></p>
+								<p>Fax : <?php echo $fax?>  -  Website : <?php echo $website?></p>
+                        	</div>
+                            
+                        </div>
+                        <!--------------------BOX CONTENT (End) ----------------------> 
+                        <div class="relate-news mar-top-20">
+                                <div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Các tin tức liên quan</p></div>
+                                <div class="cnt-right-news">
+                                	<?php
+                                		$tblNews	= new Zendvn_Models_NewsItem();
+                                		$itemLates	= $tblNews->listItem($this->arrParam, array('task'=>'public-detail'));
+                                		foreach ($itemLates as $key => $val){
+                                			$cutTring 	= new Zendvn_File_CutTring();
+                                			$title 		= $val['name'];
+                                			$title 		= str_replace("\\"," ",$title);
+                                			
+                                			$alt		= str_replace("\\","",$val['alt_seo']);
+											if(empty($val['alt_seo'])) $alt = str_replace("\\","",$val['name']);
+                                			
+                                			$lang 		= $this->arrParam['lang'];
+	                                		$sumTmp 	= $val['summary'];
+				                    		$sumTmp 	= str_replace("\\"," ",$sumTmp);
+								            $summary 	= $cutTring->cutTring(450,$sumTmp,null);
+											
+											if(!empty($val['picture'])){
+						                    	$linkImg	= FILES_URL . '/news/images450x450/' . $val['picture'];
+						                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" width="110" alt="'.$alt.'" />';
+						                    }else{
+						                    	$linkImg	= $this->imgUrl . '/no-image.jpg';
+						                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" width="110" alt="'.$alt.'" />';
+						                    }
+						                    if(empty($lang)){
+						                    	$lang = 'vi';
+						                    }else{
+						                    	$lang = $this->arrParam['lang'];
+						                    }
+						                    $urlOptions = array('module'=>'news','controller'=>'index',
+																			'action'=>'detail',
+																			'nname'=>$val['alias_name'],
+																			'title'=>$val['alias'],
+						                    								'nid'=> $val['menu_id'],
+																			'id'=>$val['id'],
+						                    								'lang'=>$lang);
+						                    $linkDetail = $this->url($urlOptions,'news-detail');
+                                	?>
+                                    <div class="box-news">
+                                        <div class="bor-img width-25">
+                                            <a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+                                        </div>
+                                        <div class="desc">
+                                            <h2><a href="<?php echo $linkDetail?>"><?php echo $title?></a></h2>
+                                            <p><?php echo $summary?></p>
+                                            <a class="read-more" href="<?php echo $linkDetail?>">...Chi tiết</a>
+                                        </div>
+                                    </div>
+                                    <?php }?>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                <!-----------------CONTENT (END) -------------------->    
+				<div style="display: none;">
+					<div id="inline1" style="width:auto;height:auto;overflow:auto;">
+							<?php echo $image?>
+					</div>
+				</div>
+
+<script>
+	flowplayer("player", {
+	  // flash configuration
+	  src: "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf",
+	 
+	  // required for hardware accelaration to take effect
+	  wmode: "direct"
+	},  {
+	  // player configuration
+	  clip: {
+		  // enable hardware acceleration
+		  accelerated: true
+	  }
+	});
+</script>			
+<script type="text/javascript">
+	//Khai bao ten cua form
+	var formID = '#cnt-comment';
+	//Khai bao ten cua vung hien du lieu tra ve
+	var formMessage = '#content-load';
+	var options = {
+				target: formMessage,
+				dataType: "json", 
+				success: processData,
+				};
+	$(document).ready(function(){
+		$(formMessage).ajaxSend(function(){
+				$(formMessage).removeClass().addClass('loading').html('<img src="<?php echo $this->imgUrl . '/ajax-loader.gif';?>" alt="loading" />').fadeIn();
+		});
+		$(formID).submit(function(){
+				$(this).ajaxSubmit(options);
+				return false;
+		});
+	});
+
+	function processData(data){
+		if(data.type == 0){
+			var success = 'Du lieu data duoc luu vao database';
+			$(formMessage).addClass('success').html(success).fadeIn();
+			$(formID).resetForm();
+			$('#comment').slideUp(500);
+			//$(formMessage).hide(10000);
+			$(formMessage).delay(1500).fadeOut('slow');
+			
+		}else{
+			var error = '';
+			var msgError = data.err;
+			for(x in msgError){
+				error = error + msgError[x] + '<br>';
+			}
+			$(formMessage).removeClass().addClass('errors').html(error).fadeIn();
+		}		
+	}
+</script>			
+<script type="text/javascript">
+	$('.btn-comment') .click(function(){
+		$('#comment').slideToggle();
+	})	
+</script>
+
+<script>
+	function getData(data){
+		$('.border-img').html(data);
+		return false;
+	}
+	
+	function refreshCaptcha(){
+		var captchaID = $("#captchaID").val();
+		$.get('<?php echo $urlCaptch . '/captchaID/';?>'+captchaID,getData);
+	}
+	$(document).ready(function(){
+		$('#refresh').click(function(e){
+			e.preventDefault();
+			refreshCaptcha();
+		});
+	});
+</script>

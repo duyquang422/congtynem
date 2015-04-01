@@ -1,0 +1,149 @@
+<div class='right width-78'>
+<div class='box-right-pro width-100'>
+	<?php
+		include 'includes/lang.php';
+		$urlHome 		= array('module'=>'default','controller'=>'index','action'=>'index','lang'=>$lang);
+   		$linkHome 		= $this->url($urlHome,'home');
+   		$sub_title		= '<h1>'.$this->Title.'</h1>';
+   		if(!empty($this->Publisher)){
+   			$publisher		= $this->Publisher;
+   			$sub_title		= '<h1>'. $this->Title . ' ' . $publisher['name'] . '</h1>';
+   			$alias_pub 		= $publisher['alias'];
+   			$name_pub 		= str_replace("\\","",$publisher['name']);
+   			$cnt_pub 		= str_replace("\\","",$publisher['content']);
+   			$linkImg	= FILES_URL . '/publisher/orignal/' . $publisher['picture'];
+			$picPub 	= '<img title="'. $publisher['name'] .'" src="'. $linkImg .'" alt="'. $alias_pub .'" />';
+   			$urlOptions 	= array('module'=>'products','controller'=>'index',
+													'action'=>'index',
+													'publisher'=>$alias_pub,
+													'page'=>$page,
+													'lang'=>$lang);
+			$linkPublisher = $this->url($urlOptions,'products-pub');
+			$pubTitle		= '<h2><a title="'.$name_pub.'" class="color-blue" href="'.$linkPublisher.'">'.$name_pub.'<span> &#187; </span></a></h2> ';
+			$h1Title		= '<a title="'.$name_pub.'" class="color-blue" href="'.$linkPublisher.'">'.$name_pub.'</a>';
+   		}
+	?>
+						<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><a class="color-blue" href="<?php echo $linkHome?>">Home &#187; </a><?php echo $pubTitle?><?php echo $sub_title?></div>
+	                        <?php
+	                        	include 'includes/lang.php';
+	                        	$items	= $this->Items;
+	                        	if(!empty($items)){
+	                        ?>
+	                        <div class="cnt-right mar-top-5 width-100">
+		                        <?php
+		                        	if(!empty($this->Publisher)){ 
+		                        ?>
+	                        	<div class='info-publisher'>
+	                        		<div class='bor-img-pub'>
+	                        			<?php echo $picPub?>
+	                        		</div>
+	                        		<div class='about-publisher'>
+	                        			<h1><?php echo $h1Title?></h2>
+	                        			<?php echo $cnt_pub?>
+	                        		</div>
+	                        	</div>
+	                        	<?php }?>
+	                        <?php
+	                        	foreach ($items as $key => $value){
+	                        	$cutTring 	= new Zendvn_File_CutTring();
+									$name		= str_replace("\\","",$value['name']);
+								//	$name		= $cutTring->cutTring(25, $name, null);
+									
+									$alt		= str_replace("\\","",$value['alt_seo']);
+									if(empty($value['alt_seo'])) $alt = str_replace("\\","",$value['name']);
+									
+									$summary	= str_replace("\\","",$value['summary']);
+									$summary	= $cutTring->cutTring(120, $summary, null);
+									$price 		= '<p class="price-right-pro">' . number_format($value['price'],0) . ' VND</p>';
+									
+									$sale		= $value['sale'];
+									$menu_id	= $value['menu_id'];
+									include 'includes/sale.php';
+									
+									$val_sell 	= '';
+									$sale_off 	= '';
+									if ($value['selloff'] != 0){
+										$sale_off	= '<p class="sale">' . number_format($value['selloff'],0) . ' VND</p>';
+										$val_sell 	= '<div class="icon-sale">'. $value['val_sell'] .'%</div>';
+									}
+									$price 		= '<p class="price-right-pro">' . number_format($value['price'],0) . ' VND</p>';
+									if($value['val_sell'] != 0){
+										$price 	= '<p class="price-right-pro  line-through">' . number_format($value['price'],0) . ' VND</p>';
+									}
+									if ($sale != 0){
+										$sale_off 	= $value['price'] - ($value['price']*$sale/100);
+										$sale_off	= '<p class="sale">' . number_format($sale_off,0) . ' VND</p>';
+										$price 		= '<p class="price-right-pro line-through">' . number_format($value['price'],0) . ' VND</p>';
+										$val_sell 	= '<div class="icon-sale">'. $sale .'%</div>';
+										if($value['val_sell'] != 0){
+											$val_sell 	= '<div class="icon-sale">'. $value['val_sell'] .'%</div>';
+											$sale_off	= '<p class="sale">' . number_format($value['selloff'],0) . ' VND</p>';
+										}
+									}
+									if($value['price'] == 0) $price = '<p style="color:red; font-size:1em" class="price">Liên hệ</p>';
+									if(!empty($value['picture'])){
+										$linkImg	= FILES_URL . '/products/orignal/' . $value['picture'];
+										$picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+									}else{
+										$linkImg	= $this->imgUrl . '/no-image.jpg';
+										$picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+									}
+									
+									$urlOptions = array('module'=>'products','controller'=>'index',
+																'action'=>'detail',
+																'cid'=> $value['menu_id'],
+																'id'=>$value['id'],
+																'tcat'=>$value['alias_name'],
+																'title'=>$value['alias']);
+									$linkDetail = $this->url($urlOptions,'products-detail');
+									$urlOptions2 = array('module'=>'products','controller'=>'index',
+																'action'=>'order-detail',
+																'tcat'=>$value['alias_name'],
+																'title'=>$value['alias'],
+																'cid'=> $value['menu_id'],
+																'id'=>$value['id'],
+																'lang'=>$lang);
+									$linkCart = $this->url($urlOptions2,'products-order-detail');
+									$num = '';
+									if(($key+1)%4 == 0){
+										$col = 'col4';
+									}else{
+										$col = 'col1';
+									}
+	                        ?>
+	                        	<div class='box-right width-22 <?php echo $col?>'>
+									<div class='bor-img-right'>
+										<a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+									</div>
+									<div class='desc-right'>
+										<h2><a href="<?php echo $linkDetail?>"><?php echo $name?></a></h2>
+										<?php echo $price?>
+										<?php echo $sale_off?>
+										<?php echo $val_sell?>
+										<a class='icon-right-cart' href="<?php echo $linkCart?>">Mua hàng</a>
+									</div>
+								</div>
+	                            <?php 
+	                        		}
+	                        	?>
+	                        	<!--..........curent_page............ -->
+		                        <div class="cur-page mar-top-10 width-100 cur-page-pro">
+							        <?php
+							        	$paginator = $this->arrParam['paginator'];
+										$itemCountPerPage = $paginator['itemCountPerPage'];
+			                        	if($this->total > $itemCountPerPage){
+			                        		$currentUrl = $this->baseUrl($this->currentController . '/index');
+			                        		echo $this->paginationControl($this->panigator,'Sliding','curentpage.phtml',array('currentUrl'=>$currentUrl,'arrParam'=>$this->arrParam));
+			                        	}
+			                        ?>
+							    </div>
+								<!--..........curent_page............-->
+	                        <?php
+	                        	}else{
+	                        		echo '<div class="note">Không có sản phẩm phù hợp với từ khóa</div>';
+	                        	}
+	                        ?>
+	                    </div>
+	                    <div class='nav'><a href='#'></a></div>
+</div>
+</div>

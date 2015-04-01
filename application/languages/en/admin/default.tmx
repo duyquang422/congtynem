@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>            
+       <tu tuid='Filter'><tuv xml:lang="en"><seg>Filter</seg></tuv></tu>      
+       <tu tuid='Search'><tuv xml:lang="en"><seg>Search</seg></tuv></tu>      
+       <tu tuid='Clear'><tuv xml:lang="en"><seg>Clear</seg></tuv></tu>      
+       <tu tuid='Show fields'><tuv xml:lang="en"><seg>Show fields</seg></tuv></tu>      
+       <tu tuid='The list is empty'>
+       		<tuv xml:lang="en"><seg>The list is empty</seg></tuv>
+       	</tu>
+       	<tu tuid='Are you sure you want to delete this item?'>
+       		<tuv xml:lang="en"><seg>Are you sure you want to delete this item?</seg></tuv>
+       	</tu>
+       	<tu tuid='Form Detail'>
+       		<tuv xml:lang="en"><seg>Form Detail</seg></tuv>
+       	</tu>
+       	<tu tuid='Page'>
+       		<tuv xml:lang="en"><seg>Page</seg></tuv>
+       	</tu>
+       	<tu tuid='of'>
+       		<tuv xml:lang="en"><seg>of</seg></tuv>
+       	</tu>
+       	<tu tuid='Displaying'>
+       		<tuv xml:lang="en"><seg>Displaying</seg></tuv>
+       	</tu>
+       	<tu tuid='Keywords'>
+       		<tuv xml:lang="vi"><seg>Keywords</seg></tuv>
+       	</tu>
+   </body>  
+</tmx>

@@ -1,0 +1,60 @@
+<?php
+if (count($this->messageError) > 0)
+    $errors = $this->formErrors($this->messageError, array('id' => 'errors')); $user_name = $this->formText('user_name', $this->Item['user_name'], null);
+$user_avatar = $this->formFile('user_avatar', array('style' => 'width: 250px'));
+$email = $this->formText('email', $this->Item['email'], null);
+$first_name = $this->formText('first_name', $this->Item['first_name'], null);
+$last_name = $this->formText('last_name', $this->Item['last_name'], null);
+$phone = $this->formText('phone', $this->Item['phone'], null);
+$address = $this->formText('address', $this->Item['address'], null);
+$password = $this->formPassword('password', null, null);
+$confirm_password = $this->formPassword('confirm_password', null, null);
+$captcha = $this->captcha;
+$txtCaptcha = $this->formText('captcha', '');
+$txtID = $this->formHidden('captchaID', $this->captcha_id);
+$urlCaptch = $this->baseUrl('default/index/captcha-image');
+$inputCaptcha = $this->formText('captcha', null, array("class" => "code"));
+
+$arrInput = array(array('label' => '<span>Tên đăng nhập</span> <span class="color-red">(*)</span>', 'input' => $user_name),
+    array('label' => '<span>Hình đại diện</span> ', 'input' => $user_avatar),
+    array('label' => '<span>Email </span><span class="color-red">(*)</span>', 'input' => $email), array('label' => '<span>Họ </span><span class="color-red">(*)</span>', 'input' => $first_name), array('label' => '<span>Tên </span><span class="color-red">(*)</span>', 'input' => $last_name), array('label' => '<span>Điện thoại</span>', 'input' => $phone), array('label' => '<span>Địa chỉ</span>', 'input' => $address), array('label' => '<span>Mật khẩu</span> <span class="color-red">(*)</span>', 'input' => $password), array('label' => '<span>Nhập lại mật khẩu </span><span class="color-red">(*)</span>', 'input' => $confirm_password), array('label' => '<span>Mã bảo mật </span><span class="color-red">(*)</span>', 'input' => $txtCaptcha),);
+?><script>	function getData(data) {
+                                $('.border-img').html(data);
+                                return false;
+                            }
+                            function refreshCaptcha() {
+                                var captchaID = $("#captchaID").val();
+                                $.get('<?php echo $urlCaptch . '/captchaID/'; ?>' + captchaID, getData);
+                            }
+                            $(document).ready(function() {
+                                $('#refresh').click(function(e) {
+                                    e.preventDefault();
+                                    refreshCaptcha();
+                                });
+                            });</script>
+<div class='right width-78'>
+    <div class='box-right-pro width-100'>
+        <div class='sub-box-right'>
+            <span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span>
+            <p>ĐĂNG KÝ</p>
+        </div>
+        <div class="detail cnt-right mar-top-5 width-100">
+            <div class="error-login-public"><?php echo $errors; ?></div>
+            <div class="login_student">
+                <form name="formRegister" method="post" action="" enctype="multipart/form-data">
+                    <div class="note color-white">(*) Không được để trống những giá trị này</div><br/><br/>
+<?php echo $this->partialLoop('rowsRegister.php', $arrInput); ?>
+
+                    <div class="lev">
+                        <div>
+                            <div class="border-img" style="margin-left: 110px"><?php echo $txtID . $captcha; ?></div>
+                        </div>
+                    </div>
+                    <div class="lev-1">
+                        <input class="submit" type="submit" name="submit" value="Đăng ký" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

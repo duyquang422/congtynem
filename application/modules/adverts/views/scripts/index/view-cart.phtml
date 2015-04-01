@@ -1,0 +1,89 @@
+
+<div class="content-left bag-white">
+	<div class="detail">
+		<div class="order-cart">
+                    		<form name="your-cart" id="your-cart" action="" method="POST">
+                    		<table cellpadding="0" cellspacing="0">
+                    			<tr class="sub-cart">
+                    				<td class="first" width="20">ID</td>
+                    				<td>Tên sản phẩm</td>
+                    				<td width="50">Số lượng</td>
+                    				<td width="60">Giá (Vnd)</td>
+                    				<td>Giá khuyến mãi (Vnd)</td>
+                    				<td width="80">Tổng tiền</td>
+                    			</tr>
+                    			<?php
+	                            $cart = $this->cart;
+	                            	$linkOrder = $this->baseUrl('/products/index/order');
+	                            	$linkUpdate = $this->baseUrl('/products/index/add-item');
+	                            	$linkBack = $this->baseUrl('/products/index/index');
+	                            	if(count($this->Items)>0){
+	                            		$totalPrice = 0;
+	                            		foreach ($this->Items as $key => $val){
+	                            			$name = $val['name'];
+	                            			$id = $val['id'];
+	                            			$price = $val['price'];
+	                            			$selloff = $val['selloff'];
+	                            			$quantity = $cart[$id];
+	                            			$total = 0;
+		                            		if($selloff <=0 ){
+			                          			$price = '<span class="price-1" style="">' . $price . '</span> ';
+			                          			$selloff = ' ';
+			                          			$total = $quantity * $val['price'];
+			                          			$totalPrice += $total;
+			                          			$total =  $total;
+			                          		}else{
+			                          			$price = '<span class="price-1" style="text-decoration: line-through;">' . $price . '</span> ';
+			                          			$selloff =  $val['selloff']; 
+			                          			$total = $quantity * $val['selloff']; 
+			                          			$totalPrice += $total;
+			                          			$total =  $total;		 
+			                          		}
+			                          		
+			                          		$filter = new Zend_Filter();
+											$multiFilter = $filter->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
+																 ->addFilter(new Zend_Filter_StringTrim())
+										 						 ->addFilter(new Zend_Filter_Alnum(true))
+										  						 ->addFilter(new Zend_Filter_PregReplace(array('match'=>'#\s+#','replace'=>'-')))
+										  						->addFilter(new Zend_Filter_Word_SeparatorToDash())
+										  						->addFilter(new Zendvn_Filter_RemoveCircumflex());
+										  
+			                          		$linkDetial = $this->baseUrl('/products/index/detail/cid/' . $val['cat_id'] 
+		                          									 . '/tcat/' . $filter->filter($val['category_name']) 
+		                          									 . '/id/' . $val['id'] . '/title/' . $filter->filter($val['name']));
+	
+		                          		    $itemProduct = 'itemProduct[' . $val['id'] . ']';				 
+	                            			$itemProduct = $this->formText($itemProduct,$quantity,
+	                            											array('style'=>'width: 35px; text-align: center; font-size: 11px; background-color:#FFC;padding: 2px 2px;'));
+
+	                            ?>
+                    			<tr>
+                    				<td class="first"><?php echo $id;?></td>
+                    				<td style="text-align: left;"><strong><a href="<?php echo $linkDetial;?>" class="itemLink" target="_blank"><?php echo $name;?></a></strong></td>
+                    				<td><?php echo $itemProduct;?></td>
+                    				<td><?php echo $price;?></td>
+                    				<td><?php echo $selloff;?></td>
+                    				<td><?php echo number_format($total,null);?></td>
+                    			</tr>
+                    			<?php 
+	                            		}
+	                            	}
+	                         	?> 
+                    		</table>
+                    		<p>Tổng số tiền thanh toán : <strong><?php echo number_format($totalPrice,null) . ' (Vnd)';?></strong></p>
+                    		<div class="link">                    		
+                    			<!--  
+                    			<ul>
+                    				<li><a  href='<?php echo $linkBack;?>'>Trở lại trang trước</a></li>
+                    				<li><a href="<?php echo $linkUpdate;?>">Thêm vào giỏ hàng</a></li>
+                    				<li><a href="<?php echo $linkOrder ;?>">Mua hàng</a></li>
+                    			</ul>
+                    			-->
+                    			<input type="button" name="update" id="update" value="Quay lại" class="button" onclick="window.location = '<?php echo $linkBack;?>'" /> 
+	                        	<input type="submit" name="update" id="update" value="Cập nhật" class="button"  /> 
+	                            <input type="button" name="update" id="update" value="Mua hàng" class="button"  onclick="window.location = '<?php echo $linkOrder;?>'"/>
+                    		</div>
+                    		</form>
+                    	</div>
+	</div>
+</div>>

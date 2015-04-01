@@ -1,0 +1,31 @@
+<?php
+	if (count ( $this->messageError ) > 0) {
+		$errors = $this->formErrors ( $this->messageError, array ('id' => 'errors' ) );
+	}
+?>
+<div class="right width-75 float-right">
+	<div class="group width-100">
+		<div class="sub-right width-100">
+			<p class='active'>Nhập mật khẩu mới</p>
+		</div>
+		<div class="detail cnt-right mar-top-5 width-100">
+		    <div class="login">
+		    	<form name="appForm" method="post" action="" enctype="multipart/form-data">
+					<div class="lev">
+						<span class="color-blue">Email</span>
+						<?php echo $this->formText('email',$this->email);?>
+						<p class="msg-err"><?php echo $this->messageError['email']?></p>
+					</div>
+					<div class="lev">
+						<span class="color-blue">Mật khẩu mới</span>
+						<?php echo $this->formPassword('password','');?>
+						<p class="msg-err"><?php echo $this->messageError['password']?></p>
+					</div>
+					<div class="lev">
+						<input class="submit" type="submit" name="submit" value="Gửi" />
+					</div>
+				</form>
+		    </div>
+	    </div>
+	</div>
+</div>

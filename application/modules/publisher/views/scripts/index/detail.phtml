@@ -1,0 +1,117 @@
+<?php
+	$item = $this->Item;
+	$name = $item['name'];
+	$summary 	= $item['summary'];
+	$summary 	= str_replace("\\"," ",$summary);
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	$price 		= $item['price'];
+    $selloff 	= $item['selloff'];
+    if(empty($selloff)){
+       $price 	= number_format($price,null) . ' VND';
+    }else{
+       $price 	= number_format($selloff,null) . ' VND';
+    }
+    
+    if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/services/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/services/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }else{
+	    $linkImg	= FILES_URL . '/services/images100x100/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$name.'" />';
+    }
+    
+    $lang = $this->arrParam['lang'];
+    if(empty($lang)){
+    	$lang = 'vi';
+    }else{
+    	$lang = $this->arrParam['lang'];
+    }
+    $urlContact 	= array('module'=>'default','controller'=>'index','action'=>'contact','lang'=>$lang);
+   	$linkContact 	= $this->url($urlContact,'contact');
+?>
+
+<script type="text/javascript">
+	function fancyBox(elem){
+		elem = $(elem);
+		if (!elem.data("fancybox")) {
+			elem.data("fancybox", true);
+			elem.fancybox({
+				'titleShow' 	: false,
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'elastic',
+				'centerOnScroll': true
+			}).trigger('click');
+		}
+		return false; 
+	}
+</script>
+
+ <div class="left float-left width-72">
+	<div class="detail width-100">
+		<div class='box-detail'>      	
+                    	<!--------------------BOX CONTENT (Start) -------------------->
+                        <div class="box-cnt col-0">
+                            <div class="bor-img">
+                                <a onclick="return fancyBox(this);" id="various1" href="#inline1" title="<?php echo $name?>"><?php echo $picture?></a>
+                            </div>
+                            <div class="desc">
+                                <h1 class="color-blue"><?php echo $name ?></h1>
+                                <p class="summary"><?php echo $summary?></p>
+                                <a href="<?php echo $linkContact?>"><img title="Liên hệ" src="<?php echo $this->imgUrl;?>/icon/icon-contact.png" alt=""  /></a>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="cnt-detail">
+                        	<?php echo $content ?>
+                            
+                            <div class="relate-news mar-top-20">
+                                <h3 class="color-blue">Các dịch vụ liên quan</h3>
+                                <?php
+                                	$tblTour = new Zendvn_Models_ServiceItem();
+                                	$tour = $tblTour -> listItem($this->arrParam,array('task'=>'fav-detail'));
+                                ?>
+                                <?php if(!empty($tour)){?>
+                                <div class="list-relate">
+                                	<?php
+                                		foreach ($tour as $key => $val){
+                                			$name = $val['name'];
+                                			$name 	= str_replace("\\"," ",$name);
+	                                		$lang = $this->arrParam['lang'];
+			                    			if(empty($lang)){
+			                    				$lang = 'vi';
+			                    			}else{
+			                    				$lang = $this->arrParam['lang'];
+			                    			}
+                                			
+                                			$urlOptions = array('module'=>'services','controller'=>'index',
+																'action'=>'detail',
+																'nname'=>$val['alias_name'],
+																'title'=>$val['alias'],
+							                    				'cid'=> $val['cat_id'],
+																'id'=>$val['id'],
+							                    				'lang'=>$lang);
+								            $linkDetail = $this->url($urlOptions,'default');
+                                	?>
+                                    <p><a class="li" href="<?php echo $linkDetail?>"><?php echo $name ?></a></p>
+                                    <?php }?>
+                                </div>
+                                <?php }?>
+                            </div>
+                            
+                        </div>
+                        <!--------------------BOX CONTENT (End) ----------------------> 
+                    </div>
+                    </div>
+                </div>
+                <!-----------------CONTENT (END) -------------------->
+                <div style="display: none;">
+					<div id="inline1" style="width:auto;height:auto;overflow:auto;">
+							<?php echo $image?>
+					</div>
+				</div>

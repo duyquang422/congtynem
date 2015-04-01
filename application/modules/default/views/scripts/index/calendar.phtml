@@ -1,0 +1,75 @@
+<!-----------------GROUP3 (START) ------------------>
+                    <div class="group3">
+                    	<div class="sub-left">
+                            <div class="bag-title-orange">
+                                <img src="<?php echo $this->imgUrl;?>/icon/icon-news.png" alt=""  />
+                                <p>BẢNG GIÁ CHUNG</p>
+                            </div>
+                        </div>
+                        <div class="pad-15 bag-white mar-top-10">
+                        <?php
+							if(!empty($this->Items)){
+								$i = 0;
+								foreach ($this->Items as $key => $val) {
+									
+									$title = $val['title'];
+									
+									$sumTmp 	= $val['summary'];
+                    				$sumTmp 	= str_replace("\\"," ",$sumTmp);
+                    				$cutTring 	= new Zendvn_File_CutTring();
+				                	$sumary 	= $cutTring->cutTring(320,$sumTmp,null);
+				                	
+									if(!empty($val['picture'])){
+				                    	$linkImg	= FILES_URL . '/about/images450x450/' . $val['picture'];
+				                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" alt="'.$name.'" />';
+				                    }else{
+				                    	$linkImg	= FILES_URL . '/about/images450x450/no-image.jpg';
+				                    	$picture 	= '<img title="'. $title .'" src="'. $linkImg .'" alt="'.$name.'" />';
+				                    }
+									$lang = $this->arrParam['lang'];
+				                    if(empty($lang)){
+				                    	$lang = 'vi';
+				                    }else{
+				                    	$lang = $this->arrParam['lang'];
+				                    }
+				                    $urlOptions = array('module'=>'default','controller'=>'index',
+																	'action'=>'calendar-detail',
+																	'title'=>$val['alias'],
+																	'id'=>$val['id'],
+				                    								'lang'=>$lang);
+				                    $linkDetail = $this->url($urlOptions,'default');
+								    $i++;
+								    $line = '<div class="line"></div>';
+									
+						?>
+                        <!--------------------BOX CONTENT (Start) -------------------->
+                        <div class="box-cnt width-100 mar-top-20">
+                            <div class="bor-img">
+                                <a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+                            </div>
+                            <div class="desc">
+                                <h2><a title="<?php echo $val['title']?>" href="<?php echo $linkDetail?>"><?php echo $title?></a></h2>
+                                <p><?php echo $sumary ?></p>
+                                <a title="<?php echo $val['title']?>" href="<?php echo $linkDetail?>" class="btn-readmore bag-readmore-green"><span>Xem chi tiết</span></a>
+                            </div>
+                            <div class="clear"></div>
+                            <?php echo $line ;?>
+                        </div>
+                        <!--------------------BOX CONTENT (End) ---------------------->
+                        
+                        <?php }}?>
+                        <!--------------------CURENT-PAGE (Start) -------------------->
+                        <div class="cur-page mar-top-10">
+					        <?php
+					        	$paginator = $this->arrParam['paginator'];
+								$itemCountPerPage = $paginator['itemCountPerPage'];
+	                        	if($this->total > $itemCountPerPage){
+	                        		$currentUrl = $this->baseUrl($this->currentController . '/index');
+	                        		echo $this->paginationControl($this->panigator,'Sliding','curentpage.phtml',array('currentUrl'=>$currentUrl,'arrParam'=>$this->arrParam));
+	                        	}
+	                        ?>
+					    </div>
+					    <!--------------------CURENT-PAGE (End) ---------------------->
+                        </div>
+                    </div>
+                    <!-----------------GROUP3 (END) -------------------->

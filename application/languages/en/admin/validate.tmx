@@ -1,0 +1,248 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>   	   
+   		<!-- ======================================================== -->
+       	<!-- ***************** Validate Translate ******************* -->  
+       	<!-- ======================================================== --> 
+   		
+       	<!-- ====================== NotEmpty ======================= --> 
+		<tu tuid="Value is required and can't be empty">   
+			<tuv xml:lang="en"><seg>Value is required and can't be empty</seg></tuv>
+		</tu>
+		<tu tuid="Invalid type given, value should be float, string, array, boolean or integer">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be float, string, array, boolean or integer</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Between ======================= --> 
+		<tu tuid="'%value%' is not between '%min%' and '%max%', inclusively">   
+			<tuv xml:lang="en"><seg>This value is not between '%min%' and '%max%', inclusively</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is not strictly between '%min%' and '%max%'">   
+			<tuv xml:lang="en"><seg>This value is not strictly between '%min%' and '%max%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== StringLength ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be a string</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is less than %min% characters long">   
+			<tuv xml:lang="en"><seg>This value is less than %min% characters long</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is more than %max% characters long">   
+			<tuv xml:lang="en"><seg>This value is more than %max% characters long</seg></tuv>
+		</tu>
+		
+		<!-- ====================== EmailAddress ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be a string</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is no valid email address in the basic format local-part@hostname">   
+			<tuv xml:lang="en"><seg>Email address is no valid in the basic format local-part@hostname</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' is no valid hostname for email address '%value%'">   
+			<tuv xml:lang="en"><seg>'%hostname%' is no valid hostname for email address</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' does not appear to have a valid MX record for the email address '%value%'">   
+			<tuv xml:lang="en"><seg>'%hostname%' does not appear to have a valid MX record for the email address</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network.">   
+			<tuv xml:lang="en"><seg>'%hostname%' is not in a routable network segment. The email address should not be resolved from public network.</seg></tuv>
+		</tu>
+		<tu tuid="'%localPart%' can not be matched against dot-atom format">   
+			<tuv xml:lang="en"><seg>'%localPart%' can not be matched against dot-atom format</seg></tuv>
+		</tu>
+		<tu tuid="'%localPart%' is no valid local part for email address '%value%'">   
+			<tuv xml:lang="en"><seg>'%localPart%' is no valid local part for email address</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' exceeds the allowed length">   
+			<tuv xml:lang="en"><seg>Email address exceeds the allowed length</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Regex ======================= --> 
+		<tu tuid="Invalid type given, value should be string, integer or float">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be string, integer or float</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not match against pattern '%pattern%'">   
+			<tuv xml:lang="en"><seg>This value is invalid</seg></tuv>
+		</tu>
+		<tu tuid="There was an internal error while using the pattern '%pattern%'">   
+			<tuv xml:lang="en"><seg>This value is invalid</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Date ======================= --> 
+		<tu tuid="Invalid type given, value should be string, integer, array or Zend_Date">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be string, integer, array or Zend_Date</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be a valid date">   
+			<tuv xml:lang="en"><seg>'%value%' does not appear to be a valid date</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not fit the date format '%format%'">   
+			<tuv xml:lang="en"><seg>'%value%' does not fit the date format '%format%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Int ======================= --> 
+		<tu tuid="Invalid type given, value should be string or integer">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be string or integer</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be an integer">   
+			<tuv xml:lang="en"><seg>This value does not appear to be an integer</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Float ======================= --> 
+		<tu tuid="Invalid type given, value should be float, string, or integer">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be float, string, or integer</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be a float">   
+			<tuv xml:lang="en"><seg>This value does not appear to be a float</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Alnum ======================= --> 
+		<tu tuid="Invalid type given, value should be float, string, or integer">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be float, string, or integer</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' contains characters which are non alphabetic and no digits">   
+			<tuv xml:lang="en"><seg>This value contains characters which are non alphabetic and no digits</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="en"><seg>This value is an empty string</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Alpha ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be a string</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' contains non alphabetic characters">   
+			<tuv xml:lang="en"><seg>This value contains non alphabetic characters</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="en"><seg>This value is an empty string</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Digits ======================= --> 
+		<tu tuid="'%value%' contains characters which are not digits; but only digits are allowed">   
+			<tuv xml:lang="en"><seg>This value contains characters which are not digits; but only digits are allowed</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="en"><seg>This value is an empty string</seg></tuv>
+		</tu>
+		<tu tuid="Invalid type given, value should be string, integer or float">   
+			<tuv xml:lang="en"><seg>Invalid type given, value should be string, integer or float</seg></tuv>
+		</tu>
+		
+		<!-- ====================== LessThan ======================= --> 
+		<tu tuid="'%value%' is not less than '%max%'">   
+			<tuv xml:lang="en"><seg>This value is not less than '%max%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== GreaterThan ======================= --> 
+		<tu tuid="'%value%' is not greater than '%min%'">   
+			<tuv xml:lang="en"><seg>This value is not greater than '%min%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Extension ==================== -->
+		<tu tuid="File '%value%' has a false extension">   
+			<tuv xml:lang="en"><seg>File '%value%' has a false extension</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' could not be found">   
+			<tuv xml:lang="en"><seg>File '%value%' could not be found</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File IsImage ==================== -->
+		<tu tuid="File '%value%' is no image, '%type%' detected">   
+			<tuv xml:lang="en"><seg>File '%value%' is no image, '%type%' detected</seg></tuv>
+		</tu>
+		<tu tuid="The mimetype of file '%value%' could not be detected">   
+			<tuv xml:lang="en"><seg>The mimetype of file '%value%' could not be detected</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' can not be read">   
+			<tuv xml:lang="en"><seg>File '%value%' can not be read</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' was not uploaded">   
+			<tuv xml:lang="en"><seg>File '%value%' was not uploaded</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File NotExist ==================== -->
+		<tu tuid="File '%value%' exists">   
+			<tuv xml:lang="en"><seg>File '%value%' exists</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Size ==================== -->
+		<tu tuid="Maximum allowed size for file '%value%' is '%max%' but '%size%' detected">   
+			<tuv xml:lang="en"><seg>Maximum allowed size for file '%value%' is '%max%' but '%size%' detected</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected size for file '%value%' is '%min%' but '%size%' detected">   
+			<tuv xml:lang="en"><seg>Minimum expected size for file '%value%' is '%min%' but '%size%' detected</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' could not be found">   
+			<tuv xml:lang="en"><seg>File '%value%' could not be found</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File ImageSize ==================== -->
+		<tu tuid="Maximum allowed width for image '%value%' should be '%maxwidth%' but '%width%' detected">   
+			<tuv xml:lang="en"><seg>Maximum allowed width for image '%value%' should be '%maxwidth%' but '%width%' detected</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected width for image '%value%' should be '%minwidth%' but '%width%' detected">   
+			<tuv xml:lang="en"><seg>Minimum expected width for image '%value%' should be '%minwidth%' but '%width%' detected</seg></tuv>
+		</tu>
+		<tu tuid="Maximum allowed height for image '%value%' should be '%maxheight%' but '%height%' detected">   
+			<tuv xml:lang="en"><seg>Maximum allowed height for image '%value%' should be '%maxheight%' but '%height%' detected</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected height for image '%value%' should be '%minheight%' but '%height%' detected">   
+			<tuv xml:lang="en"><seg>Minimum expected height for image '%value%' should be '%minheight%' but '%height%' detected</seg></tuv>
+		</tu>
+		<tu tuid="The size of image '%value%' could not be detected">   
+			<tuv xml:lang="en"><seg>The size of image '%value%' could not be detected</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Count ==================== -->
+		<tu tuid="Too many files, maximum '%max%' are allowed but '%count%' are given">   
+			<tuv xml:lang="en"><seg>Too many files, maximum '%max%' are allowed but '%count%' are given</seg></tuv>
+		</tu>
+		<tu tuid="Too few files, minimum '%min%' are expected but '%count%' are given">   
+			<tuv xml:lang="en"><seg>Too few files, minimum '%min%' are expected but '%count%' are given</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File MimeType ==================== -->
+		<tu tuid="File '%value%' has a false mimetype of '%type%'">   
+			<tuv xml:lang="en"><seg>File '%value%' has a false mimetype of '%type%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File FilesSize ==================== -->
+		<tu tuid="All files in sum should have a maximum size of '%max%' but '%size%' were detected">   
+			<tuv xml:lang="en"><seg>All files in sum should have a maximum size of '%max%' but '%size%' were detected</seg></tuv>
+		</tu>
+		<tu tuid="All files in sum should have a minimum size of '%min%' but '%size%' were detected">   
+			<tuv xml:lang="en"><seg>All files in sum should have a minimum size of '%min%' but '%size%' were detected</seg></tuv>
+		</tu>
+		<tu tuid="One or more files can not be read">   
+			<tuv xml:lang="en"><seg>One or more files can not be read</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File IsCompressed ==================== -->
+		<tu tuid="File '%value%' is not compressed, '%type%' detected">   
+			<tuv xml:lang="en"><seg>File '%value%' is not compressed, '%type%' detected</seg></tuv>
+		</tu>
+		<tu tuid="The mimetype of file '%value%' could not been detected">   
+			<tuv xml:lang="en"><seg>The mimetype of file '%value%' could not been detected</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Db NoRecordExists ==================== -->
+		<tu tuid="No record matching %value% was found">   
+			<tuv xml:lang="en"><seg>No record matching %value% was found</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Db RecordExists ==================== -->
+		<tu tuid="A record matching %value% was found">   
+			<tuv xml:lang="en"><seg>A record matching %value% was found</seg></tuv>
+		</tu>  
+		
+		<tu tuid="This account is not exist.">   
+			<tuv xml:lang="en"><seg>This account does not exist.</seg></tuv>
+		</tu> 
+   </body>  
+</tmx>

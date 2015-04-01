@@ -1,0 +1,576 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="svitvice"
+           adminlang="vi-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+   	   <tu tuid='Main'>
+	   		<tuv xml:lang="vi"><seg>Mục chính</seg></tuv>
+	   </tu>
+       <tu tuid='Site'>
+	   		<tuv xml:lang="vi"><seg>Trang chính</seg></tuv>
+	   </tu>      
+	   <tu tuid='Users'>
+	   		<tuv xml:lang="vi"><seg>Người sử dụng</seg></tuv>
+	   </tu>      
+	   <tu tuid='Mviu'>
+	   		<tuv xml:lang="vi"><seg>Mviu</seg></tuv>
+	   </tu>
+	   <tu tuid='Modules'>
+	   		<tuv xml:lang="vi"><seg>Mô đun</seg></tuv>
+	   </tu>
+	   <tu tuid='Control panel'>
+	   		<tuv xml:lang="vi"><seg>Bảng điều khiển</seg></tuv>
+	   </tu>
+	   <tu tuid='My Profile'>
+	   		<tuv xml:lang="vi"><seg>Hồ sơ của tôi</seg></tuv>
+	   </tu>
+	   <tu tuid='Global Configuration'>
+	   		<tuv xml:lang="vi"><seg>Cấu hình chung</seg></tuv>
+	   </tu>
+	   <tu tuid='System Information'>
+	   		<tuv xml:lang="vi"><seg>Hệ thống thông tin</seg></tuv>
+	   </tu>
+	   <tu tuid='Logout'>
+	   		<tuv xml:lang="vi"><seg>Thoát</seg></tuv>
+	   </tu>
+	   <tu tuid='User manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý người sử dụng</seg></tuv>
+	   </tu>
+	   <tu tuid='Contact manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý liên hệ</seg></tuv>
+	   </tu>
+	   <tu tuid='Banner manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý bane</seg></tuv>
+	   </tu>
+	   <tu tuid='Download manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý mục download</seg></tuv>
+	   </tu>
+	   <tu tuid='Gallery manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý thư viện hình</seg></tuv>
+	   </tu>
+	   <tu tuid='Video'>
+	   		<tuv xml:lang="vi"><seg>Video</seg></tuv>
+	   </tu>
+	   <tu tuid='Member'>
+	   		<tuv xml:lang="vi"><seg>Thành viên</seg></tuv>
+	   </tu>
+	   <tu tuid='Groups'>
+	   		<tuv xml:lang="vi"><seg>Nhóm</seg></tuv>
+	   </tu>
+	   <tu tuid='Add User'>
+	   		<tuv xml:lang="vi"><seg>Thêm người</seg></tuv>
+	   </tu>
+	   <tu tuid='Add Group'>
+	   		<tuv xml:lang="vi"><seg>Thêm nhóm</seg></tuv>
+	   </tu>
+	   <tu tuid='News manager'>
+	   		<tuv xml:lang="vi"><seg>Quản lý tin tức</seg></tuv>
+	   </tu>
+	   <tu tuid='Items'>
+	   		<tuv xml:lang="vi"><seg>Mặt hàng</seg></tuv>
+	   </tu>
+	   <tu tuid='Categories'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục</seg></tuv>
+	   </tu>
+	   <tu tuid='Supports'>
+	   		<tuv xml:lang="vi"><seg>Hỗ trợ</seg></tuv>
+	   </tu>
+	   <tu tuid='Foreign travel'>
+	   		<tuv xml:lang="vi"><seg>Du lịch nước ngoài</seg></tuv>
+	   </tu>
+	   <tu tuid='Category foreign'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục nước ngoài</seg></tuv>
+	   </tu>
+	   <tu tuid='Domestic travel'>
+	   		<tuv xml:lang="vi"><seg>Du lịch trong nước</seg></tuv>
+	   </tu>
+	   <tu tuid='Category domestic'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục trong nước</seg></tuv>
+	   </tu>
+	   <tu tuid='Category product'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Product'>
+	   		<tuv xml:lang="vi"><seg>Sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Invoice'>
+	   		<tuv xml:lang="vi"><seg>Hóa đơn</seg></tuv>
+	   </tu>
+	   <tu tuid='Guest'>
+	   		<tuv xml:lang="vi"><seg>Khách hàng</seg></tuv>
+	   </tu>
+	   <tu tuid='Slide images'>
+	   		<tuv xml:lang="vi"><seg>Slide hình ảnh</seg></tuv>
+	   </tu>
+	   <tu tuid='News'>
+	   		<tuv xml:lang="vi"><seg>Tin tức</seg></tuv>
+	   </tu>
+	   <tu tuid='Category news'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục tin tức</seg></tuv>
+	   </tu>
+	   <tu tuid='Manage website'>
+	   		<tuv xml:lang="vi"><seg>Quản lý website</seg></tuv>
+	   </tu>
+	   <tu tuid='Home'>
+	   		<tuv xml:lang="vi"><seg>Trang chủ</seg></tuv>
+	   </tu>
+	   <tu tuid='Page news'>
+	   		<tuv xml:lang="vi"><seg>Trang tin tức</seg></tuv>
+	   </tu>
+	   <tu tuid='Page product'>
+	   		<tuv xml:lang="vi"><seg>Trang sản phẩm</seg></tuv>
+	   </tu>
+	   
+	   
+	   <tu tuid='Active'>
+	   		<tuv xml:lang="vi"><seg>Kích hoạt</seg></tuv>
+	   </tu>
+	   <tu tuid='Inactive'>
+	   		<tuv xml:lang="vi"><seg>Không kích hoạt</seg></tuv>
+	   </tu>
+	   <tu tuid='Add new'>
+	   		<tuv xml:lang="vi"><seg>Thêm mới</seg></tuv>
+	   </tu>
+	   <tu tuid='Sort'>
+	   		<tuv xml:lang="vi"><seg>Cập nhật</seg></tuv>
+	   </tu>
+	   <tu tuid='Delete'>
+	   		<tuv xml:lang="vi"><seg>Xóa</seg></tuv>
+	   </tu>
+	   <tu tuid='Save'>
+	   		<tuv xml:lang="vi"><seg>Lưu</seg></tuv>
+	   </tu>
+	   <tu tuid='Cancel'>
+	   		<tuv xml:lang="vi"><seg>Hủy bỏ</seg></tuv>
+	   </tu>
+	   <tu tuid='Edit'>
+	   		<tuv xml:lang="vi"><seg>Sửa</seg></tuv>
+	   </tu>
+	   <tu tuid='Back'>
+	   		<tuv xml:lang="vi"><seg>Trở lại</seg></tuv>
+	   </tu>Chấp nhận
+	   <tu tuid='Accept'>
+	   		<tuv xml:lang="vi"><seg>Chấp nhận</seg></tuv>
+	   </tu>
+	   
+	   
+	   <tu tuid='Search'>
+	   		<tuv xml:lang="vi"><seg>Tìm kiếm</seg></tuv>
+	   </tu>
+	   <tu tuid='Clear'>
+	   		<tuv xml:lang="vi"><seg>Loại bỏ</seg></tuv>
+	   </tu>
+	   <tu tuid='Name'>
+	   		<tuv xml:lang="vi"><seg>Tên</seg></tuv>
+	   </tu>	   
+	   <tu tuid='Username'>
+	   		<tuv xml:lang="vi"><seg>Tên người dùng</seg></tuv>
+	   </tu>
+	   <tu tuid='Group'>
+	   		<tuv xml:lang="vi"><seg>Nhóm</seg></tuv>
+	   </tu>
+	   <tu tuid='Group name'>
+	   		<tuv xml:lang="vi"><seg>Tên nhóm</seg></tuv>
+	   </tu>
+	   <tu tuid='Status'>
+	   		<tuv xml:lang="vi"><seg>Tình trạng</seg></tuv>
+	   </tu>
+	   <tu tuid='Order'>
+	   		<tuv xml:lang="vi"><seg>Sắp xếp</seg></tuv>
+	   </tu>
+	   <tu tuid='Email'>
+	   		<tuv xml:lang="vi"><seg>Email</seg></tuv>
+	   </tu>
+	   <tu tuid='Registed'>
+	   		<tuv xml:lang="vi"><seg>Ngày tạo</seg></tuv>
+	   </tu>
+	   <tu tuid='Created'>
+	   		<tuv xml:lang="vi"><seg>Ngày tạo</seg></tuv>
+	   </tu>
+	   <tu tuid='Created by'>
+	   		<tuv xml:lang="vi"><seg>Tạo bởi</seg></tuv>
+	   </tu>
+	   <tu tuid='Control'>
+	   		<tuv xml:lang="vi"><seg>Điều khiển</seg></tuv>
+	   </tu>
+	   <tu tuid='Next'>
+	   		<tuv xml:lang="vi"><seg>Tới</seg></tuv>
+	   </tu>
+	   <tu tuid='Prev'>
+	   		<tuv xml:lang="vi"><seg>Lùi</seg></tuv>
+	   </tu>
+	   <tu tuid='Start'>
+	   		<tuv xml:lang="vi"><seg>Bắt đầu</seg></tuv>
+	   </tu>
+	   <tu tuid='End'>
+	   		<tuv xml:lang="vi"><seg>Kết thúc</seg></tuv>
+	   </tu>
+	   <tu tuid='Page'>
+	   		<tuv xml:lang="vi"><seg>Trang</seg></tuv>
+	   </tu>
+	   <tu tuid='of'>
+	   		<tuv xml:lang="vi"><seg>của</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Select an item'>
+	   		<tuv xml:lang="vi"><seg>Chọn một mục</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Avatar'>
+	   		<tuv xml:lang="vi"><seg>Hình đại diện</seg></tuv>
+	   </tu>
+	   <tu tuid='Password'>
+	   		<tuv xml:lang="vi"><seg>Mật khẩu</seg></tuv>
+	   </tu>
+	   <tu tuid='First name'>
+	   		<tuv xml:lang="vi"><seg>Họ</seg></tuv>
+	   </tu>
+	   <tu tuid='Last name'>
+	   		<tuv xml:lang="vi"><seg>Tên</seg></tuv>
+	   </tu>
+	   <tu tuid='Birthday'>
+	   		<tuv xml:lang="vi"><seg>Sinh nhật</seg></tuv>
+	   </tu>
+	   <tu tuid='Phone'>
+	   		<tuv xml:lang="vi"><seg>Điện thoại</seg></tuv>
+	   </tu>
+	   <tu tuid='Job'>
+	   		<tuv xml:lang="vi"><seg>Nghề nghiệp</seg></tuv>
+	   </tu>
+	   <tu tuid='Type'>
+	   		<tuv xml:lang="vi"><seg>Loại</seg></tuv>
+	   </tu>
+	   <tu tuid='Content'>
+	   		<tuv xml:lang="vi"><seg>Nội dung</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Ranking'>
+	   		<tuv xml:lang="vi"><seg>Xếp hạng</seg></tuv>
+	   </tu>
+	   <tu tuid='Group ACP'>
+	   		<tuv xml:lang="vi"><seg>Nhóm ACP</seg></tuv>
+	   </tu>
+	   <tu tuid='Group Default'>
+	   		<tuv xml:lang="vi"><seg>Nhóm mặc định</seg></tuv>
+	   </tu>
+	   <tu tuid='Yes'>
+	   		<tuv xml:lang="vi"><seg>Có</seg></tuv>
+	   </tu>
+	   <tu tuid='No'>
+	   		<tuv xml:lang="vi"><seg>Không</seg></tuv>
+	   </tu>
+	   
+	   
+	   <tu tuid='Control Panel'>
+	   		<tuv xml:lang="vi"><seg>Bảng điều khiển</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Product name'>
+	   		<tuv xml:lang="vi"><seg>Tên sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Sale Off'>
+	   		<tuv xml:lang="vi"><seg>Giá bán</seg></tuv>
+	   </tu>
+	   <tu tuid='Price'>
+	   		<tuv xml:lang="vi"><seg>Giá</seg></tuv>
+	   </tu>
+	   <tu tuid='Special'>
+	   		<tuv xml:lang="vi"><seg>Đặc biệt</seg></tuv>
+	   </tu>
+	   <tu tuid='Nospecial'>
+	   		<tuv xml:lang="vi"><seg>Không đặc biệt</seg></tuv>
+	   </tu>
+	   <tu tuid='Summary'>
+	   		<tuv xml:lang="vi"><seg>Tóm tắt</seg></tuv>
+	   </tu>
+	   <tu tuid='Category'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Picture'>
+	   		<tuv xml:lang="vi"><seg>Hình ảnh</seg></tuv>
+	   </tu>
+	   <tu tuid='Creat By'>
+	   		<tuv xml:lang="vi"><seg>Tạo bởi</seg></tuv>
+	   </tu>
+	   <tu tuid='Hits'>
+	   		<tuv xml:lang="vi"><seg>Lần xem</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Category name'>
+	   		<tuv xml:lang="vi"><seg>Tên chuyên mục</seg></tuv>
+	   </tu>
+	   <tu tuid='Parent'>
+	   		<tuv xml:lang="vi"><seg>Cha</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Quantity'>
+	   		<tuv xml:lang="vi"><seg>Số lượng</seg></tuv>
+	   </tu>
+	   <tu tuid='Full name'>
+	   		<tuv xml:lang="vi"><seg>Tên đầy đủ</seg></tuv>
+	   </tu>
+	   <tu tuid='Address'>
+	   		<tuv xml:lang="vi"><seg>Địa chỉ</seg></tuv>
+	   </tu>
+	   <tu tuid='Shipping'>
+	   		<tuv xml:lang="vi"><seg>Địa chỉ giao hàng</seg></tuv>
+	   </tu>
+	   <tu tuid='Guest name'>
+	   		<tuv xml:lang="vi"><seg>Tên khách hàng</seg></tuv>
+	   </tu>
+	   <tu tuid='Featured'>
+	   		<tuv xml:lang="vi"><seg>Tình trạng đặc biệt</seg></tuv>
+	   </tu>
+	   <tu tuid='Title'>
+	   		<tuv xml:lang="vi"><seg>Tiêu đề</seg></tuv>
+	   </tu>
+	   <tu tuid='Administrator'>
+	   		<tuv xml:lang="vi"><seg>Quản trị</seg></tuv>
+	   </tu>
+	   <tu tuid='Header'>
+	   		<tuv xml:lang="vi"><seg>Phần trên</seg></tuv>
+	   </tu>
+	   <tu tuid='Footer'>
+	   		<tuv xml:lang="vi"><seg>Phần dưới</seg></tuv>
+	   </tu>
+	   <tu tuid='Description'>
+	   		<tuv xml:lang="vi"><seg>Mô tả</seg></tuv>
+	   </tu>
+	   <tu tuid='Description HTML'>
+	   		<tuv xml:lang="vi"><seg>Mô tả HTML</seg></tuv>
+	   </tu>
+	   <tu tuid='Keywords HTML'>
+	   		<tuv xml:lang="vi"><seg>Từ khóa</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Color Website'>
+	   		<tuv xml:lang="vi"><seg>Màu sắc website</seg></tuv>
+	   </tu>
+	   <tu tuid='Default'>
+	   		<tuv xml:lang="vi"><seg>Mặc định</seg></tuv>
+	   </tu>
+	   <tu tuid='Red'>
+	   		<tuv xml:lang="vi"><seg>Đỏ</seg></tuv>
+	   </tu>
+	   <tu tuid='Yellow'>
+	   		<tuv xml:lang="vi"><seg>Vàng</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Service'>
+	   		<tuv xml:lang="vi"><seg>Dịch vụ</seg></tuv>
+	   </tu>
+	   <tu tuid='Category Service'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục dịch vụ</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='About'>
+	   		<tuv xml:lang="vi"><seg>Giới thiệu</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Contact'>
+	   		<tuv xml:lang="vi"><seg>Liên hệ</seg></tuv>
+	   </tu>
+	   <tu tuid='Adverts'>
+	   		<tuv xml:lang="vi"><seg>Quảng cáo</seg></tuv>
+	   </tu>
+	   <tu tuid='Positions advert'>
+	   		<tuv xml:lang="vi"><seg>Vị trí quảng cáo</seg></tuv>
+	   </tu>
+	   <tu tuid='Resize'>
+	   		<tuv xml:lang="vi"><seg>Cắt hình</seg></tuv>
+	   </tu>
+	   <tu tuid='Position'>
+	   		<tuv xml:lang="vi"><seg>Vị trí</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Manage pages'>
+	   		<tuv xml:lang="vi"><seg>Quản lý trang</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Favorites'>
+	   		<tuv xml:lang="vi"><seg>Yêu thích</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Comments'>
+	   		<tuv xml:lang="vi"><seg>Bình luận</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Note'>
+	   		<tuv xml:lang="vi"><seg>Ghi chú</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Photo Galleries'>
+	   		<tuv xml:lang="vi"><seg>Hình ảnh</seg></tuv>
+	   </tu>
+	   <tu tuid='Category photos'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục hình ảnh</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Category business'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục doanh nghiệp</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Type'>
+	   		<tuv xml:lang="vi"><seg>Kiểu</seg></tuv>
+	   </tu>
+	   <tu tuid='Image'>
+	   		<tuv xml:lang="vi"><seg>Ảnh</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Information'>
+	   		<tuv xml:lang="vi"><seg>Thông tin</seg></tuv>
+	   </tu>
+	   <tu tuid='Hotel'>
+	   		<tuv xml:lang="vi"><seg>Khách sạn</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Departure Calendar'>
+	   		<tuv xml:lang="vi"><seg>Lịch khởi hành</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='All'>
+	   		<tuv xml:lang="vi"><seg>Tất cả</seg></tuv>
+	   </tu>
+	   <tu tuid='Right'>
+	   		<tuv xml:lang="vi"><seg>Phải</seg></tuv>
+	   </tu>
+	   <tu tuid='Bottom'>
+	   		<tuv xml:lang="vi"><seg>Đáy</seg></tuv>
+	   </tu>
+	   <tu tuid='Left'>
+	   		<tuv xml:lang="vi"><seg>Trái</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Public'>
+	   		<tuv xml:lang="vi"><seg>Công khai</seg></tuv>
+	   </tu>
+	   <tu tuid='Collectibles'>
+	   		<tuv xml:lang="vi"><seg>Sưu tầm</seg></tuv>
+	   </tu>
+	   <tu tuid='Copyright'>
+	   		<tuv xml:lang="vi"><seg>Bản quyền</seg></tuv>
+	   </tu>
+	   <tu tuid='Business'>
+	   		<tuv xml:lang="vi"><seg>Doanh nghiệp</seg></tuv>
+	   </tu>
+	   <tu tuid='Business name'>
+	   		<tuv xml:lang="vi"><seg>Tên doanh nghiệp</seg></tuv>
+	   </tu>
+	   
+	   <tu tuid='Typical'>
+	   		<tuv xml:lang="vi"><seg>Tiêu biểu</seg></tuv>
+	   </tu>
+	   <tu tuid='Potential'>
+	   		<tuv xml:lang="vi"><seg>Tiềm năng</seg></tuv>
+	   </tu>
+	   <tu tuid='Show video'>
+	   		<tuv xml:lang="vi"><seg>Hiển thị video</seg></tuv>
+	   </tu>
+	   <tu tuid='Title SEO'>
+	   		<tuv xml:lang="vi"><seg>Tiêu đề SEO</seg></tuv>
+	   </tu>
+	   <tu tuid='Category Products'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Products'>
+	   		<tuv xml:lang="vi"><seg>Sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Collection'>
+	   		<tuv xml:lang="vi"><seg>Bộ sưu tập</seg></tuv>
+	   </tu>
+	   <tu tuid='Notes'>
+	   		<tuv xml:lang="vi"><seg>Thông báo</seg></tuv>
+	   </tu>
+	   <tu tuid='Type Menu'>
+	   		<tuv xml:lang="vi"><seg>Kiểu chuyên mục</seg></tuv>
+	   </tu>
+	   <tu tuid='Menu'>
+	   		<tuv xml:lang="vi"><seg>Chuyên mục</seg></tuv>
+	   </tu>
+	   <tu tuid='Recruitment'>
+	   		<tuv xml:lang="vi"><seg>Tuyển dụng</seg></tuv>
+	   </tu>
+	   <tu tuid='ID name'>
+	   		<tuv xml:lang="vi"><seg>Tên ID</seg></tuv>
+	   </tu>
+	   <tu tuid='ID name'>
+	   		<tuv xml:lang="vi"><seg>Tên ID</seg></tuv>
+	   </tu>
+	   <tu tuid='Detail product'>
+	   		<tuv xml:lang="vi"><seg>Chi tiết sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Publisher'>
+	   		<tuv xml:lang="vi"><seg>Công ty sản xuất</seg></tuv>
+	   </tu>
+	   <tu tuid='Author'>
+	   		<tuv xml:lang="vi"><seg>Tác giả</seg></tuv>
+	   </tu>
+	   <tu tuid='Weight'>
+	   		<tuv xml:lang="vi"><seg>Trọng lượng</seg></tuv>
+	   </tu>
+	   <tu tuid='Pages'>
+	   		<tuv xml:lang="vi"><seg>Số trang</seg></tuv>
+	   </tu>
+	   <tu tuid='Size'>
+	   		<tuv xml:lang="vi"><seg>Quy cách</seg></tuv>
+	   </tu>
+	   <tu tuid='Sale off (%)'>
+	   		<tuv xml:lang="vi"><seg>Khuyến mãi (%)</seg></tuv>
+	   </tu>
+	   <tu tuid='Translator'>
+	   		<tuv xml:lang="vi"><seg>Dịch giả</seg></tuv>
+	   </tu>
+	   <tu tuid='Value sale (%)'>
+	   		<tuv xml:lang="vi"><seg>Giá trị giảm (%)</seg></tuv>
+	   </tu>
+	   <tu tuid='Year production'>
+	   		<tuv xml:lang="vi"><seg>Năm sản xuất</seg></tuv>
+	   </tu>
+	   <tu tuid='Paperboard'>
+	   		<tuv xml:lang="vi"><seg>Dạng bìa</seg></tuv>
+	   </tu>
+	   <tu tuid='Units Issued'>
+	   		<tuv xml:lang="vi"><seg>Đơn vị phát hành</seg></tuv>
+	   </tu>
+	   <tu tuid='Help'>
+	   		<tuv xml:lang="vi"><seg>Trợ giúp</seg></tuv>
+	   </tu>
+	   <tu tuid='Info'>
+	   		<tuv xml:lang="vi"><seg>Thông số kỹ thuật</seg></tuv>
+	   </tu>
+	   <tu tuid='Warranty'>
+	   		<tuv xml:lang="vi"><seg>Bảo hành</seg></tuv>
+	   </tu>
+	   <tu tuid='Code product'>
+	   		<tuv xml:lang="vi"><seg>Mã sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Detail collection'>
+	   		<tuv xml:lang="vi"><seg>Chi tiết bộ sưu tập</seg></tuv>
+	   </tu>
+	   <tu tuid='Code collection'>
+	   		<tuv xml:lang="vi"><seg>Mã bộ sưu tập</seg></tuv>
+	   </tu>
+	   <tu tuid='Photo gallery'>
+	   		<tuv xml:lang="vi"><seg>Thư viện ảnh</seg></tuv>
+	   </tu>
+	   <tu tuid='Name size'>
+	   		<tuv xml:lang="vi"><seg>Tên quy cách</seg></tuv>
+	   </tu>
+	   <tu tuid='Units'>
+	   		<tuv xml:lang="vi"><seg>Đơn vị</seg></tuv>
+	   </tu>
+	   <tu tuid='Select a units'>
+	   		<tuv xml:lang="vi"><seg>Chọn đơn vị</seg></tuv>
+	   </tu>
+	   <tu tuid='Price Product'>
+	   		<tuv xml:lang="vi"><seg>Giá sản phẩm</seg></tuv>
+	   </tu>
+	   <tu tuid='Payment'>
+	   		<tuv xml:lang="vi"><seg>Thanh toán</seg></tuv>
+	   </tu>
+   </body>  
+</tmx>

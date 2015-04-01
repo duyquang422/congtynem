@@ -1,0 +1,34 @@
+<?php
+if (count ( $this->messageError ) > 0) {
+	$errors = $this->formErrors ( $this->messageError, array ('id' => 'errors' ) );
+}
+?>
+<div class='right width-78'>
+<div class='box-right-pro width-100'>
+		<div class='sub-box-right'>
+			<span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span>
+			<p>ĐĂNG NHẬP</p>
+		</div>
+		<div class="detail cnt-right mar-top-5 width-100">
+		    <div class="login">
+		    	<form name="appForm" method="post" action="" enctype="multipart/form-data">
+					<div class="lev">
+						<span class="color-blue">Username</span>
+						<?php echo $this->formText('user_name','');?>
+						<p class="msg-err"><?php echo $this->messageError['user_name']?></p>
+					</div>
+					<div class="lev">
+						<span class="color-blue">Password</span>
+						<?php echo $this->formPassword('password','');?>
+						<p class="msg-err"><?php echo $this->messageError['password'];?></p>
+					</div>
+					<div class="lev">
+						<input class="submit" type="submit" name="submit" value="Login" />
+					</div>
+				</form>
+		    </div>
+	    </div>
+	</div>
+</div>
+	    
+	

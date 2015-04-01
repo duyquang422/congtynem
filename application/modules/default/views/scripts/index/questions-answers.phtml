@@ -1,0 +1,77 @@
+<div class='left'>
+	<div class="category width-30 float-left">
+		<?php $this->blkCategoryNews()?>
+		<?php $this->blkAnswer()?>
+		<?php $this->blkAdvertLeft()?>
+	</div>
+	<div class="content-left width-68 float-right">
+		<div class="group">
+			<div class="sub-content color-blue">Chia sẻ</div>
+				<?php
+					$items = $this->Items;
+					if(!empty($items)){
+						foreach ($items as $key => $val){
+							
+							$lang = $this->arrParam['lang'];
+		                    if(empty($lang)){
+		                    	$lang = 'vi';
+		                    }else{
+		                    	$lang = $this->arrParam['lang'];
+		                    }
+							
+							$cutTring 	= new Zendvn_File_CutTring();
+							$title			= $val['title'];
+							$title 		= $cutTring -> cutTring(50, $title, null);
+							
+							$cnt_question	= $val['content'];
+                    		$cnt_question 	= str_replace("\\"," ",$cnt_question);
+				            $cnt_question 	= $cutTring->cutTring(220,$cnt_question,null);
+				            
+							$ques_user 		= $val['user_name'];
+							$created 		= $val['created'];
+							
+                            $urlimage   	= FILES_URL . '/users/images100x100/'. $val['avatar'];
+	  						$imgimage  		= '<img title="'. $title .'" src="' . $urlimage . '" alt="'. $title .'" />';
+	  						$line = '<div class="line mar-top-10"></div>';
+	  						
+	  						$urlOptions = array('module'=>'default','controller'=>'index',
+														'action'=>'answers-detail',
+														'title'=>$val['alias'],
+														'id'=>$val['id'],
+		                   								'lang'=>$lang);
+		                   	$linkDetail = $this->url($urlOptions,'default');
+				?>
+					<div class="box-cnt width-100 col-0">
+		                 <div class="cnt">
+		                      <div class="bor-img">
+		                          <a title="<?php echo $val['name']?>" href="<?php echo $linkDetail?>"><?php echo $imgimage?></a>
+		                      </div>
+		                      <div class="desc">
+		                          	<h2><a title="<?php echo $val['name']?>" href="<?php echo $linkDetail?>"><?php echo $title?></a></h2>
+		                          	<p><strong>Người hỏi: </strong> <?php echo $ques_user?></p>
+	                          		<p><strong>Ngày gửi: </strong> <?php echo $created?></p>
+	                          		<p><strong>Câu hỏi: </strong> <?php echo $cnt_question?></p>
+	                          		<a title="<?php echo $val['name']?>" href="<?php echo $linkDetail?>" class="readmore">...Xem chi tiết</a>
+		                      </div>
+		                   </div>
+		            </div>
+					<?php echo $line ?>
+					
+				<?php }
+					}else{
+						echo '<div class="note-pro mar-top-10">Hiện tại câu hỏi đang được cập nhật....</div>';
+					}
+				?>
+               	<div class="cur-page mar-top-10">
+					<?php
+				        	$paginator = $this->arrParam['paginator'];
+							$itemCountPerPage = $paginator['itemCountPerPage'];
+                        	if($this->total > $itemCountPerPage){
+                        		$currentUrl = $this->baseUrl($this->currentController . '/index');
+                        		echo $this->paginationControl($this->panigator,'Sliding','curentpage.phtml',array('currentUrl'=>$currentUrl,'arrParam'=>$this->arrParam));
+                        	}
+                    ?>
+			    </div>
+		</div>
+	</div>
+</div>

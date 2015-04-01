@@ -1,0 +1,57 @@
+<div class='left'>
+	<div class="category width-30 float-left">
+		<?php $this->blkCategoryNews()?>
+		<?php $this->blkAnswer()?>
+		<?php $this->blkAdvertLeft()?>
+	</div>
+	<div class="content-left width-68 float-right">
+		<div class="group">
+			<div class="sub-content color-blue">Chia sẻ</div>
+				<?php
+					$val = $this->Item;
+					if(!empty($val)){							
+							$title			= $val['title'];
+                    		$cnt_question 	= str_replace("\\"," ",$val['content']);
+							$ques_user 		= $val['user_name'];
+							$created 		= $val['created'];
+							
+							$user = $this->User;
+                            $urlimage   	= FILES_URL . '/users/images100x100/'. $user['avatar'];
+	  						$imgimage  		= '<img title="'. $title .'" src="' . $urlimage . '" alt="'. $title .'" />';
+	  						
+	  						$user_ans = $this->Answer['user_name'];
+	  						$cnt_ans = $this->Answer['content'];
+	  						$cnt_ans 	= str_replace("\\"," ",$cnt_ans);
+				?>
+					<div class="box-cnt width-100 col-0">
+		                 <div class="cnt">
+		                      <div class="bor-img">
+		                          <a title="<?php echo $val['name']?>" href="<?php echo $linkDetail?>"><?php echo $imgimage?></a>
+		                      </div>
+		                      <div class="desc">
+		                          	<h2><?php echo $title?></h2>
+		                          	<p><strong>Người hỏi: </strong> <?php echo $ques_user?></p>
+	                          		<p><strong>Ngày gửi: </strong> <?php echo $created?></p>
+	                          		<p><strong>Câu hỏi: </strong> <?php echo $cnt_question?></p>
+	                          		<p><strong class="color-red">Người trả lời: </strong> <?php echo $user_ans ?></p>
+	                          		<p><strong>Nội dung trả lời: </strong> <?php echo $cnt_ans?></p>
+		                      </div>
+		                   </div>
+		            </div>
+					
+				<?php
+					}
+				?>
+               	<div class="cur-page mar-top-10">
+					<?php
+				        	$paginator = $this->arrParam['paginator'];
+							$itemCountPerPage = $paginator['itemCountPerPage'];
+                        	if($this->total > $itemCountPerPage){
+                        		$currentUrl = $this->baseUrl($this->currentController . '/index');
+                        		echo $this->paginationControl($this->panigator,'Sliding','curentpage.phtml',array('currentUrl'=>$currentUrl,'arrParam'=>$this->arrParam));
+                        	}
+                    ?>
+			    </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+<?php 
+	$title 				= $this->formText('title',$this->Item['title'],array('class'=>'txtmedium'));
+	$alias 				= $this->formText('alias',$this->Item['alias'],array('class'=>'txtmedium'));
+	$title_seo 			= $this->formText('title_seo',$this->Item['title_seo'],array('class'=>'txtmedium'));
+	$summary 			= $this->formTextarea('summary',str_replace('\\', '', $this->Item['summary']),array('rows'=>'5'));
+	$description_html 	= $this->formTextarea('description_html',str_replace("\\","",$this->Item['description_html']),array('rows'=>'5'));
+	$picture 			= $this->formFile('picture',array('style'=>'width: 250px'));								
+	$content			= $this->cmsReplaceString($this->Item['content']);
+	$content			= $this->cmsEditor('content',$content,array('toolbar'=>'Default','language'=>'vi'));
+	
+	$options 	= array($this->translate('Inactive'),$this->translate('Active'));
+	$valSta 	= $this->Item['status'];
+	if($valSta == ''){$valSta = 0;}
+	$status 	= $this->formRadio('status',$valSta,null,$options, ' ');
+	
+	$options 	= array($this->translate('No'),$this->translate('Yes'));
+	$featured 	= $this->formRadio('featured',$this->Item['featured'],null,$options, ' ');
+	/*...........Picture............*/
+	if(!empty($this->Item['picture'])){
+	  	$urlimage   = FILES_URL . '/about/images100x100/'. $this->Item['picture'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture  = $imgimage ."<br/>" . $this->formFile('picture',array('style'=>'margin-left:173px'));	
+	}else{
+		$picture  = $this->formFile('picture',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium = $this->formHidden('current_stadium_picture',$this->Item['picture']);  
+	
+	$Input = array(
+					array('Label'=>$this->translate('Title'),'input'=>$title,'info'=>0),
+					array('Label'=>$this->translate('Alias'),'input'=>$alias,'info'=>0),
+					array('Label'=>$this->translate('Title SEO'),'input'=>$title_seo,'info'=>0),
+					array('Label'=>$this->translate('Picture'),'input'=>$picture,'info'=>0),
+					array('Label'=>$this->translate('Status'),'input'=>$status,'info'=>0),
+					array('Label'=>$this->translate('Featured'),'input'=>$featured,'info'=>0),
+					array('Label'=>$this->translate('Summary'),'input'=>$summary,'info'=>0),
+					array('Label'=>$this->translate('Description HTML'),'input'=>$description_html,'info'=>0),
+					array('Label'=>$this->translate('Content'),'input'=>$content,'style'=>'margin-left:174px'),
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        <?php echo $errors;?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                             <div class="adminheader">Detail</div>								
+								<?php echo $this->partialLoop('rows.php',$Input) . $current_stadium ;?>                                
+							</div>
+							
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

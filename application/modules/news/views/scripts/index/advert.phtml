@@ -1,0 +1,8 @@
+<!--..........colum_right............-->
+				<?php
+					$item 		= $this->Item[0] ;					$name 		= $item['name'];					$start 		= $item['start'];					$price 		= $item['price'];					$content 	= $item['content'];                    $content 	= str_replace("\\"," ",$content);                    $filter = new Zend_Filter();					$multiFilter = $filter	->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))							->addFilter(new Zend_Filter_StringTrim())					 		->addFilter(new Zend_Filter_Alnum(true))					  		->addFilter(new Zend_Filter_PregReplace(array('match'=>'#\s+#','replace'=>'-')))					  		->addFilter(new Zend_Filter_Word_SeparatorToDash())					  		->addFilter(new Zendvn_Filter_RemoveCircumflex());				?>                    
+<div class="left">	<div class="content-left bag-white">		<div class="detail">   					<h1><?php echo $name ;?></h1>			<?php echo $content; ?>		</div>	</div></div>
+    		
+                    
+                    
+                    

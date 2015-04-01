@@ -1,0 +1,10 @@
+<?php
+	$msg = array('type'=>0,'err'=>'');
+	if(count($this->errors)>0){
+		$errors = $this->errors;
+		$type = 1;
+		$msg[err] 	= $errors;
+		$msg[type] 	= $type;
+	}
+	echo $msg = json_encode($msg);	
+?>

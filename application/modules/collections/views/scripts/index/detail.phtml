@@ -1,0 +1,283 @@
+<?php
+ 
+	$lang = $this->arrParam['lang'];
+    if(empty($lang)){
+        $lang = 'vi';
+    }else{
+        $lang = $this->arrParam['lang'];
+    }
+   
+    
+    $page = 1;
+
+	$item 	= $this->Item;
+	$menu	= $this->menu;
+	$name		= str_replace("\\","",$item['name']);
+	
+	$code = $item['code'];
+	if(!empty($code)) $code = '<tr><td class="name-title"><b>Mã sản phẩm</b></td> <td>'.$code.'</td></tr>'; 
+	
+	
+	$publisher = $item['publisher'];
+	if(!empty($publisher)) $publisher = '<tr><td class="name-title"><b>Công ty sản xuấtt</b></td> <td>'.$publisher.'</td></tr>';
+	
+	$year = $item['year'];
+	if(!empty($year)) $year = '<tr><td class="name-title"><b>Ngày sản xuất</b></td> <td> '.$year.'</td></tr>';
+	
+	$author = $item['author'];
+	if(!empty($author)) $author = '<tr><td class="name-title"><b>Tác giả</b></td> <td> '.$author.'</td></tr>';
+	
+	$hits = '<tr><td class="name-title"><b>Số lần xem</b></td> <td> '.$item['hits'].'</td></tr>';
+	
+	$summary = str_replace("\\"," ",$item['summary']);
+	if(!empty($summary)) $summary = '<p>'.$summary.'</p>'; 
+	
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	
+	$info 		= $item['info'];
+	$info	 	= str_replace("\\"," ",$info);
+	
+    
+    $alt = $item['name'];
+	if(!empty($item['alt_seo'])) $alt = $item['alt_seo'];
+	$alt 		= str_replace("\\"," ",$alt);
+    
+    if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/products/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/products/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img style="max-width:600px" src="'. $linkImg2 .'" alt="'.$alt.'" />';
+    }else{
+	    $linkImg	= $this->imgUrl . '/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+    }
+    
+    $linkCart = $this->baseUrl('/products/index/add-item/id/' . $item['id']);
+    
+    $urlHome 		= array('module'=>'default','controller'=>'index','action'=>'index','lang'=>$lang);
+   	$linkHome 		= $this->url($urlHome,'home');
+   	
+    $urlContact 	= array('module'=>'default','controller'=>'index','action'=>'contact','lang'=>$lang);
+   	$linkContact 	= $this->url($urlContact,'contact');
+   	
+   	$cat 		= $this->Cat;
+    $category	= $cat['name'];
+    $urlOptions = array('module'=>'collections','controller'=>'index',
+						'action'=>'category',
+                    	'cid'=> $cat['id'],
+						'name'=>$cat['alias'],
+                    	'lang'=>$lang,
+                    	'page'=>$page);
+   	$linkDetail = $this->url($urlOptions,'default');
+   	
+?>
+
+
+<div class='right width-78'>
+	<div class="box-right-pro width-100 detail">
+		<div class='cnt-right width-100'>
+						<div class="sub-box-right"><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><a class="color-blue" href="<?php echo $linkHome?>">Home</a> &#187; <a title="<?php echo $category?>" class="color-blue" href="<?php echo $linkDetail?>"><?php echo $category?></a> &#187; <?php echo $name?></div>
+						<div class="section-2 group slide-photos">
+							<ul id="images" class="rs-slider">
+								<?php
+									$photos	= json_decode($item['photos']);
+									if(!empty($photos)){
+										foreach ($photos as $key => $value) {
+											$linkImg	= FILES_URL . '/photos/' . $value;
+								?>
+							    <li class="group"><img src="<?php echo  $linkImg?>" alt="" /></li>
+							    <?php 
+										}
+									}
+								?>
+							</ul>
+			            </div>
+			            
+			            
+                        <div class="box-cnt col-0 mar-btn-20">
+                            <div style='margin-left: 0 !important' class="desc">
+                                <h1 style='border: 0 !important; margin-bottom: 5px !important;'><?php echo $name ?></h1>
+                                <table class='detail-info' cellpadding="0" cellspacing="0">
+	                                <?php  echo $code?>
+	                                <?php  echo $author?>
+	                                <?php echo $publisher?>
+	                                <?php echo $year?>
+	                                <?php echo $hits?>
+                                </table>
+                                <?php echo $summary?>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="cnt-detail">
+                        	<div class="content-01">
+                        	<?php 
+                        		echo $content ;
+                        		$url = Zend_Controller_Front::getInstance()->getRequest()->getPathInfo();
+                        		$link_pro = $this->baseUrl($url); 
+                        		
+                        	?>
+                        	</div>
+                        	<div class="content-02">
+                        	<?php 
+                        		echo $info ;
+                        		
+                        	?>
+                        	</div>
+                        	<div class='tag'>
+                        		<span><b>TAG: </b></span> 
+                        		<h2><a href='<?php echo $link_pro?>'><?php echo $name?>, </a></h2>
+                        		<?php
+                        		
+                        			$tblMenu 	= new Zendvn_Models_Menus();
+    								$menu		= $tblMenu->listItem($this->arrParam,array('task'=>'products-child'));
+    								$id 		= $menu['id'];
+    								$childMenu	= $tblMenu->listItem($this->arrParam,array('task'=>'find-products','cid'=>$id));
+    								foreach ($childMenu as $keyss => $value){
+    									
+							            	$name	= str_replace("\\"," ",$value['name']);
+							                $urlOptions = array('module'=>'products','controller'=>'index',
+																'action'=>'category',
+											                    'cid'=> $value['id'],
+																'name'=>$value['alias'],
+											                    'lang'=>$lang,
+											                    'page'=>$page);
+											$linkDetail = $this->url($urlOptions,'products-category');
+											
+											if ($keyss != 0){
+                        		?>
+                        		<h2><a href='<?php echo $linkDetail?>'><?php echo $name?>, </a></h2>
+                        		<?php 
+											}else{
+								?>
+								<h2><a href='<?php echo $linkDetail?>'><?php echo $name?></a></h2>
+								<?php 
+											}
+    								}
+                        		?>
+                        	</div>
+                        </div>
+                        <div class="fb-like mar-top-10" data-href="http://louisle.com" data-width="450" data-show-faces="true" data-send="true"></div>
+                        <!--------------------BOX CONTENT (End) ----------------------> 
+                    	</div>
+                    	
+                    	
+                    	<div class='width-100'>
+						<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Các bộ sưu tập khác</p></div>
+						<?php
+							$tblItems 	= new Zendvn_Models_Collections();
+                            $items 		= $tblItems -> listItem($this->arrParam,array('task'=>'fav-detail'));
+						?>
+                        <?php
+                        	if(!empty($items)){
+                        ?>
+                        <div class="cnt-right mar-top-5 width-100">
+                        <?php
+                        
+                        	foreach ($items as $key => $value){
+                        			$cutTring 	= new Zendvn_File_CutTring();
+                    				$name		= str_replace("\\","",$value['name']);
+                    				$name		= $cutTring->cutTring(25, $name, null);
+                    				
+                    				$alt		= str_replace("\\","",$value['alt_seo']);
+                    				if(!empty($value['alt_seo'])) $alt = str_replace("\\","",$value['name']);
+                    				
+				            		$summary	= str_replace("\\","",$value['summary']);
+				            		$summary	= $cutTring->cutTring(120, $summary, null);
+				            		
+				            		if(!empty($value['picture'])){
+									    $linkImg	= FILES_URL . '/products/images450x450/' . $value['picture'];
+									    $picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+								    }else{
+									    $linkImg	= $this->imgUrl . '/no-image.jpg';
+									    $picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+								    }
+                    				$lang = $this->arrParam['lang'];
+				                    if(empty($lang)){
+				                    	$lang = 'vi';
+				                    }else{
+				                    	$lang = $this->arrParam['lang'];
+				                    }
+									$urlOptions = array('module'=>'collections','controller'=>'index',
+																		'action'=>'detail',
+																		'tcat'=>$value['alias_name'],
+																		'title'=>$value['alias'],
+					                    								'cid'=> $value['menu_id'],
+																		'id'=>$value['id'],
+					                    								'lang'=>$lang);
+					                $linkDetail = $this->url($urlOptions,'collections-detail');
+                        			if(($key+1)%4 == 0){
+										$col = 'col4';
+									}else{
+										$col = 'col1';
+									}
+                        ?>
+                            <div class='box-right width-22 <?php echo $col?>'>
+								<div class='bor-img-right'>
+									<a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+								</div>
+								<div class='desc-right'>
+									<h2><a title="<?php echo $value['name']?>" href="<?php echo $linkDetail?>"><?php echo $name?></a></h2>
+								</div>
+							</div>
+                            <?php 
+                        		}
+                        	?>
+                        </div>
+                        <?php
+                        	} 
+                        ?>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    </div>
+
+
+</div>
+
+
+<script>
+        $(function () {
+            var $upper = $('#upper');
+
+            $('#images').refineSlide({
+                transition : 'cubeH',
+                onInit : function () {
+                    var slider = this.slider,
+                       $triggers = $('.translist').find('> li > a');
+
+                    $triggers.parent().find('a[href="#_'+ this.slider.settings['transition'] +'"]').addClass('active');
+
+                    $triggers.on('click', function (e) {
+                       e.preventDefault();
+
+                        if (!$(this).find('.unsupported').length) {
+                            $triggers.removeClass('active');
+                            $(this).addClass('active');
+                            slider.settings['transition'] = $(this).attr('href').replace('#_', '');
+                        }
+                    });
+
+                    function support(result, bobble) {
+                        var phrase = '';
+
+                        if (!result) {
+                            phrase = ' not';
+                            $upper.find('div.bobble-'+ bobble).addClass('unsupported');
+                            $upper.find('div.bobble-js.bobble-css.unsupported').removeClass('bobble-css unsupported').text('JS');
+                        }
+                    }
+
+                    support(this.slider.cssTransforms3d, '3d');
+                    support(this.slider.cssTransitions, 'css');
+                }
+            });
+        });
+    </script>

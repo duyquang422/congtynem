@@ -1,0 +1,417 @@
+<?php
+	$lang = $this->arrParam['lang'];
+    if(empty($lang)){
+        $lang = 'vi';
+    }else{
+        $lang = $this->arrParam['lang'];
+    }
+    
+    $page = 1;
+
+	$item 	= $this->Item;
+	$menu	= $this->menu;
+	$name		= str_replace("\\","",$item['name']);
+	
+	//$units = $item['units'];
+	//if(!empty($units)) $units = '<tr><td class="name-title"><b>Đơn vị phát hành</b></td> <td>'.$units.'</td></tr>';
+	
+	$warranty = $item['warranty'];
+	if(!empty($warranty)) $warranty = '<tr><td class="name-title"><b>Bảo hành</b></td> <td>'.$warranty.'</td></tr>';
+	
+	$publisher = $item['publisher'];
+	if(!empty($publisher)) $publisher = '<tr><td class="name-title"><b>Nhà sản xuất</b></td> <td>'.$publisher.'</td></tr>';
+	
+	
+	$code = $item['code'];
+	if(!empty($code)) $code = '<tr><td class="name-title"><b>Mã sản phẩm</b></td> <td>'.$code.'</td></tr>';
+	
+	$hits = '<tr><td class="name-title"><b>Số lần xem</b></td> <td> '.$item['hits'].'</td></tr>';
+	
+	$price = $item['price'];
+	if(!empty($price)) $price = '<tr><td class="name-title"><b>Giá</b></td> <td class="col-green"> '.number_format($price,0) . ' VND</td></tr>';
+	
+	$content 	= $item['content'];
+	$content 	= str_replace("\\"," ",$content);
+	
+	$info 		= $item['info'];
+	$info	 	= str_replace("\\"," ",$info);
+	
+	$sale		= $menu['sale'];
+	
+	$menu_id	= $item['menu_id'];
+	include 'includes/sale.php';
+	
+	$price 		= '';
+	if(!empty($item['price'])) $price = '<tr><td class="name-title"><b>Giá</b></td> <td class="col-green"> '.number_format($item['price'],0) . ' VND</td></tr>';
+	
+	
+	$selloff 	= $item['selloff'];
+	$val_sell 	= '';
+	if(!empty($item['val_sell']) || $item['val_sell'] != 0){
+		$sale_off 	= $item['selloff'];
+		$sale_off 	= '<tr><td class="name-title"><b>Giá bán</b></td> <td class="col-red">' . number_format($sale_off,0) . ' VND</td></tr>';
+		$val_sell 	= $item['val_sell'];
+		$val_sell 	= '<td class="name-title"><b>Giảm giá</b></td> <td class="col-ju">'. $val_sell .'%</td>';
+	}
+	if(!empty($sale) && (empty($item['val_sell']) || $item['val_sell'] == 0)){
+		$sale_off    = $item['price'] - ($item['price'] * $sale/100) ;
+		$sale_off 	= '<tr><td class="name-title"><b>Giá bán</b></td> <td class="col-red">' . number_format($sale_off,0) . ' VND</td></tr>';
+		$val_sell 	= $sale;
+		$val_sell 	= '<td class="name-title"><b>Giảm giá</b></td> <td class="col-ju">'. $val_sell .'%</td>';
+	}
+	if($item['price'] == 0) $price = '<tr><td class="name-title"><b>Giá bán</b></td> <td class="col-red">Liên hệ</td></tr>';
+    $alt = $item['name'];
+	if(!empty($item['alt_seo'])) $alt = $item['alt_seo'];
+	$alt 		= str_replace("\\"," ",$alt);
+    
+    if(!empty($item['picture'])){
+	    $linkImg	= FILES_URL . '/products/images450x450/' . $item['picture'];
+	    $linkImg2	= FILES_URL . '/products/orignal/' . $item['picture'];
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img style="max-width:600px" src="'. $linkImg2 .'" alt="'.$alt.'" />';
+    }else{
+	    $linkImg	= $this->imgUrl . '/no-image.jpg';
+	    $picture 	= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+	    $image 		= '<img src="'. $linkImg .'" alt="'.$alt.'" />';
+    }
+    
+    $linkCart = $this->baseUrl('/products/index/add-item/id/' . $item['id']);
+    
+    $urlHome 		= array('module'=>'default','controller'=>'index','action'=>'index');
+   	$linkHome 		= $this->url($urlHome,'home');
+   	
+    $urlContact 	= array('module'=>'default','controller'=>'index','action'=>'contact');
+   	$linkContact 	= $this->url($urlContact,'contact');
+   	
+   	$cat 		= $this->Cat;
+    $category	= $cat['name'];
+    $urlOptions = array('module'=>'news','controller'=>'index',
+						'action'=>'category',
+                    	'cid'=> $cat['id'],
+						'name'=>$cat['alias'],
+                    	'lang'=>$lang,
+                    	'page'=>$page);
+   	$linkDetail = $this->url($urlOptions,'products-category');
+?>
+
+<script type="text/javascript">
+	function fancyBox(elem){
+		elem = $(elem);
+		if (!elem.data("fancybox")) {
+			elem.data("fancybox", true);
+			elem.fancybox({
+				'titleShow' 	: false,
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'elastic',
+				'centerOnScroll': true
+			}).trigger('click');
+		}
+		return false; 
+	}
+</script>
+
+<div class='right width-78'>
+	<div class="box-right-pro width-100 detail">
+		<div class='cnt-right width-100'>
+						<div class="sub-box-right"><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Mua sản phẩm</p></div>
+                        <div class="box-cnt box-detail">
+                        	<p class='note-order'>Hãy chọn kích thước sản phẩm để có một sản phẩm đúng với mục đích sử dụng của quý khách, xin cám ơn</p>
+                            <div class="bor-img width-40">
+                                <a onclick="return fancyBox(this);" id="various1" href="#inline1" title="<?php echo $name?>"><?php echo $picture?></a>
+                                <div style="display: none;">
+									<div class='inline' id="inline1">
+										<?php echo $image?>
+										<div class="overlay"></div>
+									</div>
+								</div>
+                            </div>
+                            <div class="desc">
+                                <h1 class="color-blue"><?php echo $name ?></h1>
+                                <table class='detail-info' cellpadding="0" cellspacing="0">
+	                                <?php echo $code?>
+	                                <?php echo $publisher?>
+	                                <?php echo $warranty?>
+                                </table>
+                                <?php
+                                	$itemPrice 	= $this->Price_pro ;
+                                	if (!empty($itemPrice)){
+                                ?>
+                                <div class='tab_main'>
+                                <table class='tab_price'>
+                                	<thead>
+                                		<tr>
+                                			<th width="23%">Quy cách</th>
+                                			<th width="20%">Giá gốc (Vvd)</th>
+                                			<th width="20%">Giá bán (Vvd)</th>
+                                			<th width="18%">Giảm (%)</th>
+                                			<th>Mua hàng</th>
+                                		</tr>
+                                	</thead>
+                                	<tbody>
+                                		<?php
+                                				foreach ($itemPrice as $keyPri => $valPri) {
+                                					$size = $valPri['size'];
+													if($valPri['unit_name'] == 1) $unit_name = 'Meters';
+													if($valPri['unit_name'] == 2) $unit_name = 'Centimeters';
+													if($valPri['unit_name'] == 3) $unit_name = 'Millimeters';
+													$pri_pro = $valPri['price'];
+													$val_sell_pro  = $valPri['val_sell'];
+													if(!empty($valPri['val_sell']) || $valPri['val_sell'] != 0){
+														$val_sell_pro = $valPri['val_sell'];
+														$sale_pro = $valPri['selloff'];
+													}
+	                                				if((!empty($item['val_sell']) || $item['val_sell'] != 0) && (empty($valPri['val_sell']) || $valPri['val_sell'] == 0)){
+	                                					$val_sell_pro = $item['val_sell'] ;
+	                                					$sale_pro = $valPri['price'] - ($valPri['price'] * $item['val_sell']/100);
+													}
+													if((empty($item['val_sell']) || $item['val_sell'] == 0) && (empty($valPri['val_sell']) || $valPri['val_sell'] == 0)){
+													if(!empty($sale)){
+															$val_sell_pro = $sale ;
+															$sale_pro = $valPri['price'] - ($valPri['price'] * $sale/100);
+														}
+													}
+													$linkCartPro = $this->baseUrl('/products/index/add-item/id/' . $item['id'] . '/priID/' . $valPri['id']);
+                                			?>
+                                		<tr>
+                                			<td class='size_pro'><?php echo $size?></td>
+                                			<td><?php echo number_format($pri_pro,0)?></td>
+                                			<td class='sale_pro'><?php echo number_format($sale_pro,0) ?></td>
+                                			<td><?php echo $val_sell_pro?></td>
+                                			<td><a class='cart_pro' href='<?php echo $linkCartPro?>'>Mua hàng</a></td>
+                                		</tr>
+                                		<?php
+                                				} 
+                                		?>
+                                	</tbody>
+                                </table>
+                                </div>
+                                <?php
+                                	 } 
+                                ?>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <h3 class='sub-detail cnt-01 sub-active'>Giới thiệu về sản phẩm</h3>
+                        <div class="cnt-detail">
+                        	<div class="content-01">
+                        	<?php 
+                        		echo $content ;
+                        		$url = Zend_Controller_Front::getInstance()->getRequest()->getPathInfo();
+                        		$link_pro = $this->baseUrl($url); 
+                        	?>
+                        	</div>
+                        	<div class="content-02">
+                        	<?php 
+                        		echo $info ;
+                        	?>
+                        	</div>
+                        	<div class='cnt-info-contact'>
+                        		<div class='sub-info-contact'>Thông tin liên hệ</div>
+                        		<h2>HỆ THỐNG PHÂN PHỐI NỆM TRỰC TUYẾN TẠI CONGTYNEM.COM</h2>
+                        		<?php
+									$tblContact	= new Zendvn_Models_Contact();
+									$contact	= $tblContact->listItem($this->arrParam,array('task'=>'public'));
+									if (!empty($contact)){
+										foreach ($contact as $key => $value){
+											$title		= str_replace("\\","",$value['title']);
+											$address  	= str_replace("\\","",$value['address']);
+								?>
+                        		<p><b><?php echo $title?></b></p>
+								<p>ĐC : <?php echo $address?></p>
+								<?php
+										}
+									}
+								?>
+								<?php
+									$tblContact	= new Zendvn_Models_Contact();
+									$contact	= $tblContact->listItem($this->arrParam,array('task'=>'row'));
+									$hotline	= str_replace("\\","",$contact['hotline']);
+									$phone  	= str_replace("\\","",$contact['phone']);
+									$code  		= str_replace("\\","",$contact['code']);
+									$mail  		= str_replace("\\","",$contact['email']);
+									$fax  		= str_replace("\\","",$contact['fax']);
+									$website  	= str_replace("\\","",$contact['website']);
+								?>
+								<p>Hotline : <?php echo $hotline?>  -  Tel : <?php echo $phone?></p>
+								<p>Mã số thuế : <?php echo $code?>  - Mail : <?php echo $mail?></p>
+								<p>Fax : <?php echo $fax?>  -  Website : <?php echo $website?></p>
+                        	</div>
+                        	<div class='tag'>
+                        		<span><b>TAG: </b></span> 
+                        		<h2><a href='<?php echo $link_pro?>'><?php echo $name?>, </a></h2>
+                        		<?php
+                        			$tblMenu 	= new Zendvn_Models_Menus();
+    								$menu		= $tblMenu->listItem($this->arrParam,array('task'=>'products-child'));
+    								$id 			= $menu['id'];
+    								$childMenu		= $tblMenu->listItem($this->arrParam,array('task'=>'find-products','cid'=>$id));
+    								foreach ($childMenu as $keyss => $value){
+							            	$name	= str_replace("\\"," ",$value['name']);
+							                $urlOptions = array('module'=>'products','controller'=>'index',
+																'action'=>'category',
+											                    'cid'=> $value['id'],
+																'name'=>$value['alias'],
+											                    'lang'=>$lang,
+											                    'page'=>$page);
+											$linkDetail = $this->url($urlOptions,'products-category');
+											if ($keyss != 0){
+                        		?>
+                        		<h2><a href='<?php echo $linkDetail?>'><?php echo $name?>, </a></h2>
+                        		<?php 
+											}else{
+								?>
+								<h2><a href='<?php echo $linkDetail?>'><?php echo $name?></a></h2>
+								<?php 
+											}
+    								}
+                        		?>
+                        	</div>
+                        </div>
+                        <!--------------------BOX CONTENT (End) ----------------------> 
+                    	</div>
+					<div class='width-100'>
+						<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Sản phẩm cùng chuyên mục</p></div>
+                		<div class="group width-100 mar-top-20">
+							<?php
+								$tblItems 	= new Zendvn_Models_ProItem();
+	                            $items 		= $tblItems -> listItem($this->arrParam,array('task'=>'fav-detail'));
+	                        	if(!empty($items)){
+	                        ?>
+	                        <div class="cnt-right mar-top-5 width-100">
+	                        <?php
+	                        	foreach ($items as $key => $value){
+	                        			$cutTring 	= new Zendvn_File_CutTring();
+	                    				$name		= str_replace("\\","",$value['name']);
+	                    				$name		= $cutTring->cutTring(25, $name, null);
+	                    				
+	                    				$alt		= str_replace("\\","",$value['alt_seo']);
+	                    				if(!empty($value['alt_seo'])) $alt = str_replace("\\","",$value['name']);
+	                    				
+					            		$summary	= str_replace("\\","",$value['summary']);
+					            		$summary	= $cutTring->cutTring(120, $summary, null);
+			                        	$price 		= '<p class="price-right-pro">' . number_format($value['price'],0) . ' VND</p>';
+											
+										$sale		= $value['sale'];
+										$menu_id	= $value['menu_id'];
+										include 'includes/sale.php';
+										
+										$val_sell 	= '';
+										$sale_off 	= '';
+										if ($value['selloff'] != 0){
+											$sale_off	= '<p class="sale">' . number_format($value['selloff'],0) . ' VND</p>';
+											$val_sell 	= '<div class="icon-sale">'. $value['val_sell'] .'%</div>';
+										}
+										$price 		= '<p class="price-right-pro">' . number_format($value['price'],0) . ' VND</p>';
+										if($value['val_sell'] != 0){
+											$price 	= '<p class="price-right-pro  line-through">' . number_format($value['price'],0) . ' VND</p>';
+										}
+										if ($sale != 0){
+											$sale_off 	= $value['price'] - ($value['price']*$sale/100);
+											$sale_off	= '<p class="sale">' . number_format($sale_off,0) . ' VND</p>';
+											$price 		= '<p class="price-right-pro line-through">' . number_format($value['price'],0) . ' VND</p>';
+											$val_sell 	= '<div class="icon-sale">'. $sale .'%</div>';
+											if($value['val_sell'] != 0){
+												$val_sell 	= '<div class="icon-sale">'. $value['val_sell'] .'%</div>';
+												$sale_off	= '<p class="sale">' . number_format($value['selloff'],0) . ' VND</p>';
+											}
+										}
+										
+					            		if(!empty($value['picture'])){
+										    $linkImg	= FILES_URL . '/products/images450x450/' . $value['picture'];
+										    $picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+									    }else{
+										    $linkImg	= $this->imgUrl . '/no-image.jpg';
+										    $picture 	= '<img title="'. $value['name'] .'" src="'. $linkImg .'" alt="'. $alt .'" />';
+									    }
+	                    				$lang = $this->arrParam['lang'];
+					                    if(empty($lang)){
+					                    	$lang = 'vi';
+					                    }else{
+					                    	$lang = $this->arrParam['lang'];
+					                    }
+										$urlOptions = array('module'=>'products','controller'=>'index',
+																'action'=>'detail',
+																'tcat'=>$value['alias_name'],
+																'title'=>$value['alias'],
+			                    								'cid'=> $value['menu_id'],
+																'id'=>$value['id'],
+			                    								'lang'=>$lang);
+						                $linkDetail = $this->url($urlOptions,'products-detail');
+						                
+						                $urlOptions2 = array('module'=>'products','controller'=>'index',
+																'action'=>'order-detail',
+																'tcat'=>$value['alias_name'],
+																'title'=>$value['alias'],
+																'cid'=> $value['menu_id'],
+																'id'=>$value['id'],
+																'lang'=>$lang);
+										$linkCart = $this->url($urlOptions2,'products-order-detail');
+	                        			if(($key+1)%4 == 0){
+											$col = 'col4';
+										}else{
+											$col = 'col1';
+										}
+			                        ?>
+		                        	<div class='box-right width-22 <?php echo $col?>'>
+										<div class='bor-img-right'>
+											<a href="<?php echo $linkDetail?>"><?php echo $picture?></a>
+										</div>
+										<div class='desc-right'>
+											<h2><a href="<?php echo $linkDetail?>"><?php echo $name?></a></h2>
+											<?php echo $price?>
+											<?php echo $sale_off?>
+											<?php echo $val_sell?>
+											<a class='icon-right-cart' href="<?php echo $linkCart?>">Mua hàng</a>
+										</div>
+									</div>
+		                            <?php 
+		                        		}
+		                        	?>
+		                        </div>
+		                        <?php
+		                        	} 
+		                        ?>
+		                    </div>
+					</div>
+                    
+                    
+                        	
+                    	
+	</div>
+</div>
+<script type="text/javascript">
+	function fancyBox(elem){
+		elem = $(elem);
+		if (!elem.data("fancybox")) {
+			elem.data("fancybox", true);
+			elem.fancybox({
+				'titleShow' 	: false,
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'elastic',
+				'centerOnScroll': true
+			}).trigger('click');
+		}
+		return false; 
+	}
+	$('.overlay').click(function(){
+		$('#fancybox-wrap').hide();
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('.cnt-01').click(function(){
+			$('.content-01').show();
+			$('.content-02').hide();
+			$('.cnt-02').removeClass('sub-active');
+			$(this).addClass('sub-active');
+		});
+		$('.cnt-02').click(function(){
+			$('.content-02').show();
+			$('.content-01').hide();
+			$('.cnt-01').removeClass('sub-active');
+			$(this).addClass('sub-active');
+		});
+	});
+</script>
+

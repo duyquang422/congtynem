@@ -1,0 +1,43 @@
+<?php
+	$ssFilter = $this->arrParam['ssFilter'];
+	$lang = $ssFilter['lang'];
+	if($lang == ''){
+		$lang = 'vi';
+	}else{
+		$lang = $ssFilter['lang'];
+	}
+	
+	if (count ( $this->messageError ) > 0) $errors = $this->formErrors ( $this->messageError, array ('id' => 'errors' ) );	$email				= $this->formText('email',$this->Item['email'],array('readonly'=>'readonly'));	$password			= $this->formPassword('password',$this->Item['password'],null);	$arrInput = array(			array('label'=>'<span>Email </span><span class="color-red">(*)</span>', 'input'=>$email),			array('label'=>'<span>Mật khẩu mới</span> <span class="color-red">(*)</span>', 'input'=>$password),	);
+	$urlForgot 		= array('module'=>'default','controller'=>'public','action'=>'forgot-pass','lang'=>$lang);
+	$linkForgot 	= $this->url($urlForgot,'forgot');?><div class="right width-75 float-right">
+	<div class="group width-100">
+		<?php
+			$status	= $this->arrParam['status'];
+			if($status != 1){
+				if(!empty($this->Item)){ 
+		?>
+		<div class="sub-right width-100 icon-login">
+			<p>Thay đổi mật khẩu</p>
+		</div>
+		<div class="detail cnt-right mar-top-5 width-100">
+			<div class="error-login-public"><?php echo $errors; ?></div>
+			<div class="login_student">
+				<form name="formRegister" method="post" action="" enctype="multipart/form-data">
+					<?php echo $this->partialLoop('rowsRegister.php',$arrInput);?>
+					
+					<div class="lev-1">
+						<input class="submit" type="submit" name="submit" value="Thay đổi" />
+					</div>
+				</form>
+			</div>
+		</div>
+		<?php
+				}else{
+					echo "<p class='note'>Bạn hãy đăng nhập mới có quyền vào chức năng này, nếu bạn không nhớ mật khẩu thì hãy nhấn vào <b><a style='color:yellow' href='".$linkForgot."'>đây</a></b></p>";
+				}
+			}else{
+				echo "<p class='note'>Quá trình thay đổi mật khẩu thành công</p>";
+			}
+		?>
+	</div>
+</div>

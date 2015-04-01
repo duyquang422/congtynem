@@ -1,0 +1,142 @@
+<?php
+	$ssFilter = $this->arrParam['ssFilter'];
+	$langTmp = $ssFilter['lang'];
+	$lang = '';
+	if(empty($langTmp)){
+		$lang = '';
+	}else{
+		$lang = 'lang/' . $langTmp;
+	}
+?>
+<div class="admin-index">
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-users/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-group.png" alt="">
+			<span><?php echo $this->translate('Users')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-supports/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-support.png" alt="">
+			<span><?php echo $this->translate('Supports')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/menus/admin-menus-item/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-menu.png" alt="">
+			<span><?php echo $this->translate('Menu')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/products/admin-product/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-product.png" alt="">
+			<span><?php echo $this->translate('Product')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/products/admin-invoice/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-invoice.png" alt="">
+			<span><?php echo $this->translate('Invoice')?></span>
+		</a>
+		<?php
+			 if ($this->Numinvoice > 0){
+		?>
+		<div class='num-new'><?php echo $this->Numinvoice?></div>
+		<?php
+			 } 
+		?>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/products/admin-sales/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-sale.png" alt="">
+			<span><?php echo $this->translate('Sale')?></span>
+		</a>
+		<?php
+			 if ($this->Numsale > 0){
+		?>
+		<div class='num-new'><?php echo $this->Numsale?></div>
+		<?php
+			 } 
+		?>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/products/admin-comments/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-comments.png" alt="">
+			<span><?php echo $this->translate('Comments')?></span>
+		</a>
+		<?php
+			 if ($this->Numcomment > 0){
+		?>
+		<div class='num-new'><?php echo $this->Numcomment?></div>
+		<?php
+			 } 
+		?>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/collections/admin-collection/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-collection.png" alt="">
+			<span><?php echo $this->translate('Collection')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/units/admin-units/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-units.png" alt="">
+			<span><?php echo $this->translate('Units Issued')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/publisher/admin-publisher/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-publisher.png" alt="">
+			<span><?php echo $this->translate('Publisher')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/news/admin-news-item/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-news.png" alt="">
+			<span><?php echo $this->translate('News')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-about/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-about.png" alt="">
+			<span><?php echo $this->translate('About')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-help/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-help.png" alt="">
+			<span><?php echo $this->translate('Help')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/products/admin-slide/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-slide.png" alt="">
+			<span><?php echo $this->translate('Slide images')?></span>
+		</a>
+	</div>
+	<div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/adverts/admin-adverts/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-advert.png" alt="">
+			<span><?php echo $this->translate('Adverts')?></span>
+		</a>
+	</div>
+        <div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-advisory/index/'.$lang);?>">
+			<img src="<?php echo $this->imgUrl;?>/icon/icon-48-advert.png" alt="">
+			<span><?php echo $this->translate('Tư Vấn')?></span>
+		</a>
+                <?php
+			 if ($this->numTuVan > 0){
+		?>
+		<div class='num-new'><?php echo $this->numTuVan?></div>
+		<?php
+			 } 
+		?>
+	</div>
+        <div class="box-admin">	
+		<a href="<?php echo $this->baseUrl('/default/admin-category/index/'.$lang);?>">
+                    <img src="<?php echo $this->imgUrl;?>/icon-menu.png" alt="" width='48' height="48">
+			<span><?php echo $this->translate('Menus')?></span>
+		</a>
+	</div>
+</div>

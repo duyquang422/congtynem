@@ -1,0 +1,31 @@
+<?php 
+   	 	header('Content-Type: text/xml; charset=utf-8');
+    	echo ('<?xml version="1.0" encoding="utf-8" ?>');
+    	echo ('<rss version="2.0" xmlns:atom="****://www_w3_org/2005/Atom" >');
+    	echo ('<channel>'); 
+    	echo('<title><![CDATA[booksaigon.vn | Nhà sách trực tuyến]]></title>');
+        echo('<link><![CDATA[http://booksaigon.vn]]></link>');
+        echo('<description><![CDATA[Nhà sách trực tuyến  được yêu thích nhất. Mua sách trực tuyến  
+        tại booksaigon.vn được giảm giá, giao hàng nhanh, miễn phí vận chuyển và bao sách plastic miễn phí.]]></description>');
+  
+        if(!empty($this->Items)){
+	        foreach ($this->Items as $row) {
+	        	
+	        	$alias	= $row['alias'];
+	        	$menu	= $row['menu_id'];
+	        	$id		= $row['id'];
+	        	$link = 'http://localhost/mobi/san-pham/' . $alias . '-' . '-'. $menu . '-' . $id .'-vi.html';
+	        	$description		= str_replace("\\","",$row['description_html']);
+		        echo('<item>');
+		        echo ('<title><![CDATA[').$row['name'].(']]></title><br/>');
+		        echo ('<link><![CDATA[').$link.(']]></link><br/>');
+		        echo ('<description><![CDATA[');
+		        echo strip_tags($description);
+		        echo (']]></description><br/>');
+		        echo ('</item>');
+	        }
+        }
+
+echo ('</channel>');
+echo ('</rss>');
+?>

@@ -1,0 +1,124 @@
+<!--..........colum_right............-->
+                <div align="center" class="colum_right">
+                	<h3>Giỏ hàng</h3>                    
+                     <!--..........content............-->
+                    <div align="left" class="content">
+                    	<div class="order-cart">
+                    		<table cellpadding="0" cellspacing="0">
+                    			<tr class="sub-cart">
+                    				<td class="first" width="20">ID</td>
+                    				<td>Tên sản phẩm</td>
+                    				<td width="50">Số lượng</td>
+                    				<td width="60">Giá (Vnd)</td>
+                    				<td>Giá khuyến mãi (Vnd)</td>
+                    				<td width="80">Tổng tiền</td>
+                    			</tr>
+                    			<?php
+	                            $cart = $this->cart;
+	                            	$linkOrder = $this->baseUrl('/products/index/order');
+	                            	$linkUpdate = $this->baseUrl('/products/index/add-item');
+	                            	$linkBack = $this->baseUrl('/products/index/index');
+	                            	if(count($this->Items)>0){
+	                            		$totalPrice = 0;
+	                            		foreach ($this->Items as $key => $val){
+	                            			$name = $val['name'];
+	                            			$id = $val['id'];
+	                            			$price 		= number_format($item['price'],null);
+                    						$selloff 	= number_format($item['selloff'],null);
+	                            			$quantity = $cart[$id];
+	                            			$total = 0;
+		                            		if($selloff <=0 ){
+			                          			$price = '<span class="price-1" style="">$' . $price . '</span> ';
+			                          			$selloff = ' ';
+			                          			$total = $quantity * $val['price'];
+			                          			$totalPrice += $total;
+			                          			$total = '$' . $total;
+			                          		}else{
+			                          			$price = '<span class="price-1" style="text-decoration: line-through;">$' . $price . '</span> ';
+			                          			$selloff = '$' . $val['selloff']; 
+			                          			$total = $quantity * $val['selloff']; 
+			                          			$totalPrice += $total;
+			                          			$total = '$' . $total;		 
+			                          		}
+			                          		
+			                          		$filter = new Zend_Filter();
+											$multiFilter = $filter	->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
+																 	->addFilter(new Zend_Filter_StringTrim())
+										 						 	->addFilter(new Zend_Filter_Alnum(true))
+										  						 	->addFilter(new Zend_Filter_PregReplace(array('match'=>'#\s+#','replace'=>'-')))
+										  							->addFilter(new Zend_Filter_Word_SeparatorToDash())
+										  							->addFilter(new Zendvn_Filter_RemoveCircumflex());
+										  
+			                          		$linkDetial = $this->baseUrl('/products/index/detail/cid/' . $val['cat_id'] 
+		                          									 . '/tcat/' . $filter->filter($val['category_name']) 
+		                          									 . '/id/' . $val['id'] . '/title/' . $filter->filter($val['name']));
+	
+		                          		    $itemProduct = 'itemProduct[' . $val['id'] . ']';				 
+	                            			$itemProduct = $this->formText($itemProduct,$quantity,
+	                            											array('style'=>'width: 35px; text-align: center; font-size: 11px; background-color:#FFC;padding: 2px 2px;'));
+
+	                            ?>
+	                            <div class="err"><?php //echo $errors;?></div>
+                    			<tr>
+                    				<td class="first"><?php echo $id;?></td>
+                    				<td style="text-align: left;"><strong><a href="<?php echo $linkDetial;?>" class="itemLink" target="_blank"><?php echo $name;?></a></strong></td>
+                    				<td><?php echo $itemProduct;?></td>
+                    				<td><?php echo $price;?></td>
+                    				<td><?php echo $selloff;?></td>
+                    				<td><?php echo $total;?></td>
+                    			</tr>
+                    			<?php 
+	                            		}
+	                            	}
+	                         	?> 
+                    		</table>
+                    		<p>Tổng số tiền thanh toán : <strong><?php echo $totalPrice . ' (Vnd)';?></strong></p>
+                    		
+                    	</div>
+                        <?php 
+                     		$full_name = $this->formText('full_name',$this->arrParam['full_name'],array('style'=>'width: 60%;'));
+                     		$email = $this->formText('email',$this->arrParam['email'],array('style'=>'width: 60%;'));
+                     		$phone = $this->formText('phone',$this->arrParam['phone'],array('style'=>'width: 60%;'));
+                     		$address = $this->formTextarea('address',$this->arrParam['address'],array('rows'=>4,'style'=>'width: 90%;'));
+                     		$shipping = $this->formTextarea('shipping',$this->arrParam['shipping'],array('rows'=>4,'style'=>'width: 90%;'));
+                     		$comment = $this->formTextarea('comment',$this->arrParam['comment'],array('rows'=>4,'style'=>'width: 90%;'));
+                     		//------------------------MESSAGES ERROR----------------------
+							/*$clss = 'success';
+							$errors = $this->messageError;
+							if(is_array($this->messageError)){
+								$clss = 'fail';
+								$errors = $this->formErrors($this->messageError);
+							}
+							if(!empty($errors)):$errors = '<div class="'.$clss.'">'.$errors.'</div>';endif;*/
+                     		if(count($this->errors)>0){
+									$errors = $this->errors;								
+								}
+							?>
+                     	<form name="your-cart" id="your-cart" action="" method="post">                       
+	                        <div class="cartDetail-order">
+	                        	<h4>Xin vui lòng nhập đầy đủ thông tin vào Form sau:</h4>
+	                        	<label>Họ tên:</label>
+	                            <div><?php echo $full_name;?></div>
+	                            <p class="err"><?php echo $errors['full_name'] ;?></p>
+	                            <label>Email:</label>
+	                            <div><?php echo $email;?></div>
+	                            <p class="err"><?php echo $errors['email'] ?></p>
+	                            <label>Điện thoại:</label>
+	                            <div><?php echo $phone;?></div>
+	                            <p class="err"><?php echo $errors['phone'] ?></p>
+	                            <label>Địa chỉ:</label>
+	                            <div><?php echo $address;?></div>
+	                            <p class="err"><?php echo $errors['address'] ?></p>
+	                            <label>Giao hàng tại:</label>
+	                            <div><?php echo $shipping;?></div>
+	                            <label>Ghi chú:</label>
+	                            <div><?php echo $comment;?></div>
+	                            <br>	                            
+	                        	<input type="submit" name="update" id="update" value="Gửi thông tin" class="button">
+	                        </div>
+                        </form>
+                    </div>
+                    <!--..........content............-->
+                    
+                </div>
+                <!--..........colum_right............-->

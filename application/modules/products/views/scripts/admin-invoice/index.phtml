@@ -1,0 +1,147 @@
+<form name="appForm" method="post" action="">
+
+                        <?php echo $this->render('toolbarInvoice.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+                                <table class="adminlist">
+                                    <thead>
+                                        <tr>
+                                            <th width="43" >
+                                            	<input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
+                                           	</th>
+                                            <th><?php echo $this->translate('Product name')?></th>
+                                            <th width="80"><?php echo $this->translate('Quantity')?></th>
+                                            <th width="100"><?php echo $this->translate('Price')?> (VND)</th>
+                                            <th width="100"><?php echo $this->translate('Sale Off')?> (VND)</th>
+                                            <th style='font-weight: bold; color: #d02301' width="100">Tổng tiền (VND)</th>
+                                            <th><?php echo $this->translate('Full name')?></th>
+                                            <th><?php echo $this->translate('Phone')?></th>
+                                            <th><?php echo $this->translate('Payment')?></th>
+                                            <th><?php echo $this->translate('Created')?></th>
+                                            <th width="90"><?php echo $this->translate('Control')?></th>
+                                            <th width="34">ID</th>
+                                        </tr>
+                                    </thead>
+									<?php
+										foreach($this->Items as $key => $val){
+											$product_name  	= $val['name_pro'];
+											if ($val['hits'] == 0){
+												$imgNew			= '<img src="'.$this->imgUrl. "/icon/icon-new.gif".'" />';
+												$product_name 	= '<strong style="color:#532a02">'.$product_name.'</strong> ' . $imgNew;
+											}
+											
+											$price			= $val['pro_pri'];
+											
+											$val_sell_pro  = $val['val_sell'];
+											$sale_pro = $val['selloff'];
+											if(empty($sale_pro)) $sale_pro = $price;
+											
+											$quantity  		= $val['quantity'];
+											$to_money		= $price * $quantity;
+											
+											if(!empty($val['val_sell_pri']) || $val['val_sell_pri'] != 0){
+												$val_sell_pro 	= $val['val_sell_pri'];
+												$sale_pro 	= $val['selloff_pri'];
+												$to_money	= $sale_pro * $quantity;
+											}
+											
+											if((!empty($val['val_sell_pro']) || $val['val_sell_pro'] != 0) && (empty($val['val_sell_pri']) || $val['val_sell_pri'] == 0)){
+                                				$val_sell_pro 	= $val['val_sell_pro'];
+                                				$sale_pro 		= $val['pro_pri'] - ($val['pro_pri'] * $val_sell_pro/100);
+                                				$to_money	= $sale_pro * $quantity;
+											}
+											
+											if((empty($val['val_sell_pro']) || $val['val_sell_pro'] == 0) && (empty($val['val_sell_pri']) || $val['val_sell_pri'] == 0)){
+												if(!empty($val['sale_off_menu'])){
+													$val_sell_pro 	= $val['sale_off_menu'] ;
+													$sale_pro 		= $val['pro_pri'] - ($val['pro_pri'] * $val_sell_pro/100);
+													$to_money	= $sale_pro * $quantity;
+												}
+											}
+											
+											$full_name  	= $val['full_name'];
+											$email  		= $val['email'];
+											$phone  		= $val['phone'];
+											$address  		= $val['address'];
+											$created  		= $val['created'];
+											$id		  		= $val['id'];
+											
+											$payment 	= $val['payment'];
+											if($payment == 0){
+												$payment = 'Thanh toán trực tiếp';
+											}
+											if($payment == 1){
+												$payment = 'Thanh toán chuyển khoản';
+											}
+											if($payment == 2){
+												$payment = 'Thanh toán trả góp';
+											}
+											
+											$linkInfo		= $this->baseUrl($this->currentController . '/info/id/' . $id);											
+											$btnInfo		= $this->cmsIconButton('View Item',$this->imgUrl . '/icon_info.png',$linkInfo);
+											
+											$linkDelete		= $this->baseUrl($this->currentController . '/delete/id/' . $id);
+											$btnDelete =  $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *'. $val['name_pro'] . '*', $linkDelete, $id);
+										
+											$strIconButton	= $btnInfo . ' ' . $btnDelete;
+											
+											$cid			= $this->formCheckbox('cid[]',$val['id']);
+											$cls = 'row0';
+											if($key%2 != 0){
+												$cls = 'row1';
+											}
+									?>
+                                    <tr class="even <?php echo $cls ?>">						
+                                       <td align="center"><?php echo $cid;?></td>
+                                       <td><a href='<?php echo $linkInfo?>'><?php echo $product_name;?></a></td>
+                                       <td align="center"><?php echo $quantity;?></td>
+                                       <td align="center"><?php echo number_format($price,0);?></td>
+                                       <td align="center"><?php echo number_format($sale_pro,0);?></td>
+                                       <td style='font-weight: bold; color: #fa8d00' align="center"><?php echo number_format($to_money,0)?></td>
+                                       <td align="center"><?php echo $full_name;?></td>
+                                       <td align="center"><?php echo $phone;?></td>
+                                       <td align="center"><?php echo $payment;?></td>
+                                       <td align="center"><?php echo $created;?></td>
+                                       <td align="center"><?php echo $strIconButton;?></td>
+                                       <td align="center"><?php echo $id;?></td>
+                                    </tr>
+                                    <?php 
+										}
+                                    ?>
+                                    <!-- BEGIN: PAGINATION (FOOT) -->
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="19">
+                                                <div class="container">
+                                                    <div class="pagination">
+                                                        
+                                                        <div class="limit"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>					
+                                    </tfoot>				<!-- END: PAGINATION (FOOT) -->
+                                </table>
+                                <!-- Area 4: In du lieu lay tu database - End -->
+
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

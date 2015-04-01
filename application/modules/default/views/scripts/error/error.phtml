@@ -1,0 +1,27 @@
+<?php
+	if ($_SERVER['HTTP_HOST'] == 'localhost'){
+?>
+  <h2><?php echo  $this->message ?></h2> 
+
+  <? if ('developer' == APPLICATION_ENV): ?> 
+  <p> 
+      <b>Message:</b> <?php $this->exception->getMessage() ?> 
+  </p> 
+
+  <h3>Stack trace:</h3> 
+  <pre><?php echo $this->exception->getTraceAsString() ?> 
+  </pre> 
+
+  <h3>Request Parameters:</h3> 
+  <pre><?php 
+  echo var_export($this->request->getParams(), true)
+  //var_dump($this->request->getParams()) ?> 
+  </pre> 
+  <? endif ?>
+  
+  <?php
+	}else{
+		header('Location: 404.html');
+		exit;
+	}
+  ?>

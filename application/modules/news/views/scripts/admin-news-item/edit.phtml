@@ -1,0 +1,138 @@
+<?php 
+	$name 				= $this->formText('name',str_replace('\\', '', $this->Item['name']),array('class'=>'txtmedium'));
+	$alias 				= $this->formText('alias',$this->Item['alias'],array('class'=>'txtmedium'));
+	$picture 			= $this->formFile('picture',array('style'=>'width: 250px'));
+	$GroupCategory 		= $this->cmsSelect('menu_id',$this->Item['menu_id'],$this->tblGroupCategory,
+										array('style'=>'width:200px','size'=>10));
+	$summary 			= $this->formTextarea('summary',str_replace('\\', '', $this->Item['summary']),array('rows'=>'10'));									
+	$description_html 	= $this->formTextarea('description_html',str_replace('\\', '', $this->Item['description_html']),array('rows'=>'10'));									
+	$keywords_html 		= $this->formTextarea('keywords_html',str_replace('\\', '', $this->Item['keywords_html']),array('rows'=>'10'));									
+	$content			= $this->cmsReplaceString($this->Item['content']);
+	$content			= $this->cmsEditor('content',$content,array('toolbar'=>'Default','language'=>'vi'));
+	$options 			= array($this->translate('Inactive'),$this->translate('Active'));
+	$status 			= $this->formRadio('status',$this->Item['status'],null,$options, ' ');		
+	$options 			= array($this->translate('No'),$this->translate('Yes'));
+	$special 			= $this->formRadio('special',$this->Item['special'],null,$options, ' ');
+	
+	$options 			= array('No','Yes');
+	$featured 			= $this->formRadio('featured',$this->Item['featured'],null,$options, ' ');
+	
+	$alt 				= $this->formText('alt_seo',$this->Item['alt_seo'],array('class'=>'txtmedium'));
+	$title_seo 			= $this->formText('title_seo',$this->Item['title_seo'],array('class'=>'txtmedium'));
+	
+	$options	= array(
+						$this->translate('Public'),
+						$this->translate('Collectibles'),
+						$this->translate('Copyright')
+					);
+	$type	= $this->formSelect('type',$this->Item['type'],null,$options,null);
+	
+	
+//	$youtube 			= 'https://www.youtube.com/watch?v=QoXUzlkboj8';
+//	$tmpYoutube	= strstr($youtube, '=');
+//	echo $youtube 		= substr($tmpYoutube,1);
+	
+	
+	/*...........Picture............*/
+	$imgArr 		= !empty($this->Item['picture'])?array( FILES_URL . '/news/images100x100/'.$this->Item['picture']):'';
+	if(!empty($this->Item['picture'])){
+	  	$urlimage   = FILES_URL . '/news/images100x100/'. $this->Item['picture'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture  = $imgimage ."<br/>" . $this->formFile('picture',array('style'=>'margin-left:173px'));	
+	}else{
+		$picture  = $this->formFile('picture',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium = $this->formHidden('current_stadium_picture',$this->Item['picture']);  
+ 	
+ 	$formVideoHide		= $this->formHidden('hide_video',$this->Item['video'],null);
+ 	$tmpVideo = $this->Item['video'];
+	$link	= FILES_URL . '/videos/' . $tmpVideo;
+	if(!empty($tmpVideo)){
+		$video = '<a href="'. $link .'" style="display:block;width:145px;height:140px;margin-left:170px" id="player"></a>';
+	}
+	$optvideo 		= array($this->translate('Video'),$this->translate('Youtube'));
+	$showVideo		= $this->formRadio('show',$this->Item['show'],null,$optvideo,' ');	
+	$upload 		= $this->formFile('video',array('style'=>'width: 250px')) . $video ;
+	
+	$youtube		= $this->formText('youtube',$this->Item['youtube'],array('class'=>'txtmedium'));
+	
+	$tmpFileDown 	= $this->Item['file_download'];
+	$linkFile		= FILES_URL . '/documents/' . $tmpFileDown;
+	if(!empty($tmpFileDown)) $showFileDown	= '<a title="'. $tmpFileDown.'" class="icon-download" href="'.$linkFile.'">' . $tmpFileDown . '</a>';
+	$formFileHide	= $this->formHidden('hide_file_down',$this->Item['file_download'],null);
+	$file_download	= $this->formFile('file_download',array('style'=>'width: 190px')) . $showFileDown . $formFileHide;
+	
+	$Input = array(
+					array('Label'=>$this->translate('Title'),'input'=>$name,'info'=>0),
+					array('Label'=>$this->translate('Alias'),'input'=>$alias,'info'=>0),
+					array('Label'=>$this->translate('Picture'),'input'=>$picture,'info'=>0),
+					array('Label'=>$this->translate('File download'),'input'=>$file_download,'info'=>0),
+					array('Label'=>$this->translate('Alt SEO'),'input'=>$alt,'info'=>0),
+					array('Label'=>$this->translate('Title SEO'),'input'=>$title_seo,'info'=>0),
+					array('Label'=>$this->translate('Show video'),'input'=>$showVideo,'info'=>0),
+					array('Label'=>$this->translate('Link Youtube'),'input'=>$youtube,'info'=>0),
+					array('Label'=>$this->translate('Upload video'),'input'=>$upload,'info'=>0,'class'=>'upload-video'),
+					array('Label'=>$this->translate('Type'),'input'=>$type,'info'=>0),
+					array('Label'=>$this->translate('Category'),'input'=>$GroupCategory,'info'=>0),
+					array('Label'=>$this->translate('Status'),'input'=>$status,'info'=>0),
+					array('Label'=>$this->translate('Special'),'input'=>$special,'info'=>0),
+					array('Label'=>$this->translate('Featured'),'input'=>$featured,'info'=>0),
+					array('Label'=>$this->translate('Summary'),'input'=>$summary,'info'=>0),
+					array('Label'=>$this->translate('Description HTML'),'input'=>$description_html,'info'=>0),
+					array('Label'=>$this->translate('Keywords HTML'),'input'=>$keywords_html,'info'=>0),
+					array('Label'=>$this->translate('Content'),'input'=>$content,'style'=>'margin-left:174px'),
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        <?php echo $errors;?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                             <div class="adminheader">Detail</div>
+								
+								<?php echo $this->partialLoop('rows.php',$Input) . $current_stadium ;?>
+                                
+							</div>
+							
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>
+                    
+<script>
+	flowplayer("player", {
+	  // flash configuration
+	  src: "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf",
+	 
+	  // required for hardware accelaration to take effect
+	  wmode: "direct"
+	},  {
+	  // player configuration
+	  clip: {
+		  // enable hardware acceleration
+		  accelerated: true
+	  }
+	});
+</script>

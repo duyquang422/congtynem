@@ -1,0 +1,58 @@
+<?php
+	$price_ins 	= str_replace(",","",$this->arrParam['price_ins']);
+	$prepay		= '';
+	
+	if($this->arrParam['prepay'] == 1){
+		$prepay = 0.1;
+	}elseif ($this->arrParam['prepay'] == 2){
+		$prepay = 0.2;
+	}elseif ($this->arrParam['prepay'] == 3){
+		$prepay = 0.3;
+	}elseif ($this->arrParam['prepay'] == 4){
+		$prepay = 0.4;
+	}elseif ($this->arrParam['prepay'] == 5){
+		$prepay = 0.5;
+	}
+	$prepayMon	= round($prepay * $price_ins);
+	$restMon	= $price_ins - $prepayMon ;
+	
+	
+	
+	$term_loan 	= '';
+	if($this->arrParam['term_loan'] == 1){
+		$term_loan = 6;
+	}elseif ($this->arrParam['term_loan'] == 2){
+		$term_loan = 12;
+	}elseif ($this->arrParam['term_loan'] == 3){
+		$term_loan = 24;
+	}
+	$textTerm = $term_loan . ' tháng';
+	if($this->arrParam['term_loan'] == 0){
+		$textTerm = 'Chọn hạn trả góp';
+	}
+	
+	$interest	= '';
+	if($this->arrParam['interest'] == 1){
+		$interest = 0;
+	}elseif ($this->arrParam['interest'] == 2){
+		$interest = 2.45;
+	}
+	$textInterest = $interest . '%';
+	if($this->arrParam['interest'] == 0){
+		$textInterest = 'Chọn mức lãi suất';
+	}
+	
+	if($this->arrParam['term_loan'] >=1 && $this->arrParam['interest'] >= 1){
+		$sumInterest	= ($interest * $term_loan)/100;
+		$sumMoney		= $sumInterest * $restMon + $restMon;
+		$payments		= $sumMoney/$term_loan;
+	}
+?>
+<div class='form-suc-ins'>
+	<p class='ins-1'><b>Giá sản phẩm: </b><span><?php echo number_format($price_ins,0) . ' VND'?></span></p>
+	<p class='ins-1'><b>Trả trước: </b><span><?php echo number_format($prepayMon,0) . ' VND'?></span></p>
+	<p class='ins-1'><b>Số tiền còn lại: </b><span><?php echo number_format($restMon,0) . ' VND'?></span></p>
+	<p class='ins-1'><b>Lãi suất: </b><span><?php echo $textInterest?></span></p>
+	<p class='ins-1'><b>Hạn trả góp: </b><span><?php echo $textTerm ?></span></p>
+	<p class='ins-2'><b>Trả hàng tháng: </b><span><?php echo number_format($payments,0) . ' VND'?></span></p>
+</div>

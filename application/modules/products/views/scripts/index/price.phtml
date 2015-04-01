@@ -1,0 +1,59 @@
+<div class="left float-left width-72">
+                	<div class="tbl-price width-100">
+                    	<table class="cnt-price width-100" cellpadding="0" cellspacing="0">
+                        	<thead>
+                            	<tr>
+                                	<td class='width-10'><img src="<?php echo $this->imgUrl ?>/default/icon/icon-number.png" alt="thiet ke website"  /></td>
+                                    <td>Gói thiết kế web</td>
+                                    <td class='width-20'>Giá (VND)</td>
+                                    <td class='width-30'>Ghi chú</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<?php
+                            		$menu	= $this->tblMenu;
+                            		$i = 0;
+                            		if (!empty($menu)){
+                            			foreach ($menu as $key => $value) {
+                            				$i++;
+                            				$name		= str_replace("\\"," ",$value['name']);
+                            				$summary	= str_replace("\\"," ",$value['summary']);
+                            				if (!$value['summary']) $summary = '<i>Đang cập nhật thông báo ...</i>';
+                            				$price		= $value['price'];
+                            				if($value['price'] == 0) $price = '<img src="'. $this->imgUrl .'/default/icon/ajax-loader.gif">';
+                            				
+                            				$lang = $this->arrParam['lang'];
+							                if(empty($lang)){
+							                    $lang = 'vi';
+							                }else{
+							                    $lang = $this->arrParam['lang'];
+							                }
+							                
+											$urlOptions = array('module'=>'products','controller'=>'index',
+																				'action'=>'price-category',
+																				'title'=>$value['alias'],
+							                    								'cid'=> $value['id'],
+							                    								'lang'=>$lang);
+							                $linkCat = $this->url($urlOptions,'default');
+                            	?>
+                            	<tr>
+                                	<td class='width-10'><?php echo $i?></td>
+                                    <td class="sub-price"><a href="<?php echo $linkCat?>"><?php echo $name?></a></td>
+                                    <td class="color-red"><?php echo $price?></td>
+                                    <td class='note-price'><p><?php echo $summary?></p></td>
+                                </tr>
+                                <?php
+                            			} 
+                            		}
+                                ?>
+                            </tbody>
+                        </table>
+                        <!--<div class="notes mar-top-15">
+                        	<h3 class="color-red">Thông báo:</h3>
+                        	<p>Đây là báo giá website theo chức năng trọn gói, đã kèm VAT. Nếu quý vị có yêu cầu báo giá 
+                            thiết kế website với chức năng riêng hoặccần yêu cầu tư vấn, báo giá thiết kế website dạng 
+                            khác, vui lòng liên hệ với chúng tôi</p>
+                        </div>-->
+                    </div>
+                    <?php include 'includes/news.php';?>
+                </div>

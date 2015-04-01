@@ -1,0 +1,249 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>   	   
+       <!-- ======================================================== -->
+       <!-- ***************** Validate Translate ******************* -->  
+       <!-- ======================================================== --> 
+       
+		<!-- ====================== NotEmpty ======================= --> 
+		<tu tuid="Value is required and can't be empty">   
+			<tuv xml:lang="vi"><seg>Giá trị này không được rỗng</seg></tuv>
+		</tu>
+		<tu tuid="Invalid type given, value should be float, string, array, boolean or integer">   
+			<tuv xml:lang="vi"><seg>Giá trị này phải là kiếu số thực, chuỗi, mảng hoặc kiểu số nguyên</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Between ======================= --> 
+		<tu tuid="'%value%' is not between '%min%' and '%max%', inclusively">   
+			<tuv xml:lang="vi"><seg>'%value%' phải lớn hơn '%min%' và nhỏ hơn '%max%'</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is not strictly between '%min%' and '%max%'">   
+			<tuv xml:lang="vi"><seg>'%value%' không thuộc khoảng '%min%' và '%max%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== StringLength ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="vi"><seg>Giá trị này phải là kiêu chuỗi</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is less than %min% characters long">   
+			<tuv xml:lang="vi"><seg>Giá trị này phải có ít nhất %min% ký tự</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is more than %max% characters long">   
+			<tuv xml:lang="vi"><seg>Giá trị bạn nhập vào quá lớn so với qui định</seg></tuv>
+		</tu>
+		
+		<!-- ====================== EmailAddress ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="vi"><seg>Địa chỉ email ko hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is no valid email address in the basic format local-part@hostname">   
+			<tuv xml:lang="vi"><seg>Địa chỉ email của bạn không đúng chuẩn local-part@hostname</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' is no valid hostname for email address '%value%'">   
+			<tuv xml:lang="vi"><seg>Không tìm thấy tên miền '%hostname%' trong địa chỉ email này</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' does not appear to have a valid MX record for the email address '%value%'">   
+			<tuv xml:lang="vi"><seg>Tên miền '%hostname%' không hợp lệ trong địa chỉ email này</seg></tuv>
+		</tu>
+		<tu tuid="'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network.">   
+			<tuv xml:lang="vi"><seg>'%localPart%' thì không đúng định đạng email</seg></tuv>
+		</tu>
+		<tu tuid="'%localPart%' can not be matched against dot-atom format">   
+			<tuv xml:lang="vi"><seg>'%localPart%' thì không đúng định đạng email</seg></tuv>
+		</tu>
+		<tu tuid="'%localPart%' is no valid local part for email address '%value%'">   
+			<tuv xml:lang="vi"><seg>'%localPart%' không hợp lệ với '%value%'</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' exceeds the allowed length">   
+			<tuv xml:lang="vi"><seg>Địa chỉ email của bạn vượt quá chiều dài cho phép</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Regex ======================= --> 
+		<tu tuid="Invalid type given, value should be string, integer or float">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not match against pattern '%pattern%'">   
+			<tuv xml:lang="vi"><seg>Giá trị này  không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="There was an internal error while using the pattern '%pattern%'">   
+			<tuv xml:lang="vi"><seg>Giá trị này  không hợp lệ</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Date ======================= --> 
+		<tu tuid="Invalid type given, value should be string, integer, array or Zend_Date">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be a valid date">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not fit the date format '%format%'">   
+			<tuv xml:lang="vi"><seg>Giá trị này không đúng định dạng '%format%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Int ======================= --> 
+		<tu tuid="Invalid type given, value should be string or integer">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be an integer">   
+			<tuv xml:lang="vi"><seg>Giá trị này không phải kiểu số nguyên</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Float ======================= --> 
+		<tu tuid="Invalid type given, value should be float, string, or integer">   
+			<tuv xml:lang="vi"><seg>Giá trị này không phải kiểu số thực</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' does not appear to be a float">   
+			<tuv xml:lang="vi"><seg>Giá trị này không phải kiểu số thực</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Alnum ======================= --> 
+		<tu tuid="Invalid type given, value should be float, string, or integer">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' contains characters which are non alphabetic and no digits">   
+			<tuv xml:lang="vi"><seg>Giá trị này tồn tại ký tự không phải chữ và con số</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="vi"><seg>Giá trị này không được rỗng</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Alpha ======================= --> 
+		<tu tuid="Invalid type given, value should be a string">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' contains non alphabetic characters">   
+			<tuv xml:lang="vi"><seg>Giá trị này tồn tại ký tự không phải là chữ</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="vi"><seg>Giá trị này không được rỗng</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Digits ======================= --> 
+		<tu tuid="'%value%' contains characters which are not digits; but only digits are allowed">   
+			<tuv xml:lang="vi"><seg>Giá trị này chỉ được phép chứa con số</seg></tuv>
+		</tu>
+		<tu tuid="'%value%' is an empty string">   
+			<tuv xml:lang="vi"><seg>Giá trị này không được rỗng</seg></tuv>
+		</tu>
+		<tu tuid="Invalid type given, value should be string, integer or float">   
+			<tuv xml:lang="vi"><seg>Giá trị này không hợp lệ</seg></tuv>
+		</tu>
+		
+		<!-- ====================== LessThan ======================= --> 
+		<tu tuid="'%value%' is not less than '%max%'">   
+			<tuv xml:lang="vi"><seg>Giá trị này phải nhỏ hơn '%max%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== GreaterThan ======================= --> 
+		<tu tuid="'%value%' is not greater than '%min%'">   
+			<tuv xml:lang="vi"><seg>Giá trị này phải lớn hơn '%max%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Extension ==================== -->
+		<tu tuid="File '%value%' has a false extension">   
+			<tuv xml:lang="vi"><seg>Kiểu tập tin này không đúng với qui định</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' could not be found">   
+			<tuv xml:lang="vi"><seg>Không tìm thấy kiểu tập tin này</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File IsImage ==================== -->
+		<tu tuid="File '%value%' is no image, '%type%' detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' không phải là ảnh</seg></tuv>
+		</tu>
+		<tu tuid="The mimetype of file '%value%' could not be detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' không thể xác định</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' can not be read">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' lỗi</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' was not uploaded">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' chưa được tải lên</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File NotExist ==================== -->
+		<tu tuid="File '%value%' exists">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' không tồn tại</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Size ==================== -->
+		<tu tuid="Maximum allowed size for file '%value%' is '%max%' but '%size%' detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' có kích thước '%size%' lớn hơn qui định '%max%'</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected size for file '%value%' is '%min%' but '%size%' detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' có kích thước '%size%' nhỏ hơn qui định '%min%'</seg></tuv>
+		</tu>
+		<tu tuid="File '%value%' could not be found">   
+			<tuv xml:lang="vi"><seg>Không tìm thấy tập tin '%value%'</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File ImageSize ==================== -->
+		<tu tuid="Maximum allowed width for image '%value%' should be '%maxwidth%' but '%width%' detected">   
+			<tuv xml:lang="vi"><seg>Chiều rộng của ảnh là '%width%', phải nhỏ hơn '%maxwidth%'</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected width for image '%value%' should be '%minwidth%' but '%width%' detected">   
+			<tuv xml:lang="vi"><seg>Chiều rộng của ảnh là '%width%', phải lớn hơn '%minwidth%'</seg></tuv>
+		</tu>
+		<tu tuid="Maximum allowed height for image '%value%' should be '%maxheight%' but '%height%' detected">   
+			<tuv xml:lang="vi"><seg>Chiều cao của ảnh là '%height%', phải nhỏ hơn '%maxheight%'</seg></tuv>
+		</tu>
+		<tu tuid="Minimum expected height for image '%value%' should be '%minheight%' but '%height%' detected">   
+			<tuv xml:lang="vi"><seg>Chiều cao của ảnh là '%height%', phải lớn hơn '%minheight%'</seg></tuv>
+		</tu>
+		<tu tuid="The size of image '%value%' could not be detected">   
+			<tuv xml:lang="vi"><seg>Không thể xác định kích thước ảnh</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File Count ==================== -->
+		<tu tuid="Too many files, maximum '%max%' are allowed but '%count%' are given">   
+			<tuv xml:lang="vi"><seg>Có '%count%', quá nhiều tập tin, tối đa '%max%' tập tin</seg></tuv>
+		</tu>
+		<tu tuid="Too few files, minimum '%min%' are expected but '%count%' are given">   
+			<tuv xml:lang="vi"><seg>Có '%count%', quá ít tập tin, tối thiểu '%min%' tập tin</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File MimeType ==================== -->
+		<tu tuid="File '%value%' has a false mimetype of '%type%'">   
+			<tuv xml:lang="vi"><seg>Tập trin '%value%' không đúng định dạng đưa ra</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File FilesSize ==================== -->
+		<tu tuid="All files in sum should have a maximum size of '%max%' but '%size%' were detected">   
+			<tuv xml:lang="vi"><seg>Kích thước các tập tin '%size%' lớn hơn mức qui định '%max%'</seg></tuv>
+		</tu>
+		<tu tuid="All files in sum should have a minimum size of '%min%' but '%size%' were detected">   
+			<tuv xml:lang="vi"><seg>Kích thước các tập tin '%size%' nhỏ hơn mức qui định '%max%'</seg></tuv>
+		</tu>
+		<tu tuid="One or more files can not be read">   
+			<tuv xml:lang="vi"><seg>Tồn tại tập tin lỗi</seg></tuv>
+		</tu>
+		
+		<!-- ====================== File IsCompressed ==================== -->
+		<tu tuid="File '%value%' is not compressed, '%type%' detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' không thể nén</seg></tuv>
+		</tu>
+		<tu tuid="The mimetype of file '%value%' could not been detected">   
+			<tuv xml:lang="vi"><seg>Tập tin '%value%' không thể xác định</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Db NoRecordExists ==================== -->
+		<tu tuid="No record matching %value% was found">   
+			<tuv xml:lang="vi"><seg>%value% chưa tồn tại</seg></tuv>
+		</tu>
+		
+		<!-- ====================== Db RecordExists ==================== -->
+		<tu tuid="A record matching %value% was found">   
+			<tuv xml:lang="vi"><seg>%value% đã tồn tại</seg></tuv>
+		</tu>
+		
+		<!-- ====================== URL ==================== -->
+		<tu tuid="'%value%' is not Url address">   
+			<tuv xml:lang="vi"><seg>'%value%' không phải đường dẫn URL</seg></tuv>
+		</tu>
+   </body>  
+</tmx>

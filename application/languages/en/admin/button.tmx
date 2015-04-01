@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+       <tu tuid='Sort'><tuv xml:lang="en"><seg>Sort</seg></tuv></tu>
+       <tu tuid='Active'><tuv xml:lang="en"><seg>Active</seg></tuv></tu> 
+       <tu tuid='Inactive'><tuv xml:lang="en"><seg>Inactive</seg></tuv></tu> 
+       <tu tuid='Add'><tuv xml:lang="en"><seg>Add</seg></tuv></tu> 
+       <tu tuid='Delete'><tuv xml:lang="en"><seg>Delete</seg></tuv></tu> 
+       <tu tuid='Help'><tuv xml:lang="en"><seg>Help</seg></tuv></tu>
+       <tu tuid='Edit'><tuv xml:lang="en"><seg>Edit</seg></tuv></tu> 
+       <tu tuid='Save'><tuv xml:lang="en"><seg>Save</seg></tuv></tu> 
+       <tu tuid='Cancel'><tuv xml:lang="en"><seg>Cancel</seg></tuv></tu> 
+       <tu tuid='Back'><tuv xml:lang="en"><seg>Back</seg></tuv></tu> 
+       <tu tuid='Information'><tuv xml:lang="en"><seg>Information</seg></tuv></tu>
+       <tu tuid='Save Close'><tuv xml:lang="en"><seg>Save &amp; Close</seg></tuv></tu>
+   </body>  
+</tmx>

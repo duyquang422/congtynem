@@ -1,0 +1,98 @@
+<?php
+	include 'includes/group_id.php'; 
+	$user_name 			= $this->formText('user_name',$this->Item['user_name'],array('class'=>'txtmedium'));
+	$user_avatar 		= $this->formFile('user_avatar',array('style'=>'width: 250px'));
+	$password 			= $this->formPassword('password',array('style'=>'width: 250px'));
+	$email 				= $this->formText('email',$this->Item['email'],array('class'=>'txtmedium'));
+	$first_name 		= $this->formText('first_name',$this->Item['first_name'],array('class'=>'txtmedium'));
+	$last_name 			= $this->formText('last_name',$this->Item['last_name'],array('class'=>'txtmedium'));
+	$birthday 			= $this->formText('birthday',$this->Item['birthday'],array('class'=>'txtsort','id'=>'birthday'));
+	$options			= $this->slbGroup;
+	if($group_id != 1) unset($options[1]);
+	$tblGroup 			= $this->formSelect('group_id',$this->Item['group_id'],array('style'=>'width:200px'),$options);
+	$options 			= array($this->translate('Inactive'),$this->translate('Active'));
+	$status 			= $this->formRadio('status',$this->Item['status'],null,$options, ' ');
+	$sign				= $this->cmsReplaceString($this->Item['sign']);
+	$sign				= $this->cmsEditor('sign',$sign,array('toolbar'=>'Default','language'=>'vi'));
+	
+	//Avatar
+	$inputInfo 	= array('name'=>'user_avatar');
+	$imgArr 	= !empty($this->Item['user_avatar'])?array( FILES_URL . '/users/images100x100/'.$this->Item['user_avatar']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['user_avatar'])){
+	  	$urlimage   	= FILES_URL . '/users/images100x100/'. $this->Item['user_avatar'];
+	  	$imgimage  		= '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$user_avatar 	= $imgimage ."<br/>" . $this->formFile('user_avatar',array('style'=>'margin-left:173px'));
+	}else{
+		$user_avatar 	= $this->formFile('user_avatar',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_avatar = $this->formHidden('current_stadium_user_avatar',$this->Item['user_avatar']);
+	
+	$Input = array(
+					array('Label'=>$this->translate('Username'),'input'=>$user_name,'info'=>0),
+					array('Label'=>$this->translate('Avatar'),'input'=>$user_avatar,'info'=>0),
+					array('Label'=>$this->translate('Password'),'input'=>$password,'info'=>0),
+					array('Label'=>$this->translate('Email'),'input'=>$email,'info'=>0),
+					array('Label'=>$this->translate('Group'),'input'=>$tblGroup,'info'=>0),
+					array('Label'=>$this->translate('Status'),'input'=>$status,'info'=>0),
+					array('Label'=>$this->translate('First name'),'input'=>$first_name,'info'=>0),
+					array('Label'=>$this->translate('Last name'),'input'=>$last_name,'info'=>0),
+					array('Label'=>$this->translate('Birthday'),'input'=>$birthday,'info'=>0),
+					array('Label'=>$this->translate('Content'),'input'=>$sign,'info'=>0,'style'=>'margin-left:174px'),
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(function() {
+			var today = new Date();
+			var year = today.getFullYear()-70;
+			$("#birthday").datepick({
+				minDate: new Date(year, 1 - 1, 25),
+				yearRange: "-10:-70",
+			    dateFormat: 'yyyy-mm-dd',
+				showOn: "both"
+			});
+		});		
+	});
+</script>
+
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        
+                        <?php echo $errors;?>
+
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                            <div class="adminheader">Detail</div>								
+								<?php echo $this->partialLoop('rows.php',$Input);?> 
+								<?php 
+									echo $current_stadium_avatar;
+								?>                                
+							</div>
+							
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>

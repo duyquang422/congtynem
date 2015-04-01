@@ -1,0 +1,13 @@
+<?php
+	$position = $this->position[0];
+	$resize		=	$this->formText('resize',$position['resize'],array('class'=>'txtshort'));
+	$price		=	$this->formText('price',$position['price'],array('class'=>'txtshort'));
+	$selloff	=	$this->formText('selloff',$position['selloff'],array('class'=>'txtshort'));
+	
+	$Input = array(
+					array('Label'=>$this->translate('Resize'),'input'=>$resize,'info'=>0),
+					array('Label'=>$this->translate('Price'),'input'=>$price,'info'=>0),
+					array('Label'=>$this->translate('Sale Off'),'input'=>$selloff,'info'=>0)
+					);
+					
+	echo $this->partialLoop('rows.php',$Input) . $current_stadium ;

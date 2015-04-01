@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+   	   <tu tuid='Home'>
+       		<tuv xml:lang="vi"><seg>Trang chủ</seg></tuv>
+       </tu>
+   	   <tu tuid='Foreign Travel'>
+       		<tuv xml:lang="vi"><seg>Du lịch nước ngoài</seg></tuv>
+       </tu>
+   	   <tu tuid='Domestic Travel'>
+       		<tuv xml:lang="vi"><seg>Du lịch trong nước</seg></tuv>
+       </tu>
+   	   <tu tuid='News'>
+       		<tuv xml:lang="vi"><seg>Tin tức</seg></tuv>
+       </tu>
+   	   <tu tuid='Contact'>
+       		<tuv xml:lang="vi"><seg>Liên hệ</seg></tuv>
+       </tu>
+   	   <tu tuid='Administrator'>
+       		<tuv xml:lang="vi"><seg>Quản trị</seg></tuv>
+       </tu>
+   	   <tu tuid='Support'>
+       		<tuv xml:lang="vi"><seg>HỖ TRỢ TRỰC TUYẾN</seg></tuv>
+       </tu>
+       <tu tuid='Search'>
+       		<tuv xml:lang="vi"><seg>Tìm kiếm</seg></tuv>
+       </tu>
+       <tu tuid='Latest News'>
+       		<tuv xml:lang="vi"><seg>Tin tức mới nhất</seg></tuv>
+       </tu>
+       <tu tuid='News of the day'>
+       		<tuv xml:lang="vi"><seg>Tin tức trong ngày</seg></tuv>
+       </tu>Cẩm nang du lịch
+       <tu tuid='Travel Handbook'>
+       		<tuv xml:lang="vi"><seg>Cẩm nang du lịch</seg></tuv>
+       </tu>
+       <tu tuid='Products'>
+       		<tuv xml:lang="vi"><seg>Sản phẩm</seg></tuv>
+       </tu>
+       
+       <tu tuid='Monday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 2</seg></tuv>
+	   </tu>
+	   <tu tuid='Tuesday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 3</seg></tuv>
+	   </tu>
+	   <tu tuid='Wednesday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 4</seg></tuv>
+	   </tu>
+	   <tu tuid='Thursday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 5</seg></tuv>
+	   </tu>
+	   <tu tuid='Friday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 6</seg></tuv>
+	   </tu>
+	   <tu tuid='Saturday'>
+	   		<tuv xml:lang="vi"><seg>Thứ 7</seg></tuv>
+	   </tu>
+	   <tu tuid='Sunday'>
+	   		<tuv xml:lang="vi"><seg>Chủ nhật</seg></tuv>
+	   </tu>
+   </body>  
+</tmx>

@@ -1,0 +1,96 @@
+<?php 
+	$code 		= $this->formText('code_pro',$this->Item['code_pro'],array('class'=>'txtmedium'));
+	$size 		= $this->formText('size',$this->Item['size'],array('class'=>'txtmedium'));
+	$price 		= $this->formText('price',$this->Item['price'],array('class'=>'txtmedium','style'=>'width: 194px'));
+	$selloff 	= $this->formText('selloff',$this->Item['selloff'],array('class'=>'txtmedium','style'=>'width: 194px','readonly' => 'readonly'));
+	$val_sell	= $this->formText('val_sell',str_replace("\\","",$this->Item['val_sell']),array('class'=>'txtmedium','style'=>'width: 194px'));
+	$summary    = $this->formTextarea('summary',str_replace("\\","",$this->Item['summary']),array('rows'=>'10'));
+	$order 		= $this->formText('order',$this->Item['order'],array('class'=>'txtshort'));	
+	$options 	= array($this->translate('Inactive'),$this->translate('Active'));
+	$status 	= $this->formRadio('status',$this->Item['status'],null,$options, ' ');
+ 	
+	$options1 	= array(
+						$this->translate('Select a units'),
+						$this->translate('Meters'),
+						$this->translate('Centimeters'),
+						$this->translate('Millimeters'),
+						);
+	$units 	= $this->formSelect('units',$this->Item['units'],null,$options1, ' ');
+	
+	$Input 		= array(
+						array('Label'=>$this->translate('Code product'),'input'=>$code,'info'=>0),
+						array('Label'=>$this->translate('Size'),'input'=>$size,'info'=>0),
+						array('Label'=>$this->translate('Price'),'input'=>$price,'info'=>0),
+						array('Label'=>$this->translate('Sale Off'),'input'=>$selloff,'info'=>0),
+						array('Label'=>$this->translate('Value sale (%)'),'input'=>$val_sell,'info'=>0),
+						array('Label'=>$this->translate('Summary'),'input'=>$summary,'info'=>0),
+						array('Label'=>$this->translate('Status'),'input'=>$status,'info'=>0),
+						);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+                        <?php echo $this->render('toolbar.php')?>
+                        <div class="clr"></div>
+                        <?php echo $this->render('sublink.php')?>
+                        <?php echo $errors;?>
+                        <!-- BEGIN: CONTENT -->
+                        <div id="element-box">
+                            <div class="t">
+                                <div class="t">
+                                    <div class="t"></div>
+                                </div>
+                            </div>
+                            <div class="m">
+                                <!-- BEGIN: ELEMENT BOX -->
+						<div id="adminfieldset">
+                             <div class="adminheader">Detail</div>								
+								<?php echo $this->partialLoop('rows.php',$Input) .$current_stadium ;?>                                
+							</div>
+							
+                                <!-- END: ELEMENT BOX -->	
+                              <div class="clr"></div>
+                            </div>
+                            <div class="b">
+                                <div class="b">
+                                    <div class="b"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: 	CONTENT -->
+                    </form>
+                    
+<?php
+	 $products = $this->Products;
+	 $size = $this->Size;
+?>  
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script>
+	$(function() {
+		 var code = [
+								<?php
+									foreach ($products as $value) {
+										echo '"'.$value['code'] .'",';
+									} 
+								?>
+								];
+		 var size = [
+							<?php
+								foreach ($size as $val) {
+									echo '"'.$val['name'] .'",';
+								} 
+							?>
+							];
+		$( "#code_pro" ).autocomplete({
+			source: code
+		});
+
+		$( "#size" ).autocomplete({
+			source: size
+		});
+		
+	});
+</script>

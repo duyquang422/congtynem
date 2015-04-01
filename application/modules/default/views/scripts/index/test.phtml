@@ -1,0 +1,76 @@
+<?php   
+echo '<pre>';
+print_r($this->Item);
+echo '</pre>';
+	//hình ảnh mô tả
+        $inputInfo 	= array('name'=>'picture');
+	$imgArr 	= !empty($this->Item['picture'])?array( FILES_URL . '/category/images194x177/'.$this->Item['picture']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['picture'])){
+	  	$urlimage   = FILES_URL . '/category/images194x177/'. $this->Item['picture'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture  = $imgimage ."<br/>" . $this->formFile('picture',array('style'=>'margin-left:173px'));
+	}else{
+		$picture  = $this->formFile('picture',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_picture= $this->formHidden('current_stadium_picture',$this->Item['picture']);
+        
+        //hình ảnh mô tả
+        $inputInfo 	= array('name'=>'picture1');
+	$imgArr 	= !empty($this->Item['picture1'])?array( FILES_URL . '/category/images194x177/'.$this->Item['picture1']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['picture1'])){
+	  	$urlimage   = FILES_URL . '/category/images194x177/'. $this->Item['picture1'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture1  = $imgimage ."<br/>" . $this->formFile('picture1',array('style'=>'margin-left:173px'));
+	}else{
+		$picture1  = $this->formFile('picture1',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_picture1 = $this->formHidden('current_stadium_picture1',$this->Item['picture1']);
+        
+        //hình ảnh mô tả
+        $inputInfo 	= array('name'=>'picture2');
+	$imgArr 	= !empty($this->Item['picture2'])?array( FILES_URL . '/category/images194x177/'.$this->Item['picture2']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['picture2'])){
+	  	$urlimage   = FILES_URL . '/category/images194x177/'. $this->Item['picture2'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture2  = $imgimage ."<br/>" . $this->formFile('picture2',array('style'=>'margin-left:173px'));
+	}else{
+		$picture2  = $this->formFile('picture2',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_picture2= $this->formHidden('current_stadium_picture2',$this->Item['picture2']);
+        
+        //hình ảnh mô tả
+        $inputInfo 	= array('name'=>'picture3');
+	$imgArr 	= !empty($this->Item['picture3'])?array( FILES_URL . '/category/images194x177/'.$this->Item['picture3']):'';
+	$image 		= $this->cmsUserAvatar($inputInfo, $imgArr);
+	if(!empty($this->Item['picture3'])){
+	  	$urlimage   = FILES_URL . '/category/images194x177/'. $this->Item['picture3'];
+	  	$imgimage  = '<span><img src="' . $urlimage . '" width="" height="40"></span>'; 
+	  	$picture3  = $imgimage ."<br/>" . $this->formFile('picture3',array('style'=>'margin-left:173px'));
+	}else{
+		$picture3  = $this->formFile('picture3',array('style'=>'margin-left:5px'));
+	}
+ 	$current_stadium_picture3= $this->formHidden('current_stadium_picture3',$this->Item['picture3']);
+        
+	$Input = array(
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture1),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture2),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture3)
+					);
+	if(count($this->errors)>0){
+		$errors = $this->formErrors($this->errors,array('id'=>'errors'));
+	}
+?>
+<form name="appForm" method="post" action="<?php echo $this->baseUrl('default/index/test')?>" enctype="multipart/form-data">
+                             <?php
+				echo $current_stadium_picture;
+                                echo $current_stadium_picture1;
+                                echo $current_stadium_picture2;
+                                echo $current_stadium_picture3;
+                                echo $this->partialLoop('rows.php',$Input);
+                             ?>
+    <input type="submit" value="submit" />
+                    </form>

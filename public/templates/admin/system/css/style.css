@@ -1,0 +1,417 @@
+@charset "utf-8";
+
+/* CSS Document */ /*--------- adminform ---------------------*/
+#adminfieldset {
+	margin: 10px 0 20px;
+	padding: 20px 5px;
+	width: 98%;
+	border: 1px solid #CCCCCC;
+	float:left;
+}
+
+#adminfieldset .adminheader {
+	background: #FFF;
+	margin: -40px 0 0 3px;
+	padding: 5px;
+	position: absolute;
+	color: #011FFD;
+	font-weight: bold;
+}
+#adminfieldset .adminheader div.temp {
+	float: left;
+	padding: 5px 10px;
+	margin:0 5px;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	cursor: pointer;
+}
+
+#adminfieldset #row {
+	min-height: 25px;
+	width: 90%;
+	float: left;
+	margin-bottom: 2px
+}
+.cnt-info{
+	float: left;
+	width: 950px
+}
+.cnt-info .infor_item{
+	font-weight: normal !important;
+	line-height: 18px !important;
+}
+#adminfieldset #row .label {
+	background-color: #f6f6f6;
+	color: #323232;
+	font-weight: bold;
+	width: 155px;
+	padding: 5px;
+	margin: 0 4px;
+	float: left;
+	text-align: right;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+}
+#adminfieldset #row .title{
+	font-weight: bold;
+	color: #FF0000;
+}
+#adminfieldset #row .input {
+	background-color: #FFFFFF;
+	margin-left: 170px;
+	padding: 5px 5px;
+	border-left: solid 1px #e9e9e9;
+	color: #323232;
+	height: 17px;
+}
+.info{
+	padding-top:4px;
+	margin: 0 0 6px 173px;
+}
+.height100{
+	height: 100px;
+}
+.height150{
+	height: 150px;
+}
+.height300{
+	height: 290px;
+}
+.height400{
+	height: 390px;
+}
+.txtlong{
+	width: 400px;height: 15px;
+}
+.txtmedium{
+	width: 250px;height: 15px;
+}
+.txtshort{
+	width: 100px;height: 15px;
+}
+.medium{
+	width: 49.5%
+}
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+.radioclass, .checkboxclass{
+	height: 19px;
+}
+.selectboxclass{
+	min-width: 120px;
+	height: 21px;
+	
+}
+.fileupload {
+	width: 100px;
+	height: 22px;
+}
+.textareabig{
+	width: 500px;
+	height: 157px;
+}
+.textareasmall {
+	width: 500px;
+	height: 107px;
+}
+
+.listboxclass {
+	width: 250px;
+	height: 110px;
+	margin-bottom: 1px;
+}
+
+.editorbig {
+	width: 200px;
+	height: 300;
+}
+
+.editorsmall {
+	width: 200px;
+	height: 200;
+}
+
+
+
+/*---------------showButton-------------*/
+#showButton {
+	margin: 5px;
+	padding: 5px;
+}
+
+#showButton-right {
+	text-align: right;
+	margin-left: 2px;
+}
+
+/*----------errors------------*/
+#errors{
+	border: solid 1px #ff8383;	
+	padding: 7px;
+	background-color: #ffcaca;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+#errors ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+#errors li{
+	list-style-position:inside;
+}
+
+/*-------success---------*/
+#success{
+	border: solid 1px #04a300;	
+	padding: 5px 10px;
+	background-color: #a3ffa1;	
+	margin-bottom: 5px;
+	font-size: 12px;
+}
+
+#ucp{
+	margin: 10px 0px;
+}
+#ucp li{
+	float: left;
+	width: 25%;
+	text-align: center;
+	list-style-type: none;
+	padding: 5px 0px;
+}
+
+/*-----------------------------*/
+#u-main{
+	margin-right: 260px; 
+}
+
+#u-right{
+	width: 225px; 
+	
+	float: right; 
+	min-height: 250px; 
+	padding: 0px 10px;
+}
+
+#u-right .block-right{
+	
+}
+
+
+#u-right .block-right .block-header{	
+	background: #f6f6f6;
+	padding:1px;
+	border: solid 1px #cccccc;
+}
+#u-right .block-header-icon{
+	height: 24px; margin-left: 6px;
+}
+
+#u-right .block-header-text{
+	padding-left: 30px; padding-top:4px; color: #404040; font-weight: bold;
+}
+
+#u-right .block-right-content{
+	padding: 10px 7px;
+	border: solid 1px #cccccc;
+	line-height: 18px;
+	border-top: 0px;
+	font-family: tahoma, arial;
+	font-size: 11px;
+	margin-bottom: 8px;
+}
+
+#u-right .spanview{
+	font-style: italic;
+	font-size: 10px;
+	color: #939393;
+}
+.order{
+	width: 40px !important;
+	text-align:center;
+}
+.infor_item{
+	float: left;
+	width: auto;
+	display: block;
+	color: #333;
+	font-weight: bold;
+	margin-left: 15px;
+	line-height: 25px;
+}
+.infor_item img{
+	margin-top: -7px;
+}
+.hidden{
+	display: none;
+	background: red;
+}
+
+.icon-lang{
+	float: right;
+	background: none;
+}
+.icon-lang li{
+	float: left;
+	list-style: none;
+	margin-right: 10px;
+}
+.icon-lang li img{
+	width: 35px;
+}
+
+.note-slide{
+	color: red;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.select_advert {
+    margin: 10px 177px;
+    overflow: hidden;
+}
+.select_advert span {
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 24px;
+    margin-right: 10px;
+    padding: 0 5px;
+    text-align: center;
+    width: 70px;
+}
+.con_advert {
+    display: none;
+    margin-left: 177px;
+    margin-top: 5px;
+}
+.link_url {
+    display: none;
+    margin-left: 177px;
+    margin-top: 5px;
+}
+
+#show-img
+{
+	float:left;
+	margin-left:180px;
+}
+
+
+.img-row
+{
+	float:left;
+	width:110px;
+	margin-bottom:20px;
+}
+
+.img-del
+{
+	float:left;
+	width:100%;
+	font-size:12px;
+	margin-top:2px;
+	margin-left:0px;
+	cursor: pointer;
+	color: red;
+	mar
+}
+
+
+
+.admin-index{
+	width: 60%;
+	padding: 15px;
+}
+.admin-index .box-admin{
+	width: 12%;
+	margin-right:2%;
+	margin-bottom:2%;
+	height: 65px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	float: left;
+	text-align: center;
+	border-radius:5px;
+	position: relative;
+}
+.num-new{
+	width: 25px;
+	height: 25px;
+	border-radius:15px;
+	background: red;
+	color: #fff;
+	text-align: center;
+	line-height: 25px;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	font-weight: bold;
+}
+.admin-index .box-admin:hover{
+	box-shadow:0 0 3px 1px #ccc;
+}
+.admin-index .box-admin span{
+	display: block;
+	margin-top: 5px;
+}
+
+.box-edit{
+	border: 1px solid #ccc;
+	float: left;
+	margin: 0;
+	padding: 5px;
+	font-size: 12px;
+	background: #f5f5f5;
+	width: 570px;
+	line-height: 20px;
+}
+
+.ui-helper-hidden-accessible{
+	display: none;
+}
+#ui-id-1, #ui-id-2{
+	background: #eee !important;
+	padding: 5px;
+	color: #333;
+	width: 184px;
+	border: 1px solid #ccc;
+	margin-top: 2px;
+}
+#ui-id-1 li, #ui-id-2 li{
+	list-style: inside;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.add-image{
+	height: 28px;
+	background: #333;
+	color: #fff;
+	float: left;
+	margin:0 5px;
+	line-height: 28px;
+	padding: 0 5px;
+	cursor: pointer;
+}
+.photo{
+	float: left;margin-right: 5px;
+	position: relative;
+}
+.photo .delete{
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	cursor: pointer;
+}

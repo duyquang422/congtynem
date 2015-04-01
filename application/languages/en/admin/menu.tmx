@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+	   <tu tuid='Site'>
+	   		<tuv xml:lang="en"><seg>Site</seg></tuv>
+	   </tu>      
+	   <tu tuid='Users'>
+	   		<tuv xml:lang="en"><seg>Users</seg></tuv>
+	   </tu>      
+	   <tu tuid='Menu'>
+	   		<tuv xml:lang="en"><seg>Menu</seg></tuv>
+	   </tu>
+	   <tu tuid='Modules'>
+	   		<tuv xml:lang="en"><seg>Modules</seg></tuv>
+	   </tu>
+	   <tu tuid='Control panel'>
+	   		<tuv xml:lang="en"><seg>Control panel</seg></tuv>
+	   </tu>
+	   <tu tuid='My My Profile'>
+	   		<tuv xml:lang="en"><seg>My Profield</seg></tuv>
+	   </tu>
+	   <tu tuid='Global Configuration'>
+	   		<tuv xml:lang="en"><seg>Global Configuration</seg></tuv>
+	   </tu>
+	   <tu tuid='System Information'>
+	   		<tuv xml:lang="en"><seg>System Information</seg></tuv>
+	   </tu>
+	   <tu tuid='Logout'>
+	   		<tuv xml:lang="en"><seg>Logout</seg></tuv>
+	   </tu>
+	   <tu tuid='User manager'>
+	   		<tuv xml:lang="en"><seg>User manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Contact manager'>
+	   		<tuv xml:lang="en"><seg>Contact manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Banner manager'>
+	   		<tuv xml:lang="en"><seg>Banner manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Download manager'>
+	   		<tuv xml:lang="en"><seg>Download manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Gallery manager'>
+	   		<tuv xml:lang="en"><seg>Gallery manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Video'>
+	   		<tuv xml:lang="en"><seg>Video</seg></tuv>
+	   </tu>
+	   <tu tuid='Groups'>
+	   		<tuv xml:lang="en"><seg>Groups</seg></tuv>
+	   </tu>
+	   <tu tuid='Add User'>
+	   		<tuv xml:lang="en"><seg>Add User</seg></tuv>
+	   </tu>
+	   <tu tuid='Add Group'>
+	   		<tuv xml:lang="en"><seg>Add Group</seg></tuv>
+	   </tu>
+	   <tu tuid='News manager'>
+	   		<tuv xml:lang="en"><seg>News manager</seg></tuv>
+	   </tu>
+	   <tu tuid='Items'>
+	   		<tuv xml:lang="en"><seg>Items</seg></tuv>
+	   </tu>
+	   <tu tuid='Categories'>
+	   		<tuv xml:lang="en"><seg>Categories</seg></tuv>
+	   </tu>
+	    <tu tuid='Categories'>
+	   		<tuv xml:lang="en"><seg>Categories</seg></tuv>
+	   </tu>
+   </body>  
+</tmx>

@@ -1,0 +1,25 @@
+<?php
+	$page = 1;
+	
+	$lang = $this->arrParam['lang'];
+    if(empty($lang)){
+    	$lang = 'vi';
+    }else{
+    	$lang = $this->arrParam['lang'];
+    }
+	
+	$urlPro 		= array('module'=>'products','controller'=>'index','action'=>'index','lang'=>$lang,'page'=>$page);
+   	$linkPro 		= $this->url($urlPro,'products');
+?>
+
+
+<div class='right width-78'>
+	<div class='box-right-pro width-100'>
+		<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Đặt hàng</p></div>
+		<div class="detail">
+			<div class="note-cart">
+				Quá trình gửi giỏ hàng của bạn thành công.Hãy nhấn <a class="color-blue" href="<?php echo $linkPro ?>"> vào đây </a>để tiếp tục chọn hàng
+			</div>
+		</div>
+	</div>
+</div>

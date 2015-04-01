@@ -1,0 +1,53 @@
+<?php
+	if (count ( $this->errors ) > 0) $errors = $this->formErrors ( $this->errors, array ('id' => 'errors' ) );
+	$title		= $this->formText('title',$this->Item['title'],array('style'=>'width:350px'));
+	$content 	= $this->formTextarea('content',str_replace('\\', '', $this->Item['content']),array('rows'=>'8','style'=>'width:450px;border:1px solid #999;padding:5px'));
+	$arrInput = array(
+			array('label'=>'<span>Tiêu đề: </span>','input'=>$title),
+			array('label'=>'<span>Nội dung: </span>', 'input'=>$content),
+	); 
+	
+	$info = new Zendvn_System_Info();
+	$memberInfo = $info->getMemberInfo('id');
+	if(!empty($memberInfo)){
+		$tbltUser 	= new Zendvn_Models_Users();
+		$user 		= $tbltUser->listItem($this->arrParam,array('id'=>$memberInfo,'task'=>'user'));
+	}
+?>
+<div class="left">
+	<div class="content-left width-100">
+		<div class="sub-content color-blue"><a class="color-blue" href="#">GỬI CÂU HỎI</a></div>
+		<?php if(empty($this->arrParam['status'])){?>
+		<div class="detail bag-white mar-0 pad-15">
+			<?php
+				 if(!empty($memberInfo)){
+			?>
+			<div class="error-login-public"><?php echo $errors; ?></div>
+			<div class="login_student">
+				<form name="formRegister" method="post" action="" enctype="multipart/form-data">
+					<?php echo $this->partialLoop('rowsRegister.php',$arrInput);?>
+					<input type="hidden" name='user_name' value='<?php echo $user["user_name"]?>'>
+					<div class="lev-1">
+						<input style="margin-left: 90px !important" class="submit" type="submit" name="submit" value="Đăng ký" />
+					</div>
+				</form>
+			</div>
+			<?php 
+				 }else{
+			?>
+			<div class="note-pro">Bạn hãy vui lòng đăng nhập trước khi gửi câu hỏi</div>
+			<?php }?>
+		</div>
+		<?php 
+			}else if($this->arrParam['status'] == 'success'){
+				
+		?>
+		<div class="detail bag-white mar-0 pad-15">
+			<div class="success">
+				Quá trình gửi câu hỏi đã thành công, câu hỏi của quý khách sẽ được 
+				chúng tôi hồi đáp trong thời gian sớm nhất.
+			</div>
+		</div>
+		<?php }?>
+	</div>
+</div>

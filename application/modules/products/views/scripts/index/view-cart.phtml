@@ -1,0 +1,114 @@
+<div class='right width-78'>
+	<div class='box-right-pro width-100'>
+		<div class='sub-box-right'><span class='icon-right'><img src="<?php echo $this->imgUrl ?>/icon/icon-sub-right.png"></span><p>Giỏ hàng</p></div>
+		<div class="cnt-right mar-top-5 width-96 order-cart">
+                    		<form name="your-cart" id="your-cart" action="" method="POST">
+                    		<table cellpadding="0" cellspacing="0">
+                    			<tr class="sub-cart">
+                    				<td class="first">Tên sản phẩm</td>
+                    				<td>Quy cách</td>
+                    				<td width="50">Số lượng</td>
+                    				<td width="80">Giá gốc (Vnd)</td>
+                    				<td width="80">Giá bán(Vnd)</td>
+                    				<td width="42">Quản lý</td>
+                    				<td width="80">Tổng tiền</td>
+                    			</tr>
+                    			<?php
+	                            	$cart = $this->cart;
+	                            	$linkOrder = $this->baseUrl('/products/index/order');
+	                            	$linkUpdate = $this->baseUrl('/products/index/add-item');
+	                            	$linkBack = $this->baseUrl('vi-trang-chu.html');
+	                            	if(count($this->Items)>0){
+	                            		$totalPrice = 0;
+	                            		foreach ($this->Items as $key => $val){
+	                            			$name 		= $val['name_pro'];
+	                            			$size 		= $val['size'];
+	                            			$id 		= $val['id'];
+	                            			$menu_id	= $val['menu_id'];
+	                            			include 'includes/sale.php';
+	                            			
+						            		$quantity 	= $cart[$id];
+	                            			$total 		= 0;
+	                            			
+	                            			$sale 		= $val['sale'];
+	                            			$menu_id	= $val['menu_id'];
+											include 'includes/sale.php';
+											$price 		= $val['price'];
+											$sale_pro 	= $val['selloff'];
+											if (empty($sale_pro)){
+												$sale_pro 		= $val['price'];
+												$total 			= $quantity * $sale_pro; 
+			                          			$total 			=  $total;
+											}
+											
+											
+											if(!empty($val['val_sell']) || $val['val_sell'] != 0){
+												$val_sell_pro 	= $val['val_sell'];
+												$sale_pro 		= $val['selloff'];
+												$total 			= $quantity * $sale_pro; 
+			                          			$total 			=  $total;
+											}
+                                			if((!empty($val['sell_pro']) || $val['sell_pro'] != 0) && (empty($val['val_sell']) || $val['val_sell'] == 0)){
+                                				$val_sell_pro 	= $val['sell_pro'] ;
+                                				$sale_pro 		= $val['price'] - ($val['price'] * $val['sell_pro']/100);
+                                				$total 			= $quantity * $sale_pro; 
+			                          			$total 			=  $total;
+											}
+											if((empty($val['sell_pro']) || $val['sell_pro'] == 0) && (empty($val['val_sell']) || $val['val_sell'] == 0)){
+												if(!empty($sale)){
+													$val_sell_pro 	= $sale ;
+													$sale_pro 		= $val['price'] - ($val['price'] * $sale/100);
+													$total 			= $quantity * $sale_pro; 
+				                          			$total 			=  $total;
+												}
+											}
+	                            			$totalPrice 	+= $total;
+			                          		
+		                            		$lang = $this->arrParam['lang'];
+						                    if(empty($lang)){
+						                    	$lang = 'vi';
+						                    }else{
+						                    	$lang = $this->arrParam['lang'];
+						                    }
+//			                          		$urlOptions = array('module'=>'products','controller'=>'index',
+//																			'action'=>'detail',
+//																			'tcat'=>$val['alias_name'],
+//																			'title'=>$val['alias'],
+//						                    								'cid'=> $val['menu_id'],
+//																			'id'=>$val['id'],
+//						                    								'lang'=>$lang);
+//						                	$linkDetail = $this->url($urlOptions,'products-detail');
+											$linkDetail ='#';
+	
+		                          		    $itemProduct = 'itemProduct[' . $val['id'] . ']';				 
+	                            			$itemProduct = $this->formText($itemProduct,$quantity,
+	                            											array('style'=>'width: 35px; text-align: center; font-size: 11px; background-color:#FFC;padding: 2px 2px;'));
+	                            			$linkDelete		= $this->baseUrl($this->currentController . '/delete/id/' . $id);
+											$btnDelete 		=  $this->cmsAjaxButton('ajax-delete-item', 'Delete Item', 'Delete *'. $name . '*', $linkDelete, $id);
+
+	                            ?>
+                    			<tr>
+                    				<td class="first" style="text-align: left;"><strong><a href="<?php echo $linkDetail;?>" class="itemLink color-blue" target="_blank"><?php echo $name;?></a></strong></td>
+                    				<td><?php echo $size;?></td>
+                    				<td><?php echo $itemProduct;?></td>
+                    				<td><?php echo number_format($price)?></td>
+                    				<td class='pri_sale'><?php echo number_format($sale_pro)?></td>
+                    				<td><?php echo $btnDelete?></td>
+                    				<td><?php echo number_format($total,null)?></td>
+                    				<input type="hidden" value="<?php echo $this->arrParam['action']; ?>" name="hidden" />
+                    			</tr>
+                    			<?php 
+	                            		}
+	                            	}
+	                         	?> 
+                    		</table>
+                    		<div class="link">                    		
+                    			<input type="button" name="update" id="update" value="Quay lại" class="button" onclick="window.location = '<?php echo $linkBack;?>'" /> 
+	                        	<input type="submit" name="update" id="update" value="Cập nhật" class="button"  />
+	                            <input type="button" name="update" id="update" value="Mua hàng" class="button"  onclick="window.location = '<?php echo $linkOrder;?>'"/>
+                    		</div>
+                    		<p class="total-money">Tổng số tiền thanh toán : <strong><?php echo number_format($totalPrice,null) . ' (VND)';?></strong></p>
+                    		</form>
+		</div>
+	</div>
+</div>

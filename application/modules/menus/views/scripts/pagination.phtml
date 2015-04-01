@@ -1,0 +1,65 @@
+<?php
+	$tmp = Zend_Controller_Front::getInstance()->getRequest()->getPathInfo();
+	$pattern = '#en#';
+	preg_match($pattern, $tmp,$match);
+	$langTmp = $match[0];
+	$lang = '';
+	if($langTmp == 'en'){$lang = '/lang/en';}	
+	$linkStart 		= $this->currentUrl . $lang . '/page/' . $this->first;
+	
+	$linkPrevious = '#';
+	if(isset($this->previous)){
+		$linkPrevious 	= $this->currentUrl . $lang . '/page/' . $this->previous ;
+	}
+	$linkNext = '#';
+	if(isset($this->next)){
+		$linkNext 		= $this->currentUrl . $lang . '/page/' . $this->next;
+	}
+	
+	$linkEnd 		= $this->currentUrl . $lang . '/page/' . $this->last;
+	
+	$strPage  = '';
+	foreach ($this->pagesInRange as $key){
+		if($this->current == $key){
+			$strPage .= '<span>' . $key .'</span>';
+		}else{
+			$linkPage = $this->currentUrl . $lang . '/page/' . $key;
+			$strPage .= '<a href="' . $linkPage . '">' . $key .'</a>'; 
+		}
+	}
+
+	$page = 'Page ' . $this->current .' Of ' . $this->last;
+?>
+<div class="button2-right">
+	<div class="start">		
+		<a href="<?php echo $linkStart;?>" title="Start">Start</a>		
+	</div>
+</div>
+
+<div class="button2-right">
+	<div class="prev">
+		<a href="<?php echo $linkPrevious;?>" title="Prev" >Prev</a>
+	</div>
+</div>
+
+<div class="button2-left">
+	<div class="page">
+		<?php echo $strPage;?>
+	
+	</div>
+</div>
+
+<div class="button2-left">
+	<div class="end">
+		<a href="<?php echo $linkNext;?>" title="Next" >Next</a>
+	</div>
+</div>
+
+<div class="button2-left">
+	<div class="end">
+		<a href="<?php echo $linkEnd;?>" title="End" >End</a>
+	</div>
+</div>
+<div class="limit">
+	<?php echo $page;?>
+</div>

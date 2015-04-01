@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+       <tu tuid='Filter'><tuv xml:lang="vi"><seg>Lọc</seg></tuv></tu>
+       <tu tuid='Search'><tuv xml:lang="vi"><seg>Tìm kiếm</seg></tuv></tu>      
+       <tu tuid='Clear'><tuv xml:lang="vi"><seg>Xóa</seg></tuv></tu>      
+       <tu tuid='Show fields'><tuv xml:lang="vi"><seg>Chọn cột hiện thị</seg></tuv></tu> 
+       <tu tuid='The list is empty'>
+       		<tuv xml:lang="vi"><seg>Danh sách rỗng</seg></tuv>
+       	</tu>
+       	<tu tuid='Are you sure you want to delete this item?'>
+       		<tuv xml:lang="vi"><seg>Bạn có chắc chắn bạn muốn xóa dòng này không?</seg></tuv>
+       	</tu>    
+       	<tu tuid='Form Detail'>
+       		<tuv xml:lang="vi"><seg>Chi tiết</seg></tuv>
+       	</tu>
+       	<tu tuid='Page'>
+       		<tuv xml:lang="vi"><seg>Trang</seg></tuv>
+       	</tu>
+       	<tu tuid='of'>
+       		<tuv xml:lang="vi"><seg>của</seg></tuv>
+       	</tu>
+       	<tu tuid='Displaying'>
+       		<tuv xml:lang="vi"><seg>Hiển thị</seg></tuv>
+       	</tu>
+       	<tu tuid='Keywords'>
+       		<tuv xml:lang="vi"><seg>Từ khóa</seg></tuv>
+       	</tu>
+   </body>  
+</tmx>
