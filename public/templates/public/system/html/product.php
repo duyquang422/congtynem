@@ -74,14 +74,23 @@
                                 ?>
                                 <div class="sm_new_price"><?php echo $val['price']?> VNĐ</div>
                             </div>
-                            <div class="info info-<?php echo $key ?>" style="display:none">
+                            <?php
+                                $urlOptions = array('module' => 'products', 'controller' => 'index',
+                                                    'action' => 'detail',
+                                                    'title' => $val['alias'],
+                                                    'id' => $val['id']);
+                                $linkDetail = $this->url($urlOptions, '');
+                            ?>
+                            <a href="<?php echo $linkDetail ?>">
+                                <div class="info info-<?php echo $key ?>" style="display:none">
                                     <span>
                                         Mã sản phẩm: <?php echo $val['code']?><br>	
                                         Nhà sản xuất: <?php echo $val['publisher']?><br>	
                                         Số lần xem: <?php echo $val['hits']?><br>			
                                         Bảo hành: <?php echo $val['warranty']?> <br>
                                     </span>
-                            </div>
+                                </div>
+                            </a>
                             <div class="btn-function">
                                     <div class="btnxemnhanh">
                                         <a title="Xem nhanh" data-toggle="modal" data-target=".product-info-<?php echo $key?>">
