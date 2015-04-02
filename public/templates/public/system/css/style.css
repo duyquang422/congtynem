@@ -1662,24 +1662,24 @@ margin-top: 5px;
     list-style: none;
 }
 .yahoo{
-    background: url("http://localhost/weant/images/tuvan.png") no-repeat;
+    background: url("../images/tuvan.png") no-repeat;
      background-size: 50px 53px;
 }
 .advisory{
-    background: url("http://localhost/weant/images/tuvan2.jpg") no-repeat;
+    background: url("../images/tuvan2.jpg") no-repeat;
      background-size: 50px 53px;
 }
 .fanpage{
-    background: url("http://localhost/weant/images/fanpage.png") no-repeat;
+    background: url("../images/fanpage.png") no-repeat;
      background-size: 50px 49px;
 }
 .phone{
-    background: url("http://localhost/weant/images/phone.png") no-repeat;
+    background: url("../images/phone.png") no-repeat;
      background-size: 52px 60px;
      margin-top: -8px;
 }
 .sprevious{
-    background: url("http://localhost/weant/images/previous.png") no-repeat;
+    background: url("../images/previous.png") no-repeat;
      background-size: 53px 60px;
 }
 /*---------------------------------ADVERTISE LOGO-------------------*/
