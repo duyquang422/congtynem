@@ -11,7 +11,7 @@
         });
     });
 </script>
-<div class="bg_white home_sanpham_right">
+<!--<div class="bg_white home_sanpham_right">
     <div class="show2"> 
         <div class="content _tab-01 tab_link-01_01"> 
             <ul>
@@ -820,4 +820,4 @@
     </div>
     <div class="clear"></div>
     <div class="xemtatca"><a href="http://amthanh24h.com/san_pham/">Xem tất cả <i class="i-forward-3"></i></a></div>
-</div>
+</div>-->
