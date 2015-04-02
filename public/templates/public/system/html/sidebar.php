@@ -58,7 +58,7 @@
                         <div class="row__height-2" data-placeholder="1">
                             <a class="widget widget-banner_2x2 tracking-banner" href="" style="-webkit-transition-delay: 0.08s; transition-delay: 0.08s;">
                                 <div class="widget__text"></div>
-                                <img src="<?php echo 'public/files/category/images587x354/' . $val['picture'] ?>" alt="MasterCard" class="image-<?php echo $i ?> slide" width="737" height="352">
+                                <img src="<?php echo 'public/files/category/orignal/' . $val['picture'] ?>" alt="MasterCard" class="image-<?php echo $i ?> slide" width="737" height="352">
                             </a>
                         </div>
                         <div class="widgetContainer">
