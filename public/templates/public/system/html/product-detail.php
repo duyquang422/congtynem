@@ -2,20 +2,19 @@
     <div class="prodinfo">
         <div class="row">
             <?php
-//                echo '<pre>';
-//                print_r($this->Items);
-//                echo '</pre>';
+                
+                $val = $this->Items;
             ?>
             <div class="col-md-12">
                 <div class="prd-header-wrapper">
                     <div class="prod_header">
                         <div class="prod_header_main">
                             <div class="prod_header_title">
-                                <h3>Nệm Cao Su Thiên Nhiên</h3>
+                                <h3><?php echo $val['name'] ?></h3>
                             </div>
                             <div id="prod_brand">
                                 <div class="prod_header_brand_action">
-                                    Thương hiệu: <a href="">Wean</a> |
+                                    Thương hiệu: <a href=""><?php echo $val['publisher'] ?></a> |
                                 </div>
                                 <div class="prod_header_brand_action">
                                     <a href="#">Thêm nệm cao su từ Wean</a>
@@ -53,36 +52,43 @@
                                         </ul>
                                     </div>
                                     <div class="productImage">
-                                        <img src="<?php echo $this->imgUrl; ?>/picture_2.jpg" width="340px" height="340">
+                                         <img src="<?php echo $this->baseUrl()?>/public/files/products/images450x450/<?php echo $val['picture'] ?>" width="340px" height="340">
                                     </div>
+                                    
+<!--                                    ----------------------------------TUNG----------------------------->
+                                    <ul class="prd-moreImagesList" style="margin-left: 175px; margin-top: 15px;">
+                                            <li><img src="<?php echo $this->imgUrl; ?>/picture_2.jpg"></li>
+                                            <li><img src="<?php echo $this->imgUrl; ?>/picture_3.jpg"></li>
+                                            <li><img src="<?php echo $this->imgUrl; ?>/picture_4.jpg"></li>
+                                    </ul>
                                 </div>
                                 <div class="prod_content_wrapper">
                                     <div class="prod_l_content">
                                         <div class="prod_brief">
                                             <div class="prod_brief_warranty">
-                                                Bảo hành: 12 tháng chính hãng bằng hóa đơn                    
+                                                    <span style="font-size: 18px; font-weight: bold;">Thông Tin Sản Phẩm</span>                    
                                             </div>
                                         </div>
                                         <div class="prod_content">
                                             <div class="prod_details" itemprop="description">
                                                 <ul class="prd-attributesList ui-listBulleted">
-                                                    <li class=""><span>» Mã sản phẩm: MCSLALG1510</span></li>
-                                                    <li class=""><span>» Nhà sản xuất: Liên Á</span></li>
-                                                    <li class=""><span>» Số lần xem: 266</span></li>
-                                                    <li class=""><span>» Bảo hành 10 năm</span></li>          
+                                                    <li class=""><span>» Mã sản phẩm: <?php echo $val['code'] ?></span></li>
+                                                    <li class=""><span>» Nhà sản xuất: <?php echo $val['publisher'] ?></span></li>
+                                                    <li class=""><span>» Số lần xem:  <?php echo $val['hits'] ?></span></li>
+                                                    <li class=""><span>» Bảo hành: <?php echo $val['warranty'] ?></span></li>          
                                             </div>
                                         </div>
                                         <div id="product-price-box" class="prod_pricebox price_details">
                                             <div class="prod_pricebox_price">
                                                 <div class="prod_pricebox_price_final">
                                                     <span id="product_price" class="hidden">5789000.00</span>
-                                                    <span id="special_price_box">5.789.000 VND</span>
+                                                    <span id="special_price_box">Giá: <?php echo $val['price'] ?> VND</span>
                                                 </div>
                                                 <div id="special_price_area" class=" prod_pricebox_price_special">
                                                     <span id="product_special_price_label">Giá trước đây</span>
                                                     <span class="price_erase">
                                                         <span id="product_price_prefix" class="price-prefix-detail"></span>
-                                                        <span id="price_box">7.990.000 VND,,</span>
+                                                        <span id="price_box"> <?php echo $val['selloff'] ?> VND</span>
                                                     </span>
                                                     <div class="prod_saving">
                                                         <span id="product_saving_label">Tiết kiệm</span>
@@ -144,9 +150,9 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="noidung1">
-                                            - Nâng đỡ hoàn hảo đường cong cơ thể nhờ tối ưu hóa độ cứng ở năm vùng khác nhau. - Đặc tính dẻo của cao su thiên nhiên giúp không làm phiền người nằm bên cạnh mỗi khi xoay mình. - Thoáng mát với cấu tạo hàng triệu lỗ thông hơi và các rãnh thoát nhiệt trên bề mặt nệm. - Sử dụng 100% nguyên liệu cao su thiên nhiên. - Sản xuất theo hệ thống quản lý chất lượng ISO – 9001:2008. - Sản phẩm đạt chất lượng toàn cầu do viện ECO & LGA (CHLB Đức) chứng nhận. - Nệm thông minh 5 Zone được bảo hành 06 năm trên toàn quốc. - Quà tặng: Áo nệm chần gòn được thiết kế từ Châu Âu, làm tăng thêm sự sang trọng và êm ái. Đối với nệm thông minh 5Zone (*): Khách hàng chọn mua nệm thông minh  5Zone sẽ nhận được bộ quà tặng trị giá 4.000.000 vnđ, bao gồm: + 01 áo nệm dành riêng cho sản phẩm  5Zone + 01 cặp gối cao su  Oval 45 x 65 (cm) + 01 bộ drap Cotton Sateen cùng kích thước * Chương trình khuyến mãi dành cho nệm thông minh 5Zone sẽ kết thúc vào ngày 20/01/2015
+                                            <?php echo $val['info'] ?> 
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="noidung2">...</div>
+                                        <div role="tabpanel" class="tab-pane" id="noidung2"><?php echo $val['content'] ?> </div>
                                     </div>
 
                                 </div>
