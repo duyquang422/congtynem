@@ -83,14 +83,17 @@ class DetailController extends Zendvn_Controller_Action {
 			$this->view->Publisher	= $publisher;
 			$this->_arrParam['publisher']	= $publisher['name'];
 		}
-                
                 //Hiển thị chi tiết sản Phẩm
 		$tblProduct = new Zendvn_Models_ProItem();
-		$this->view->Items = $tblProduct->listItem($this->_arrParam,array('task'=>'public-index'));
-		$tblcat = new Zendvn_Models_Menus();
-		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
+		$this->view->Items = $tblProduct->product($this->_arrParam['id']);
+                $menuId = $this->view->Items['menu_id'];
+                
+                $tblProduct = new Zendvn_Models_ProItem();
+		$this->view->spTuongTu = $tblProduct->sanphamtuongtu($menuId);
                 
                 //SEO
+                $tblcat = new Zendvn_Models_Menus();
+		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
 		$this->view->Title	= str_replace("\\","",$menu['name']);
 		$title_seo	= $this->view->Title;
 		if(!empty($menu['title_seo'])) $title_seo = str_replace("\\","",$menu['title_seo']);
