@@ -1,7 +1,7 @@
 <div class="prelate">
     <div class="group">
         <h4>
-            <span><a href="/tivi-toshiba" title="Tivi Toshiba">Tivi Toshiba</a> tương tự:</span>
+            <span><a href="/tivi-toshiba" title="Tivi Toshiba">Sản Phẩm</a> tương tự:</span>
             <span class="bdr"></span>
         </h4>
         <?php
