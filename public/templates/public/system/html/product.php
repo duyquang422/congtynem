@@ -199,7 +199,7 @@
             <div class="col-md-3">
                 <div class="md-banner">
                     <a href="">
-                        <img src="http://www.scj.vn/images//banner/315x340/vi_1734.jpg" alt="nature_mar" border="0" height="318" width="290">
+                        <img src="public/templates/public/system/images/quang-cao.gif" alt="nature_mar" border="0" height="318" width="290">
                     </a>
                 </div>
             </div>
