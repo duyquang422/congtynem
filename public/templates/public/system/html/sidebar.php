@@ -105,7 +105,7 @@
 
         <div class="popup__link" data-popup="usp">
             <div class="right__block">
-                <div class="icon-news"><img src="<?php echo $this->imgUrl ?>/news.png" width="30px"></div>
+                <div class="icon-news"><img src="<?php echo $this->imgUrl ?>/NEWS.png" width="30px"></div>
                 <div class="right__block__title">Tin Tức</div>
                 <div class="right__block__wrapper">
                     <div class="right__block__item"><a href="#">» Nệm Mousse ép là gì ? -Cấu tạo của Mousse ép</a><img src="<?php echo $this->imgUrl ?>/news.gif"></div>
