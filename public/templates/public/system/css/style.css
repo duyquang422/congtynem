@@ -941,6 +941,7 @@ background-position: -4px -406px;
 }
 .column-4 {
     width: 742px;
+    border-bottom: 2px solid #0F4E82;
 }
 .floor__name {
     font-size: 13px;
@@ -1210,10 +1211,15 @@ h3.slide_item_title a {
 }
 .best_of_best {
     font-size: 13px;
+    margin: -12px 0px 10px 5px;
+    border-bottom: 2px solid #0F4E82;
+    height: 33px;
+    position: relative;
+/*    font-size: 13px;
     margin: -5px 0 10px 0;
     border-bottom: 2px solid #e4e4e4;
     height: 21px;
-    position: relative;
+    position: relative;*/
 }
 .best_of_best span{
     font-size: 16px;
@@ -3197,10 +3203,20 @@ img.lazy {
     color: white;
 }
 .today-box-advertise{
-    font-size: 14px;
-    position: relative;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: -4px;
+    background: #0F4E82;
+    color: white;
+    font-size: 13px;
+    text-align: center;
     width: 200px;
+    height: 42px;
+    text-transform: uppercase;
+    margin-top: -21px;
+    line-height: 42px;
+}
+
+.fa-lg{
+  font-size: 1.33333333em;
+  line-height: .75em;
+  vertical-align: -15%;
+  margin-left: 5px;
 }

@@ -9,17 +9,6 @@
             $('.info-' + $(this).data('id') + ' .buy').attr('style', 'display:none');
             $('.info-' + $(this).data('id') + '+ .nk_discount').attr('style', 'display:inline');
         });
-        
-        
-        var focus1 = 0;
-        $('.hover-photo').hover(function(){
-            $('.featurePro .slideImage:nth-child(1)').attr('style','display:none');
-            $('.photo-'+ focus1).attr('style','display:none');
-           $('.photo-'+ $(this).data('id')).attr('style','display:inline');
-           focus1 = $(this).data('id');
-        });
-        $('.featurePro .slideImage:nth-child(1)').attr('style','display:inline');
-        
         var focus = 0;
         function hoverSlide(x) {
             $('.img-' + focus).attr('style', 'display:none');
@@ -38,10 +27,10 @@
         $('.hover-img-slide-3').hover(function() {
             hoverSlide(3);
         });
-        $('.cart-left').hover(function() {
-            $('#edit').attr('style', 'display:inline');
-        }, function() {
-            $('#edit').attr('style', 'display:none');
+        $('.cart-left').hover(function(){
+           $('#edit').attr('style','display:inline'); 
+        },function(){
+             $('#edit').attr('style','display:none');
         });
     });
 </script>
@@ -66,83 +55,78 @@
                         <a class="more" href="/vi/best-100.html"><i class="fa fa-angle-double-right"></i>Xem thêm</a>
                     </div>
                     <ul class="overview isBest">
-                        <?php
-                        $i = 0;
-                        foreach ($this->Items as $key => $val){
+                        <?php 
+                            $i=0;
+                            foreach ($this->Items as $key =>$val){
                         ?>
-                        <li class="slide_item hover" data-id='<?php echo $key ?>'>
+                        <li class="slide_item hover" data-id='<?php echo $key?>'>
                             <div class="thumb_img">
                                 <a href="">
-                                    <img src="public/files/products/orignal/<?php echo $val['picture'] ?>" width="176px" height="177px" style="margin-bottom:30px">
+                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" width="176px" height="177px" style="margin-bottom:30px">
                                 </a>
                             </div>
                             <div class="slide_price">
-                                <h3 class="slide_item_title"><a href=""><?php echo $val['name'] ?></a>
+                                <h3 class="slide_item_title"><a href=""><?php echo $val['name']?></a>
                                 </h3>
                                 <?php
                                 if($val['selloff']>0)
-                                echo '<div class="sm_old_price">' . $val['selloff'] . '</div>';
+                                    echo '<div class="sm_old_price">' . $val['selloff'] . '</div>';
                                 ?>
-                                <div class="sm_new_price"><?php echo $val['price'] ?> VN?</div>
+                                <div class="sm_new_price"><?php echo $val['price']?> VNĐ</div>
                             </div>
                             <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
                                 <div class="info info-<?php echo $key ?>" style="display:none">
                                     <span>
+<<<<<<< HEAD
                                         M� s?n ph?m: <?php echo $val['code'] ?><br>	
                                         Nh� s?n xu?t: <?php echo $val['publisher'] ?><br>	
                                         S? l?n xem: <?php echo $val['hits'] ?><br>			
                                         B?o h�nh: <?php echo $val['warranty'] ?> <br>
+=======
+                                        Mã sản phẩm: <?php echo $val['code']?><br>	
+                                        Nhà sản xuất: <?php echo $val['publisher']?><br>	
+                                        Số lần xem: <?php echo $val['hits']?><br>			
+                                        Bảo hành: <?php echo $val['warranty']?> <br>
+>>>>>>> origin/master
                                     </span>
                                 </div>
                             </a>
                             <div class="btn-function">
-                                <div class="btnxemnhanh">
-                                    <a title="Xem nhanh" data-toggle="modal" data-target=".product-info-<?php echo $key ?>">
-                                        <span class="xemnhanh">Xem nhanh</span>
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <div class="modal fade product-info-<?php echo $key ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="info-product-detail">
-                                                    <div class="info-product-left">
-                                                        <div class="info-title">
-                                                            <h3><?php echo $val['name'] ?></h3>
-                                                        </div>
-                                                            <?php
-                                                            $photo = json_decode($val['photos']);
-                                                            ?>
-                                                            <div class="featurePro">
-                                                            <?php
-                                                            foreach ($photo as $key => $value){
-                                                            ?>
-                                                            <div class="slideImage photo-<?php echo (int)$value ?>" style="display:none">
-                                                                    <img class="lazy" src="<?php echo $this->baseUrl('/public/files/photos/')  . $photo[$key] ?>" alt="image 1" style="height: 375px">
+                                    <div class="btnxemnhanh">
+                                        <a title="Xem nhanh" data-toggle="modal" data-target=".product-info-<?php echo $key?>">
+                                            <span class="xemnhanh">Xem nhanh</span>
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <div class="modal fade product-info-<?php echo $key?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="info-product-detail">
+                                                            <div class="info-product-left">
+                                                                <div class="info-title">
+                                                                    <h3><?php echo $val['name']?></h3>
                                                                 </div>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                        <ul class="p_gallery">
-                                                            <?php
-                                                            foreach ($photo as $key => $value){
-                                                            ?>
-                                                            <li class="hover-photo" data-id="<?php echo (int)$value?>">
-                                                                    <img src="<?php echo $this->baseUrl('/public/files/photos/')  . $photo[$key] ?>">
-                                                            </li>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="info-product-right">
-                                                        <div class="btn-purchase">
-                                                            <div class="btn-muangay">
-                                                                <button type="button"><i class="fa fa-shopping-cart"></i>Mua Ngay</button>
+                                                                <div class="info-image">
+                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
+                                                                </div>
+                                                                        <ul class="p_gallery">
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L1.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S1.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L2.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S2.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
                                                             </div>
-                                                            <div class="btn-chitiet">
-                                                                <button type="button"><i class="fa fa-arrow-circle-o-right"></i>Xem Chi Ti?t</button>
-                                                            </div>
+<<<<<<< HEAD
                                                         </div>
                                                         <div class="pro_des">
                                                             L??t xem : <span><?php echo $val['hits'] ?></span>
@@ -157,16 +141,42 @@
                                                                     <li>M� S?n Ph?m: <span><?php echo $val['code'] ?></li>
                                                                     <li>S? L??ng</li>
                                                                 </ul>
+=======
+                                                            <div class="info-product-right">
+                                                                <div class="btn-purchase">
+                                                                    <div class="btn-muangay">
+                                                                        <button type="button"><i class="fa fa-shopping-cart"></i>Mua Ngay</button>
+                                                                    </div>
+                                                                    <div class="btn-chitiet">
+                                                                        <button type="button"><i class="fa fa-arrow-circle-o-right"></i>Xem Chi Tiết</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pro_des">
+                                                                    Lượt xem : <span><?php echo $val['hits']?></span>
+                                                                    &nbsp;&nbsp;|&nbsp;Ngày đăng : <span><?php echo $val['created']?></span>
+                                                                </div>
+                                                                <div class="pro_detail_content">
+                                                                    <div class="dt_pro_info dt_active" id="dt_info">
+                                                                        <ul>
+                                                                            <li>Giá Khuyến Mãi: <span><?php echo $val['saleoff']?></span></li>
+                                                                            <li>Giá Sản Phẩm: <span><?php echo $val['price']?></li>
+                                                                            <li>Tiết Kiệm Được</li>
+                                                                            <li>Mã Sản Phẩm: <span><?php echo $val['code']?></li>
+                                                                            <li>Số Lượng</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pro-summary">
+                                                                    <span><?php echo $val['summary']?></span>
+                                                                </div>
+>>>>>>> origin/master
                                                             </div>
-                                                        </div>
-                                                        <div class="pro-summary">
-                                                            <span><?php echo $val['summary'] ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
+<<<<<<< HEAD
                                 </div>
                                 <div class="myicon btn-ss btnxemnhanh" title="So s�nh">
                                     <a href="" title="Xem nhanh">
@@ -174,12 +184,20 @@
                                         <i class="fa fa-exchange"></i>
                                     </a>
                                 </div>
+=======
+                                    <div class="myicon btn-ss btnxemnhanh" title="So sánh">
+                                        <a href="" title="Xem nhanh">
+                                            <span>So sánh</span>
+                                            <i class="fa fa-exchange"></i>
+                                        </a>
+                                    </div>
+>>>>>>> origin/master
                             </div>
                         </li>
-                        <?php
-                        $i++;
-                        }
-                        ?>
+                         <?php 
+                            $i++;
+                            }
+                          ?>
                     </ul>
                 </div>
             </div>
@@ -187,22 +205,23 @@
         <div class="slide_product">
             <div class="col-md-9">
                 <div class="wrapper-product-highlights">
-                    <div class="scj_title_v2">S?n ph?m n?i b?t</div>
+                    <div class="scj_title_v2">Sản phẩm nổi bật</div>
                     <div class="spot-box">
                         <div class="spot-content" style="margin-left:0px">
                             <ul>
                                 <?php
-                                foreach ($this->highLightsProduct as $key => $val) {
-                                    ?>
-                                    <li>
-                                        <a target="_self" href="">
-                                            <img src="public/files/products/orignal/<?php echo $val['picture'] ?>" alt="laneige" border="0">
-                                        </a>
-                                    </li>
-
-                                    <?php
-                                }
-                                ?>
+                                   foreach ($this->highLightsProduct as $key => $val)
+                                   {
+                                 ?>
+                                        <li>
+                                            <a target="_self" href="">
+                                                <img src="public/files/products/orignal/<?php echo $val['picture']?>" alt="laneige" border="0">
+                                            </a>
+                                        </li>
+                                        
+                                   <?php
+                                    }
+                                   ?>
                             </ul>
                         </div>
                         <a class="slidesjs-previous slidesjs-navigation" title="Previous"></a>
@@ -214,7 +233,7 @@
             <div class="col-md-3">
                 <div class="md-banner">
                     <a href="">
-                        <img src="http://www.scj.vn/images//banner/315x340/vi_1734.jpg" alt="nature_mar" border="0" height="318" width="290">
+                        <img src="public/templates/public/system/images/quang-cao.gif" alt="nature_mar" border="0" height="318" width="290">
                     </a>
                 </div>
             </div>
@@ -226,9 +245,10 @@
                         <span class="catBg">
                             <span class="catIcon cat_1"></span>
                         </span>
-
-
+                        
+						
                         <!-- ----------------TUNG-------------- -->
+<<<<<<< HEAD
                         <div class="navicate navicatetivi">
                             <h2><a href="tivi" class="tivi">n?m cao su</a></h2>
                             <h4><a href="tivi-samsung" class="">n?m kh�ch s?n</a></h4>
@@ -241,8 +261,22 @@
                         </div>
 
 
+=======
+      <div class="navicate navicatetivi">
+                <h2><a href="tivi" class="tivi">nệm cao su</a></h2>
+                    <h4><a href="tivi-samsung" class="">nệm khách sạn</a></h4>
+                    <h4><a href="tivi-sony" class="">nệm lò xo</a></h4>
+                    <h4><a href="tivi-lg" class="">nệm y tế</a></h4>
+                    <h4><a href="tivi-toshiba" class="">nệm em bé</a></h4>
+                    <h4><a href="tivi-tcl" class="">gối</a></h4>
+                    <h4><a href="tivi-panasonic" class="">sofa</a></h4>
+                    <h4><a href="/tag/tivi-hd" class="lower">khác</a></h4>                
+       </div>
+                        
+                        
+>>>>>>> origin/master
                     </span>
-
+                    
                 </div>
             </div>
             <div>
@@ -253,60 +287,60 @@
 
                             <div class="scj_discount"><span class="dis2">790K                            <br><span class="off_text">OFF</span></span></div>
                             <?php
-                            $files = array();
-                            $dir = opendir(FILES_PATH . '/slide/images40x40');
-                            while ($f = readdir($dir)) {
-                                if (eregi("\.jpg|\.gif|\.png", $f))
-                                    array_push($files, $f);
-                            }
-                            closedir($dir);
-                            $data = array();
-                            $html = '';
-                            if (!empty($files)) {
-                                foreach ($files as $k => $v) {
+                                $files = array();
+                                $dir = opendir(FILES_PATH . '/slide/images40x40');
+                                while ($f = readdir($dir)) {
+                                    if (eregi("\.jpg|\.gif|\.png", $f))
+                                        array_push($files, $f);
+                                }
+                                closedir($dir);
+                                $data = array();
+                                $html='';
+                                if (!empty($files)) {
+                                    foreach ($files as $k => $v) {
                                     $html .= '<a href="">';
-                                    if ($k == 0)
+                                    if($k==0)
                                         $html .= '<div class="slideImage img-' . $k . '">';
                                     else
                                         $html .= '<div class="slideImage img-' . $k . '" style="display:none">';
-                                    $html .= '<img class="lazy" src="public/files/slide/images375x375/' . $v . '" alt="image 1" style="height: 375px">';
-                                    $html .='</div>';
+                                            $html .= '<img class="lazy" src="public/files/slide/images375x375/'.$v .'" alt="image 1" style="height: 375px">';
+                                        $html .='</div>';
                                     $html .= '</a>';
+                                    }
                                 }
-                            }
-                            echo $html;
+                                echo $html;
                             ?>
                         </div>
                         <ul class="p_gallery">
                             <?php
-                            $files = array();
-                            $dir = opendir(FILES_PATH . '/slide/images40x40');
-                            while ($f = readdir($dir)) {
-                                if (eregi("\.jpg|\.gif|\.png", $f))
-                                    array_push($files, $f);
-                            }
-                            closedir($dir);
-                            $data = array();
-                            $html = '';
-                            if (!empty($files)) {
-                                foreach ($files as $k => $v) {
-                                    ?>
+                                $files = array();
+                                $dir = opendir(FILES_PATH . '/slide/images40x40');
+                                while ($f = readdir($dir)) {
+                                    if (eregi("\.jpg|\.gif|\.png", $f))
+                                        array_push($files, $f);
+                                }
+                                closedir($dir);
+                                $data = array();
+                                $html='';
+                                if (!empty($files)) {
+                                    foreach ($files as $k => $v) {
+                                        ?>
                                     <li>
-                                        <a class="pgallery hover-img-slide-<?php echo $k ?>" href="http://image.scj.vn/item_images/54/112954L.jpg">
-                                            <img src="public/files/slide/images40x40/<?php echo $v ?>">
+                                        <a class="pgallery hover-img-slide-<?php echo $k?>" href="http://image.scj.vn/item_images/54/112954L.jpg">
+                                            <img src="public/files/slide/images40x40/<?php echo $v?>">
                                         </a>
                                     </li>
-                                    <?php
-                                }
-                            }
-                            ?>
+                            <?php
+                                    }
+                              }
+                             ?>
                         </ul>
                         <div class="featurePrice">
-                            <h3 class="slide_item_title"><a href="/vi/san-pham/dien-tu/dien-thoai-di-dong/dien-thoai-di-dong-in/dien-thoai-aimica-a10_-dien-thoai-kook-mini.html">?i?n tho?i Aimica A10+ ?i?n tho?i Kook mini</a>
+                            <h3 class="slide_item_title"><a href="/vi/san-pham/dien-tu/dien-thoai-di-dong/dien-thoai-di-dong-in/dien-thoai-aimica-a10_-dien-thoai-kook-mini.html">Điện thoại Aimica A10+ điện thoại Kook mini</a>
                             </h3>
                             <div class="cat-price">
 
-                                <span class="new-price">3.990.000?</span>
+                                <span class="new-price">3.990.000đ</span>
                             </div>
 
                         </div>
@@ -314,8 +348,13 @@
                         <div class="modal fade edit-slideshow" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
+<<<<<<< HEAD
                                     <?php
                                     //h�nh ?nh m� t?
+=======
+                                    <?php                                 
+                                    //hình ảnh mô tả
+>>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture');
                                     $imgArr = !empty($this->image['picture']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -328,7 +367,11 @@
                                     }
                                     $current_stadium_picture = $this->formHidden('current_stadium_picture', $this->image['picture']);
 
+<<<<<<< HEAD
                                     //h�nh ?nh m� t?
+=======
+                                    //hình ảnh mô tả
+>>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture1');
                                     $imgArr = !empty($this->image['picture1']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture1']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -341,7 +384,11 @@
                                     }
                                     $current_stadium_picture1 = $this->formHidden('current_stadium_picture1', $this->image['picture1']);
 
+<<<<<<< HEAD
                                     //h�nh ?nh m� t?
+=======
+                                    //hình ảnh mô tả
+>>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture2');
                                     $imgArr = !empty($this->image['picture2']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture2']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -354,7 +401,11 @@
                                     }
                                     $current_stadium_picture2 = $this->formHidden('current_stadium_picture2', $this->image['picture2']);
 
+<<<<<<< HEAD
                                     //h�nh ?nh m� t?
+=======
+                                    //hình ảnh mô tả
+>>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture3');
                                     $imgArr = !empty($this->image['picture3']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture3']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -366,23 +417,31 @@
                                         $picture3 = $this->formFile('picture3', array('style' => 'margin-left:5px'));
                                     }
                                     $current_stadium_picture3 = $this->formHidden('current_stadium_picture3', $this->image['picture3']);
-
+                                    
                                     $Input = array(
+<<<<<<< HEAD
                                         array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture),
                                         array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture1),
                                         array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture2),
                                         array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture3)
                                     );
+=======
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture1),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture2),
+                                        array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture3)
+                                        );
+>>>>>>> origin/master
                                     ?>
-                                    <form name="appForm" method="post" action="<?php echo $this->baseUrl('/default/index/index') ?>" enctype="multipart/form-data">
+                                    <form name="appForm" method="post" action="<?php echo $this->baseUrl('/default/index/index')?>" enctype="multipart/form-data">
                                         <?php
                                         echo $current_stadium_picture;
                                         echo $current_stadium_picture1;
                                         echo $current_stadium_picture2;
                                         echo $current_stadium_picture3;
-                                        echo $this->partialLoop('rows.php', $Input);
+                                        echo $this->partialLoop('rows.php',$Input);
                                         ?>
-                                        <button type="submit">Thay ?nh</button>
+                                        <button type="submit">Thay Ảnh</button>
                                     </form>
                                 </div>
                             </div>
@@ -392,68 +451,75 @@
                 <div class="col-md-7">
                     <div class="cart-right">
                         <ul class="overview">
-                            <?php
-                            foreach ($this->nemcaosuProduct as $key => $val) {
-                                ?>
-                                <li class="cart_item hover" data-id='<?php echo $i + 1 + $key ?>'>
-                                    <div class="scj_internet_only"></div>
-                                    <div class="thumb_img">
-                                        <a href="">
-                                            <img class="lazy" src="public/files/products/orignal/<?php echo $val['picture'] ?>">        
-                                        </a>
+                           <?php
+                                foreach ($this->nemcaosuProduct as $key => $val){
+                            ?>
+                            <li class="cart_item hover" data-id='<?php echo $i + 1 + $key?>'>
+                                <div class="scj_internet_only"></div>
+                                <div class="thumb_img">
+                                    <a href="">
+                                        <img class="lazy" src="public/files/products/orignal/<?php echo $val['picture']?>">        
+                                    </a>
+                                </div>
+                                <div class="cat-des">
+                                    <h3 class="slide_item_title"><a href=""><?php echo $val['name']?></a>
+                                    </h3>
+                                    <div class="cat-price">
+                                        <span class="sm_old_price"><?php echo $val['saleoff']?></span>
+                                        <span class="sm_new_price"><?php echo $val['price']?></span>
                                     </div>
-                                    <div class="cat-des">
-                                        <h3 class="slide_item_title"><a href=""><?php echo $val['name'] ?></a>
-                                        </h3>
-                                        <div class="cat-price">
-                                            <span class="sm_old_price"><?php echo $val['saleoff'] ?></span>
-                                            <span class="sm_new_price"><?php echo $val['price'] ?></span>
-                                        </div>
-                                    </div>
-                                    <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">
+                                </div>
+                                <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id']. '.html')?>">
                                         <div class="info info-<?php echo $i + 1 + $key ?>" style="display:none">
                                             <span>
+<<<<<<< HEAD
                                                 M� s?n ph?m: <?php echo $val['code'] ?><br>	
                                                 Nh� s?n xu?t: <?php echo $val['publisher'] ?><br>	
                                                 S? l?n xem: <?php echo $val['hits'] ?><br>			
                                                 B?o h�nh: <?php echo $val['warranty'] ?> <br>
+=======
+                                                Mã sản phẩm: <?php echo $val['code'] ?><br>	
+                                                Nhà sản xuất: <?php echo $val['publisher'] ?><br>	
+                                                Số lần xem: <?php echo $val['hits'] ?><br>			
+                                                Bảo hành: <?php echo $val['warranty'] ?> <br>
+>>>>>>> origin/master
                                             </span>
                                         </div>
                                     </a>
-                                    <div class="btn-function">
-                                        <div class="btnxemnhanh">
-                                            <a href="" title="Xem nhanh" data-toggle="modal" data-target=".product-info-<?php echo $i + 1 + $key ?>">
-                                                <span class="xemnhanh">Xem nhanh</span>
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <div class="modal fade product-info-<?php echo $i + 1 + $key ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="btn-function">
+                                    <div class="btnxemnhanh">
+                                        <a href="" title="Xem nhanh" data-toggle="modal" data-target=".product-info-<?php echo $i + 1 + $key?>">
+                                            <span class="xemnhanh">Xem nhanh</span>
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <div class="modal fade product-info-<?php echo $i + 1 + $key?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="info-product-detail">
                                                             <div class="info-product-left">
                                                                 <div class="info-title">
-                                                                    <h3><?php echo $val['name'] ?></h3>
+                                                                    <h3><?php echo $val['name']?></h3>
                                                                 </div>
                                                                 <div class="info-image">
-                                                                    <img src="public/files/products/orignal/<?php echo $val['picture'] ?>" style="width:360px">
+                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
                                                                 </div>
-                                                                <ul class="p_gallery">
-                                                                    <li>
-                                                                        <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L.jpg">
-                                                                            <img src="http://image.scj.vn/item_images/54/112954S.jpg">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L1.jpg">
-                                                                            <img src="http://image.scj.vn/item_images/54/112954S1.jpg">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L2.jpg">
-                                                                            <img src="http://image.scj.vn/item_images/54/112954S2.jpg">
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
+                                                                        <ul class="p_gallery">
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L1.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S1.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="pgallery" rev="targetdiv:cat_1" href="http://image.scj.vn/item_images/54/112954L2.jpg">
+                                                                                <img src="http://image.scj.vn/item_images/54/112954S2.jpg">
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
                                                             </div>
                                                             <div class="info-product-right">
                                                                 <div class="btn-purchase">
@@ -461,32 +527,46 @@
                                                                         <button type="button"><i class="fa fa-shopping-cart"></i>Mua Ngay</button>
                                                                     </div>
                                                                     <div class="btn-chitiet">
-                                                                        <button type="button"><i class="fa fa-arrow-circle-o-right"></i>Xem Chi Ti?t</button>
+                                                                        <button type="button"><i class="fa fa-arrow-circle-o-right"></i>Xem Chi Tiết</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pro_des">
+<<<<<<< HEAD
                                                                     L??t xem : <span><?php echo $val['hits'] ?></span>
                                                                     &nbsp;&nbsp;|&nbsp;Ng�y ??ng : <span><?php echo $val['created'] ?></span>
+=======
+                                                                    Lượt xem : <span><?php echo $val['hits']?></span>
+                                                                    &nbsp;&nbsp;|&nbsp;Ngày đăng : <span><?php echo $val['created']?></span>
+>>>>>>> origin/master
                                                                 </div>
                                                                 <div class="pro_detail_content">
                                                                     <div class="dt_pro_info dt_active" id="dt_info">
                                                                         <ul>
+<<<<<<< HEAD
                                                                             <li>Gi� Khuy?n M�i: <span><?php echo $val['saleoff'] ?></span></li>
                                                                             <li>Gi� S?n Ph?m: <span><?php echo $val['price'] ?></li>
                                                                             <li>Ti?t Ki?m ???c</li>
                                                                             <li>M� S?n Ph?m: <span><?php echo $val['code'] ?></li>
                                                                             <li>S? L??ng</li>
+=======
+                                                                            <li>Giá Khuyến Mãi: <span><?php echo $val['saleoff']?></span></li>
+                                                                            <li>Giá Sản Phẩm: <span><?php echo $val['price']?></li>
+                                                                            <li>Tiết Kiệm Được</li>
+                                                                            <li>Mã Sản Phẩm: <span><?php echo $val['code']?></li>
+                                                                            <li>Số Lượng</li>
+>>>>>>> origin/master
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pro-summary">
-                                                                    <span><?php echo $val['summary'] ?></span>
+                                                                    <span><?php echo $val['summary']?></span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+<<<<<<< HEAD
                                         </div>
                                         <div class="myicon btn-ss btnxemnhanh" title="So s�nh">
                                             <a href="" title="Xem nhanh">
@@ -494,10 +574,19 @@
                                                 <i class="fa fa-exchange"></i>
                                             </a>
                                         </div>
+=======
+>>>>>>> origin/master
                                     </div>
-                                </li>
-                                <?php
-                            }
+                                    <div class="myicon btn-ss btnxemnhanh" title="So sánh">
+                                        <a href="" title="Xem nhanh">
+                                            <span>So sánh</span>
+                                            <i class="fa fa-exchange"></i>
+                                        </a>
+                                    </div>
+                            </div>
+                            </li>
+                            <?php
+                                }
                             ?>
                         </ul>
                     </div>
