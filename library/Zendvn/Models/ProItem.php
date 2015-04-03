@@ -121,9 +121,17 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
             //$db = Zend_Db::factory($adapter, $config);
             
             $select = $db->select()
+<<<<<<< HEAD
                          ->from('products','*')
                          ->where('menu_id = ?',$menu_id);
             
+=======
+                         ->from('products as p','*')
+                         ->joinLeft('menus as m','p.menu_id = m.id','picture as pt')
+                         ->where('p.menu_id = ?',$menu_id)
+                         ->orWhere('m.parent = ?',$menu_id)
+                         ->order('p.id DESC');
+>>>>>>> 088ebf6b90be944279d0cf9e5daed7d75c35116d
             $result = $db->fetchAll($select);
             return $result;
             
