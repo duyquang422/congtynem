@@ -77,17 +77,10 @@
                             <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
                                 <div class="info info-<?php echo $key ?>" style="display:none">
                                     <span>
-<<<<<<< HEAD
-                                        M� s?n ph?m: <?php echo $val['code'] ?><br>	
-                                        Nh� s?n xu?t: <?php echo $val['publisher'] ?><br>	
-                                        S? l?n xem: <?php echo $val['hits'] ?><br>			
-                                        B?o h�nh: <?php echo $val['warranty'] ?> <br>
-=======
                                         Mã sản phẩm: <?php echo $val['code']?><br>	
                                         Nhà sản xuất: <?php echo $val['publisher']?><br>	
                                         Số lần xem: <?php echo $val['hits']?><br>			
                                         Bảo hành: <?php echo $val['warranty']?> <br>
->>>>>>> origin/master
                                     </span>
                                 </div>
                             </a>
@@ -126,22 +119,6 @@
                                                                         </li>
                                                                     </ul>
                                                             </div>
-<<<<<<< HEAD
-                                                        </div>
-                                                        <div class="pro_des">
-                                                            L??t xem : <span><?php echo $val['hits'] ?></span>
-                                                            &nbsp;&nbsp;|&nbsp;Ng�y ??ng : <span><?php echo $val['created'] ?></span>
-                                                        </div>
-                                                        <div class="pro_detail_content">
-                                                            <div class="dt_pro_info dt_active" id="dt_info">
-                                                                <ul>
-                                                                    <li>Gi� Khuy?n M�i: <span><?php echo $val['saleoff'] ?></span></li>
-                                                                    <li>Gi� S?n Ph?m: <span><?php echo $val['price'] ?></li>
-                                                                    <li>Ti?t Ki?m ???c</li>
-                                                                    <li>M� S?n Ph?m: <span><?php echo $val['code'] ?></li>
-                                                                    <li>S? L??ng</li>
-                                                                </ul>
-=======
                                                             <div class="info-product-right">
                                                                 <div class="btn-purchase">
                                                                     <div class="btn-muangay">
@@ -169,29 +146,18 @@
                                                                 <div class="pro-summary">
                                                                     <span><?php echo $val['summary']?></span>
                                                                 </div>
->>>>>>> origin/master
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                     </div>
-<<<<<<< HEAD
-                                </div>
-                                <div class="myicon btn-ss btnxemnhanh" title="So s�nh">
-                                    <a href="" title="Xem nhanh">
-                                        <span>So s�nh</span>
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-=======
                                     <div class="myicon btn-ss btnxemnhanh" title="So sánh">
                                         <a href="" title="Xem nhanh">
                                             <span>So sánh</span>
                                             <i class="fa fa-exchange"></i>
                                         </a>
                                     </div>
->>>>>>> origin/master
                             </div>
                         </li>
                          <?php 
@@ -248,20 +214,6 @@
                         
 						
                         <!-- ----------------TUNG-------------- -->
-<<<<<<< HEAD
-                        <div class="navicate navicatetivi">
-                            <h2><a href="tivi" class="tivi">n?m cao su</a></h2>
-                            <h4><a href="tivi-samsung" class="">n?m kh�ch s?n</a></h4>
-                            <h4><a href="tivi-sony" class="">n?m l� xo</a></h4>
-                            <h4><a href="tivi-lg" class="">n?m y t?</a></h4>
-                            <h4><a href="tivi-toshiba" class="">n?m em b�</a></h4>
-                            <h4><a href="tivi-tcl" class="">g?i</a></h4>
-                            <h4><a href="tivi-panasonic" class="">sofa</a></h4>
-                            <h4><a href="/tag/tivi-hd" class="lower">kh�c</a></h4>                
-                        </div>
-
-
-=======
       <div class="navicate navicatetivi">
                 <h2><a href="tivi" class="tivi">nệm cao su</a></h2>
                     <h4><a href="tivi-samsung" class="">nệm khách sạn</a></h4>
@@ -274,7 +226,6 @@
        </div>
                         
                         
->>>>>>> origin/master
                     </span>
                     
                 </div>
@@ -348,13 +299,8 @@
                         <div class="modal fade edit-slideshow" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
-<<<<<<< HEAD
-                                    <?php
-                                    //h�nh ?nh m� t?
-=======
                                     <?php                                 
                                     //hình ảnh mô tả
->>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture');
                                     $imgArr = !empty($this->image['picture']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -367,11 +313,7 @@
                                     }
                                     $current_stadium_picture = $this->formHidden('current_stadium_picture', $this->image['picture']);
 
-<<<<<<< HEAD
-                                    //h�nh ?nh m� t?
-=======
                                     //hình ảnh mô tả
->>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture1');
                                     $imgArr = !empty($this->image['picture1']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture1']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -384,11 +326,7 @@
                                     }
                                     $current_stadium_picture1 = $this->formHidden('current_stadium_picture1', $this->image['picture1']);
 
-<<<<<<< HEAD
-                                    //h�nh ?nh m� t?
-=======
                                     //hình ảnh mô tả
->>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture2');
                                     $imgArr = !empty($this->image['picture2']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture2']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -401,11 +339,7 @@
                                     }
                                     $current_stadium_picture2 = $this->formHidden('current_stadium_picture2', $this->image['picture2']);
 
-<<<<<<< HEAD
-                                    //h�nh ?nh m� t?
-=======
                                     //hình ảnh mô tả
->>>>>>> origin/master
                                     $inputInfo = array('name' => 'picture3');
                                     $imgArr = !empty($this->image['picture3']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture3']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -419,19 +353,11 @@
                                     $current_stadium_picture3 = $this->formHidden('current_stadium_picture3', $this->image['picture3']);
                                     
                                     $Input = array(
-<<<<<<< HEAD
-                                        array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture),
-                                        array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture1),
-                                        array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture2),
-                                        array('Label' => $this->translate('H�nh ?nh'), 'input' => $picture3)
-                                    );
-=======
                                         array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture),
                                         array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture1),
                                         array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture2),
                                         array('Label'=>$this->translate('Hình Ảnh'),'input'=>$picture3)
                                         );
->>>>>>> origin/master
                                     ?>
                                     <form name="appForm" method="post" action="<?php echo $this->baseUrl('/default/index/index')?>" enctype="multipart/form-data">
                                         <?php
@@ -472,17 +398,10 @@
                                 <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id']. '.html')?>">
                                         <div class="info info-<?php echo $i + 1 + $key ?>" style="display:none">
                                             <span>
-<<<<<<< HEAD
-                                                M� s?n ph?m: <?php echo $val['code'] ?><br>	
-                                                Nh� s?n xu?t: <?php echo $val['publisher'] ?><br>	
-                                                S? l?n xem: <?php echo $val['hits'] ?><br>			
-                                                B?o h�nh: <?php echo $val['warranty'] ?> <br>
-=======
                                                 Mã sản phẩm: <?php echo $val['code'] ?><br>	
                                                 Nhà sản xuất: <?php echo $val['publisher'] ?><br>	
                                                 Số lần xem: <?php echo $val['hits'] ?><br>			
                                                 Bảo hành: <?php echo $val['warranty'] ?> <br>
->>>>>>> origin/master
                                             </span>
                                         </div>
                                     </a>
@@ -531,30 +450,17 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="pro_des">
-<<<<<<< HEAD
-                                                                    L??t xem : <span><?php echo $val['hits'] ?></span>
-                                                                    &nbsp;&nbsp;|&nbsp;Ng�y ??ng : <span><?php echo $val['created'] ?></span>
-=======
                                                                     Lượt xem : <span><?php echo $val['hits']?></span>
                                                                     &nbsp;&nbsp;|&nbsp;Ngày đăng : <span><?php echo $val['created']?></span>
->>>>>>> origin/master
                                                                 </div>
                                                                 <div class="pro_detail_content">
                                                                     <div class="dt_pro_info dt_active" id="dt_info">
                                                                         <ul>
-<<<<<<< HEAD
-                                                                            <li>Gi� Khuy?n M�i: <span><?php echo $val['saleoff'] ?></span></li>
-                                                                            <li>Gi� S?n Ph?m: <span><?php echo $val['price'] ?></li>
-                                                                            <li>Ti?t Ki?m ???c</li>
-                                                                            <li>M� S?n Ph?m: <span><?php echo $val['code'] ?></li>
-                                                                            <li>S? L??ng</li>
-=======
                                                                             <li>Giá Khuyến Mãi: <span><?php echo $val['saleoff']?></span></li>
                                                                             <li>Giá Sản Phẩm: <span><?php echo $val['price']?></li>
                                                                             <li>Tiết Kiệm Được</li>
                                                                             <li>Mã Sản Phẩm: <span><?php echo $val['code']?></li>
                                                                             <li>Số Lượng</li>
->>>>>>> origin/master
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -566,16 +472,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-<<<<<<< HEAD
-                                        </div>
-                                        <div class="myicon btn-ss btnxemnhanh" title="So s�nh">
-                                            <a href="" title="Xem nhanh">
-                                                <span>So s�nh</span>
-                                                <i class="fa fa-exchange"></i>
-                                            </a>
-                                        </div>
-=======
->>>>>>> origin/master
                                     </div>
                                     <div class="myicon btn-ss btnxemnhanh" title="So sánh">
                                         <a href="" title="Xem nhanh">
