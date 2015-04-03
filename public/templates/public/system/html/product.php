@@ -51,7 +51,7 @@
             <div class="col-md-2">
                 <div class="today-box">
                     <div class="today-box-advertise">
-                        <span>Khuy?n Mãi Trong Ngày</span>
+                        <span>Khuyáº¿n MÃ£i Trong NgÃ y</span>
                     </div>
                     <div class="today-box-advertise-logo">
                         <img src="<?php echo $this->imgUrl . '/new-product-logo.jpg' ?>" height="415" width="200"/>
@@ -63,7 +63,7 @@
                     <div class="best_of_best">
                         <i class="fa fa-star fa-lg"></i>
                         <span class="font16"><b>BEST</b>&nbsp;OF&nbsp;<b>BEST</b></span>
-                        <a class="more" href="/vi/best-100.html"><i class="fa fa-angle-double-right"></i>Xem thêm</a>
+                        <a class="more" href="/vi/best-100.html"><i class="fa fa-angle-double-right"></i>Xem thÃªm</a>
                     </div>
                     <ul class="overview isBest">
                         <?php
@@ -88,10 +88,10 @@
                             <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
                                 <div class="info info-<?php echo $key ?>" style="display:none">
                                     <span>
-                                        Mã s?n ph?m: <?php echo $val['code'] ?><br>	
-                                        Nhà s?n xu?t: <?php echo $val['publisher'] ?><br>	
+                                        Mï¿½ s?n ph?m: <?php echo $val['code'] ?><br>	
+                                        Nhï¿½ s?n xu?t: <?php echo $val['publisher'] ?><br>	
                                         S? l?n xem: <?php echo $val['hits'] ?><br>			
-                                        B?o hành: <?php echo $val['warranty'] ?> <br>
+                                        B?o hï¿½nh: <?php echo $val['warranty'] ?> <br>
                                     </span>
                                 </div>
                             </a>
@@ -146,15 +146,15 @@
                                                         </div>
                                                         <div class="pro_des">
                                                             L??t xem : <span><?php echo $val['hits'] ?></span>
-                                                            &nbsp;&nbsp;|&nbsp;Ngày ??ng : <span><?php echo $val['created'] ?></span>
+                                                            &nbsp;&nbsp;|&nbsp;Ngï¿½y ??ng : <span><?php echo $val['created'] ?></span>
                                                         </div>
                                                         <div class="pro_detail_content">
                                                             <div class="dt_pro_info dt_active" id="dt_info">
                                                                 <ul>
-                                                                    <li>Giá Khuy?n Mãi: <span><?php echo $val['saleoff'] ?></span></li>
-                                                                    <li>Giá S?n Ph?m: <span><?php echo $val['price'] ?></li>
+                                                                    <li>Giï¿½ Khuy?n Mï¿½i: <span><?php echo $val['saleoff'] ?></span></li>
+                                                                    <li>Giï¿½ S?n Ph?m: <span><?php echo $val['price'] ?></li>
                                                                     <li>Ti?t Ki?m ???c</li>
-                                                                    <li>Mã S?n Ph?m: <span><?php echo $val['code'] ?></li>
+                                                                    <li>Mï¿½ S?n Ph?m: <span><?php echo $val['code'] ?></li>
                                                                     <li>S? L??ng</li>
                                                                 </ul>
                                                             </div>
@@ -168,9 +168,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="myicon btn-ss btnxemnhanh" title="So sánh">
+                                <div class="myicon btn-ss btnxemnhanh" title="So sï¿½nh">
                                     <a href="" title="Xem nhanh">
-                                        <span>So sánh</span>
+                                        <span>So sï¿½nh</span>
                                         <i class="fa fa-exchange"></i>
                                     </a>
                                 </div>
@@ -231,13 +231,13 @@
                         <!-- ----------------TUNG-------------- -->
                         <div class="navicate navicatetivi">
                             <h2><a href="tivi" class="tivi">n?m cao su</a></h2>
-                            <h4><a href="tivi-samsung" class="">n?m khách s?n</a></h4>
-                            <h4><a href="tivi-sony" class="">n?m lò xo</a></h4>
+                            <h4><a href="tivi-samsung" class="">n?m khï¿½ch s?n</a></h4>
+                            <h4><a href="tivi-sony" class="">n?m lï¿½ xo</a></h4>
                             <h4><a href="tivi-lg" class="">n?m y t?</a></h4>
-                            <h4><a href="tivi-toshiba" class="">n?m em bé</a></h4>
+                            <h4><a href="tivi-toshiba" class="">n?m em bï¿½</a></h4>
                             <h4><a href="tivi-tcl" class="">g?i</a></h4>
                             <h4><a href="tivi-panasonic" class="">sofa</a></h4>
-                            <h4><a href="/tag/tivi-hd" class="lower">khác</a></h4>                
+                            <h4><a href="/tag/tivi-hd" class="lower">khï¿½c</a></h4>                
                         </div>
 
 
@@ -315,7 +315,7 @@
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
                                     <?php
-                                    //hình ?nh mô t?
+                                    //hï¿½nh ?nh mï¿½ t?
                                     $inputInfo = array('name' => 'picture');
                                     $imgArr = !empty($this->image['picture']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -328,7 +328,7 @@
                                     }
                                     $current_stadium_picture = $this->formHidden('current_stadium_picture', $this->image['picture']);
 
-                                    //hình ?nh mô t?
+                                    //hï¿½nh ?nh mï¿½ t?
                                     $inputInfo = array('name' => 'picture1');
                                     $imgArr = !empty($this->image['picture1']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture1']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -341,7 +341,7 @@
                                     }
                                     $current_stadium_picture1 = $this->formHidden('current_stadium_picture1', $this->image['picture1']);
 
-                                    //hình ?nh mô t?
+                                    //hï¿½nh ?nh mï¿½ t?
                                     $inputInfo = array('name' => 'picture2');
                                     $imgArr = !empty($this->image['picture2']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture2']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -354,7 +354,7 @@
                                     }
                                     $current_stadium_picture2 = $this->formHidden('current_stadium_picture2', $this->image['picture2']);
 
-                                    //hình ?nh mô t?
+                                    //hï¿½nh ?nh mï¿½ t?
                                     $inputInfo = array('name' => 'picture3');
                                     $imgArr = !empty($this->image['picture3']) ? array(FILES_URL . '/slide/images375x375/' . $this->image['picture3']) : '';
                                     $image = $this->cmsUserAvatar($inputInfo, $imgArr);
@@ -368,10 +368,10 @@
                                     $current_stadium_picture3 = $this->formHidden('current_stadium_picture3', $this->image['picture3']);
 
                                     $Input = array(
-                                        array('Label' => $this->translate('Hình ?nh'), 'input' => $picture),
-                                        array('Label' => $this->translate('Hình ?nh'), 'input' => $picture1),
-                                        array('Label' => $this->translate('Hình ?nh'), 'input' => $picture2),
-                                        array('Label' => $this->translate('Hình ?nh'), 'input' => $picture3)
+                                        array('Label' => $this->translate('Hï¿½nh ?nh'), 'input' => $picture),
+                                        array('Label' => $this->translate('Hï¿½nh ?nh'), 'input' => $picture1),
+                                        array('Label' => $this->translate('Hï¿½nh ?nh'), 'input' => $picture2),
+                                        array('Label' => $this->translate('Hï¿½nh ?nh'), 'input' => $picture3)
                                     );
                                     ?>
                                     <form name="appForm" method="post" action="<?php echo $this->baseUrl('/default/index/index') ?>" enctype="multipart/form-data">
@@ -413,10 +413,10 @@
                                     <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">
                                         <div class="info info-<?php echo $i + 1 + $key ?>" style="display:none">
                                             <span>
-                                                Mã s?n ph?m: <?php echo $val['code'] ?><br>	
-                                                Nhà s?n xu?t: <?php echo $val['publisher'] ?><br>	
+                                                Mï¿½ s?n ph?m: <?php echo $val['code'] ?><br>	
+                                                Nhï¿½ s?n xu?t: <?php echo $val['publisher'] ?><br>	
                                                 S? l?n xem: <?php echo $val['hits'] ?><br>			
-                                                B?o hành: <?php echo $val['warranty'] ?> <br>
+                                                B?o hï¿½nh: <?php echo $val['warranty'] ?> <br>
                                             </span>
                                         </div>
                                     </a>
@@ -466,15 +466,15 @@
                                                                 </div>
                                                                 <div class="pro_des">
                                                                     L??t xem : <span><?php echo $val['hits'] ?></span>
-                                                                    &nbsp;&nbsp;|&nbsp;Ngày ??ng : <span><?php echo $val['created'] ?></span>
+                                                                    &nbsp;&nbsp;|&nbsp;Ngï¿½y ??ng : <span><?php echo $val['created'] ?></span>
                                                                 </div>
                                                                 <div class="pro_detail_content">
                                                                     <div class="dt_pro_info dt_active" id="dt_info">
                                                                         <ul>
-                                                                            <li>Giá Khuy?n Mãi: <span><?php echo $val['saleoff'] ?></span></li>
-                                                                            <li>Giá S?n Ph?m: <span><?php echo $val['price'] ?></li>
+                                                                            <li>Giï¿½ Khuy?n Mï¿½i: <span><?php echo $val['saleoff'] ?></span></li>
+                                                                            <li>Giï¿½ S?n Ph?m: <span><?php echo $val['price'] ?></li>
                                                                             <li>Ti?t Ki?m ???c</li>
-                                                                            <li>Mã S?n Ph?m: <span><?php echo $val['code'] ?></li>
+                                                                            <li>Mï¿½ S?n Ph?m: <span><?php echo $val['code'] ?></li>
                                                                             <li>S? L??ng</li>
                                                                         </ul>
                                                                     </div>
@@ -488,9 +488,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="myicon btn-ss btnxemnhanh" title="So sánh">
+                                        <div class="myicon btn-ss btnxemnhanh" title="So sï¿½nh">
                                             <a href="" title="Xem nhanh">
-                                                <span>So sánh</span>
+                                                <span>So sï¿½nh</span>
                                                 <i class="fa fa-exchange"></i>
                                             </a>
                                         </div>
