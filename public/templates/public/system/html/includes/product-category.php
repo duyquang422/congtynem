@@ -16,10 +16,7 @@
         <div class="content _tab-01 tab_link-01_01"> 
             <ul>
              <?php
-             foreach ($this->Items as $key =>$val){ 
-                 echo '<pre>';
-                 print_r($val);
-                 echo '</pre>';
+             foreach ($this->Items as $key =>$val){
              ?>  
                   <li class="sp_pro relative hover" data-id="1">
                     <div class="khung relative">
