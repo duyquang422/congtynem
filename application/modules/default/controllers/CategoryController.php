@@ -77,9 +77,10 @@ class CategoryController extends Zendvn_Controller_Action {
             $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->setLayout('category');
             //lấy thông tin người đăng bài
-                //Hiển thị chi tiết sản Phẩm
-		$tblProduct = new Zendvn_Models_ProItem();
-                
+            //Hiển thị chi tiết sản Phẩm
+            $tblProduct = new Zendvn_Models_ProItem();
+            $this->view->Items = $tblProduct->category($this->_arrParam['id']);
+             
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();
 		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
