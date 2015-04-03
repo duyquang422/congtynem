@@ -3197,9 +3197,10 @@ img.lazy {
     color: white;
 }
 .today-box-advertise{
-    font-size: 16px;
+    font-size: 14px;
     position: relative;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: -17px;
+    margin-top: -4px;
+    width: 200px;
 }
