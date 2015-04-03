@@ -115,18 +115,33 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
             $result = $db->fetchAll($select);
             return $result;
     }
+<<<<<<< HEAD
     public function productCategory($menuId){
+=======
+    //xuat du lieu cho category
+   public function category($menu_id){
+>>>>>>> origin/master
             $db = Zend_Registry::get('connectDb');
             //$db = Zend_Db::factory($adapter, $config);
             
             $select = $db->select()
                          ->from('products','*')
+<<<<<<< HEAD
                          ->where('menu_id = ?',$menuId)
                          ->order('id DESC');
             
             $result = $db->fetchAll($select);
             return $result;
     }
+=======
+                         ->where('menu_id = ?',$menu_id);
+            
+            $result = $db->fetchAll($select);
+            return $result;
+            
+    }
+    
+>>>>>>> origin/master
     public function listItem($arrParam = null, $options = null,$filterPro = null){
 		$ssFilter = $arrParam['ssFilter'];
 		$paginator = $arrParam['paginator'];
