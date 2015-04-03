@@ -77,7 +77,7 @@ class CategoryController extends Zendvn_Controller_Action {
             $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->setLayout('category');
             $tblProduct = new Zendvn_Models_ProItem();
-            $this->view->Items = $tblProduct->sanphamtuongtu($this->_arrParam['id']);
+            $this->view->Items = $tblProduct->category($this->_arrParam);
             
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();
