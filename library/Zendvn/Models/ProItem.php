@@ -119,7 +119,7 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 //            /$db = Zend_Db::factory($adapter, $config);
             $select = $db->select()
                          ->from('products as p','*')
-                         ->joinLeft('menus as m','p.menu_id = m.id')
+                         ->joinLeft('menus as m','p.menu_id = m.id','picture as pt')
                          ->where('p.menu_id = ?',$menu_id)
                          ->orWhere('m.parent = ?',$menu_id)
                          ->order('p.id DESC');
