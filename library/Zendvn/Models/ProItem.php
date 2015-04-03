@@ -17,8 +17,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 			}
 			if(!empty($arrParam['publisher'])){
 				$publisher = '%' . $arrParam['publisher'] . '%';
-				//				$keywords 		= str_replace("d","Ä‘",$keywords);
-				//				$keywords 		= str_replace("D","Ä?",$keywords);
+				//				$keywords 		= str_replace("d","?",$keywords);
+				//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.publisher LIKE ?',$publisher,STRING);
 			}
 			if($ssFilter['menu_id']>0){
@@ -69,8 +69,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 						 ->where('p.menu_id IN (' . $this->_ids . ')');
 			if(!empty($arrParam['publisher'])){
 				$publisher = '%' . $arrParam['publisher'] . '%';
-				//				$keywords 		= str_replace("d","Ä‘",$keywords);
-				//				$keywords 		= str_replace("D","Ä?",$keywords);
+				//				$keywords 		= str_replace("d","?",$keywords);
+				//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.publisher LIKE ?',$publisher,STRING);
 			}			 
 			$result = $db->fetchOne($select);
@@ -90,15 +90,13 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
             return $result;
         }
         
-//        --------------------Tung--------------------
     public function product($id){
             $db = Zend_Registry::get('connectDb');
             //$db = Zend_Db::factory($adapter, $config);
             
             $select = $db->select()
                          ->from('products','*')
-                        ->where('id = ?',$id);
-                         
+                        ->where('id = ?',$id); 
             $result = $db->fetchRow($select);
             return $result;
     }
@@ -115,33 +113,20 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
             $result = $db->fetchAll($select);
             return $result;
     }
-<<<<<<< HEAD
-    public function productCategory($menuId){
-=======
     //xuat du lieu cho category
    public function category($menu_id){
->>>>>>> origin/master
             $db = Zend_Registry::get('connectDb');
-            //$db = Zend_Db::factory($adapter, $config);
-            
+//            /$db = Zend_Db::factory($adapter, $config);
             $select = $db->select()
-                         ->from('products','*')
-<<<<<<< HEAD
-                         ->where('menu_id = ?',$menuId)
-                         ->order('id DESC');
-            
+                         ->from('products as p','*')
+                         ->joinLeft('menus as m','p.menu_id = m.id')
+                         ->where('p.menu_id = ?',$menu_id)
+                         ->orWhere('m.parent = ?',$menu_id)
+                         ->order('p.id DESC');
             $result = $db->fetchAll($select);
             return $result;
-    }
-=======
-                         ->where('menu_id = ?',$menu_id);
-            
-            $result = $db->fetchAll($select);
-            return $result;
-            
     }
     
->>>>>>> origin/master
     public function listItem($arrParam = null, $options = null,$filterPro = null){
 		$ssFilter = $arrParam['ssFilter'];
 		$paginator = $arrParam['paginator'];
@@ -176,14 +161,14 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 			if(!empty($ssFilter['keywords'])){
 				
 				$keywords = '%' . $ssFilter['keywords'] . '%';
-//				$keywords 		= str_replace("d","Ä‘",$keywords);
-//				$keywords 		= str_replace("D","Ä?",$keywords);
+//				$keywords 		= str_replace("d","?",$keywords);
+//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.name LIKE ?',$keywords,STRING);
 			}
 			if(!empty($arrParam['publisher'])){
 				$publisher = '%' . $arrParam['publisher'] . '%';
-				//				$keywords 		= str_replace("d","Ä‘",$keywords);
-				//				$keywords 		= str_replace("D","Ä?",$keywords);
+				//				$keywords 		= str_replace("d","?",$keywords);
+				//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.publisher LIKE ?',$publisher,STRING);
 			}
 			if($ssFilter['menu_id']>0){
@@ -254,8 +239,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 						 ->limitPage($paginator['currentPage'],$paginator['itemCountPerPage']);		
 			if(!empty($arrParam['publisher'])){
 				$publisher = '%' . $arrParam['publisher'] . '%';
-				//				$keywords 		= str_replace("d","Ä‘",$keywords);
-				//				$keywords 		= str_replace("D","Ä?",$keywords);
+				//				$keywords 		= str_replace("d","?",$keywords);
+				//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.publisher LIKE ?',$publisher,STRING);
 			}						 
 			$result = $db->fetchAll($select);
@@ -286,8 +271,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 						 ->order(' id DESC');		
 			if(!empty($options['publisher'])){
 				$publisher = '%' . $options['publisher'] . '%';
-				//				$keywords 		= str_replace("d","Ä‘",$keywords);
-				//				$keywords 		= str_replace("D","Ä?",$keywords);
+				//				$keywords 		= str_replace("d","?",$keywords);
+				//				$keywords 		= str_replace("D","?",$keywords);
 				$select->where('p.publisher LIKE ?',$publisher,STRING);
 			}						 
 			$result = $db->fetchAll($select);
