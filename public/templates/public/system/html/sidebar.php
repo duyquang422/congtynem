@@ -8,7 +8,7 @@
                 if ($val['level'] == 1) {
                     $html .= '<li class="hover-sidebar sidebar__listItem sidebar__listItem-' . $i . ' sidebar__listItem_color-orange sidebarIcon__icon-cat_' . $i . '" data-id="'. $i .'">';
                     $html .= '<i class="icon__round"><i class="icon icon__sidebar"></i></i>';
-                    $html .= '<a href="'. $this->baseUrl($val['alias'].'-'. $val['id']. '.asp') .'" data-id="' . $i . '">' . $val['name'] . '</a>';
+                    $html .= '<a href="" data-id="' . $i . '">' . $val['name'] . '</a>';
                     $html .= '</li>';
                     $i++;
                 }
@@ -31,7 +31,7 @@
                                 if ($val['level'] == 2 && $val['parent'] == $parent) {
                                     ?>
                                     <li class="sidebarSecond__itemSecond">
-                                        <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.asp')?>"><?php echo $val['name'] ?></a>
+                                        <a href=""><?php echo $val['name'] ?></a>
                                     </li>
                                     <?php
                                 }
