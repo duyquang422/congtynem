@@ -29,12 +29,12 @@
                             <div class="float_l chitiet"><a href=""><span>Chi tiết</span></a></div>
                             <div class="bg_comparison_tr"><span id="ss_70095598_0" class="myicon btn-ss">So sánh</span></div>
                         </div>
-                        <a href="" class="bnc_tooltips" data-id="70095598">
+                        <a href="" class="bnc_tooltips">
                             <img src="<?php echo $this->baseUrl('public/files/products/orignal/') . $val['picture'] ?>" alt="Tên Sản Phẩm">
                         </a>
                     </div>
                     <div class="thongtin">
-                        <h3><a id="tenss_70095598" class="ten_sp tip" title="Full 4 Tấc Đôi Thùng Sơn VS-D160" href=""><?php echo $val['name'] ?></a></h3>
+                        <h3><a id="tenss_70095598" class="ten_sp tip" title="<?php echo $val['name'] ?>" ref=""><?php echo $val['name'] ?></a></h3>
 
                         <p class="gia_cu"><?php echo $val['selloff'] ?></p>
                         <p class="gia_moi"><?php echo $val['price'] ?></p>
@@ -42,13 +42,13 @@
                     </div>
                     <div class="btn-function">
                         <div class="btnxemnhanh">
-                            <a id="id_70095598" data-pjax="#huongcontent" class="xn-70095598 " onclick="loadProduct('70095598', '', 'http://amthanh24h.com', 'new')" href="" title="Xem nhanh">
+                            <a id="id_70095598" href="" title="Xem nhanh">
                                 <span class="xemnhanh">Xem nhanh</span>
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                         </div>
                         <div id="ss_70095598_0" class="myicon btn-ss btnxemnhanh" title="So sánh">
-                            <a id="id_70095598" data-pjax="#huongcontent" class="xn-70095598 " onclick="loadProduct('70095598', '', 'http://amthanh24h.com', 'new')" href="" title="Xem nhanh">
+                            <a id="id_70095598" href="" title="Xem nhanh">
                                 <span>So sánh</span>
                                 <i class="glyphicon glyphicon-transfer"></i>
                             </a>
@@ -71,5 +71,4 @@
         </div>
     </div>
     <div class="clear"></div>
-    <div class="xemtatca"><a href="http://amthanh24h.com/san_pham/">Xem tất cả <i class="i-forward-3"></i></a></div>
 </div>
