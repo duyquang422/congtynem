@@ -1,18 +1,28 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class='modules'>
-                <?php include_once 'includes/introduct-video.php';?>
-                <?php include_once 'includes/counter-statistics.php';?>
-                <?php include_once 'includes/price-filter.php';?>
-                <?php include_once 'includes/trademark-filter.php';?>
-                <?php include_once 'includes/size-filter.php';?>
-                <?php include_once 'includes/hot-product.php';?>
+                    <div class="price-filter">
+                        <span><strong>Giá</strong> Từ: </span>
+                        <span>thấp -> cao</span><input type="radio" name="price" id="asc" value="asc">
+                        <span>cao -> thấp</span><input type="radio" name="price" id="desc" value="desc">
+                    </div>
+                <div class="promotion">
+                    <input type="checkbox" name="discount" value="1">
+                    <img src="<?php echo $this->imgUrl . '/discount.png'?>">
+                    <input type="checkbox" name="promotion" value="1">
+                    <img src="<?php echo $this->imgUrl . '/promotion.png'?>">
+                    <input type="checkbox" name="gift" value="1">
+                    <img src="<?php echo $this->imgUrl . '/gift.png'?>">
+                    <input type="checkbox" name="new" value="2015">
+                    <img src="<?php echo $this->imgUrl . '/new.png'?>">
+                </div>
+                <div class="manufacturers">
+                    <strong>CHỌN HÃNG</strong><span> (chọn hãng mà bạn cần tìm)</span>
+                </div>
             </div>
         </div>
-        <div class="col-md-10">
-            <?php include_once 'includes/slideshow.php';?>
-            <div class='clearfix'></div>
+        <div class="col-md-9">
             <div>
                 <ol class='breadcrumb'>
                     <li><a href="#">Home</a></li>
@@ -26,7 +36,7 @@
                 </span>
             </div>
             <div class='clearfix'></div>
-            <?php include_once 'includes/product-category.php';?>
+            <?php echo $this->layout()->content;?>
         </div>
     </div>
 </div>
