@@ -3,6 +3,7 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 	protected $_name = 'products';
 	protected $_primary = 'id';
 	protected $_ids;
+        
 	public function filterAjax($arrParam){
             $db = Zend_Registry::get('connectDb');
             //$db = Zend_Db::factory($adapter, $config);
