@@ -1969,7 +1969,7 @@ div#countdownLongbar {
     -o-transition: height 250ms linear;
     transition: height 250ms linear;
     height: 36px;
-    margin-top: -18px;
+    margin-top: -20px;
 }
 .layout__wrapper {
     position: relative;
@@ -2114,7 +2114,7 @@ div#countdownLongbar {
     background: #000;
     z-index: 155;
 }
-/*-----------------------PRODUCT CATEGORY-------------------------*/
+/*-----------------------PRODUCT-------------------------*/
 .item {
     width: 100%;
     display: inline-block;
@@ -2170,7 +2170,7 @@ element.style {
 }
 .home_sanpham_right {
     float: left;
-    width: 100%;
+    width: 940px;
 }
 .content {
     position: relative;
@@ -2179,17 +2179,16 @@ element.style {
     position: relative;
 }
 .home_sanpham_right ul {
-    width: 100%;
+    width: 1000px;
     padding: 0px;
-    display: inline-block;
-    margin-top: 12px;
 }
 .sp_pro {
     float: left;
     position: relative;
     overflow: hidden;
     margin-bottom: -1px;
-    width: 218px;
+    height: 245.5px;
+    width: 188px;
     height: 272px;
 }
 .thongtin {
@@ -2688,8 +2687,7 @@ h3.slide_item_title {
 /*-------------------INTRODUCT VIDEO---------------*/
 .modules{
     position: relative;
-    left: 0px;
-    top:25px;
+    left: -30px;
 }
 .module{
     width: 215px;
@@ -3221,44 +3219,4 @@ img.lazy {
   line-height: .75em;
   vertical-align: -15%;
   margin-left: 5px;
-}
-/*=====================SLIDESHOW CATEGORY==============*/
-#slideshow .container,
-#header .container,
-#product-category .container
-{
-    width:100%;
-}
-.row{
-    margin-top: 20px;
-}
-.carousel{
-    margin-right: -20px;
-}
-/*===================MAIN CATEOGRY================*/
-.price-filter span{
-    margin-right: 3px;
-}
-.modules{
-    background: #f7f7f7;
-    padding:15px;
-}
-.price-filter{
-    border-bottom: 1px solid #eee;
-}
-#product-category .row{
-    margin: 0px;
-}
-.promotion img{
-    width: 37px;
-    height: 40px;
-    margin-left: -10px;
-    margin-right: 9px;
-}
-.modules strong{
-    color: red;
-    font-size: 13px;
-}
-.modules div {
-    margin-bottom: 10px;
 }
