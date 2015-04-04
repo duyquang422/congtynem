@@ -52,7 +52,7 @@
         });
     });
 </script>
-<div class="container-fluid">
+<div class="container">
     <div class="header__bottom__menu">
             <div class="header__bottom__menu__wrapper layout__wrapper cf">
                 <div class="header__menu">
