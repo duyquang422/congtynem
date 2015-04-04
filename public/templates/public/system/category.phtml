@@ -10,20 +10,20 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <?php echo $this->headScript() ?>
         <script type="text/javascript">
-          $(function() {
-                $('#dg-container').gallery();
-                $( "#slider-range" ).slider({
-                    range: true,
-                    min: 1000000,
-                    max: 7000000,
-                    values: [ 0, 7000000 ],
-                    slide: function( event, ui ) {
-                        $( "#amount" ).val( ui.values[ 0 ] + "VNĐ - " + ui.values[ 1 ] + "VNĐ");
-                    }
-                });
-                 $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-                    " - VNĐ" + $( "#slider-range" ).slider( "values", 1 ) );
-          });
+//          $(function() {
+//                $('#dg-container').gallery();
+//                $( "#slider-range" ).slider({
+//                    range: true,
+//                    min: 1000000,
+//                    max: 7000000,
+//                    values: [ 0, 7000000 ],
+//                    slide: function( event, ui ) {
+//                        $( "#amount" ).val( ui.values[ 0 ] + "VNĐ - " + ui.values[ 1 ] + "VNĐ");
+//                    }
+//                });
+//                 $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+//                    " - VNĐ" + $( "#slider-range" ).slider( "values", 1 ) );
+//          });
         </script>
     <body>
     <section>
@@ -32,7 +32,10 @@
     <section id="header">
         <?php include_once 'html/header-sidebar.php';?>
     </section> 
-    <section>
+    <section id="slideshow">
+        <?php include_once 'html/slideshow.php';?>
+    </section>
+    <section id="product-category">
         <?php include_once 'html/main-category.php';?>
     </section>
     <section>
