@@ -74,7 +74,6 @@ class CategoryController extends Zendvn_Controller_Action {
 		$this->loadTemplate($template_path,'template.ini','template');
 	}		
         public function indexAction() {
-            $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->setLayout('category');
             //lấy thông tin người đăng bài
             //Hiển thị chi tiết sản Phẩm
@@ -100,5 +99,10 @@ class CategoryController extends Zendvn_Controller_Action {
 		$keywords	 = str_replace("\\","",$menu['keywords_html']);
 		if(!empty($description))$this->view->headMeta(true)->setName('description',$description);
 		if(!empty($keywords))$this->view->headMeta(true)->setName('keywords',$keywords);
+        }
+        public function filterAjaxAction(){
+            $this->_helper->layout->disableLayout();
+            $product = new Zendvn_Models_ProItem();
+            $this->view->Items = $product->filterAjax($this->_arrParam);
         }
 }
