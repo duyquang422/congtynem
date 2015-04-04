@@ -3,7 +3,16 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
 	protected $_name = 'products';
 	protected $_primary = 'id';
 	protected $_ids;
-	
+	public function filterAjax($arrParam){
+            $db = Zend_Registry::get('connectDb');
+            //$db = Zend_Db::factory($adapter, $config);
+            $select = $db->select()
+                         ->from($this->_name,array('id','name','picture','photos','code','warranty','price','selloff','publisher','summary','hits'));
+            if(isset($arrParam['price']))
+                $select->order ('price ' . $arrParam['price']);
+            $result = $db->fetchAll($select);
+            return $result;
+        }
 	public function countItem($arrParam, $options = null){		
 		if($options['task'] == 'public-index'){
 			$db	= $this->getAdapter();

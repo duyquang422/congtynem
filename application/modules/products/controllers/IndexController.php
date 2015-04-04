@@ -78,13 +78,18 @@ class Products_IndexController extends Zendvn_Controller_Action{
 			$this->view->Publisher	= $publisher;
 			$this->_arrParam['publisher']	= $publisher['name'];
 		}
+                //lấy thông tin sản phẩm
 		$tblProduct = new Zendvn_Models_ProItem();
 		$this->view->Items = $tblProduct->listItem($this->_arrParam,array('task'=>'public-index'));
-		$this->view->total = $tblProduct->countItem($this->_arrParam,array('task'=>'public-index'));		
+		
+                //Phân Trang
+                $this->view->total = $tblProduct->countItem($this->_arrParam,array('task'=>'public-index'));		
 		$totalItem  = $tblProduct->countItem($this->_arrParam,array('task'=>'public-index'));
 		$paginator = new Zendvn_Paginator();
 		$this->view->panigator = $paginator->createPaginator($totalItem,$this->_paginator);
-		$tblcat = new Zendvn_Models_Menus();
+		
+                //SEO
+                $tblcat = new Zendvn_Models_Menus();
 		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
 		$this->view->Title	= str_replace("\\","",$menu['name']);
 		$title_seo	= $this->view->Title;
