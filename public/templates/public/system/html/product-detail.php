@@ -10,7 +10,7 @@
                     <div class="prod_header">
                         <div class="prod_header_main">
                             <div class="prod_header_title">
-                                <h3><?php echo $val['name'] ?></h3>
+                                <h3 style="color: red"><?php echo $val['name'] ?></h3>
                             </div>
                             <div id="prod_brand">
                                 <div class="prod_header_brand_action">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="prod_header_secondary">
                             <div class="product__header__wishlist">
-                                <span class="glyphicon glyphicon-heart-empty"></span>
+                                <span class="fa fa-thumbs-o-up"></span>
                                 <a href=""> Tôi Thích Sản Phẩm Này</a>
                             </div>
                         </div>
@@ -72,10 +72,11 @@
                                         <div class="prod_content">
                                             <div class="prod_details" itemprop="description">
                                                 <ul class="prd-attributesList ui-listBulleted">
-                                                    <li class=""><span>» Mã sản phẩm: <?php echo $val['code'] ?></span></li>
-                                                    <li class=""><span>» Nhà sản xuất: <?php echo $val['publisher'] ?></span></li>
-                                                    <li class=""><span>» Số lần xem:  <?php echo $val['hits'] ?></span></li>
-                                                    <li class=""><span>» Bảo hành: <?php echo $val['warranty'] ?></span></li>          
+                                                    <li class="fa fa-qrcode"><span> <strong style="color: red">Mã sản phẩm:</strong> <?php echo $val['code'] ?></span></li>
+                                                    <li class="fa fa-home"><span> <strong style="color: red">Nhà sản xuất: </strong><?php echo $val['publisher'] ?></span></li>
+                                                    <li class="fa fa-eye"><span> <strong style="color: red">Số lần xem: </strong> <?php echo $val['hits'] ?></span></li><br>
+                                                    
+                                                    <li class="fa fa-wrench"><span> <strong style="color: red">Bảo hành: </strong><?php echo $val['warranty'] ?></span></li>          
                                             </div>
                                         </div>
                                         <div id="product-price-box" class="prod_pricebox price_details">
@@ -101,7 +102,7 @@
                                             </div>
                                             <label class="infopromotion">Khuyến mãi đến  <strong>200.000₫</strong> (Còn hơn 1 tháng)</label>
                                             <ul class="promotion-list"><li>Tặng Bộ Gối Cao Cấp (KM Hãng) (giá trị đến 430.000₫)</li>
-                                                <li class="showbpglr"><span class="glyphicon glyphicon-gift"></span>Xem bộ ảnh sản phẩm khuyến mãi</li>
+                                                <li class="showbpglr"><span class="fa fa-eye"></span>Xem bộ ảnh sản phẩm khuyến mãi</li>
                                             </ul>
                                         </div>
                                         <div class="product-purchase-btn">
@@ -111,28 +112,28 @@
                                             <button class="buy-btn" type="button">Phương Thức Thanh Toán<br><span>(Nhanh chóng và tiện lợi)</span></button>
                                         </div>
                                         <p class="clr">
-                                            Đặt mua qua ĐT (7:30 - 22:00): <strong><i class="icon-phone"></i> 1900.555.559</strong> (gọi miễn phí) - <strong>(08)37.205.552</strong>
+                                            Đặt mua qua ĐT (7:30 - 22:00): <strong style="color: red"><i class="icon-phone"></i> 1900.555.559</strong> (gọi miễn phí) - <strong style="color: red">(08)37.205.552</strong>
                                         </p>
                                         <ul class="policysale clr">
                                             <li>
-                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                <span class="fa fa-check"></span>
                                                 <i class="icon-poltick"></i>Nhận hàng miễn phí <strong>4 tiếng</strong>
-                                                <a href="#" data-toggle="tooltip" title="4 tiếng trong phạm vi bán kính 50Km có siêu thị Wean<br>Các khu vực khác nhận hàng trong vòng 5 ngày"><span class="glyphicon glyphicon-question-sign" style="color:red"></span></a>
+                                                <a href="#" data-toggle="tooltip" title="4 tiếng trong phạm vi bán kính 50Km có siêu thị Wean<br>Các khu vực khác nhận hàng trong vòng 5 ngày"><span class="fa fa-clock-o"></span></a>
                                             </li>
                                             <li>
-                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                <span class="fa fa-check"></span>
                                                 <i class="icon-poltick"></i>Đổi trả trong vòng <strong>14 ngày</strong> với chính sách đặc biệt thuận lợi 
-                                                <a href="#" data-toggle="tooltip" title="<strong>Sản Phẩm Bị Lỗi</strong><br>»14 ngày đầu đổi trả miễn phí<br>» 15 - 28 ngày trừ 20% giá mua"><span class="glyphicon glyphicon-question-sign" style="color:red"></span></a>
+                                                <a href="#" data-toggle="tooltip" title="<strong>Sản Phẩm Bị Lỗi</strong><br>»14 ngày đầu đổi trả miễn phí<br>» 15 - 28 ngày trừ 20% giá mua"><span class="fa fa-clock-o"></span></a>
                                             </li>
                                             <li>
-                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                <span class="fa fa-check"></span>
                                                 <i class="icon-poltick"></i>Hoàn tiền hoặc trả hàng trong <strong>14 ngày</strong> nếu ở đâu bán rẻ hơn
-                                                <a href="#" data-toggle="tooltip" title="Chúng tôi sẽ trả lại sản phẩm nếu ở đâu rẻ hơn"><span class="glyphicon glyphicon-question-sign" style="color:red"></span></a>
+                                                <a href="#" data-toggle="tooltip" title="Chúng tôi sẽ trả lại sản phẩm nếu ở đâu rẻ hơn"><span class="fa fa-clock-o"></span></a>
                                             </li>
                                             <li>
-                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                <span class="fa fa-check"></span>
                                                 <i class="icon-poltick"></i>Bảo hành chính hãng <strong>12 tháng</strong> 
-                                                <a href="#" data-toggle="tooltip" title="Chúng tôi sẽ bảo hành tận nơi mà không tốn một chi phí nào"><span class="glyphicon glyphicon-question-sign" style="color:red"></span></a>
+                                                <a href="#" data-toggle="tooltip" title="Chúng tôi sẽ bảo hành tận nơi mà không tốn một chi phí nào"><span class="fa fa-clock-o"></span></a>
                                             </li>
                                         </ul>
                                     </div>
