@@ -67,7 +67,7 @@
 		case 'info' : $strBtn = $btnEditItem . ' ' . $btnBack;
 			  			break;		
 		default:	$strBtn = '';				  				  					  					  					  				
-	}										collection 'includes/group_id.php';
+	}
 ?>
 <div id="toolbar-box">
                             <div class="t"><div class="t"><div class="t"></div></div></div>

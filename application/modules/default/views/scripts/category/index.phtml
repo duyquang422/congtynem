@@ -1,30 +1,3 @@
-<script>
-    $('document').ready(function() {
-        $('.hover').hover(function() {
-            $('.info-' + $(this).data('id')).attr('style', 'display:inline');
-            $('.info-' + $(this).data('id') + ' .buy').attr('style', 'display:inline');
-            $('.info-' + $(this).data('id') + '+ .nk_discount').attr('style', 'display:none');
-        }, function() {
-            $('.info-' + $(this).data('id')).attr('style', 'display:none');
-            $('.info-' + $(this).data('id') + ' .buy').attr('style', 'display:none');
-            $('.info-' + $(this).data('id') + '+ .nk_discount').attr('style', 'display:inline');
-        });
-        $('input[name=price]').change(function(){
-            var priceFilter = $(this).val();
-            $.ajax({
-                url: 'default/category/filter-ajax',
-                type: 'POST',
-                data: {
-                    price: priceFilter
-                },
-                success: function(data,status){
-                    console.log(data + '<br>' + status );
-                    $('.home_sanpham_right').html(data);
-                }
-            });
-        });
-    });
-</script>
 <div class="bg_white home_sanpham_right">
     <div class="show2"> 
         <div class="content _tab-01 tab_link-01_01"> 
@@ -43,10 +16,17 @@
                         </a>
                     </div>
                     <div class="thongtin">
-                        <h3><a id="tenss_70095598" class="ten_sp tip" title="<?php echo $val['name'] ?>" ref=""><?php echo $val['name'] ?></a></h3>
-
-                        <p class="gia_cu"><?php echo $val['selloff'] ?></p>
-                        <p class="gia_moi"><?php echo $val['price'] ?></p>
+                        <h3><a id="tenss_70095598" class="ten_sp tip" title="<?php echo $val['name'] ?>" ref=""><?php echo $val['name'] ?></a></h3> 
+                            <?php
+                            if($val['selloff'] > 0){
+                                echo '<p class="gia_cu">'.number_format($val['price'],0).' VNĐ</p>';
+                                $percent = ($val['price'] - $val['selloff']) * 100 / $val['selloff'];
+                                echo '<div class="product-card__sale">-'. round($percent).' %</div>';
+                                echo '<p class="gia_moi">'.number_format($val['selloff'],0) .'VNĐ</p>';
+                            }
+                            else
+                                echo '<p class="gia_moi" style="margin-top: -15px">'.number_format($val['price'],0) .'VNĐ</p>';
+                            ?>
                         <div class="clear"></div>
                     </div>
                     <div class="btn-function">
@@ -63,14 +43,16 @@
                             </a>
                         </div>
                     </div>
-                    <div class="info info-<?php echo $key?>" style="display:none">
-                        <span>
-                            Mã sản phẩm: NCSVTV01<br>	
-                            Nhà sản xuất: Nệm Vạn Thành<br>	
-                            Số lần xem: 466<br>			
-                            Bảo hành: 7 năm <br>
-                        </span>
-                    </div>
+                    <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
+                        <div class="info info-<?php echo $key?>" style="display:none">
+                            <span>
+                                Mã sản phẩm: <?php echo $val['code']?><br>	
+                                Nhà sản xuất: <?php echo $val['publisher']?><br>	
+                                Số lần xem: <?php echo $val['hits']?><br>			
+                                Bảo hành: <?php echo $val['warranty']?> <br>
+                            </span>
+                        </div>
+                    </a>
                 </li>   
              <?php
              }
@@ -81,3 +63,53 @@
     </div>
     <div class="clear"></div>
 </div>
+<script>
+    $(function() {
+        $("input[name=price-order],input[name=warranty],input[name='price'],input[name='promotion[]'],input[name='product[]'],input[name='manufacturer[]']").click(function(){
+            var priceFilter = $("input[name=price-order]:checked").val();
+            var prices = $("input[name='price']:checked").val();
+            var warranty = $("input[name='warranty']:checked").val();
+            var id = '<?php echo $this->arrParam['id']?>';
+            var manufacturer = '';
+            var product = '';
+            var promotion = '';
+            // su dung vong lap de them gia tri checkbox vao chuoi....
+            $("input[name='manufacturer[]']:checked").each(function(){
+                manufacturer = manufacturer + ',' + $(this).val();
+            });
+            $("input[name='product[]']:checked").each(function(){
+                product = product + ',' + $(this).val();
+            });
+            $("input[name='promotion[]']:checked").each(function(){
+                promotion = promotion + ',' + $(this).val();
+            });
+            if(manufacturer.length>1){
+                manufacturer = manufacturer.substring(1);
+            }
+            if(product.length>1){
+                product = product.substring(1);
+            }
+            if(promotion.length>1){
+                promotion = promotion.substring(1);
+            }
+            jQuery.ajax({
+                url:"default/category/filter-ajax",
+                type:"post",
+                data:{
+                    id : id,
+                    manufacturer : manufacturer,
+                    priceOrder: priceFilter,
+                    priceFilter : prices,
+                    promotion: promotion,
+                    warranty: warranty,
+                    product : product
+                },
+                async: true,
+                cache: false,
+                success: function(data){
+                    $('.home_sanpham_right').html(data);
+                }
+            });
+        });
+    });
+</script>
