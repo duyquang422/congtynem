@@ -2931,7 +2931,7 @@ input[type="radio"], input[type="checkbox"] {
 .prod_details ul li {
     list-style: none;
     line-height: 16px;
-    font-size: 13px;
+    font-size: 16px;           /*-----------TUNG--------*/
     -webkit-column-break-inside: avoid;
     -moz-column-break-inside: avoid;
     -o-column-break-inside: avoid;
@@ -2966,6 +2966,7 @@ input[type="radio"], input[type="checkbox"] {
 #special_price_box{
     font-size: 20px;
     font-weight: bold;
+    color: red;                /*-----------TUNG-------------*/
 }
 #product_saving_percentage{
     font-weight: bold;
@@ -3056,6 +3057,7 @@ element.style {
 }
 .policysale li strong {
     font-size: 16px;
+    color: red;           /*----------TUNG---------*/
 }
 .policysale span{
     color: green
