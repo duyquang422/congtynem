@@ -1,4 +1,5 @@
-<div class="show2"> 
+<div class="bg_white home_sanpham_right">
+    <div class="show2"> 
         <div class="content _tab-01 tab_link-01_01"> 
             <ul>
              <?php
@@ -18,10 +19,17 @@
                         </a>
                     </div>
                     <div class="thongtin">
-                        <h3><a id="tenss_70095598" class="ten_sp tip" title="<?php echo $val['name'] ?>" ref=""><?php echo $val['name'] ?></a></h3>
-
-                        <p class="gia_cu"><?php echo $val['selloff'] ?></p>
-                        <p class="gia_moi"><?php echo $val['price'] ?></p>
+                        <h3><a id="tenss_70095598" class="ten_sp tip" title="<?php echo $val['name'] ?>" ref=""><?php echo $val['name'] ?></a></h3> 
+                            <?php
+                            if($val['selloff'] > 0){
+                                echo '<p class="gia_cu">'.number_format($val['price'],0).' VNĐ</p>';
+                                $percent = ($val['price'] - $val['selloff']) * 100 / $val['selloff'];
+                                echo '<div class="product-card__sale">-'. round($percent).' %</div>';
+                                echo '<p class="gia_moi">'.number_format($val['selloff'],0) .'VNĐ</p>';
+                            }
+                            else
+                                echo '<p class="gia_moi" style="margin-top: -15px">'.number_format($val['price'],0) .'VNĐ</p>';
+                            ?>
                         <div class="clear"></div>
                     </div>
                     <div class="btn-function">
@@ -38,14 +46,17 @@
                             </a>
                         </div>
                     </div>
-                    <div class="info info-<?php echo $key?>" style="display:none">
-                        <span>
-                            Mã sản phẩm: NCSVTV01<br>	
-                            Nhà sản xuất: Nệm Vạn Thành<br>	
-                            Số lần xem: 466<br>			
-                            Bảo hành: 7 năm <br>
-                        </span>
-                    </div>
+                    <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>">
+                        <div class="info info-<?php echo $key?>" style="display:none">
+                            <span>
+                                Mã sản phẩm: <?php echo $val['code']?><br>	
+                                Nhà sản xuất: <?php echo $val['publisher']?><br>	
+                                Số lần xem: <?php echo $val['hits']?><br>			
+                                Bảo hành: <?php echo $val['warranty']?> <br>
+                            </span>
+                        </div>
+                    </a>
+                    
                 </li>   
              <?php
              }
@@ -55,3 +66,4 @@
         </div>
     </div>
     <div class="clear"></div>
+</div>

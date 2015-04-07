@@ -157,7 +157,6 @@
                                     </div>
 
                                 </div>
-                                <?php include_once 'includes/product-category.php';?>
                             </div>
                     </div>
                 </div>

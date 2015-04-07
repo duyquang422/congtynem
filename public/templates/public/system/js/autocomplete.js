@@ -5,7 +5,7 @@
 				"search_keyword": "#search_keyword",
 				"results" 	: ".results",
 				"mID"		: "#mID",
-				"text"		: "Vui Lòng Nhập Từ Khóa Cần Tìm Kiếm...",
+				"text"		: "Nhập Từ Khóa Cần Tìm Kiếm...",
 				"minChar"	: 2,
 				"records" 	: 5,
 				"linkType"	: false
@@ -47,6 +47,7 @@
 				}).done(function(data){
 					setResultPosition();
 					var list = listItem(data);
+                                        results.show();
 					results.html(list);
 					
 					var selector = options.results + " ul li";
@@ -100,8 +101,8 @@
 		function setResultPosition(){
 			//console.log(txtKeyword.offset());	
 			results.css({
-					left	: txtKeyword.offset().left,
-					top	: txtKeyword.offset().top + txtKeyword.outerHeight(),
+					left	: 30,
+					top	: 35,
 					width	: txtKeyword.innerWidth(),
 					position: "absolute",
 					display : "block"

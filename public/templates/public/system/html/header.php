@@ -170,7 +170,7 @@
                                         <div class="search-input-select">			
                                             <input id="search_keyword" name="search_keyword" value="" placeholder="Nhập từ khoá tìm kiếm" type="search" class="search-txt" autocomplete="off">
                                             <input id="mID" type="hidden" value="" name="mID"/>
-                                            <div class="results"></div>
+                                            <div class="results" style='display: none'></div>
                                         </div>			
                                         <button class="search-btn" title="Tìm">Tìm kiếm</button>
                                     </form>

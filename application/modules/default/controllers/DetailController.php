@@ -83,6 +83,11 @@ class DetailController extends Zendvn_Controller_Action {
 			$this->view->Publisher	= $publisher;
 			$this->_arrParam['publisher']	= $publisher['name'];
 		}
+                
+                //data menu sidebar
+            $category = new Zendvn_Models_Menus();
+            $this->view->menu = $category->listItem($this->_arrParam); 
+                
                 //Hiển thị chi tiết sản Phẩm
 		$tblProduct = new Zendvn_Models_ProItem();
 		$this->view->Items = $tblProduct->product($this->_arrParam['id']);

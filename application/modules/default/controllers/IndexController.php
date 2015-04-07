@@ -75,6 +75,7 @@ class IndexController extends Zendvn_Controller_Action {
 	}		
 	public function indexAction() {	
 	   //$this->_forward('index','index','news');
+           //data product
 	   $tblPro		= new Zendvn_Models_Products();
 	   $this->view->Items	= $tblPro->listItem($this->_arrParam,array('task'=>'new-product'));
            $this->view->highLightsProduct = $tblPro->listItem($this->_arrParam,array('task'=>'highlights-product'));
@@ -82,11 +83,12 @@ class IndexController extends Zendvn_Controller_Action {
 	   $title 				= str_replace("\\"," ",$this->view->menu['name']);
            $image = new Zendvn_Models_slideImage();
 	   $this->view->image	= $image->listItem(1);
+           
            //data menu sidebar
            $category = new Zendvn_Models_Menus();
            $this->view->menu = $category->listItem($this->_arrParam);
            
-           
+           //seo
 	   if(!empty($this->view->menu['title_seo'])){
 	   		$title 		= str_replace("\\"," ",$this->view->menu['title_seo']);
 	   }
