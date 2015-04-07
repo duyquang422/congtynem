@@ -79,7 +79,7 @@ class CategoryController extends Zendvn_Controller_Action {
             //Hiển thị chi tiết sản Phẩm
             $tblProduct = new Zendvn_Models_ProItem();
             $this->view->Items = $tblProduct->category($this->_arrParam['id']);
-             
+            
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();
 		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
@@ -104,5 +104,5 @@ class CategoryController extends Zendvn_Controller_Action {
             $this->_helper->layout->disableLayout();
             $product = new Zendvn_Models_ProItem();
             $this->view->Items = $product->filterAjax($this->_arrParam);
-        }
+            }       
 }

@@ -10,6 +10,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
                          ->from($this->_name,array('id','name','picture','photos','code','warranty','price','selloff','publisher','summary','hits'));
             if(isset($arrParam['price']))
                 $select->order ('price ' . $arrParam['price']);
+            if(isset($arrParam['publisher']))
+                $select->where('publisher = ?',$arrParam['publisher']);
             $result = $db->fetchAll($select);
             return $result;
         }
@@ -134,8 +136,8 @@ class Zendvn_Models_ProItem extends Zend_Db_Table{
                          ->order('p.id DESC');
             $result = $db->fetchAll($select);
             return $result;
-    }
-    
+            }
+   
     public function listItem($arrParam = null, $options = null,$filterPro = null){
 		$ssFilter = $arrParam['ssFilter'];
 		$paginator = $arrParam['paginator'];
