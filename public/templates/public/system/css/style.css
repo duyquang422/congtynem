@@ -497,13 +497,30 @@ input[type="search"] {
 .sidebar__listItem a, .sidebar__listItem span, .header__navigation__item__text {
     white-space: nowrap !important;
  }
+/* --------------------------------TUNG-----------------------------*/
  .sidebarSecond {
     position: absolute;
     top: 0px;
-    right: -185px;
+    right: -395px;
     z-index: 10;
     opacity: 0.95;
     height: 532px;
+    width: 410px;
+}
+.content-sidebar{
+    width: 161px;
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+    height: 245px;
+}
+.content-sidebar1{
+    width: 149px;
+    float: left;
+    margin-right: 0px;
+    display: inline-block;
+    height: 245px;
+    margin-left: 38px;
 }
 .sidebarSecond__list {
     margin: 0;
@@ -534,6 +551,7 @@ input[type="search"] {
     font-size: 12px;
     line-height: 1.3;
     padding-bottom: .3em;
+    margin-top: 10px;             /*--------------------TUNG---------------*/
 }
 .column-3 {
     width: 600px;
