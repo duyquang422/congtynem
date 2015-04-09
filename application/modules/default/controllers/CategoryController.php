@@ -80,6 +80,11 @@ class CategoryController extends Zendvn_Controller_Action {
             $tblProduct = new Zendvn_Models_ProItem();
             $this->view->Items = $tblProduct->category($this->_arrParam['id']);
             
+            //data menu sidebar
+            $category = new Zendvn_Models_Menus();
+            $this->view->menu = $category->listItem($this->_arrParam);
+          
+           
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();
 		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
@@ -102,6 +107,7 @@ class CategoryController extends Zendvn_Controller_Action {
         }
         public function filterAjaxAction(){
             $this->_helper->layout->disableLayout();
+            //$this->_helper->viewRenderer->setNoRender();
             $product = new Zendvn_Models_ProItem();
             $this->view->Items = $product->filterAjax($this->_arrParam);
             }       

@@ -29,7 +29,7 @@
                     <div class="sidebarSecond__content sidebar__<?php echo $i ?>" style="border-left-width: 5px; border-left-style: solid; border-left-color: rgb(223, 31, 38);">
                         <!-- Sản Phẩm Mới Nhất -->
                         <div class="content-sidebar">
-                            <h5><img src="public/templates/public/system/images/sidebar-new.png">   Sản Phẩm Mới Nhất</h5>
+                            <h5><img src="public/templates/public/system/images/sidebar-new.gif">   Sản Phẩm Mới Nhất</h5>
                             <ul class="sidebarSecond__list">
                                 <?php
                                 $proItem = new Zendvn_Models_ProItem();         //lấy dữ liệu từ view
@@ -48,7 +48,7 @@
                         </div>
                         <!-- Sản Phẩm Thương Hiệu -->
                         <div class="content-sidebar1">
-                            <h5><img src="public/templates/public/system/images/sidebar-thuonghieu.png">Thương Hiệu</h5>
+                            <h5><img src="public/templates/public/system/images/sidebar-thuonghieu.gif">Thương Hiệu</h5>
                             <ul class="sidebarSecond__list">
                                 <?php
                                 $x = 0;
@@ -69,7 +69,7 @@
                         </div>
                         <!-- Sản Phẩm Đặc Biệt -->
                         <div class="content-sidebar">
-                            <h5><img src="public/templates/public/system/images/sidebar-dacbiet.png">Sản Phẩm Đặc Biệt</h5>
+                            <h5><img src="public/templates/public/system/images/sidebar-dacbiet.gif">Sản Phẩm Đặc Biệt</h5>
                             <ul class="sidebarSecond__list">
                                 <?php
                                 $tmp = 0;
@@ -90,7 +90,7 @@
                         </div>
                         <!-- Sản Phẩm Hot -->
                         <div class="content-sidebar1">
-                            <h5><img src="public/templates/public/system/images/sidebar-hot.png">Sản Phẩm Hot</h5>
+                            <h5><img src="public/templates/public/system/images/sidebar-hot.gif">Sản Phẩm Hot</h5>
                             <ul class="sidebarSecond__list">
                                 <?php
                                 foreach ($products as $key => $val) {

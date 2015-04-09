@@ -1479,7 +1479,7 @@ li.cart_item .cat-des {
 }
 .spot-content{
     display: inline-block;
-    border: 1px solid #eee;
+/*    border: 1px solid #eee;*/
     padding-left: 0px;
     width: 2550px;
 }

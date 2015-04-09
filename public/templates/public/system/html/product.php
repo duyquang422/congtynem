@@ -62,7 +62,7 @@
                         <li class="slide_item hover" data-id='<?php echo $key?>'>
                             <div class="thumb_img">
                                 <a href="">
-                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" width="176px" height="177px" style="margin-bottom:30px">
+                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" width="176px" height="177px" style="margin-bottom:30px">
                                 </a>
                             </div>
                             <div class="slide_price">
@@ -99,7 +99,7 @@
                                                                     <h3><?php echo $val['name']?></h3>
                                                                 </div>
                                                                 <div class="info-image">
-                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
+                                                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" style="width:360px">
                                                                 </div>
                                                                         <ul class="p_gallery">
                                                                         <li>
@@ -181,7 +181,7 @@
                                  ?>
                                         <li>
                                             <a target="_self" href="">
-                                                <img src="public/files/products/orignal/<?php echo $val['picture']?>" alt="laneige" border="0">
+                                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" alt="laneige" border="0">
                                             </a>
                                         </li>
                                         
@@ -384,7 +384,7 @@
                                 <div class="scj_internet_only"></div>
                                 <div class="thumb_img">
                                     <a href="">
-                                        <img class="lazy" src="public/files/products/orignal/<?php echo $val['picture']?>">        
+                                        <img class="lazy" src="public/files/products/images450x450/<?php echo $val['picture']?>">        
                                     </a>
                                 </div>
                                 <div class="cat-des">
@@ -420,7 +420,7 @@
                                                                     <h3><?php echo $val['name']?></h3>
                                                                 </div>
                                                                 <div class="info-image">
-                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
+                                                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" style="width:360px">
                                                                 </div>
                                                                         <ul class="p_gallery">
                                                                         <li>
