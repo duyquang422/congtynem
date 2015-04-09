@@ -501,31 +501,44 @@ input[type="search"] {
  .sidebarSecond {
     position: absolute;
     top: 0px;
-    right: -395px;
+    right: -455px;
     z-index: 10;
     opacity: 0.95;
     height: 532px;
-    width: 410px;
+    width: 470px;
 }
 .content-sidebar{
-    width: 161px;
+    width: 191px;
     float: left;
     margin-right: 15px;
     display: inline-block;
     height: 245px;
 }
+.content-sidebar h5{
+    border-bottom: 1px solid rgb(197, 197, 197);
+    height: 40px;
+    line-height: 40px;
+    font-weight: bolder;
+}
 .content-sidebar1{
-    width: 149px;
+    width: 179px;
     float: left;
     margin-right: 0px;
     display: inline-block;
     height: 245px;
     margin-left: 38px;
 }
+.content-sidebar1 h5{
+    border-bottom: 1px solid rgb(197, 197, 197);
+    height: 40px;
+    line-height: 40px;
+    font-weight: bolder;
+}
 .sidebarSecond__list {
     margin: 0;
     padding: 0;
     list-style: none;
+    margin-left: 15px;
 }
 .sidebarSecond__content .sidebarSecond__itemSecond a {
     color: #6e686e;
