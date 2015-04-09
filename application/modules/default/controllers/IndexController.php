@@ -81,12 +81,14 @@ class IndexController extends Zendvn_Controller_Action {
            $this->view->highLightsProduct = $tblPro->listItem($this->_arrParam,array('task'=>'highlights-product'));
 	   $this->view->nemcaosuProduct = $tblPro->listItem($this->_arrParam,array('task'=>'nemcaosu-product'));
 	   $title 				= str_replace("\\"," ",$this->view->menu['name']);
+            
            $image = new Zendvn_Models_slideImage();
 	   $this->view->image	= $image->listItem(1);
            
            //data menu sidebar
            $category = new Zendvn_Models_Menus();
            $this->view->menu = $category->listItem($this->_arrParam);
+           
            
            //seo
 	   if(!empty($this->view->menu['title_seo'])){

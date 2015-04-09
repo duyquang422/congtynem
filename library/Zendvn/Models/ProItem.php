@@ -1,5 +1,4 @@
 <?php
-
 class Zendvn_Models_ProItem extends Zend_Db_Table {
 
     protected $_name = 'products';
@@ -185,16 +184,30 @@ class Zendvn_Models_ProItem extends Zend_Db_Table {
     public function category($menu_id) {
         $db = Zend_Registry::get('connectDb');
 //            /$db = Zend_Db::factory($adapter, $config);
-        $select = $db->select()
-                ->from('products as p', '*')
-                ->joinLeft('menus as m', 'p.menu_id = m.id', 'picture as pt')
-                ->where('p.menu_id = ?', $menu_id)
-                ->orWhere('m.parent = ?', $menu_id)
-                ->order('p.id DESC');
-        $result = $db->fetchAll($select);
-        return $result;
-    }
-
+            $select = $db->select()
+                         ->from('products as p','*')
+                         ->joinLeft('menus as m','p.menu_id = m.id','picture as pt')
+                         ->where('p.menu_id = ?',$menu_id)
+                         ->orWhere('m.parent = ?',$menu_id)
+                         ->where('p.status = 1')
+                         ->order('p.id DESC');
+            $result = $db->fetchAll($select);
+            return $result;
+            }
+//            --------------------------TUNG---------------------------
+//    public function sanphammoinhat($menu_id){
+//        $db = Zend_Registry::get('connectDb');
+////      $db = Zend_Db::factory($adapter, $config);
+//        $select = $db->select()
+//                     ->from('products as p','*')
+//                     ->joinleft('menus as m','m.id = p.menu_id')
+//                     ->where('p.menu_id = ?',$menu_id)
+//                     ->orwhere('m.parent = ?',$menu_id)
+//                     ->order('p.id DESC')
+//                     ->limit(10);
+//        $result = $db->fetchAll($select);
+//        return $select;
+//    }
     public function listItem($arrParam = null, $options = null, $filterPro = null) {
         $ssFilter = $arrParam['ssFilter'];
         $paginator = $arrParam['paginator'];

@@ -6,9 +6,9 @@
             $i = 0;
             foreach ($this->menu as $key => $val) {
                 if ($val['level'] == 1) {
-                    $html .= '<li class="hover-sidebar sidebar__listItem sidebar__listItem-' . $i . ' sidebar__listItem_color-orange sidebarIcon__icon-cat_' . $i . '" data-id="'. $i .'">';
+                    $html .= '<li class="hover-sidebar sidebar__listItem sidebar__listItem-' . $i . ' sidebar__listItem_color-orange sidebarIcon__icon-cat_' . $i . '" data-id="' . $i . '">';
                     $html .= '<i class="icon__round"><i class="icon icon__sidebar"></i></i>';
-                    $html .= '<a href="'. $this->baseUrl($val['alias'].'-'. $val['id']. '.aspx') .'" data-id="' . $i . '">' . $val['name'] . '</a>';
+                    $html .= '<a href="' . $this->baseUrl($val['alias'] . '-' . $val['id'] . '.aspx') . '" data-id="' . $i . '">' . $val['name'] . '</a>';
                     $html .= '</li>';
                     $i++;
                 }
@@ -16,28 +16,97 @@
             echo $html
             ?>
         </ul>
+        <!-- -----------------------------TUNG----------------------------- -->
         <!-- Second Level Menu -->
-        <div class="sidebarSecond column-1 column" style="display: none">
+        <div class="sidebarSecond column"> /*style="display: none">*/
             <?php
             $i = 0;
             foreach ($this->menu as $key => $val) {
                 if ($val['level'] == 1) {
                     $parent = $val['id'];
                     ?>
+
                     <div class="sidebarSecond__content sidebar__<?php echo $i ?>" style="border-left-width: 5px; border-left-style: solid; border-left-color: rgb(223, 31, 38);">
-                        <ul class="sidebarSecond__list">
-                            <?php
-                            foreach ($this->menu as $key => $val) {
-                                if ($val['level'] == 2 && $val['parent'] == $parent) {
+                        <!-- Sản Phẩm Mới Nhất -->
+                        <div class="content-sidebar">
+                            <h5><img src="public/templates/public/system/images/sidebar-new.gif">   Sản Phẩm Mới Nhất</h5>
+                            <ul class="sidebarSecond__list">
+                                <?php
+                                $proItem = new Zendvn_Models_ProItem();         //lấy dữ liệu từ view
+                                $products = $proItem->category($val['id']);     //lấy dữ liệu từ view
+                                foreach ($products as $key => $val) {
                                     ?>
                                     <li class="sidebarSecond__itemSecond">
-                                        <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.aspx')?>"><?php echo $val['name'] ?></a>
+                                        <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.aspx') ?>"><?php echo $val['name'] ?></a>
                                     </li>
                                     <?php
+                                    if ($key == 4)
+                                        break;
                                 }
-                            }
-                            ?>
-                        </ul>
+                                ?>
+                            </ul>
+                        </div>
+                        <!-- Sản Phẩm Thương Hiệu -->
+                        <div class="content-sidebar1">
+                            <h5><img src="public/templates/public/system/images/sidebar-thuonghieu.gif">Thương Hiệu</h5>
+                            <ul class="sidebarSecond__list">
+                                <?php
+                                $x = 0;
+                                foreach ($this->menu as $key => $val) {
+                                    if ($val['level'] == 2 && $val['parent'] == $parent) {
+                                        ?>
+                                        <li class="sidebarSecond__itemSecond">
+                                            <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.aspx') ?>"><?php echo $val['name'] ?></a>
+                                        </li>
+                                        <?php
+                                        $x++;
+                                    }
+                                    if ($x == 7)
+                                        break;
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <!-- Sản Phẩm Đặc Biệt -->
+                        <div class="content-sidebar">
+                            <h5><img src="public/templates/public/system/images/sidebar-dacbiet.gif">Sản Phẩm Đặc Biệt</h5>
+                            <ul class="sidebarSecond__list">
+                                <?php
+                                $tmp = 0;
+                                foreach ($products as $key => $val) {
+                                    if ($val['special'] == 1) {
+                                        ?>
+                                        <li class="sidebarSecond__itemSecond">
+                                            <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.aspx') ?>"><?php echo $val['name'] ?></a>
+                                        </li>
+                                        <?php
+                                        $tmp++;
+                                    }
+                                    if ($tmp == 4)
+                                        break;
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <!-- Sản Phẩm Hot -->
+                        <div class="content-sidebar1">
+                            <h5><img src="public/templates/public/system/images/sidebar-hot.gif">Sản Phẩm Hot</h5>
+                            <ul class="sidebarSecond__list">
+                                <?php
+                                foreach ($products as $key => $val) {
+                                    if ($val['selloff'] > 0) {
+                                        ?>
+                                        <li class="sidebarSecond__itemSecond">
+                                            <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.aspx') ?>"><?php echo $val['name'] ?></a>
+                                        </li>
+                                        <?php
+                                    }
+                                    if ($key == 4)
+                                        break;
+                                }
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                     <?php
                     $i++;
