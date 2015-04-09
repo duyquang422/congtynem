@@ -62,7 +62,7 @@
                         <li class="slide_item hover" data-id='<?php echo $key?>'>
                             <div class="thumb_img">
                                 <a href="">
-                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" width="176px" height="177px" style="margin-bottom:30px">
+                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" width="176px" height="177px" style="margin-bottom:30px">
                                 </a>
                             </div>
                             <div class="slide_price">
@@ -99,7 +99,7 @@
                                                                     <h3><?php echo $val['name']?></h3>
                                                                 </div>
                                                                 <div class="info-image">
-                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
+                                                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" style="width:360px">
                                                                 </div>
                                                                         <ul class="p_gallery">
                                                                         <li>
@@ -122,7 +122,11 @@
                                                             <div class="info-product-right">
                                                                 <div class="btn-purchase">
                                                                     <div class="btn-muangay">
-                                                                        <button type="button"><i class="fa fa-shopping-cart"></i>Mua Ngay</button>
+                                                                        <a href="<?php echo $this->baseUrl('default/cart/add-item/priID/'). $val['id']?>">
+                                                                           <button type="button">                                                                
+                                                                                <i class="fa fa-shopping-cart"></i>Mua Ngay
+                                                                           </button>
+                                                                        </a>
                                                                     </div>
                                                                     <div class="btn-chitiet">
                                                                         <button type="button"><i class="fa fa-arrow-circle-o-right"></i>Xem Chi Tiết</button>
@@ -181,7 +185,7 @@
                                  ?>
                                         <li>
                                             <a target="_self" href="">
-                                                <img src="public/files/products/orignal/<?php echo $val['picture']?>" alt="laneige" border="0">
+                                                <img src="public/files/products/images450x450/<?php echo $val['picture']?>" alt="laneige" border="0">
                                             </a>
                                         </li>
                                         
@@ -384,7 +388,7 @@
                                 <div class="scj_internet_only"></div>
                                 <div class="thumb_img">
                                     <a href="">
-                                        <img class="lazy" src="public/files/products/orignal/<?php echo $val['picture']?>">        
+                                        <img class="lazy" src="public/files/products/images450x450/<?php echo $val['picture']?>">        
                                     </a>
                                 </div>
                                 <div class="cat-des">
@@ -420,7 +424,7 @@
                                                                     <h3><?php echo $val['name']?></h3>
                                                                 </div>
                                                                 <div class="info-image">
-                                                                    <img src="public/files/products/orignal/<?php echo $val['picture']?>" style="width:360px">
+                                                                    <img src="public/files/products/images450x450/<?php echo $val['picture']?>" style="width:360px">
                                                                 </div>
                                                                         <ul class="p_gallery">
                                                                         <li>

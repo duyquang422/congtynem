@@ -84,6 +84,7 @@ class Products_IndexController extends Zendvn_Controller_Action{
 		$totalItem  = $tblProduct->countItem($this->_arrParam,array('task'=>'public-index'));
 		$paginator = new Zendvn_Paginator();
 		$this->view->panigator = $paginator->createPaginator($totalItem,$this->_paginator);
+                
 		$tblcat = new Zendvn_Models_Menus();
 		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
 		$this->view->Title	= str_replace("\\","",$menu['name']);

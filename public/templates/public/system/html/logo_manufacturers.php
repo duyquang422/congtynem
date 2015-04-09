@@ -1,16 +1,5 @@
 <div class="container">
     <div class="floor floor_brands brands">
-
-        <div class="floor__title">
-            <div class="column-1 column">
-                <div class="floor__text brand-central">CÁC THƯƠNG HIỆU HÀNG ĐẦU</div>
-            </div>
-            <div class="column-4 column">
-                <div class="floor__name"></div>
-            </div>
-            <div class="column-1 column brands__featured-shops-title column_r_hide">Nhà bán hàng tiêu biểu</div>
-        </div>
-
         <div class="brands__content scontainer">
             <a href="http://www.lazada.vn/kho-di-dong-shop/" class="brands__brand-of-the-day column column-1">
                 <span class="brands__brand-of-the-day-container">

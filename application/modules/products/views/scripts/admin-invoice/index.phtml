@@ -20,9 +20,10 @@
                                             	<input type="checkbox" name="checkbox" id="checkbox" onclick="checkedAll()">
                                            	</th>
                                             <th><?php echo $this->translate('Product name')?></th>
-                                            <th width="80"><?php echo $this->translate('Quantity')?></th>
-                                            <th width="100"><?php echo $this->translate('Price')?> (VND)</th>
-                                            <th width="100"><?php echo $this->translate('Sale Off')?> (VND)</th>
+                                            <th width="60"><?php echo $this->translate('Quantity')?></th>
+                                            <th width="80"><?php echo $this->translate('size')?></th>
+                                            <th width="90"><?php echo $this->translate('Price')?> (VND)</th>
+                                            <th width="90"><?php echo $this->translate('Sale Off')?> (VND)</th>
                                             <th style='font-weight: bold; color: #d02301' width="100">Tổng tiền (VND)</th>
                                             <th><?php echo $this->translate('Full name')?></th>
                                             <th><?php echo $this->translate('Phone')?></th>
@@ -34,13 +35,16 @@
                                     </thead>
 									<?php
 										foreach($this->Items as $key => $val){
-											$product_name  	= $val['name_pro'];
+//                                                                                    echo '<pre>';
+//                                                                                    print_r($this->Items);
+//                                                                                    echo '</pre>';
+											$product_name  	= $val['name'];
 											if ($val['hits'] == 0){
 												$imgNew			= '<img src="'.$this->imgUrl. "/icon/icon-new.gif".'" />';
 												$product_name 	= '<strong style="color:#532a02">'.$product_name.'</strong> ' . $imgNew;
 											}
 											
-											$price			= $val['pro_pri'];
+											$price			= $val['price'];
 											
 											$val_sell_pro  = $val['val_sell'];
 											$sale_pro = $val['selloff'];
@@ -49,33 +53,17 @@
 											$quantity  		= $val['quantity'];
 											$to_money		= $price * $quantity;
 											
-											if(!empty($val['val_sell_pri']) || $val['val_sell_pri'] != 0){
-												$val_sell_pro 	= $val['val_sell_pri'];
-												$sale_pro 	= $val['selloff_pri'];
+											if(!empty($val['selloff']) || $val['selloff'] != 0){
+												$sale_pro 	= $val['selloff'];
 												$to_money	= $sale_pro * $quantity;
 											}
-											
-											if((!empty($val['val_sell_pro']) || $val['val_sell_pro'] != 0) && (empty($val['val_sell_pri']) || $val['val_sell_pri'] == 0)){
-                                				$val_sell_pro 	= $val['val_sell_pro'];
-                                				$sale_pro 		= $val['pro_pri'] - ($val['pro_pri'] * $val_sell_pro/100);
-                                				$to_money	= $sale_pro * $quantity;
-											}
-											
-											if((empty($val['val_sell_pro']) || $val['val_sell_pro'] == 0) && (empty($val['val_sell_pri']) || $val['val_sell_pri'] == 0)){
-												if(!empty($val['sale_off_menu'])){
-													$val_sell_pro 	= $val['sale_off_menu'] ;
-													$sale_pro 		= $val['pro_pri'] - ($val['pro_pri'] * $val_sell_pro/100);
-													$to_money	= $sale_pro * $quantity;
-												}
-											}
-											
 											$full_name  	= $val['full_name'];
 											$email  		= $val['email'];
 											$phone  		= $val['phone'];
 											$address  		= $val['address'];
 											$created  		= $val['created'];
 											$id		  		= $val['id'];
-											
+											$size = $val['size'];
 											$payment 	= $val['payment'];
 											if($payment == 0){
 												$payment = 'Thanh toán trực tiếp';
@@ -105,6 +93,7 @@
                                        <td align="center"><?php echo $cid;?></td>
                                        <td><a href='<?php echo $linkInfo?>'><?php echo $product_name;?></a></td>
                                        <td align="center"><?php echo $quantity;?></td>
+                                       <td align="center"><?php echo $size;?></td>
                                        <td align="center"><?php echo number_format($price,0);?></td>
                                        <td align="center"><?php echo number_format($sale_pro,0);?></td>
                                        <td style='font-weight: bold; color: #fa8d00' align="center"><?php echo number_format($to_money,0)?></td>

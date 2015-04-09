@@ -9,7 +9,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		$dbOption = $optionResources['db'];
 		$dbOption['params']['username'] = 'root';
 		$dbOption['params']['password'] = '';
-		$dbOption['params']['dbname'] = 'muanemtr_wean';
+		$dbOption['params']['dbname'] = 'congtynem';
 		
 		$adapter = $dbOption['adapter'];
 		$config = $dbOption['params'];

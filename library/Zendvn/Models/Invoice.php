@@ -10,9 +10,7 @@ class Zendvn_Models_Invoice extends Zend_Db_Table{
 			$row->email 		= $arrParam['email'];
 			$row->phone 		= $arrParam['phone'];
 			$row->address 		= $arrParam['address'];
-			$row->shipping 		= $arrParam['shipping'];
 			$row->comment 		= $arrParam['comment'];
-			$row->payment 		= $arrParam['payment'];
 			$row->created 		= date("Y-m-d-G-i-s");
 			$row->status 		= 0;			
 			$id = $row->save();			

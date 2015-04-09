@@ -21,24 +21,12 @@ class Zendvn_Models_InvoiceDetail extends Zend_Db_Table{
 		if($options['task'] == 'admin-list'){
 			$select = $db 	-> select()
 							-> from($this->_name . ' AS ind')
-							-> joinLeft('invoice AS in','in.id = ind.invoice_id',
+							-> joinLeft('invoice AS in','ind.invoice_id = in.id',
 										array('in.email AS email','in.phone AS phone','in.address AS address',
 											  'in.full_name AS full_name','in.created AS created','in.comment AS comment'
 											  ))
-							-> joinLeft('price_pro AS pr','pr.id = ind.product_id',array(
-																						'pr.code_pro AS code_price',
-																						'pr.size AS size',
-																						'pr.price AS pro_pri',
-																						'pr.selloff AS selloff_pri',
-																						'pr.val_sell AS val_sell_pri',
-																						))
-							-> joinLeft('products AS p','p.code = pr.code_pro',array(
-																					'p.name as name_pro',
-																					'p.val_sell as val_sell_pro',
-																					'p.menu_id as menu_id_pro',
-																					))
-							-> joinLeft('menu AS m','m.id = p.menu_id',array('m.sale_off as sale_off_menu'))
-							-> order('id DESC');
+							-> joinLeft('products AS p','ind.product_id = p.id',array('p.name as name','p.selloff as selloff'))
+							-> order('ind.id DESC');
 			$result = $db -> fetchAll($select);
 		}
 		if($options['task'] == 'admin-info'){
@@ -79,25 +67,33 @@ class Zendvn_Models_InvoiceDetail extends Zend_Db_Table{
 						$ids .=  ',' . $key;
 					}
 					$i ++;
-				}				
+				}
 				$db = $this->getAdapter();
 				$select = $db->select()
-							 ->from('price_pro as p')							
-							 ->where('p.id IN (' . $ids . ')');
+							 ->from('products',array('id','price','size'))							
+							 ->where('id IN (' . $ids . ')');
 				$result = $db->fetchAll($select);
 				$tmp = array();				
-				$cart = $arrParam['cart'];			
+				$cart = $arrParam['cart'];
 				foreach ($result as $key => $val){					
-					$val['quantity'] = $cart[$val['id']];
+					$val['cart'] = $cart[$val['id']];
 					$tmp[] = $val;
 				}				
 			}
-	
 			foreach ($tmp as $key_1 => $info){
+                            $price = $info['cart']['price'];
+                            $size = $info['cart']['size'];
 				$row =  $this->fetchNew();
 				$row->product_id 	= $info['id'];
-				$row->quantity 		= $info['quantity'];
-				$row->price 		= $info['price'];
+				$row->quantity 		= $info['cart']['number'];
+                                if(isset($info['cart']['price']))
+                                    $row->price 	=  $price;
+                                else
+                                    $row->price         =  $info['price'];
+                                if(isset($info['cart']['size']))
+                                    $row->size 		= $size;
+                                else 
+                                    $row->size 		= 'mặc định';
 				$row->invoice_id	= $arrParam['invoice_id'];
 				$row->save();
 			}

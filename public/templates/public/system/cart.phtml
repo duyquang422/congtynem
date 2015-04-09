@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Công Ty Nệm</title>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <?php echo $this->headScript() ?>
+        <style>
+            body{
+                background: #f4f4f4;
+            }
+        </style>
+    <body>
+        <div class="topmenu">
+            <div class="container_topmenu">
+                <div class="grid_topmenu" style="margin-left:0; padding-left:15px;">
+                    <div class="menuContent">
+                    </div>
+
+                    <div class="breadcrumbs-wrap">
+                        <ul class="breadcrumbs">
+                            <li class="">
+                                <a class="backhome" href="<?php echo $this->baseUrl()?>" title="Tiếp tục mua hàng">Tiếp tục mua hàng<span></span></a>
+                            </li>
+                            <li class="active">
+                                <a class="inyourcart" href="<?php echo $this->baseUrl('default/cart')?>" title="Sản phẩm trong giỏ hàng">Sản phẩm trong giỏ hàng<span></span></a>
+                            </li> 
+                            <li class="">
+                                <a class="orderedproducts" href="http://amthanh24h.com/san_pham/yzkupil/1/dat_mua.html" title="Sản phẩm đã đặt mua">Sản phẩm đã đặt mua<span></span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="hline"></div>
+        <div class="container-fluid">
+
+            <div class="wrapper">
+                <?php echo $this->layout()->content;?>
+
+                <br class="clr">
+            </div><!--wrapper end-->
+
+        </div>
+    </body>
+</html>

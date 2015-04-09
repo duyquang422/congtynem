@@ -1,0 +1,136 @@
+<div class="article">
+    <h1><a class="sstep">PHẦN<span>1</span></a>Sản phẩm trong giỏ hàng</h1>
+    <div class="icons">
+        <form name="order" action="cart/order-detail" method="post">
+            <table width="100%" class="yourCart" id="yourCart774">
+                <tbody><tr>
+                        <th>Thứ tự</th>
+                        <th>Thời gian</th>
+                        <th>Tên sản phẩm </th>
+                        <th>Mã SP</th>
+                        <th>Hình SP </th>
+                        <th>Size</th>
+                        <th>Giá bán</th>
+                        <th>Giá Khuyến Mãi</th>
+                        <th>Số lượng </th>
+                        <th>Thành tiền </th> 
+                        <th>Hủy đặt mua</th>
+                    </tr>
+                    <?php
+                    if (!empty($this->Items)) {
+                        foreach ($this->Items as $key => $val) {
+                            ?>
+                            <tr id="<?php echo $val['id'] ?>">
+                                <td><?php echo $key ?></td>
+                                <td>07/04/2015 13:52</td>
+                                <td>
+                                    <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>"><?php echo $val['name'] ?></a>
+                                </td>
+                                <td>
+                                    <?php echo $val['code'] ?>
+                                </td>
+                                <td>
+                                    <img src="<?php echo $this->baseUrl() ?>/public/files/products/images100x100/<?php echo $val['picture'] ?>">
+                                </td>
+                                <td class="size">
+                                    <?php
+                                    $tblPricePro = new Zendvn_Models_PricePro();
+                                    $priceSelectbox = $tblPricePro->priceSelectbox($val['id']);
+                                    if (empty($priceSelectbox[0][sizeProduct]))
+                                        echo 'Mặc Định';
+                                    else {
+                                        $html = '';
+                                        $html = '<select class="form-control-'.$val['id'].' form-control" data-id="' . $val['id'] . '" onchange="changesize('.$val['id'].')">';
+                                        foreach ($priceSelectbox as $val1) {
+                                            $html .= '<option value="' . $val1['price'] . '">' . $val1['sizeProduct'] . '</option>';
+                                        }
+                                        $html .= '</select>';
+                                        echo $html;
+                                    }
+                                    ?>
+                                </td>
+                                <td class="price-<?php echo $val['id'] ?>">
+                                    <?php echo $val['price'] ?>
+                                </td>
+                                <td class="selloff-<?php echo $val['id'] ?>">
+                                    <?php echo $val['selloff'] ?>
+                                </td> 
+                                <td>
+                                    <label for="select"> 
+                                        <input name="number" class="number" id="number-<?php echo $val['id'] ?>" data-id="<?php echo $val['id'] ?>" type="text" value="<?php echo $this->cart[$val['id']]['number'] ?>">
+                                    </label>
+                                </td>
+                                <?php
+                                if ($val['selloff'] > 0) {
+                                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['selloff'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                                }
+                                else
+                                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['price'] * $this->cart[$val['id']]['number'] . ' </span></td>'
+                                    ?>
+                                <td>
+                                    <a onclick="huycm(<?php echo $val['id'] ?>);" href="javascript:;" title="Hủy đặt mua">Hủy</a>
+                                </td>
+                            </tr> 
+                            <?php
+                        }
+                    }
+                    ?>
+                </tbody></table>
+            <?php
+            if (empty($this->Items))
+                echo '<div id="thongbao"><h5>Không Có Sản Phẩm Nào Trong Giỏ Hàng</h5></div>'
+                ?>
+            <table width="100%" id="pannel" class="yourCart">
+                <tbody><tr> 
+                        <td class="noborderTop"><a class="delall" href="cart/delete-all">Làm sạch giỏ hàng</a></td>
+                        <td class="noborderTop"><a class="toltall">Tổng  tiền: <br><span id="tonggia" style="color:#CD0A0A">0 VNĐ</span></a></td>
+                        <td class="noborderTop"><a data-toggle="modal" data-target=".buy" class="btn-buy">ĐẶT MUA</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal fade buy" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="img-buy">
+                            <img src="<?php echo $this->imgUrl ?>/muahang.png"/>
+                        </div>
+                        <div class="user-info">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Họ Và Tên:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="full_name" id="name" placeholder="Họ Và Tên">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Đia Chỉ Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Số Điện Thoại: </label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Số Điện Thoại">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Địa Chỉ Giao Hàng: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Dịa chỉ giao hàng">
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label">Ghi Chú</label>
+                            <textarea class="form-control" rows="3" name="comment"></textarea>
+                            <div class="form-group nlg">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button  type="submit" class="btn btn-success" id="btn-success">Hoàn Tất</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="clear:both"></div>
+</div>
