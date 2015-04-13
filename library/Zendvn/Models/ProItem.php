@@ -147,7 +147,7 @@ class Zendvn_Models_ProItem extends Zend_Db_Table {
         $db = Zend_Registry::get('connectDb');
         //$db = Zend_Db::factory($adapter, $config);
         $keywords = '%' . $arrParam['search_keyword'] . '%';
-        $select = $db->select()->from($this->_name, array('id', 'name', 'picture'))
+        $select = $db->select()->from($this->_name, array('id', 'name', 'picture','alias'))
                 ->where('status = ?', 1)
                 ->where('name LIKE ?', $keywords, STRING)
                 ->order('id DESC')

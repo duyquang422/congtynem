@@ -115,4 +115,48 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#cart_expand').click(function() {
+        $('body').append("<div class='cart-overlay'></div>");
+        $('.cart-overlay').css({
+            'background': '#222222',
+            'opacity': '0.5',
+            'width': $(document).width(),
+            'height': $(document).height(),
+            'z-index': 99,
+            'position': 'absolute',
+            'top': '0px',
+            'left': '0px'
+        });
+        $('#cart_expand .box-link-svg').addClass('after-click-cart');
+        $('#cart_mini').show(500);
+    });
+    $('.close').click(function() {
+        $('.cart-overlay').remove();
+        $('#cart_mini').hide(500);
+        $('#cart_expand .box-link-svg').removeClass('after-click-cart');
+    });
 });
+
+    function replaceAll(str, src, dst) {
+        while (str.indexOf(src) !== -1) {
+            str = str.replace(src, dst);
+        }
+        return str;
+    }
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+        var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+        var d = dec_point == undefined ? "," : dec_point;
+        var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+        var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    }
+    
+    var focus = 'first';
+    function changePhoto(id,i){
+        $('.product-'+ id + ' ul li').attr('style','display:none');
+        $('.product-'+ id + ' .photo-'+ focus +'-lg').hide();
+        $('.product-'+ id + ' .photo-'+ i +'-lg').show();
+        focus = i;
+    }

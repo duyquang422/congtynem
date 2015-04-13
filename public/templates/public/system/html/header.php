@@ -41,16 +41,25 @@
                             </div>
                         </div>
                         <?php
-                            if($this->userInfo['member']['email']!=null){
-                                echo '<a class="userInfo">Xin Chào:'. $this->userInfo['member']['email']. '</a>';
-                                echo '<a href="'. $this->baseUrl(). '/default/public/logout" class="userInfo">Thoát</a>';
-                            }
-                            else{
+                        $session = new Zend_Session_Namespace('facebookInfoUser');
+                        $facebookUserInfo = $session->getIterator();
+                        $name = $facebookUserInfo['facebookInfoUser']->name;
+                        if (!empty($name)) {
+                            echo '<a class="userInfo">Xin Chào: ' . $name . '</a>';
+                            echo '<a href="' . $this->baseUrl() . '/default/index/logout-facebook" class="userInfo">Thoát</a>';
+                        } else if ($this->userInfo['member']['email'] != null) {
+                            echo '<a class="userInfo">Xin Chào:' . $this->userInfo['member']['email'] . '</a>';
+                            if ($this->userInfo['acl']['role'] == 'Supper admin')
+                                echo '<a class="userInfo" href="default/admin">Trang Quản Trị</a>';
+                            echo '<a href="' . $this->baseUrl() . '/default/public/logout" class="userInfo">Thoát</a>';
+                        }
+                        else {
+                            ?>
+                            <button type="button" class="btn btn-primary btn-lg login" data-toggle="modal" data-target="#myModal">
+                                Đăng Nhập | Đăng Ký
+                            </button>
+                        <?php }
                         ?>
-                        <button type="button" class="btn btn-primary btn-lg login" data-toggle="modal" data-target="#myModal">
-                            Đăng Nhập | Đăng Ký
-                        </button>
-                            <?php }?>
                         </ul>
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,79 +80,103 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane active" id="login">
-                                                    <form class="form-horizontal" id="form-login">
-                                                        <div class="form-group">
-                                                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="email" name="email" class="form-control" id="email-login" placeholder="Email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" name="password" class="form-control" id="password-login" placeholder="Password">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-offset-2 col-sm-10">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox"> Nhớ Tôi
-                                                                    </label>
+                                                    <div class="img-buy">
+                                                        <form class="form-horizontal" id="form-login">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="email-login">
+                                                                        <input type="email" name="email" class="form-control email-login" placeholder="Email">
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-offset-2 col-sm-10">
-                                                                <button type="button" class="btn btn-success" id="btn-login">Đăng Nhập</button>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="password-login">
+                                                                        <input type="password" name="password" class="form-control password-login" placeholder="Password">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <div class="remember">
+                                                                        <label>
+                                                                            <input type="checkbox"> Nhớ Tôi
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="btn-register">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <button type="button" class="btn btn-success" id="btn-login" onClick="login()">Đăng Nhập</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="facebook-login">
+                                                        <div class="title"><strong>Đăng Nhập Bằng Facebook</strong></div>
+                                                        <a href="https://www.facebook.com/dialog/oauth?client_id=237595173077700&redirect_uri=http://congtynem.com/vn/default/index/info-user-facebook">
+                                                            <img src="<?php echo $this->imgUrl . '/facebookicon_login.png' ?>"/>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane" id="singIn">
-                                                    <form class="form-horizontal">
-                                                        <div class="form-group">
-                                                            <label for="inputEmail3" class="col-sm-2 control-label">Họ Và Tên:</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" name="last_name" id="name" placeholder="Họ Và Tên">
+                                                    <div class="img-buy">
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="name">
+                                                                        <input type="text" class="form-control user name" name="last_name" placeholder="Họ Và Tên">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="email" class="form-control" name="email" id="email" placeholder="Đia Chỉ Email">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="email">
+                                                                        <input type="email" class="form-control email" name="email" placeholder="Đia Chỉ Email">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputEmail3" class="col-sm-2 control-label">Số Điện Thoại: </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="email" class="form-control" name="phone" id="phone" placeholder="Số Điện Thoại">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="phone">
+                                                                        <input type="number" class="form-control user-phone" name="phone" placeholder="Số Điện Thoại">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputPassword3" class="col-sm-2 control-label">Mật Khẩu:</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" class="form-control" name="password" id="password" placeholder="Mật Khẩu">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="password">
+                                                                        <input type="password" class="form-control password" name="password" placeholder="Mật Khẩu">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputPassword3" class="col-sm-2 control-label">Nhập Lại Mật Khẩu:</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" class="form-control" name="re-password" id="re-password" placeholder="Mật Khẩu">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="re-password">
+                                                                        <input type="password" class="form-control re-password" name="re-password" placeholder="Mật Khẩu">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputPassword3" class="col-sm-2 control-label">Ngày Sinh:</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Ngày Sinh">
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <div class="ang" id="birthday">
+                                                                        <input type="date" class="form-control" name="birthday" placeholder="Ngày Sinh">
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-offset-2 col-sm-10">
-                                                                <button  type="button" class="btn btn-success" id="btn-register">Đăng Ký</button>
+                                                            <div class="btn-register">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <button  type="button" class="btn btn-success" id="btn-register" onClick="signIn()">Đăng Ký</button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
+                                                    </div>
+                                                    <div class="facebook-login">
+                                                        <div class="title"><strong>Đăng Nhập Bằng Facebook</strong></div>
+                                                        <a href="https://www.facebook.com/dialog/oauth?client_id=237595173077700&redirect_uri=http://congtynem.com/vn/default/index/info-user-facebook">
+                                                            <img src="<?php echo $this->imgUrl . '/facebookicon_login.png' ?>"/>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,15 +192,15 @@
                 <div class="header-wrapper">
                     <div class="header-content util-clearfix">
                         <div class="logo">
-                            <a href="https://www.congtynem.com" itemprop="url" title="CONGTYNEM.COM - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường">
-                                    <img itemprop="logo" src="<?php echo $this->imgUrl?>/logo.png" alt="CONGTYNEM.COM - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường" title="SENDO.VN - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường" width="207" height="85">
-                                </a>
+                            <a href="https://www.congtynem.com/vn" itemprop="url" title="CONGTYNEM.COM - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường">
+                                <img itemprop="logo" src="<?php echo $this->imgUrl ?>/logo.png" alt="CONGTYNEM.COM - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường" title="SENDO.VN - Mua sắm trực tuyến uy tín số 1 trong giao dịch, giá tốt nhất thị trường" width="207" height="85">
+                            </a>
                         </div>
                         <div class="block-search-wrap">
                             <div class="block-search">
                                 <div class="search-bar">
                                     <form method="GET" onsubmit="" action=" class="ng-pristine ng-valid">
-                                        <div class="search-input-select">			
+                                          <div class="search-input-select">			
                                             <input id="search_keyword" name="search_keyword" value="" placeholder="Nhập từ khoá tìm kiếm" type="search" class="search-txt" autocomplete="off">
                                             <input id="mID" type="hidden" value="" name="mID"/>
                                             <div class="results" style='display: none'></div>
@@ -177,27 +210,83 @@
                                 </div>
                                 <div class="tags-search">
                                     <span>Top tìm kiếm:</span>
-                                    <strong><a class="" href="" title="giày cao gót">nệm cao su</a></strong>
-                                    <strong><a class="" href="" title="quần legging">nệm nhân tạo</a></strong>
-                                    <strong><a class="" href="" title="đầm maxi">nệm giá rẻ</a></strong>
-                                    <strong><a class="l-end" href="" title="quần yếm">nệm lò xo</a></strong>
-                                    <strong><a class="end" href="" title="đầm suông">nệm vạn thành</a></strong>
+                                    <strong><a class="" href="" title="nệm cao su">Nệm cao su</a></strong>
+                                    <strong><a class="" href="" title="nệm nhân tạo">Nệm nhân tạo</a></strong>
+                                    <strong><a class="" href="" title="nệm giá rẻ">Nệm giá rẻ</a></strong>
+                                    <strong><a class="l-end" href="" title="nệm lò xo">Nệm lò xo</a></strong>
+                                    <strong><a class="end" href="" title="nệm vạn thành">Nệm vạn thành</a></strong>
                                     <a class="vm" rel="dofollow" href="" title="Xem thêm">Xem thêm »</a>
                                 </div>
                             </div>
                         </div>
                         <div class="box-info">
                             <div class="box-link util-clearfix login-roi" id="Notify-controller">
-                                <div class="box-l-c cart">            
-                                    <a class="box-link-svg" rel="nofollow" href="javascript:void(0);" title="Giỏ hàng"> 
+                                <div class="box-l-c cart" id="cart_expand">            
+                                    <a class="box-link-svg" title="Giỏ hàng"> 
                                         <i class="icon-cart"></i>             
                                         <span class="tl">Giỏ hàng </span> 
-                                        <b class="cart_qty">0</b>
+                                        <?php
+                                            $productNumber = count($this->cartProduct);
+                                                if($productNumber > 0){
+                                                    echo '<b class="cart_qty">' .$productNumber . '</b>';
+                                                }
+                                            ?>
+                                        
                                     </a>
+                                </div>
+                                <div class="cart-mini" id="cart_mini" style="display: none;">	
+                                    <h3 class="title">Giỏ hàng mini</h3>
+                                    <span class="close" title="Đóng lại"></span>
+                                    <div id="cart_loader">
+                                        <ul>
+                                            <?php
+                                              $sum = 0;
+                                            if(count($this->cartProduct)>0){
+                                              foreach ($this->cartProduct as $val){
+                                            ?>
+                                            <li id="gio_hang_sp_<?php echo $val['id']?>">
+                                                <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>" target="_blank" title="<?php echo $val['name']?>"><img src="public/files/products/images450x450/<?php echo $val['picture']?>" class="cart-img"></a>
+                                                <h3><a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>" title="<?php echo $val['name']?>" target="_blank"><?php echo $val['name']?></a></h3>
+                                                <h2>
+                                                    <?php 
+                                                    if($val['selloff'] > 0){
+                                                        echo  number_format($val['selloff'],0) . '<u>đ</u>';
+                                                        $sum = ($sum + $val['selloff']) * $this->cart[$val['id']]['number'];
+                                                    }
+                                                    else {
+                                                        if(!isset($this->cart[$val['id']]['price'])){
+                                                            echo  number_format($val['price'],0) . '<u>đ</u>'; 
+                                                            $sum = ($sum + $val['price']) * $this->cart[$val['id']]['number'];
+                                                        }
+                                                        else{
+                                                            echo  number_format($this->cart[$val['id']]['price'],0) . '<u>đ</u>'; 
+                                                            $sum = ($sum + $this->cart[$val['id']]['price']) * $this->cart[$val['id']]['number'];
+                                                        }
+                                                    }
+                                                    echo '</h2>';
+                                                    if(!isset($this->cart[$val['id']]['size']))
+                                                        echo ' <p>(Size : Mặc định)</p>';
+                                                    else
+                                                        echo ' <p>(Size : '.$this->cart[$val['id']]['size'].')</p>';
+                                                    ?>
+                                                <a href="javascript:;" class="cart-less">x</a><span class="sluong_<?php echo $val['id']?>"><?php echo $this->cart[$val['id']]['number']?></span>
+                                                <a href="javascript:;" class="cart-remove" onclick="huycm(<?php echo $val['id']?>)" title="Xóa sản phẩm">Xóa</a>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <?php
+                                              }
+                                            }
+                                            else
+                                                echo '<span style="color:green">Không có sản phẩm nào trong giỏ hàng</span>';
+                                            ?>
+                                        </ul>
+                                        <p class="total">Tổng đơn hàng : <b id="gio_hang_tong"><?php echo number_format($sum,0)?></b></p>
+                                    </div>
+                                    <a href="default/cart" class="cart-enter">Vào giỏ hàng</a>
                                 </div>
                                 <div id="box_link_notify" class="box-l-c mess"> 
                                     <a class="box-link-svg" href="javascript:void(0);" rel="nofollow" title="Thông báo" data-item="0">
-                                       <i class="icon-notify"></i>
+                                        <i class="icon-notify"></i>
                                         <span class="tl">Thông báo</span>
                                     </a>
                                 </div>
@@ -225,68 +314,3 @@
         </nav>
     </div>   
 </div><!-- /.container-fluid -->
-<script>
-$('document').ready(function() {
-    $('#btn-login').click(function(e) {
-        var email = $('#email-login').val();
-        var password = $('#password-login').val();
-        $.ajax({
-            url: "<?php echo $this->baseUrl()?>" + "/default/public/login?email=" + email + "&password=" + password,
-            type: "GET",
-            dataType: "json",
-            success: function(data, status) {
-                $('#email-login + span').remove();
-                $('#password-login + span').remove();
-                if (typeof(data.email) != "undefined") {
-                    $('#email-login').after('<span style="color:red">(*) ' + data.email + '<span>');
-                }
-                if (typeof(data.password) != "undefined") {
-                    $('#password-login').after('<span style="color:red">(*) ' + data.password + '<span>');
-                }
-                if (typeof(data.loginError) != "undefined")
-                    $('#password-login').after('<span style="color:red">(*) ' + data.loginError + '<span>');
-                if (data.success == 1)
-                    window.location = '<?php echo $this->baseUrl()?>' + '/default/admin/index/';
-            }
-        });
-    });
-    $('#btn-register').click(function(e) {
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var phone = $('#phone').val();
-        var password = $('#password').val();
-        var rePassword = $('#re-password').val();
-        $.ajax({
-            url: "<?php echo $this->baseUrl()?>" + "/default/public/register?last_name="+ name +" &phone=" + phone + "&email=" + email + "&password=" + password + "&re-password=" + rePassword,
-            type: "GET",
-            dataType: "json",
-            success: function(data, status) {
-                console.log(data);
-                $('#name + span').remove();
-                $('#email + span').remove();
-                $('#phone + span').remove();
-                $('#password + span').remove();
-                $('#re-password + span').remove();
-                if (typeof(data.email) != "undefined") {
-                    $('#email').after('<span style="color:red">(*) ' + data.email + '</span>');
-                }
-                if (typeof(data.password) != "undefined") {
-                    $('#password').after('<span style="color:red">(*) ' + data.password + '</span>');
-                }
-                if (typeof(data.last_name) != "undefined"){
-                    $('#name').after('<span style="color:red">(*) ' + data.last_name + '</span>');
-                }
-                if (typeof(data.re_password) != "undefined"){
-                    $('#re-password').after('<span style="color:red">(*) ' + data.re_password + '</span>');
-                }
-                if (typeof(data.phone) != "undefined"){
-                    $('#phone').after('<span style="color:red">(*) ' + data.phone + '</span>');
-                }
-                if(data.success==1)
-                    $('#birthday').after('<span style="color:green">(*) Bạn Đã Đăng Ký Thành Công. Hãy Đăng Nhập Để Được Nhận Nhiều Ưu Đãi!<span>');
-                //window.location = '<?php //echo $this->baseUrl()?>' + '/default/admin/index/';
-            }
-        });
-    });
-});
-</script>

@@ -81,8 +81,17 @@ class IndexController extends Zendvn_Controller_Action {
            $this->view->highLightsProduct = $tblPro->listItem($this->_arrParam,array('task'=>'highlights-product'));
 	   $this->view->nemcaosuProduct = $tblPro->listItem($this->_arrParam,array('task'=>'nemcaosu-product'));
 	   $title 				= str_replace("\\"," ",$this->view->menu['name']);
-            
-           $image = new Zendvn_Models_slideImage();
+           
+           //get product in cart
+           $yourCart = new Zend_Session_Namespace('cart');
+           $ssInfo = $yourCart->getIterator();
+           $tblPricePro = new Zendvn_Models_PricePro();
+            $this->_arrParam['cart'] = $ssInfo['cart'];
+            $this->view->cart = $ssInfo['cart'];
+            $this->view->cartProduct = $tblPricePro->listItem($this->_arrParam, array('task' => 'view-cart'));
+           
+           //get Images Slide
+           $image = new Zendvn_Models_SlideImage();
 	   $this->view->image	= $image->listItem(1);
            
            //data menu sidebar
@@ -110,7 +119,7 @@ class IndexController extends Zendvn_Controller_Action {
 				$this->view->errors = $validator->getMessageError();
 				$this->view->Item	= $validator->getData();
 			}else{
-				$tblGroup = new Zendvn_Models_slideImage();
+				$tblGroup = new Zendvn_Models_SlideImage();
 				$arrParam = $validator->getData(array('upload'=>true));
 				$tblGroup->saveItem($arrParam,1,array('task'=>'admin-edit'));
 				$this->_redirect();
@@ -279,5 +288,43 @@ class IndexController extends Zendvn_Controller_Action {
 				//$this->_redirect();
 			}
 		}
+    }
+    public function infoUserFacebookAction(){
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        $app_id = "237595173077700";
+        $app_secret = "ed61d15b704c6e4479e8b4e09a22756e";
+        $redirect_uri = urlencode("http://congtynem.com/vn/default/index/info-user-facebook"); 
+        
+        $code = $_GET['code'];
+        $facebook_access_token_uri = "https://graph.facebook.com/oauth/access_token?client_id=$app_id&redirect_uri=$redirect_uri&client_secret=$app_secret&code=$code";    
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL, $facebook_access_token_uri);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);    
+
+        $response = curl_exec($ch); 
+        curl_close($ch);
+        
+        $access_token = str_replace('access_token=', '', explode("&", $response));
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL, "https://graph.facebook.com/me?access_token=$access_token[0]");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);    
+
+        $response = curl_exec($ch); 
+        curl_close($ch);
+
+        $user = json_decode($response);
+        $session = new Zend_Session_Namespace('facebookInfoUser');
+        $session->facebookInfoUser = $user;
+        $this->_redirect();
+    }
+    public function logoutFacebookAction(){
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        $session = new Zend_Session_Namespace('facebookInfoUser');
+        unset($session->facebookInfoUser);
+        $this->_redirect();
     }
 }

@@ -146,7 +146,6 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 			$max_file_size = 1024*10000; //100 kb
 			
 			$path = FILES_PATH . '/photos/'; // Upload directory
-			$count = 0;
 			foreach ($_FILES['photos']['name'] as $f => $name) { 
 					$photos[] = $name; 
 				    if ($_FILES['photos']['error'][$f] == 4) {
@@ -162,9 +161,15 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 							continue; // Skip invalid file formats
 						}
 				        else{ // No error found! Move uploaded files 
-				            if(move_uploaded_file($_FILES["photos"]["tmp_name"][$f], $path.$name)) {
-				            	$count++; // Number of successfully uploaded files
-				            }
+                                           $resize = new Zendvn_File_ResizeImages();
+				           $filename = $_FILES["photos"]["tmp_name"][$f];
+				           $filename = move_uploaded_file($filename, $path.'orignal/'.$name);
+                                           $resize->load($path.'orignal/'.$name);
+                                           $resize->resize(85,65);
+                                           $resize->save($path.'images50x50/'.$name);
+                                           $resize->load($path.'orignal/'.$name);
+                                           $resize->resize(440,350);
+                                           $resize->save($path.'images350x350/'.$name);
 				        }
 				    }
 			}
@@ -176,7 +181,7 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 				$arrParam = $validator->getData(array('upload'=>true));
 				$arrParam['photos'] = $photos;
 				$tblProduct	->saveItem($arrParam,array('task'=>'admin-add'));
-				$this->_redirect($this->_actionMain . $lang);
+				//$this->_redirect($this->_actionMain . $lang);
 			}
 		}
 		$this->render('edit');
@@ -208,7 +213,6 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 			$max_file_size = 1024*10000; //100 kb
 			
 			$path = FILES_PATH . '/photos/'; // Upload directory
-			$count = 0;
 			foreach ($_FILES['photos']['name'] as $f => $name) { 
 					$photos[] = $name; 
 				    if ($_FILES['photos']['error'][$f] == 4) {
@@ -224,9 +228,15 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 							continue; // Skip invalid file formats
 						}
 				        else{ // No error found! Move uploaded files 
-				            if(move_uploaded_file($_FILES["photos"]["tmp_name"][$f], $path.$name)) {
-				            	$count++; // Number of successfully uploaded files
-				            }
+                                           $resize = new Zendvn_File_ResizeImages();
+				           $filename = $_FILES["photos"]["tmp_name"][$f];
+				           $filename = move_uploaded_file($filename, $path.'orignal/'.$name);
+                                           $resize->load($path.'orignal/'.$name);
+                                           $resize->resize(85,65);
+                                           $resize->save($path.'images50x50/'.$name);
+                                           $resize->load($path.'orignal/'.$name);
+                                           $resize->resize(440,350);
+                                           $resize->save($path.'images350x350/'.$name);
 				        }
 				    }
 			}

@@ -111,7 +111,7 @@ class Products_Form_ValidateProduct{
 			$thumb = Zendvn_File_Images::create($upload_dir . '/orignal/' . $fileName);
 			$thumb	->resize(61,106)	->save($upload_dir . '/images100x100/' . $fileName);			
 			$thumb = Zendvn_File_Images::create($upload_dir . '/orignal/' . $fileName);
-			$thumb	->resize(450,450)	->save($upload_dir . '/images450x450/' . $fileName);
+			$thumb	->resize(440,350)	->save($upload_dir . '/images450x450/' . $fileName);
 						
 			if($this->_arrData['action']=='edit')
 			{	

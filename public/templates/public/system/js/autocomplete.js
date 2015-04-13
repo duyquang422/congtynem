@@ -72,20 +72,20 @@
 		
 		function listItem(data){
 			//console.log("list Item");
-			//console.log(data.length);
+			console.log(data);
 			var str = '';
 			str = "<ul>";
-			if(data != null){	
+			if(data != null){
 				$.each(data,function(i,val){
 					var pTitle 	= val.name;
-					var pLink 	= "product.php?id=" + val.id;
+					var pLink 	= val.alias + '-' + val.id + '.html';
 					var pID		= val.id;
 					
 					if(options.linkType == false){
 						str += '<li item-id="' + pID + '" title="' + pTitle + '"><img src="public/files/products/images100x100/'+val.picture+'" width="30" height="30">'+pTitle+'</li>';
 					}else{
 						str += '<li title="' + pTitle + '">' 
-								+ '<a href="' + pLink + '">' +  pTitle + '</a>' 
+								+ '<a href="' + pLink + '">' +'<img src="public/files/products/images100x100/'+val.picture+'" width="30" height="30">' +  pTitle + '</a>' 
 								+ '</li>';
 					}
 				});
@@ -121,7 +121,7 @@
 
 $(document).ready(function(e) {
 	var obj = {
-			"linkType" : false
+			"linkType" : true
 		};
     $.zAutocomplete(obj);
 });

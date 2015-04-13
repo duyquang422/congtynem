@@ -27,7 +27,7 @@
             <div class="brands__featured-shops column column-1 column_r_hide">
                 <a href="#" class="brands__featured-shops-link">
                     <span class="brands__featured-shops-link-logo">
-                        <img src="<?php echo $this->imgUrl?>/SCJ.jpg" alt="" class="brands__featured-shops-link-logo-img">
+                        <img src="<?php echo $this->imgUrl?>/hethongsieuthi.gif" alt="" class="brands__featured-shops-link-logo-img">
                     </span>
                 </a>
             </div>

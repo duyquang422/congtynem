@@ -31,7 +31,7 @@
         <div id="header-box">
             <div id="module-status">
                 <span class="preview">
-                    <a target="_blank" href="http://congtynem.com/vi"><?php echo $this->translate('Site')?></a>
+                    <a target="_blank" href="http://congtynem.com/vn"><?php echo $this->translate('Site')?></a>
                 </span>
                 <span class="logout">
                     <a href="<?php echo $this->baseUrl('/default/public/logout');?>">Logout</a>

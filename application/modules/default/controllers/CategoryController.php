@@ -87,19 +87,20 @@ class CategoryController extends Zendvn_Controller_Action {
            
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();
-		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
+		$menu	= $tblcat->getItem($this->_arrParam,array('task'=>'admin-info'));
 		$this->view->Title	= str_replace("\\","",$menu['name']);
 		$title_seo	= $this->view->Title;
 		if(!empty($menu['title_seo'])) $title_seo = str_replace("\\","",$menu['title_seo']);
 		$this->view->headTitle($title_seo,true);
 		if (!empty($this->_arrParam['publisher'])){
 			$pub_name				= $publisher['name'];
-			//$this->view->Publisher	= str_replace("\\","",$pub_name);
-			$this->view->Title		= str_replace("\\","",$menu['name']);
-			$title_seo				= $this->view->Title;
 			if(!empty($menu['title_seo'])) $title_seo = str_replace("\\","",$menu['title_seo']);
 			$this->view->headTitle($pub_name . ' | ' .$title_seo,true);
 		}
+                else {
+                    $this->view->headTitle($title_seo,true);
+                }
+                echo $title_seo;
 		$description = str_replace("\\","",$menu['description_html']);
 		$keywords	 = str_replace("\\","",$menu['keywords_html']);
 		if(!empty($description))$this->view->headMeta(true)->setName('description',$description);

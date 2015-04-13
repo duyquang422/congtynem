@@ -75,6 +75,7 @@ class DetailController extends Zendvn_Controller_Action {
 	}		
         public function indexAction() {
             $this->_helper->viewRenderer->setNoRender();
+            //$this->_helper->layout->disableLayout();
             $this->_helper->layout->setLayout('detail');
             //lấy thông tin người đăng bài
             if (!empty($this->_arrParam['publisher'])){
@@ -97,22 +98,24 @@ class DetailController extends Zendvn_Controller_Action {
 		$this->view->spTuongTu = $tblProduct->sanphamtuongtu($menuId);
                 
                 //SEO
-                $tblcat = new Zendvn_Models_Menus();
-		$menu	= $tblcat->listItem($this->_arrParam,array('task'=>'products'));
+                $tblcat = new Zendvn_Models_Products();
+		$menu	= $tblcat->getItem($this->_arrParam,array('task'=>'admin-edit'));
 		$this->view->Title	= str_replace("\\","",$menu['name']);
 		$title_seo	= $this->view->Title;
 		if(!empty($menu['title_seo'])) $title_seo = str_replace("\\","",$menu['title_seo']);
 		$this->view->headTitle($title_seo,true);
-		if (!empty($this->_arrParam['publisher'])){
-			$pub_name				= $publisher['name'];
-			//$this->view->Publisher	= str_replace("\\","",$pub_name);
-			$this->view->Title		= str_replace("\\","",$menu['name']);
-			$title_seo				= $this->view->Title;
-			if(!empty($menu['title_seo'])) $title_seo = str_replace("\\","",$menu['title_seo']);
+		if (!empty($menu['publisher'])){
+			$pub_name				= $menu['publisher'];
 			$this->view->headTitle($pub_name . ' | ' .$title_seo,true);
 		}
+                else
+                    $this->view->headTitle($title_seo,true);
+                echo '<pre>';
+                print_r($menu);
+                echo '</pre>';
 		$description = str_replace("\\","",$menu['description_html']);
 		$keywords	 = str_replace("\\","",$menu['keywords_html']);
+                echo $description . '<br>' . $keywords;
 		if(!empty($description))$this->view->headMeta(true)->setName('description',$description);
 		if(!empty($keywords))$this->view->headMeta(true)->setName('keywords',$keywords);
         }

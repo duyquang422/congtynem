@@ -212,7 +212,9 @@ class Zendvn_Models_Products extends Zend_Db_Table{
 		if($options['task'] == 'delete-photo'){
 			$upload_dir = FILES_PATH . '/photos';
 			$upload = new Zendvn_File_Upload();
-			$upload->removeFile($upload_dir . '/' . $arrParam['name_photo']);
+			$upload->removeFile($upload_dir . '/orignal/' . $arrParam['name_photo']);
+                        $upload->removeFile($upload_dir . '/images50x50/' . $arrParam['name_photo']);
+                        $upload->removeFile($upload_dir . '/images350x350/' . $arrParam['name_photo']);
 		}
 		if($options['task'] == 'admin-delete'){
 			$where = ' id = ' . $arrParam['id'];
