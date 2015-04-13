@@ -74,6 +74,13 @@ class IndexController extends Zendvn_Controller_Action {
 		$this->loadTemplate($template_path,'template.ini','template');
 	}		
 	public function indexAction() {	
+            
+            // Tin Tuc 
+            $Models = new Zendvn_Models_NewsItem();
+            $Tintuc = $Models->tintucItem();
+            $this->view->tintuc = $Models->tintucItem();
+            
+            
 	   //$this->_forward('index','index','news');
            //data product
 	   $tblPro		= new Zendvn_Models_Products();

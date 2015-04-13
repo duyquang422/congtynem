@@ -179,4 +179,11 @@ class Zendvn_Models_NewsItem extends Zend_Db_Table{
 		$row->save();
 	
 	}
+        public function tintucItem(){
+            $db	= $this->getAdapter();
+            $select = $this->select()
+                           ->from('news_item');
+            $result = $this->fetchAll($select);
+            return $result;
+        }
 }

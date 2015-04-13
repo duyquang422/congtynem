@@ -174,15 +174,31 @@
 
         <div class="popup__link" data-popup="usp">
             <div class="right__block">
+                
                 <div class="icon-news"><img src="<?php echo $this->imgUrl ?>/NEWS.png" width="30px"></div>
                 <div class="right__block__title">Tin Tức</div>
                 <div class="right__block__wrapper">
-                    <div class="right__block__item"><a href="#">» Nệm Mousse ép là gì ? -Cấu tạo của Mousse ép</a><img src="<?php echo $this->imgUrl ?>/news.gif"></div>
-                    <div class="right__block__item"><a>» Nên chọn mua nệm loại nào phụ hợp cho bạn</a></div>
-                    <div class="right__block__item right__block__item-small"><a>» Nhân Viên Tư Vấn Bán Hàng Online</a><img src="<?php echo $this->imgUrl ?>/news.gif"></div>
-                    <div class="right__block__item right__block__item-small"><a>» Nệm WEAN tưng bừng khai trương showroom mới</a><img src="<?php echo $this->imgUrl ?>/news.gif"></div>
-                    <div class="right__block__item right__block__item-small"><a>» Hướng dẫn cách giặt và sử dụng ruột gối</a></div>
-                    <span class="usp__link pseudo" style="float:right; margin-top: -15px;"><a href="#">Xem thêm</a></span>
+                    <div class="right__block__item">
+                        <?php 
+                        $i = 0;
+                        foreach ($this->tintuc as $key => $value){
+                        ?>
+                        <ul class="ULtintuc">
+                            <li class="tintucItems">
+                                <a href="#"><img class="pic" src="public/files/news/images100x100/<?php echo $value['picture'] ?>" > <?php echo $value['name'] ?>
+                                    <img src="<?php echo $this->imgUrl ?>/news.gif" >
+                            </li>
+                        </ul>
+                         <?php 
+                         $i++;
+                        
+                        if($i == 4){
+                            break;
+                            }
+                        }
+                         ?>
+                             
+                    </div>
                 </div>
             </div>
         </div>

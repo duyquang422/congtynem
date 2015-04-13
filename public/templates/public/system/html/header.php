@@ -223,8 +223,8 @@
                             <div class="box-link util-clearfix login-roi" id="Notify-controller">
                                 <div class="box-l-c cart" id="cart_expand">            
                                     <a class="box-link-svg" title="Giỏ hàng"> 
-                                        <i class="icon-cart"></i>             
-                                        <span class="tl">Giỏ hàng </span> 
+                                        <i class="icon-cart icon-giohang"></i>             
+                                         
                                         <?php
                                             $productNumber = count($this->cartProduct);
                                                 if($productNumber > 0){
@@ -286,14 +286,14 @@
                                 </div>
                                 <div id="box_link_notify" class="box-l-c mess"> 
                                     <a class="box-link-svg" href="javascript:void(0);" rel="nofollow" title="Thông báo" data-item="0">
-                                        <i class="icon-notify"></i>
-                                        <span class="tl">Thông báo</span>
+                                        <i class="icon-cart icon-tuvan"></i>
+                                        
                                     </a>
                                 </div>
                                 <div class="box-l-c favorite ng-scope" id="boxFavorite" ng-controller="Wishlist" data-ng-init="getWishlist()">
                                     <a class="box-link-svg" rel="nofollow" href="javascript:void(0);" title="Sản phẩm quan tâm" onclick="get_wishlist()">
-                                        <i class="icon-like"></i>
-                                        <span class="tl">Yêu thích</span>
+                                        <i class="icon-cart icon-spyeuthich"></i>
+                                        
                                         <!-- ngIf: wishliststore_count > 0 --><div ng-if="wishliststore_count > 0" class="ng-scope">
                                             <span class="favorite-count ng-isolate-scope ng-binding" renderdata="" data="3">3</span>
                                         </div><!-- end ngIf: wishliststore_count > 0 -->
@@ -302,8 +302,8 @@
                                 </div>
                                 <div class="box-l-c login " id="login-deafault"> 
                                     <a class="box-link-svg" title="Tổng Đài"> 
-                                        <i class="icon-infomation"></i>
-                                        <span class="tl">Thông Tin</span>
+                                        <i class="icon-cart icon-giaohang"></i>
+                                        
                                     </a>
                                 </div>
                             </div>

@@ -229,7 +229,7 @@ input[type="search"] {
 .box-info .box-link .box-l-c {
     float: left;
     position: relative;
-    margin: 0 8px;
+    margin:0 2px;
     top: -5px;
     cursor: pointer;
     z-index: 101;
@@ -294,7 +294,7 @@ input[type="search"] {
 .box-info .box-link .box-l-c {
     float: left;
     position: relative;
-    margin: 0 8px;
+    margin: 0 2px;
     top: -5px;
     cursor: pointer;
 }
@@ -309,7 +309,7 @@ input[type="search"] {
 .box-info .box-link .box-l-c {
     float: left;
     position: relative;
-    margin: 0 8px;
+    margin: 0 2px;
     top: -5px;
     cursor: pointer;
 }
@@ -330,19 +330,31 @@ input[type="search"] {
     text-align: center;
     border-radius: 100%;
     position: absolute;
-    right: 7px;
+    right: 9px;
     top: 0;
     font-size: 11px;
     z-index: 4;
 }
 .icon-cart{
-    background: url('../images/icon-cart.PNG') no-repeat;
-    height: 30px;
-    width: 45px;
-    display: inline-block;
-    margin-left: 10px;
+  background: url('../images/icon-sidebar.png') no-repeat;
+  height: 60px;
+  width: 60px;
+  display: inline-block;
 }
-.icon-notify{
+i.icon-cart.icon-giohang {
+  background-position: -116px -112px;
+}
+i.icon-cart.icon-tuvan {
+  background-position: -35px -44px;
+  width: 80px;
+}
+i.icon-cart.icon-spyeuthich {
+  background-position: -38px -175px;
+}
+i.icon-cart.icon-giaohang {
+  background-position: -38px -110px;
+}
+/*.icon-notify{
     background: url('../images/icon-notify.PNG') no-repeat;
     height: 30px;
     width: 45px;
@@ -362,7 +374,7 @@ input[type="search"] {
     width: 45px;
     display: inline-block;
     margin-left: 10px;
-}
+}*/
 .btn-register{
     float:right;
 }
@@ -549,9 +561,9 @@ input[type="search"] {
 .sidebarIcon__icon-cat_0 .icon__sidebar,
 .sidebarIcon__icon-cat_0:hover .icon__sidebar, 
 .sidebarIcon__icon-cat_0.active .icon__sidebar {
-    width: 26px;
-    height: 26px;
-    background-position: -4px -407px;
+    width: 27px;
+    height: 27px;
+    background-position: 1.5px -1px
 }
 .icon__round .icon {
     position: absolute;
@@ -790,6 +802,8 @@ display: inline-block;
 }
 .right__block__wrapper {
     padding: 10px;
+    height: 280px;
+
 }
 .right__block__item {
     position: relative;
@@ -929,93 +943,93 @@ div.x-timer {
 .sidebarIcon__icon-cat_1:hover .icon__sidebar,
 .sidebarIcon__icon-cat_1 .icon__sidebar,
 .sidebarIcon__icon-cat_1:active .icon__sidebar{
-    width: 26px;
-    height: 26px;
-    background-position: -28px -32px;
+    width: 27px;
+    height: 27px;
+    background-position: 2px -25px;
 }
 .sidebarIcon__icon-cat_2:hover .icon__sidebar,
 .sidebarIcon__icon-cat_2 .icon__sidebar,
 .sidebarIcon__icon-cat_2:active .icon__sidebar{
-    width: 26px;
-    height: 26px;
-    background-position: -6px -31px;
+    width: 27px;
+    height: 27px;
+    background-position: 0px -50px;
 }
 .sidebarIcon__icon-cat_3 .icon__sidebar,
 .sidebarIcon__icon-cat_3:hover .icon__sidebar,
 .sidebarIcon__icon-cat_3:active .icon__sidebar{
-    width: 26px;
-    height: 26px;
-    background-position: -3px -59px;
+    width: 27px;
+    height: 27px;
+    background-position: -1.5px -79.5px;
 }
 .sidebarIcon__icon-cat_4 .icon__sidebar,
 .sidebarIcon__icon-cat_4:hover .icon__sidebar,
 .sidebarIcon__icon-cat_4:active .icon__sidebar{
-   width: 26px;
-    height: 26px;
-    background-position: -29px -60px;
+    width: 27px;
+    height: 27px;
+    background-position: -3.5px -112.8px;
 }
 .sidebarIcon__icon-cat_5 .icon__sidebar,
 .sidebarIcon__icon-cat_5:hover .icon__sidebar,
 .sidebarIcon__icon-cat_5:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -30px -85px;
+    width: 27px;
+    height: 27px;
+    background-position: -4px -147px;
 }
 .sidebarIcon__icon-cat_6 .icon__sidebar,
 .sidebarIcon__icon-cat_6:hover .icon__sidebar,
 .sidebarIcon__icon-cat_6:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: 1px -175px;
+    width: 27px;
+    height: 27px;
+    background-position: -5px -173px;
 }
 .sidebarIcon__icon-cat_7 .icon__sidebar,
 .sidebarIcon__icon-cat_7:hover .icon__sidebar,
 .sidebarIcon__icon-cat_7:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -29px -174px;
+    width: 27px;
+    height: 27px;
+    background-position: -5.5px -204.7px;
 }
 .sidebarIcon__icon-cat_8 .icon__sidebar,
 .sidebarIcon__icon-cat_8:hover .icon__sidebar,
 .sidebarIcon__icon-cat_8:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -29px -174px;
+    width: 27px;
+    height: 27px;
+    background-position: -5.5px -232.7px
 }
 .sidebarIcon__icon-cat_9:hover .icon__sidebar,
 .sidebarIcon__icon-cat_9 .icon__sidebar,
 .sidebarIcon__icon-cat_9:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -2px -201px;
+    width: 27px;
+    height: 27px;
+    background-position: -3.5px -259.7px;
 }
 .sidebarIcon__icon-cat_10  .icon__sidebar,
 .sidebarIcon__icon-cat_10:hover .icon__sidebar,
 .sidebarIcon__icon-cat_10:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: 0 -83px;
+    width: 27px;
+    height: 27px;
+    background-position: -4.5px -296px
 }
 .sidebarIcon__icon-cat_11 .icon__sidebar,
 .sidebarIcon__icon-cat_11:hover .icon__sidebar,
 .sidebarIcon__icon-cat_11:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -31px -202px;
+    width: 27px;
+    height: 27px;
+    background-position: -44.5px -297px;
 }
 .sidebarIcon__icon-cat_12 .icon__sidebar,
 .sidebarIcon__icon-cat_12:hover .icon__sidebar,
 .sidebarIcon__icon-cat_12:active .icon__sidebar{
-  background-position: -33px -249px;
-    height: 22px;
-    width: 21px;
+    background-position: -84.5px -297px;
+    height: 27px;
+    width: 27px;
 }
 .sidebarIcon__icon-cat_13 .icon__sidebar,
 .sidebarIcon__icon-cat_13:hover .icon__sidebar,
 .sidebarIcon__icon-cat_13:active .icon__sidebar{
-   width: 21px;
-    height: 20px;
-    background-position: -1px -430px;
+    width: 27px;
+    height: 27px;
+    background-position: -117.5px -295px;
 }
 .sidebarIcon__icon-cat_14 .icon__sidebar,
 .sidebarIcon__icon-cat_14:hover .icon__sidebar,
@@ -1119,11 +1133,12 @@ background-position: -4px -406px;
     display: inline-block;
     text-align: center;
     font-size: 13px;
-    width: 145px;
+    width: 144px;
     height: 103px;
     line-height: 104px;
     margin: 1px;
     background: white;
+    margin-left: -1px;
 }
 .brands__featured-shops-link {
     display: block;
@@ -1274,7 +1289,6 @@ li.slide_item {
 .thumb_img {
     width: 178px;
     height: 150px;
-    border: 1px solid #e4e4e4;
     position: relative;
 }
 .thumb_img a {
@@ -2537,7 +2551,7 @@ element.style {
     -o-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    bottom: 85px;
+    bottom: 75px;
     z-index: 9999;
 }
 .slide_item:hover .btn-ss {
@@ -2554,7 +2568,7 @@ element.style {
     z-index: 1;
 }
 .cart_item:hover .btn-ss {
-    left: 88px;
+    left: 50px;
     opacity: 1;
     visibility: visible;
     -webkit-transition: all 0.2s ease;
@@ -2562,7 +2576,7 @@ element.style {
     -o-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    bottom:85px;
+    bottom:0px;
     padding: 0px;
     z-index: 1;
 }
@@ -3694,7 +3708,7 @@ img.lazy {
   right: 100px !important;
 }
 #cart_mini {
-  right: 311px !important;
+  right: 340px !important;
   top: 77px !important;
   width: 482px;
 }
@@ -3709,9 +3723,9 @@ img.lazy {
 }
 .cart-mini span.close {
   display: block;
-  width: 11px;
+  width: 40px;
   height: 10px;
-  background: url(http://bncvn.net/themes/web/43/cart/close.gif) no-repeat;
+  background: url(../images/close.png) no-repeat;
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -3828,4 +3842,21 @@ img.lazy {
 }
 #cart_loader ul{
     list-style: none;
+}
+ul.ULtintuc{
+    padding-left: 0;
+}
+li.tintucItems{
+    list-style-type: none;
+    width: 100%;
+    margin-bottom: -6px;
+}
+li.tintucItems img.pic {
+  width: 51px;
+  height: 47px;
+  margin-right: 10px;
+  float: left;
+}
+div#Notify-controller{
+  margin-right: 40px;
 }
