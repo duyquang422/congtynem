@@ -136,7 +136,6 @@ $(document).ready(function() {
         $('#cart_mini').hide(500);
         $('#cart_expand .box-link-svg').removeClass('after-click-cart');
     });
-    
 });
 
     function replaceAll(str, src, dst) {

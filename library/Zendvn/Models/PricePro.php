@@ -60,6 +60,7 @@ class Zendvn_Models_PricePro extends Zend_Db_Table {
             $result = $db->fetchAll($select);
         }
         if ($options['task'] == 'view-cart') {
+
             if (count($arrParam['cart']) > 0) {
                 $i = 1;
                 foreach ($arrParam['cart'] as $key => $val) {

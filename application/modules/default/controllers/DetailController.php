@@ -77,13 +77,6 @@ class DetailController extends Zendvn_Controller_Action {
             $this->_helper->viewRenderer->setNoRender();
             //$this->_helper->layout->disableLayout();
             $this->_helper->layout->setLayout('detail');
-              
-            $tblDetail = new Zendvn_Models_ProItem();
-		$this->view->Item = $tblDetail->getItem($this->_arrParam,array('task'=>'public-detail'));
-		$code_pro	= $this->view->Item['code'];
-		$tblPrice	= new Zendvn_Models_PricePro();
-		$this->view->Price_pro	= $tblPrice->listItem($this->_arrParam,array('task'=>'detail','code_detail'=>$code_pro));
-            
             //lấy thông tin người đăng bài
             if (!empty($this->_arrParam['publisher'])){
 			$tblPublisher	= new Zendvn_Models_Publisher();
@@ -117,6 +110,9 @@ class DetailController extends Zendvn_Controller_Action {
 		}
                 else
                     $this->view->headTitle($title_seo,true);
+                echo '<pre>';
+                print_r($menu);
+                echo '</pre>';
 		$description = str_replace("\\","",$menu['description_html']);
 		$keywords	 = str_replace("\\","",$menu['keywords_html']);
                 echo $description . '<br>' . $keywords;

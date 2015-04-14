@@ -75,6 +75,7 @@ class CartController extends Zendvn_Controller_Action {
 
     public function indexAction() {
         $this->_helper->layout->setLayout('cart');
+
         $yourCart = new Zend_Session_Namespace('cart');
         if ($this->_request->isPost()) {
             $itemProduct = $this->_arrParam['itemProduct'];
@@ -99,47 +100,16 @@ class CartController extends Zendvn_Controller_Action {
         $yourCart = new Zend_Session_Namespace('cart');
         $ssInfo = $yourCart->getIterator();
         $filter = new Zend_Filter_Digits();
-        
-        $size =0; $price =0; $selloff = 0; $id = 0;
-        if(isset($this->_arrParam['size']))
-            $size = $this->_arrParam['size'];
-        if(isset($this->_arrParam['price']))
-            $price = $this->_arrParam['price'];
-        if(isset($this->_arrParam['selloff']))
-            $selloff = $this->_arrParam['selloff'];
-        if(isset($this->_arrParam['selloff']))
-            $selloff = $this->_arrParam['selloff'];
-        if(isset($this->_arrParam['id']))
-            $id = $this->_arrParam['id'];
-        $priId = $filter->filter($this->_arrParam['priID']);
+        $id = $filter->filter($this->_arrParam['priID']);
         if (count($yourCart->cart) == 0) {
-            if($id >0){
-                $cart[$priId][$id]['number'] = 1;
-                $cart[$priId][$id]['size'] = $size;
-                $cart[$priId][$id]['price'] = $price;
-                $cart[$priId][$id]['selloff'] = $selloff;
-            }
-            else
-                $cart[$priId]['number'] = 1;
+            $cart[$id]['number'] = 1;
             $yourCart->cart = $cart;
         } else {
             $tmp = $ssInfo['cart'];
-            if (array_key_exists($priId, $tmp) == true) {
-                if($id == 0)
-                    $tmp[$priId]['number'] = $tmp[$priId]['number'] + 1;
-                else{
-                    if(array_key_exists($id, $tmp) == false){
-                        $tmp[$priId][$id]['number'] = $tmp[$priId][$id]['number'] + 1;
-                        $tmp[$priId][$id]['size'] = $size;
-                        $tmp[$priId][$id]['price'] = $price;
-                        $tmp[$priId][$id]['selloff'] = $selloff;
-                    }
-                    else
-                     $tmp[$priId][$id]['number'] = 1;
-                }
-                    
+            if (array_key_exists($id, $tmp) == true) {
+                $tmp[$id]['number'] = $tmp[$id]['number'] + 1;
             } else {
-                $tmp[$priId]['number'] = 1;
+                $tmp[$id]['number'] = 1;
             }
             $yourCart->cart = $tmp;
         }
@@ -155,9 +125,6 @@ class CartController extends Zendvn_Controller_Action {
         if ($this->_request->isPost()) {
             $tmp[$this->_arrParam['id']]['number'] = $this->_arrParam['value'];
             $yourCart->cart = $tmp;
-            echo '<pre>';
-            print_r($yourCart->cart);
-            echo '</pre>';
         }
     }
 
