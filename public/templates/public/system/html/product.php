@@ -182,16 +182,6 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="pro_des"> Mô Tả Một Vài Nét Về Sản Phẩm</div>
-                                                <div class="pro-summary">
-                                                    <?php
-                                                    if($val['summary']!=null){
-                                                    ?>
-                                                    <span><?php echo substr($val['summary'],0,450) ?>...<a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">Xem Thêm</a></span>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
