@@ -19,6 +19,10 @@
                     <?php
                     if (!empty($this->Items)) {
                         foreach ($this->Items as $key => $val) {
+                            foreach($this->cart[$val['id']] as $idPro => $valCart){
+                                echo '<pre>';
+                                print_r($valCart);
+                                echo '</pre>';
                             ?>
                             <tr id="<?php echo $val['id'] ?>">
                                 <td><?php echo $key ?></td>
@@ -36,42 +40,64 @@
                                     <?php
                                     $tblPricePro = new Zendvn_Models_PricePro();
                                     $priceSelectbox = $tblPricePro->priceSelectbox($val['id']);
-                                    if (empty($priceSelectbox[0][sizeProduct]))
-                                        echo 'Mặc Định';
-                                    else {
-                                        $html = '';
-                                        $html = '<select class="form-control-'.$val['id'].' form-control" data-id="' . $val['id'] . '" onchange="changesize('.$val['id'].')">';
-                                        foreach ($priceSelectbox as $val1) {
-                                            $html .= '<option value="' . $val1['price'] . '">' . $val1['sizeProduct'] . '</option>';
+                                    if($valCart['size'] != null)
+                                        echo $valCart['size'];
+                                    else
+                                    {
+                                        if((!empty($priceSelectbox[0][sizeProduct]))){
+                                            $html = '';
+                                            $html = '<select class="form-control-'.$val['id'].' form-control" data-id="' . $val['id'] . '" onchange="changesize('.$val['id'].')">';
+                                            foreach ($priceSelectbox as $val1) {
+                                                $html .= '<option value="' . $val1['price'] . '">' . $val1['sizeProduct'] . '</option>';
+                                                    }
+                                            $html .= '</select>';
+                                            echo $html;
                                         }
-                                        $html .= '</select>';
-                                        echo $html;
+                                        else
+                                            echo 'mặc định';
                                     }
+                                    
                                     ?>
                                 </td>
-                                <td class="price-<?php echo $val['id'] ?>">
-                                    <?php echo $val['price'] ?>
-                                </td>
-                                <td class="selloff-<?php echo $val['id'] ?>">
-                                    <?php echo $val['selloff'] ?>
-                                </td> 
+                                <?php
+                                if(isset($valCart['price'] ) && $valCart['price'] > 0)
+                                     echo '<td class="price-'.$idPro.'">'. $valCart['price'].'</td>';
+                                else
+                                     echo '<td class="price-'.$val['id'].'">'. $val['price'].'</td>';
+                                if(isset($valCart['selloff'] ) && $valCart['selloff'] > 0)
+                                     echo '<td class="selloff-'.$idPro.'">'. $valCart['selloff'].'</td>';
+                                else
+                                     echo '<td class="selloff-'.$val['id'].'">'. $val['selloff'].'</td>'; 
+                                ?>
                                 <td>
                                     <label for="select"> 
-                                        <input name="number" class="number" id="number-<?php echo $val['id'] ?>" data-id="<?php echo $val['id'] ?>" type="text" value="<?php echo $this->cart[$val['id']]['number'] ?>">
+                                        <?php
+                                        if(isset($valCart['number'] ) && $valCart['number'] > 0){
+                                            echo '<input name="number" class="number" id="number-'.$idPro.'" data-id="'. $idPro .'" type="text" value="'.$valCart['number'].'">';
+                                        }
+                                        else
+                                           echo '<input name="number" class="number" id="number-'.$val['id'].'" data-id="'. $val['id'] .'" type="text" value="'.$this->cart[$val['id']]['number'].'">'; 
+                                        ?>
                                     </label>
                                 </td>
                                 <?php
-                                if ($val['selloff'] > 0) {
-                                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['selloff'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                                if(isset($valCart['price'] ) && $valCart['price'] > 0){
+                                    echo '<td class="total-amount-' . $idPro . '">' . $valCart['price'] * $valCart['number'] . ' </span></td>';
                                 }
-                                else
-                                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['price'] * $this->cart[$val['id']]['number'] . ' </span></td>'
-                                    ?>
+                                else{
+                                    if ($val['selloff'] > 0) {
+                                        echo '<td class="total-amount-' . $val['id'] . '">' . $val['selloff'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                                    }
+                                    else
+                                        echo '<td class="total-amount-' . $val['id'] . '">' . $val['price'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                                }
+                                        ?>
                                 <td>
                                     <a onclick="huycm(<?php echo $val['id'] ?>);" href="javascript:;" title="Hủy đặt mua">Hủy</a>
                                 </td>
                             </tr> 
                             <?php
+                            }
                         }
                     }
                     ?>

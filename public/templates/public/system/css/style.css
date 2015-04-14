@@ -3,7 +3,9 @@
   display: inline-block;
   top: 50px;
 }
-
+.tooltip{
+    width: 200px;
+}
 .header_top{
     border: 1px solid;
     display: inline-block;
@@ -1650,6 +1652,45 @@ li.cart_item .cat-des {
 }
 .pro_detail_content{
     width: 383px;
+}
+.tab_main {
+  margin-top: 10px;
+  font-size: 17px;
+  text-align: center;
+}
+.tab_price {
+  width: 100%;
+  margin-top: 15px;
+  color: #07619a;
+}
+.tab_price thead tr th {
+  border: 1px solid #fff;
+  border-bottom: 0;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  background: #86C60A;
+  color: #fff;
+  font-size: 0.8em;
+}
+.tab_price tbody tr td.size_pro, .tab_price tbody tr td.sale_pro {
+  font-weight: bold;
+  color: #ef4604;
+}
+.tab_price tbody tr td {
+  border: 1px solid #86C60A;
+  height: 30px;
+  line-height: 30px;
+  font-size: 0.8em;
+}
+.tab_price tbody tr td a.cart_pro {
+  padding: 0 5%;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  background: #ef4604;
+  display: inline-block;
+  font-size: 0.85em;
 }
 /*---------------------------SUPPORT-------------------*/
 .box-left {
