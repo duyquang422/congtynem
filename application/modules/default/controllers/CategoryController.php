@@ -83,7 +83,11 @@ class CategoryController extends Zendvn_Controller_Action {
             //data menu sidebar
             $category = new Zendvn_Models_Menus();
             $this->view->menu = $category->listItem($this->_arrParam);
-          
+            
+            /*---------------------TUNG-------------*/
+          //Phân trang
+            $paginator = new Zendvn_Paginator();
+            $this->view->panigator = $paginator->createPaginator($totalItem, $this->_paginator);
            
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();

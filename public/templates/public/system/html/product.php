@@ -59,12 +59,15 @@
                         $i = 0;
                         foreach ($this->Items as $key => $val) {
                             ?>
-                            <li class="slide_item hover" data-id='<?php echo $key ?>'>
+                            <li class="slide_item hover" data-id='<?php echo $key ?>' >
+                                
                                 <div class="thumb_img">
                                     <a href="">
                                         <img src="public/files/products/images450x450/<?php echo $val['picture'] ?>" width="176px" height="177px" style="margin-bottom:30px">
+                                        <img class="icon-sp" src="public/templates/public/system/images/icon-sp-banchay.png" alt="Sản phẩm bán chạy!">
                                     </a>
                                 </div>
+                                
                                 <div class="slide_price">
                                     <h3 class="slide_item_title"><a href=""><?php echo $val['name'] ?></a>
                                     </h3>
@@ -72,17 +75,21 @@
                                     if ($val['selloff'] > 0)
                                         echo '<div class="sm_old_price">' . $val['selloff'] . '</div>';
                                     ?>
-                                    <div class="sm_new_price"><?php echo $val['price'] ?> VNĐ</div>
+                                    
+                                    <div class="sm_new_warranty"><span class="chuthuong">Bảo hành lên tới </span><?php echo $val['warranty'] ?></div>
+                                    
+                                    <div class="sm_new_price"><span class="chuthuong">Giá chỉ từ: </span><?php echo $val['price'] ?> VNĐ</div>
                                 </div>
+                                
                                 <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">
-                                    <div class="info info-<?php echo $key ?>" style="display:none">
+    <!--                                    <div class="info info-<?php echo $key ?>" style="display:none">
                                         <span>
                                             Mã sản phẩm: <?php echo $val['code'] ?><br>	
                                             Nhà sản xuất: <?php echo $val['publisher'] ?><br>	
                                             Số lần xem: <?php echo $val['hits'] ?><br>			
                                             Bảo hành: <?php echo $val['warranty'] ?> <br>
                                         </span>
-                                    </div>
+                                    </div>-->
                                 </a>
                                 <div class="btn-function">
                                     <div class="btnxemnhanh">
@@ -113,7 +120,7 @@
                                                         <ul class="prd-moreImagesList  product-<?php echo $val['id'] ?>">
                                                             <?php
                                                             $photos = json_decode($val['photos']);
-                                                            if(!empty($photos)){
+                                                            if (!empty($photos)) {
                                                                 foreach ($photos as $i => $v) {
                                                                     if ($i < count($photos) / 2) {
                                                                         echo '<li class="photo-' . $i . '" onmouseover="changePhoto(' . $val['id'] . ',' . $i . ')"><img src="public/files/photos/images50x50/' . $v . '"></li>';
@@ -129,7 +136,7 @@
                                                                 <?php
                                                                 $photos = json_decode($val['photos']);
                                                                 echo '<li class="photo-first-lg"><img src="public/files/products/images450x450/' . $val['picture'] . '" width="350" height="270"></li>';
-                                                                if(!empty($photos)){
+                                                                if (!empty($photos)) {
                                                                     foreach ($photos as $i => $v) {
                                                                         echo '<li class="photo-' . $i . '-lg" style="display:none"><img src="public/files/photos/images350x350/' . $v . '" width="350" height="270"></li>';
                                                                     }
@@ -141,7 +148,7 @@
                                                             <ul class="prd-moreImagesList product-<?php echo $val['id'] ?>">
                                                                 <?php
                                                                 $photos = json_decode($val['photos']);
-                                                                if(!empty($photos)){
+                                                                if (!empty($photos)) {
                                                                     foreach ($photos as $i => $v) {
                                                                         if ($i >= count($photos) / 2) {
                                                                             echo '<li class="photo-' . $i . '" onmouseover="changePhoto(' . $val['id'] . ',' . $i . ')"><img src="public/files/photos/images50x50/' . $v . '"></li>';
@@ -185,10 +192,10 @@
                                                 <div class="pro_des"> Mô Tả Một Vài Nét Về Sản Phẩm</div>
                                                 <div class="pro-summary">
                                                     <?php
-                                                    if($val['summary']!=null){
-                                                    ?>
-                                                    <span><?php echo substr($val['summary'],0,450) ?>...<a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">Xem Thêm</a></span>
-                                                    <?php
+                                                    if ($val['summary'] != null) {
+                                                        ?>
+                                                        <span><?php echo substr($val['summary'], 0, 450) ?>...<a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>">Xem Thêm</a></span>
+                                                        <?php
                                                     }
                                                     ?>
                                                 </div>
@@ -498,7 +505,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="pro-summary">
-                                                                        <span><?php //echo $val['summary']    ?></span>
+                                                                        <span><?php //echo $val['summary']     ?></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
