@@ -221,79 +221,98 @@
                         </div>
                         <div class="box-info">
                             <div class="box-link util-clearfix login-roi" id="Notify-controller">
-                                <div class="box-l-c cart" id="cart_expand">            
-                                    <a class="box-link-svg" title="Giỏ hàng"> 
-                                        <i class="icon-cart icon-giohang"></i>             
-                                         
-                                        <?php
-                                            $productNumber = count($this->cartProduct);
-                                                if($productNumber > 0){
-                                                    echo '<b class="cart_qty">' .$productNumber . '</b>';
-                                                }
-                                            ?>
-                                        
-                                    </a>
-                                </div>
                                 <div class="cart-mini" id="cart_mini" style="display: none;">	
                                     <h3 class="title">Giỏ hàng mini</h3>
                                     <span class="close" title="Đóng lại"></span>
                                     <div id="cart_loader">
                                         <ul>
                                             <?php
-                                              $sum = 0;
-                                            if(count($this->cartProduct)>0){
-                                              foreach ($this->cartProduct as $val){
-                                            ?>
-                                            <li id="gio_hang_sp_<?php echo $val['id']?>">
-                                                <a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>" target="_blank" title="<?php echo $val['name']?>"><img src="public/files/products/images450x450/<?php echo $val['picture']?>" class="cart-img"></a>
-                                                <h3><a href="<?php echo $this->baseUrl($val['alias'].'-'. $val['id']. '.html') ?>" title="<?php echo $val['name']?>" target="_blank"><?php echo $val['name']?></a></h3>
-                                                <h2>
-                                                    <?php 
-                                                    if($val['selloff'] > 0){
-                                                        echo  number_format($val['selloff'],0) . '<u>đ</u>';
-                                                        $sum = ($sum + $val['selloff']) * $this->cart[$val['id']]['number'];
-                                                    }
-                                                    else {
-                                                        if(!isset($this->cart[$val['id']]['price'])){
-                                                            echo  number_format($val['price'],0) . '<u>đ</u>'; 
-                                                            $sum = ($sum + $val['price']) * $this->cart[$val['id']]['number'];
-                                                        }
-                                                        else{
-                                                            echo  number_format($this->cart[$val['id']]['price'],0) . '<u>đ</u>'; 
-                                                            $sum = ($sum + $this->cart[$val['id']]['price']) * $this->cart[$val['id']]['number'];
-                                                        }
-                                                    }
-                                                    echo '</h2>';
-                                                    if(!isset($this->cart[$val['id']]['size']))
-                                                        echo ' <p>(Size : Mặc định)</p>';
-                                                    else
-                                                        echo ' <p>(Size : '.$this->cart[$val['id']]['size'].')</p>';
-                                                    ?>
-                                                <a href="javascript:;" class="cart-less">x</a><span class="sluong_<?php echo $val['id']?>"><?php echo $this->cart[$val['id']]['number']?></span>
-                                                <a href="javascript:;" class="cart-remove" onclick="huycm(<?php echo $val['id']?>)" title="Xóa sản phẩm">Xóa</a>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                            <?php
-                                              }
+                                            $sum = 0;
+                                            $i=0;
+                                            if (!empty($this->Item)) {
+                                                foreach ($this->Item as $key => $val) {
+                                                    foreach ($this->cart[$val['id']] as $idPro => $valCart) {
+                                                        if($idPro > 0)
+                                                                echo '<li id="gio_hang_sp_'. $idPro. '">';
+                                                            else
+                                                                echo '<li id="gio_hang_sp_'. $val['id']. '">';
+                                                        ?>
+                                                            <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>" target="_blank" title="<?php echo $val['name'] ?>"><img src="public/files/products/images450x450/<?php echo $val['picture'] ?>" class="cart-img"></a>
+                                                            <h3><a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>" title="<?php echo $val['name'] ?>" target="_blank"><?php echo $val['name'] ?></a></h3>
+                                                            <h2>
+                                                                <?php
+                                                                if ($idPro > 0){
+                                                                    if($valCart['selloff']>0){
+                                                                        echo number_format($valCart['selloff'],0);
+                                                                        $sum = $sum + $valCart['selloff'] * $valCart['number'];
+                                                                    }
+                                                                    else{
+                                                                        echo number_format($valCart['price'],0);
+                                                                        $sum = $sum + $valCart['price'] * $valCart['number'];
+                                                                    }
+                                                                }
+                                                                else{
+                                                                    if($val['selloff']>0){
+                                                                        echo number_format($val['selloff'],0);
+                                                                        $sum = $sum + $val['selloff'] * $this->cart[$val['id']]['number'];
+                                                                    }
+                                                                    else{
+                                                                        echo number_format($val['price'],0);
+                                                                        $sum = $sum + $val['price'] * $this->cart[$val['id']]['number'];
+                                                                    }
+                                                                    
+                                                                }
+                                                               echo '</h2>'; 
+                                                                if (!isset($this->cart[$val['id']][$idPro]['size']))
+                                                                    echo ' <p>(Size : Mặc định)</p>';
+                                                                else
+                                                                    echo ' <p>(Size : ' . $this->cart[$val['id']][$idPro]['size'] . ')</p>';
+                                                                
+                                                                if($idPro >0 )
+                                                                    echo '<a href="javascript:;" class="cart-less">x</a><span class="sluong_'.$idPro.'">'.$valCart['number'] .'</span>';
+                                                                else
+                                                                    echo '<a href="javascript:;" class="cart-less">x</a><span class="sluong_'.$val['id'].'">'. $this->cart[$val['id']]['number'] .'</span>';
+                                                                    
+                                                                if($idPro > 0)
+                                                                    echo '<a onclick="huycm('.$val['id']. ','.$idPro.');" href="javascript:;" title="Hủy đặt mua" class="cart-remove">Hủy</a>';
+                                                                else
+                                                                    echo '<a onclick="huycm('.$val['id'].');" href="javascript:;" title="Hủy đặt mua" class="cart-remove">Hủy</a>';
+                                                                ?>
+                                                                <div class="clearfix"></div>
+                                                        </li>
+                                                        <?php
+                                                        $i++;
+                                                    } 
+                                                }
                                             }
                                             else
                                                 echo '<span style="color:green">Không có sản phẩm nào trong giỏ hàng</span>';
                                             ?>
                                         </ul>
-                                        <p class="total">Tổng đơn hàng : <b id="gio_hang_tong"><?php echo number_format($sum,0)?></b></p>
+                                        <p class="total">Tổng đơn hàng : <b id="gio_hang_tong"><?php echo number_format($sum, 0) ?></b></p>
                                     </div>
                                     <a href="default/cart" class="cart-enter">Vào giỏ hàng</a>
+                                </div>
+                                <div class="box-l-c cart" id="cart_expand">            
+                                    <a class="box-link-svg" title="Giỏ hàng"> 
+                                        <i class="icon-cart icon-giohang"></i>             
+                                        <?php
+                                        if ($i> 0) {
+                                            echo '<b class="cart_qty">' . $i . '</b>';
+                                        }
+                                        ?>
+                                    </a>
                                 </div>
                                 <div id="box_link_notify" class="box-l-c mess"> 
                                     <a class="box-link-svg" href="javascript:void(0);" rel="nofollow" title="Thông báo" data-item="0">
                                         <i class="icon-cart icon-tuvan"></i>
-                                        
+
                                     </a>
                                 </div>
                                 <div class="box-l-c favorite ng-scope" id="boxFavorite" ng-controller="Wishlist" data-ng-init="getWishlist()">
                                     <a class="box-link-svg" rel="nofollow" href="javascript:void(0);" title="Sản phẩm quan tâm" onclick="get_wishlist()">
                                         <i class="icon-cart icon-spyeuthich"></i>
-                                        
+
                                         <!-- ngIf: wishliststore_count > 0 --><div ng-if="wishliststore_count > 0" class="ng-scope">
                                             <span class="favorite-count ng-isolate-scope ng-binding" renderdata="" data="3">3</span>
                                         </div><!-- end ngIf: wishliststore_count > 0 -->
@@ -303,7 +322,7 @@
                                 <div class="box-l-c login " id="login-deafault"> 
                                     <a class="box-link-svg" title="Tổng Đài"> 
                                         <i class="icon-cart icon-giaohang"></i>
-                                        
+
                                     </a>
                                 </div>
                             </div>
@@ -314,3 +333,27 @@
         </nav>
     </div>   
 </div><!-- /.container-fluid -->
+
+
+
+<div class="modal fade register-success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="ppu_header">
+            <p class="ppu_h_title">HÃY MUA HÀNG ĐỂ NHẬN NGAY CHƯƠNG TRÌNH ƯU ĐÃI CỰC LỚN</p>
+            <p class="ppu_h_noti">(Nhanh tay kẻo hết)</p>
+        </div>
+        <div class="ppu_ss_main">
+                <input type="hidden" id="orderID" value="1805861">
+            <img src="<?php echo  $this->imgUrl?>/ppu_ss_icon.png">
+            <p class="ppu_ss_title">Đăng ký thành công!</p>
+            <div class="ppu_ss_infos">
+                    <p>Cảm ơn bạn <b id="ten-nguoi-mua"></b> đã cho chúng tôi cơ hội được phục vụ!</p>
+                                <p class="ppu_bt_call"><i>Tư vấn miễn phí: <strong><span class="popup-bfont popup-red">0917 311 001</span></strong></i></p>
+            </div>
+            <div class="popup-spt-bottom">
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

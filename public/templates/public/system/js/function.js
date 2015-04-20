@@ -93,25 +93,24 @@ $(document).ready(function() {
 
 //        ==========================CART==============================
     $('.number').change(function() {
-        var id = $(this).data('id');
+        var priId = $(this).data('id');
         var number = $(this).val();
-        var price = parseInt($('.price-' + id).text());
-        var selloff = parseInt($('.selloff' + id).text());
-        if (selloff > 0)
-            $('.total-amount-' + id).text(selloff * number);
-        else
-            $('.total-amount-' + id).text(price * number);
+        var price = parseInt($('.price-' + priId).text());
+        var selloff = parseInt($('.selloff' + priId).text());
+        var quantity = $('#snumber-' + priId).val();
+        var id = parseInt($(this).attr('data-sId'));
         $.ajax({
             url: 'cart/change-number',
             type: 'POST',
             cache: false,
             data: {
-                id: $(this).data('id'),
-                value: number
+                priId: priId,
+                value: number,
+                id: id,
+                quantity : quantity
             },
             success: function(data) {
-                console.log(data);
-//                    $('.home_sanpham_right').html(data);
+                    location.reload(true);
             }
         });
     });
@@ -137,6 +136,56 @@ $(document).ready(function() {
         $('#cart_expand .box-link-svg').removeClass('after-click-cart');
     });
     
+    $('.ppu_rtextarea').hide();
+    $('.ppu_tabshop').addClass('current');
+    $('.ppu_tabshop').click(function(){
+       $(this).addClass('current');
+       $('.ppu_tabhome').removeClass('current');
+       $('.ppu_rtextarea').hide();
+       $('.ppu_add_shop').show();
+    });
+    $('.ppu_tabhome').click(function(){
+       $(this).addClass('current');
+       $('.ppu_tabshop').removeClass('current');
+       $('.ppu_rtextarea').show();
+       $('.ppu_add_shop').hide();
+    });
+    var focus = 0;
+    $('.item-shop').click(function(){
+       var id = $(this).data('id');
+       $('.item-shop-' + focus).removeClass('active');
+       $('.item-shop-' + id).addClass('active');
+       focus = $(this).data('id');
+    });
+    
+    $('#ddlShop').hide();
+    $('#ddlCity').change(function(){
+        var value = $(this).val();
+        if(value == 1)
+            $('#ddlShop').show();
+        else
+            $('#ddlShop').hide();
+    });
+    
+//    =====================UPLOAD NHIỀU HÌNH ẢNH BẰNG AJAX============
+
+    $('#photoimg').on('change', function(){
+        var A=$("#imageloadstatus");
+        var B=$("#imageloadbutton");
+        $("#imageform").ajaxForm({target: '#preview',
+        beforeSubmit:function(){
+            A.show();
+            B.hide();
+        },
+        success:function(data){
+            A.hide();
+            B.show();
+        },
+        error:function(){
+            A.hide();
+            B.show();
+        } }).submit();
+     });
 });
 
     function replaceAll(str, src, dst) {
@@ -161,3 +210,37 @@ $(document).ready(function() {
         $('.product-'+ id + ' .photo-'+ i +'-lg').show();
         focus = i;
     }
+    
+    var focus = 0;
+    function showMap(x,y,id,productId) {
+    var address = $('#ddlShop .item-shop-' + id).attr('title');
+    $('#diachigiaohang-'+productId).val(address);
+    $('.item-shop-' + focus).removeClass('active');
+    $('.item-shop-'+ id).addClass('active');
+    $('#map-google-' + productId).fadeIn();
+    $('.lmap-'+ focus).hide();
+    $('.lmap-'+ id).show();
+    var map;
+    var myLatlng = new google.maps.LatLng(x, y);
+    var myOptions = {
+        zoom: 16,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map-google-" + productId), myOptions);
+   var infowindow = new google.maps.InfoWindow(
+    {   
+        size: new google.maps.Size(100,50),
+        position: myLatlng
+    });  
+    var marker = new google.maps.Marker({
+      position: myLatlng, 
+      map: map,
+      title:"Công Ty TNHH SV & TM WEAN"
+  });
+  focus = id;
+} 
+function hideMap(){
+    $('.map-google').hide('500');
+    $('.lmap-'+ focus).hide();
+}
