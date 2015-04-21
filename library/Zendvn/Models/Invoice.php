@@ -7,15 +7,10 @@ class Zendvn_Models_Invoice extends Zend_Db_Table{
 		if($options['task'] == 'public-order'){	
 			$row =  $this->fetchNew();
 			$row->full_name 	= $arrParam['full_name'];
+			$row->email 		= $arrParam['email'];
 			$row->phone 		= $arrParam['phone'];
-                        if(isset($arrParam['address']))
-                            $row->address 		= $arrParam['address'];
-                        else
-                            $row->address  = '';
-			if(isset($arrParam['comment']))
-                            $row->comment 		= $arrParam['comment'];
-                        else
-                            $row->comment  = '';
+			$row->address 		= $arrParam['address'];
+			$row->comment 		= $arrParam['comment'];
 			$row->created 		= date("Y-m-d-G-i-s");
 			$row->status 		= 0;			
 			$id = $row->save();			

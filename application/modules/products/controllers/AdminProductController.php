@@ -143,7 +143,7 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 		$tblProduct = new Zendvn_Models_Products();
 		if($this->_request->isPost()){
 		$valid_formats = array("jpg", "png", "gif", "zip", "bmp");
-			$max_file_size = 1024*50000; //100 kb
+			$max_file_size = 1024*10000; //100 kb
 			
 			$path = FILES_PATH . '/photos/'; // Upload directory
 			foreach ($_FILES['photos']['name'] as $f => $name) { 
@@ -164,11 +164,9 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
                                            $resize = new Zendvn_File_ResizeImages();
 				           $filename = $_FILES["photos"]["tmp_name"][$f];
 				           $filename = move_uploaded_file($filename, $path.'orignal/'.$name);
-                                           
                                            $resize->load($path.'orignal/'.$name);
                                            $resize->resize(85,65);
                                            $resize->save($path.'images50x50/'.$name);
-                                           
                                            $resize->load($path.'orignal/'.$name);
                                            $resize->resize(440,350);
                                            $resize->save($path.'images350x350/'.$name);
@@ -211,8 +209,8 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
 			$curPhoto	= json_decode($this->view->Item['photos']);
 		}
 		if($this->_request->isPost()){
-			$valid_formats = array("jpg", "png", "gif", "zip", "bmp","JPG");
-			$max_file_size = 1024*500000; //100 kb
+			$valid_formats = array("jpg", "png", "gif", "zip", "bmp");
+			$max_file_size = 1024*10000; //100 kb
 			
 			$path = FILES_PATH . '/photos/'; // Upload directory
 			foreach ($_FILES['photos']['name'] as $f => $name) { 
@@ -233,11 +231,9 @@ class Products_AdminProductController extends Zendvn_Controller_Action{
                                            $resize = new Zendvn_File_ResizeImages();
 				           $filename = $_FILES["photos"]["tmp_name"][$f];
 				           $filename = move_uploaded_file($filename, $path.'orignal/'.$name);
-                                           
                                            $resize->load($path.'orignal/'.$name);
                                            $resize->resize(85,65);
                                            $resize->save($path.'images50x50/'.$name);
-                                           
                                            $resize->load($path.'orignal/'.$name);
                                            $resize->resize(440,350);
                                            $resize->save($path.'images350x350/'.$name);

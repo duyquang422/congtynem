@@ -128,8 +128,7 @@ class Zendvn_Models_Users extends Zend_Db_Table{
 			$row->status 		= 1;
 			$row->phone 		= $arrParam['phone'];
 			$row->group_id		= 4; // Nhóm Thành viên
-                        if(isset($arrParam['birthday']))
-                            $row->birthday 		= $arrParam['birthday'];
+                        $row->birthday 		= $arrParam['birthday'];
 			$row->register_date	= date("Y-m-d H:i:s");
 			$row->register_ip	= $_SERVER['REMOTE_ADDR'];		
 		}

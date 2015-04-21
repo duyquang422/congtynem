@@ -109,20 +109,15 @@ class Products_Form_ValidateProduct{
 			$fileName = $upload->upload($filename, $upload_dir . '/orignal',
 							 array('task'=>'rename'),$filename . '_');
 			$thumb = Zendvn_File_Images::create($upload_dir . '/orignal/' . $fileName);
-			$thumb	->resize(61,106)	->save($upload_dir . '/images100x100/' . $fileName);
-                        
+			$thumb	->resize(61,106)	->save($upload_dir . '/images100x100/' . $fileName);			
 			$thumb = Zendvn_File_Images::create($upload_dir . '/orignal/' . $fileName);
 			$thumb	->resize(440,350)	->save($upload_dir . '/images450x450/' . $fileName);
-                        
-                        $thumb = Zendvn_File_Images::create($upload_dir . '/orignal/' . $fileName);
-			$thumb	->resize(115,115)	->save($upload_dir . '/images115x115/' . $fileName);
 						
 			if($this->_arrData['action']=='edit')
 			{	
 				$upload->removeFile($upload_dir . '/orignal/'. $this->_arrData['current_stadium_' . $filename]);
 				$upload->removeFile($upload_dir . '/images100x100/'. $this->_arrData['current_stadium_' . $filename]);
-				$upload->removeFile($upload_dir . '/images450x450/'. $this->_arrData['current_stadium_' . $filename]);
-                                $upload->removeFile($upload_dir . '/images115x115/'. $this->_arrData['current_stadium_' . $filename]);	
+				$upload->removeFile($upload_dir . '/images450x450/'. $this->_arrData['current_stadium_' . $filename]);						
 			}
 		}		
 		return $fileName;	

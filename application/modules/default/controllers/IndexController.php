@@ -94,8 +94,8 @@ class IndexController extends Zendvn_Controller_Action {
            $ssInfo = $yourCart->getIterator();
            $tblPricePro = new Zendvn_Models_PricePro();
             $this->_arrParam['cart'] = $ssInfo['cart'];
-            $this->view->Item = $tblPricePro->listItem($this->_arrParam, array('task' => 'view-cart'));
             $this->view->cart = $ssInfo['cart'];
+            $this->view->cartProduct = $tblPricePro->listItem($this->_arrParam, array('task' => 'view-cart'));
            
            //get Images Slide
            $image = new Zendvn_Models_SlideImage();
