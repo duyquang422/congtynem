@@ -219,7 +219,9 @@ class CartController extends Zendvn_Controller_Action {
             }
             $this->_arrParam['arrId'] = $tmp;
             $invoice = new Zendvn_Models_Invoice();
-            $this->_arrParam['invoice_id'] = $invoice->saveItem($this->_arrParam,array('task'=>'public-order'));   
+            $this->_arrParam['invoice_id'] = $invoice->saveItem($this->_arrParam,array('task'=>'public-order'));
+            $invoice = new Zend_Session_Namespace('invoice');
+            $invoice->id = $this->_arrParam['invoice_id'];
             $invoiceDetail = new Zendvn_Models_InvoiceDetail();
             $invoiceDetail->saveItem($this->_arrParam);
         }

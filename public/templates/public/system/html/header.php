@@ -41,16 +41,18 @@
                             </div>
                         </div>
                         <?php
+                        $userInfo = new Zend_Session_Namespace('userInfo');
                         $session = new Zend_Session_Namespace('facebookInfoUser');
                         $facebookUserInfo = $session->getIterator();
                         $name = $facebookUserInfo['facebookInfoUser']->name;
                         if (!empty($name)) {
                             echo '<a class="userInfo">Xin Chào: ' . $name . '</a>';
                             echo '<a href="' . $this->baseUrl() . '/default/index/logout-facebook" class="userInfo">Thoát</a>';
-                        } else if ($this->userInfo['member']['email'] != null) {
-                            echo '<a class="userInfo">Xin Chào:' . $this->userInfo['member']['email'] . '</a>';
-                            if ($this->userInfo['acl']['role'] == 'Supper admin')
+                        } else if ($userInfo->email != null) {
+                            echo '<a class="userInfo">Xin Chào:' . $userInfo->email . '</a>';
+                            if ($userInfo->role  == 'Supper admin'){
                                 echo '<a class="userInfo" href="default/admin">Trang Quản Trị</a>';
+                            }
                             echo '<a href="' . $this->baseUrl() . '/default/public/logout" class="userInfo">Thoát</a>';
                         }
                         else {

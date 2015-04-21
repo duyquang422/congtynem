@@ -181,4 +181,8 @@ td.itm-td {
     border:1px solid #dedede;
     padding:4px;
     float:left;
+    width: 60px;
+}
+.upload-hoso{
+    padding:10px;
 }

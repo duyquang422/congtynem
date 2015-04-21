@@ -76,4 +76,29 @@ $(function(){
     var btragop = parseInt(replaceAll($('#gop-acs').text().replace('đ', ''), ',', ''));
     var btratruoc = parseInt(replaceAll($('#tratruoc-acs').text().replace('đ', ''), ',', ''));
     $('#tong-acs').text(numeral(btragop * bgop + btratruoc).format('0,0')); 
+    
+    
+    //    =====================UPLOAD NHIỀU HÌNH ẢNH BẰNG AJAX============
+
+    $('.upload-hoso').hide();
+    $('#photoimg').on('change', function(){
+        var A=$("#imageloadstatus");
+        var B=$("#imageloadbutton");
+        $("#imageform").ajaxForm({target: '#preview',
+        beforeSubmit:function(){
+            A.show();
+            B.hide();
+        },
+        success:function(){
+            $('#imageform').hide();
+            $('.datmua').modal('show');
+            setTimeout(function(){
+                   window.location = 'http://congtynem.com/vn';
+               },5000);
+        },
+        error:function(){
+            A.hide();
+            B.show();
+        } }).submit();
+     });
 });

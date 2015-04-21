@@ -84,6 +84,15 @@ class DetailController extends Zendvn_Controller_Action {
 		$tblPrice	= new Zendvn_Models_PricePro();
 		$this->view->Price_pro	= $tblPrice->listItem($this->_arrParam,array('task'=>'detail','code_detail'=>$code_pro));
             
+                
+            //get product in cart
+           $yourCart = new Zend_Session_Namespace('cart');
+           $ssInfo = $yourCart->getIterator();
+           $tblPricePro = new Zendvn_Models_PricePro();
+            $this->_arrParam['cart'] = $ssInfo['cart'];
+            $this->view->Item = $tblPricePro->listItem($this->_arrParam, array('task' => 'view-cart'));
+            $this->view->cart = $ssInfo['cart'];    
+            
             //lấy thông tin người đăng bài
             if (!empty($this->_arrParam['publisher'])){
 			$tblPublisher	= new Zendvn_Models_Publisher();

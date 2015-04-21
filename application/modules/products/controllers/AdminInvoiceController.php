@@ -87,7 +87,7 @@ class Products_AdminInvoiceController extends Zendvn_Controller_Action{
 		$tblInvoice = new Zendvn_Models_InvoiceDetail();
 		$this->view->Item = $tblInvoice->listItem($this->_arrParam,array('task'=>'admin-info'));
 		$tblCategory = new Zendvn_Models_Menus();
-		$this->view->tblCategory = $tblCategory->itemInSelectboxx();
+		$this->view->tblCategory = $tblCategory->itemInSelectbox();
 		
 		$this->_arrParam['Item'] = $this->view->Item;
 		$tblHits = $tblInvoice->saveItem($this->_arrParam,array('task'=>'admin-info'));

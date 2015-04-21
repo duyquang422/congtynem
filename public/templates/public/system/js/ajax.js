@@ -266,7 +266,8 @@ function changesize(id){
                    return true;
            },
            success: function(data, status){
-                console.log(data);
+                $('.ppu_tab_right').hide();
+                $('.upload-hoso').show().addClass('ppu_tab_right');
            }
        });
    }
