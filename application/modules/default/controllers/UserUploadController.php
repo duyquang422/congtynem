@@ -14,7 +14,6 @@ class UserUploadController extends Zendvn_Controller_Action {
         'pageRange' => 4,
     );
     protected $_namespace;
-    protected $_MAX_SIZE = 5000;
 
     public function init() {
         //Mang tham so nhan duoc o moi Action
@@ -43,28 +42,30 @@ class UserUploadController extends Zendvn_Controller_Action {
         $this->_helper->viewRenderer->setNoRender();
         $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg");
         if ($this->_request->isPost()) {
-            $uploaddir = FILES_PATH;
-            foreach ($_FILES['photos']['name'] as $name => $value) {
-                $filename = stripslashes($_FILES['photos']['name'][$name]);
-                $size = filesize($_FILES['photos']['tmp_name'][$name]);
-                if (! in_array(pathinfo($name, PATHINFO_EXTENSION), $valid_formats)) {
-                    if ($size < ($this->_MAX_SIZE * 1024)) {
-                        $image_name = $filename;
-                        echo "<img src='" . FILES_URL .'/user-upload/'. $image_name . "' class='imgList'>";
-                        $newname = $uploaddir .'/user-upload/'. $image_name;
-                        if (move_uploaded_file($_FILES['photos']['tmp_name'][$name], $newname)) {
-                            $user_uploads = new Zendvn_Models_UserUploads();
-                            $user_uploads->insert($image_name);
-                        } else {
-                            echo '<span class="imgList">You have exceeded the size limit! so moving unsuccessful! </span>';
-                        }
-                    } else {
-                        echo '<span class="imgList">You have exceeded the size limit!</span>';
-                    }
-                } else {
-                    echo '<span class="imgList">Unknown extension!</span>';
+            $valid_formats = array("jpg", "png", "gif", "zip", "bmp");
+            $max_file_size = 1024 * 50000; //100 kb
+
+            $path = FILES_PATH; // Upload directory
+            foreach ($_FILES['photos']['name'] as $f => $name) {
+                $photos[] = $name;
+                if ($_FILES['photos']['error'][$f] == 4) {
+                    continue; // Skip file if any error found
                 }
-            } //foreach end
+                if ($_FILES['photos']['error'][$f] == 0) {
+                    if ($_FILES['photos']['size'][$f] > $max_file_size) {
+                        $message[] = "$name is too large!.";
+                        continue; // Skip large files
+                    } elseif (!in_array(pathinfo($name, PATHINFO_EXTENSION), $valid_formats)) {
+                        $message[] = "$name is not a valid format";
+                        continue; // Skip invalid file formats
+                    } else { // No error found! Move uploaded files 
+                        $filename = $_FILES["photos"]["tmp_name"][$f];
+                        move_uploaded_file($filename, $path . '/user-upload/' . $name);
+                        $user_upload = new Zendvn_Models_UserUploads();
+                        $user_upload->insert($name);
+                    }
+                }
+            }
         }
     }
 

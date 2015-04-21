@@ -10,8 +10,8 @@
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&language=vi"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
         <?php echo $this->headScript() ?>
-        <script src="<?php echo $this->jsUrl ?>/jquery.wallform.js"></script>
-        <script src="<?php echo $this->jsUrl ?>/installment.js"></script>
+         <script src="<?php echo $this->jsUrl?>/jquery.wallform.js"></script>
+         <script src="<?php echo $this->jsUrl?>/installment.js"></script>
     </head>
     <body>
         <section>
@@ -275,7 +275,7 @@
         </div>
         <section>
             <section id="footer">
-                <?php include_once 'html/footer.php'; ?>
+                <?php include_once 'html/footer.php';?>
             </section>
         </section>
         <!-------------------------MODAL MUA HÀNG---------------------------------->
@@ -383,7 +383,7 @@
                                 <div class="ppu_tab_right">
                                     <div class="ppu_tab_right_box">
                                         <input type="hidden" value="<?php echo $val['id'] ?>" name="id" id="id">
-                                        <input type="hidden" value="" name="address" id="diachigiaohang-<?php echo $val['id'] ?>">
+                                        <input type="hidden" value="" name="address" id="diachigiaohang-<?php echo $val['id']?>">
                                         <span style="color:red">(*) Bạn buộc phải nhập thông tin vào!</span>
                                         <p class="pform-inline">
                                             <input name="full_name" id="full_name" class="ppu_rtxt" type="text" placeholder="Họ tên bạn" data-rule-required="true">
@@ -393,6 +393,14 @@
                                             <input id="phoneMuaHang" name="phone" id="phone" class="ppu_rtxt" type="text" placeholder="Số điện thoại" data-rule-required="true">
                                             <i>*</i>
                                         </p>
+                                        <div id='preview'></div>
+                                        <form id="imageform" method="post" enctype="multipart/form-data" action='default/user-upload/index' style="clear:both">
+                                            Upload image:
+                                            <div id='imageloadstatus' style='display:none'><img src="<?php echo $this->imgUrl?>/loader.gif" alt="Uploading...."/></div>
+                                            <div id='imageloadbutton'>
+                                                <input type="file" name="photos[]" id="photoimg" multiple="true" />
+                                            </div>
+                                        </form>
                                         <textarea name="address" id="address" class="ppu_rtextarea" placeholder="Địa chỉ giao hàng"></textarea>
                                         <div class="ppu_tab_tt_price">Tổng giá trị đơn hàng: <span class="textTotalMoney">
                                                 <?php
@@ -406,25 +414,6 @@
                                         <button class="ppu_rbnt_submit" onclick="traGop()"> Đặt Ngay</button>
 
                                     </div>
-                                </div>
-                                <div class="upload-hoso">
-                                    <strong>Chỉ cần 1 bước nữa thôi là xong rồi. Cố lên!</strong>
-                                    <span>
-                                        <br>&nbsp Đến với công ty nệm <strong style="color:blue">Wean</strong>, việc bạn mua trả góp rất là đơn giản và dễ dàng. Bạn chỉ cần cung cấp cho chúng tôi những hồ sơ liên quan về bạn bằng cách bạn chụp hình lại những giấy tờ sau
-                                        <br>1. Giấy chứng minh nhân dân.
-                                        <br>2. Sộ Hộ Khẩu
-                                        <br>3. Giấy thu tiền điện hoặc tiền nước.
-                                        <br>&nbsp Sau khi bạn chụp lại những giấy tờ trên, bạn vui lòng click vào chọn tệp để tiến hành đăng hồ sơ của bạn.
-                                        <br>&nbsp <span style="color:red">(*)Lưu ý:</span> chỉ hỗ trợ file hình ảnh
-                                    </span>
-                                    <div id='preview'></div>
-                                    <form id="imageform" method="post" enctype="multipart/form-data" action='default/user-upload/index' style="clear:both">
-                                        <span>Xin vui lòng tải lên file hình ảnh về hồ sơ của bạn:</span>
-                                        <div id='imageloadstatus' style='display:none'><img src="<?php echo $this->imgUrl ?>/loader.gif" alt="Uploading...."/></div>
-                                        <div id='imageloadbutton'>
-                                            <input type="file" name="photos[]" id="photoimg" multiple="true" />
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
 
@@ -440,29 +429,5 @@
             </div>
         </div>
 
-
-        <!--     --------------------MODEL MUA TRẢ GÓP THÀNH CÔNG--------------------------  -->
-        <div class="modal fade datmua" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="ppu_header">
-                        <p class="ppu_h_title">ĐẶT HÀNG - NGHE TƯ VẤN MIỄN PHÍ</p>
-                        <p class="ppu_h_noti">(Không mua không sao)</p>
-                    </div>
-                    <div class="ppu_ss_main">
-                        <input type="hidden" id="orderID" value="1805861">
-                        <img src="<?php echo $this->imgUrl ?>/ppu_ss_icon.png">
-                        <p class="ppu_ss_title">Yeeee! Đã Hoàn Tất Xong rồi.</p>
-                        <div class="ppu_ss_infos">
-                            <p>Cảm ơn bạn <b id="ten-nguoi-mua"></b> đã cho chúng tôi cơ hội được phục vụ!</p>
-                            <p class="ppu_bt_call"><i>Tư vấn miễn phí: <strong><span class="popup-bfont popup-red">0917 311 001</span></strong></i></p>
-                            <p>Chúng tôi sẽ liên hệ với bạn trong vòng <strong>1 tiếng</strong>  và cam kết giao hàng miễn phí trong <strong>1 ngày</strong>.</p>
-                        </div>
-                        <div class="popup-spt-bottom">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </body>
 </html>

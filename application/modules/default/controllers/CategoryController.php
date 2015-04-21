@@ -83,14 +83,7 @@ class CategoryController extends Zendvn_Controller_Action {
             //data menu sidebar
             $category = new Zendvn_Models_Menus();
             $this->view->menu = $category->listItem($this->_arrParam);
-            
-            //get product in cart
-           $yourCart = new Zend_Session_Namespace('cart');
-           $ssInfo = $yourCart->getIterator();
-           $tblPricePro = new Zendvn_Models_PricePro();
-           $this->_arrParam['cart'] = $ssInfo['cart'];
-           $this->view->Item = $tblPricePro->listItem($this->_arrParam, array('task' => 'view-cart'));
-           $this->view->cart = $ssInfo['cart'];
+          
            
                 //SEO
                 $tblcat = new Zendvn_Models_Menus();

@@ -87,7 +87,7 @@ class IndexController extends Zendvn_Controller_Action {
 	   $this->view->Items	= $tblPro->listItem($this->_arrParam,array('task'=>'new-product'));
            $this->view->highLightsProduct = $tblPro->listItem($this->_arrParam,array('task'=>'highlights-product'));
 	   $this->view->nemcaosuProduct = $tblPro->listItem($this->_arrParam,array('task'=>'nemcaosu-product'));
-	   $title = str_replace("\\"," ",$this->view->menu['name']);
+	   $title 				= str_replace("\\"," ",$this->view->menu['name']);
            
            //get product in cart
            $yourCart = new Zend_Session_Namespace('cart');
@@ -120,11 +120,6 @@ class IndexController extends Zendvn_Controller_Action {
 	   if(!empty($keywords)) $this->view->headMeta(true)->setName('keywords',$keywords);
                 $info = new Zendvn_System_Info();
                 $this->view->userInfo = $info->getInfo();
-            //Thông tin user đăng nhập
-            $userInfo = new Zend_Session_Namespace('userInfo');
-            $userInfo->email = $this->view->userInfo['member']['email'];
-            $userInfo->role = $this->view->userInfo['acl']['role'];
-            
             if($this->_request->isPost()){
 			$validator = new Default_Form_ValidateSlideProduct($this->_arrParam);
 			if($validator->isError() == true){

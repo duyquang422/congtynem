@@ -83,11 +83,11 @@ class Zendvn_Models_Products extends Zend_Db_Table{
                 
                 if($options['task'] == 'new-product'){
 			$select = $db->select()
-						 ->from($this->_name . ' AS p',array('p.id','name','picture','photos','warranty','price','selloff','val_sell','publisher'))
+						 ->from($this->_name . ' AS p')
 						 ->joinLeft('menus AS c','c.id = p.menu_id','c.name as category_name')
                                                  ->where('p.status = ?',1)
-                                                 ->order('p.id DESC')
-                                                 ->limit(6);
+                                                 ->order('id DESC')
+                                                 ->limit(10);
 			$result  = $db->fetchAll($select);
 		}
                 if($options['task'] == 'highlights-product'){
@@ -97,7 +97,7 @@ class Zendvn_Models_Products extends Zend_Db_Table{
                                                  ->order('id DESC')
                                                  ->where('p.status = ?',1)
                                                  ->where('special = ?',1)
-                                                 ->limit(6);
+                                                 ->limit(12);
 			$result  = $db->fetchAll($select);
 		}
                 if($options['task'] == 'nemcaosu-product'){

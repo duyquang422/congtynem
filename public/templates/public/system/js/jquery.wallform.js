@@ -526,17 +526,17 @@ $.fn.ajaxSubmit = function(options) {
 			//return data;
 			// Modification www.9lessons.info
 			var exp = /<img[^>]+>/i;
-		
             expResult = data.match(exp);
            if(expResult == null)
            {
-            alert("Something went wrong.");
+            alert(data);
            }
            else{
-			$(options.target).prepend(data);
+				$(options.target).prepend(data);
 			}
 		   $("#photoimg").val('');
 		   // Modification End www.9lessons.info
+
 
 		};
 	}
