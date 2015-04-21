@@ -187,7 +187,7 @@ class PublicController extends Zendvn_Controller_Action{
 	public function registerAction(){
                 $this->_helper->layout->disableLayout();
                 $this->_helper->viewRenderer->setNoRender();
-		if($this->_request->isGet()){
+		if($this->_request->isPost()){
 			$validator = new Default_Form_ValidateRegister($this->_arrParam);
 			if($validator->isError() == true){				
 				$this->view->messageError = $validator->getMessageError();

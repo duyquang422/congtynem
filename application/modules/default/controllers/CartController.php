@@ -119,8 +119,9 @@ class CartController extends Zendvn_Controller_Action {
                 $cart[$priId][$id]['price'] = $price;
                 $cart[$priId][$id]['selloff'] = $selloff;
             }
-            else
+            else{
                 $cart[$priId]['number'] = 1;
+            }
             $yourCart->cart = $cart;
         } else {
             $tmp = $ssInfo['cart'];
@@ -153,21 +154,29 @@ class CartController extends Zendvn_Controller_Action {
         $ssInfo = $yourCart->getIterator();
         $tmp = $ssInfo['cart'];
         if ($this->_request->isPost()) {
-            $tmp[$this->_arrParam['id']]['number'] = $this->_arrParam['value'];
+            $id = $this->_arrParam['id'];
+            $priId = $this->_arrParam['priId'];
+            $quantity = $this->_arrParam['quantity'];
+            if($id > 0)
+                $tmp[$priId][$id]['number'] =  $quantity;
+            else {
+                $tmp[$priId]['number'] = $this->_arrParam['value'];
+            }
             $yourCart->cart = $tmp;
-            echo '<pre>';
-            print_r($yourCart->cart);
-            echo '</pre>';
         }
     }
 
     public function deleteAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
+        $friId = $this->_arrParam['friId'];
         $id = $this->_arrParam['id'];
         $yourCart = new Zend_Session_Namespace('cart');
         $cart = $yourCart->cart;
-        unset($cart[$id]);
+        if($id > 0)
+            unset($cart[$friId][$id]);
+        else
+            unset($cart[$friId]);
         $yourCart->cart = $cart;
     }
 
@@ -201,12 +210,18 @@ class CartController extends Zendvn_Controller_Action {
         if($this->_request->isPost()){
             $yourCart = new Zend_Session_Namespace('cart');
             $this->_arrParam['cart'] = $yourCart->cart;
+            if(count($this->_arrParam['cart'])>0){
+                foreach ($this->_arrParam['cart'] as $key => $val){
+                    foreach ($val as $id => $value)
+                        if($id > 0)
+                            $tmp[] = $id;
+                }
+            }
+            $this->_arrParam['arrId'] = $tmp;
             $invoice = new Zendvn_Models_Invoice();
-            $this->_arrParam['invoice_id'] = $invoice->saveItem($this->_arrParam,array('task'=>'public-order'));
-            
+            $this->_arrParam['invoice_id'] = $invoice->saveItem($this->_arrParam,array('task'=>'public-order'));   
             $invoiceDetail = new Zendvn_Models_InvoiceDetail();
             $invoiceDetail->saveItem($this->_arrParam);
         }
-        $this->_redirect($this->_currentController);
     }
 }

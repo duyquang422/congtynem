@@ -40,8 +40,8 @@ class Default_Form_ValidateRegister {
         //Kiểm tra re-password
         $validator = new Zend_Validate();
         $validator->addValidator(new Zend_Validate_NotEmpty(), true)
-                  ->addValidator(new Zendvn_Validate_ConfirmPassword($arrParam['password']), true);
-        if (!$validator->isValid($arrParam['re-password'])) {
+                  ->addValidator(new Zendvn_Validate_ConfirmPassword($arrParam['re_password']), true);
+        if (!$validator->isValid($arrParam['re_password'])) {
             $messages = $validator->getMessages();
             $this->_messagesError['re_password'] = 'Password : ' . current($messages);
             $arrParam['re_password'] = '';

@@ -1,7 +1,6 @@
 <div class="article">
     <h1><a class="sstep">PHẦN<span>1</span></a>Sản phẩm trong giỏ hàng</h1>
     <div class="icons">
-        <form name="order" action="cart/order-detail" method="post">
             <table width="100%" class="yourCart" id="yourCart774">
                 <tbody><tr>
                         <th>Thứ tự</th>
@@ -17,99 +16,97 @@
                         <th>Hủy đặt mua</th>
                     </tr>
                     <?php
+                    $sum = 0;
+                    $i=1;
                     if (!empty($this->Items)) {
                         foreach ($this->Items as $key => $val) {
-                            foreach($this->cart[$val['id']] as $idPro => $valCart){
-                                echo '<pre>';
-                                print_r($valCart);
-                                echo '</pre>';
-                            ?>
-                            <tr id="<?php echo $val['id'] ?>">
-                                <td><?php echo $key ?></td>
-                                <td>07/04/2015 13:52</td>
-                                <td>
-                                    <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>"><?php echo $val['name'] ?></a>
-                                </td>
-                                <td>
-                                    <?php echo $val['code'] ?>
-                                </td>
-                                <td>
-                                    <img src="<?php echo $this->baseUrl() ?>/public/files/products/images100x100/<?php echo $val['picture'] ?>">
-                                </td>
-                                <td class="size">
-                                    <?php
-                                    $tblPricePro = new Zendvn_Models_PricePro();
-                                    $priceSelectbox = $tblPricePro->priceSelectbox($val['id']);
-                                    if($valCart['size'] != null)
-                                        echo $valCart['size'];
-                                    else
-                                    {
-                                        if((!empty($priceSelectbox[0][sizeProduct]))){
-                                            $html = '';
-                                            $html = '<select class="form-control-'.$val['id'].' form-control" data-id="' . $val['id'] . '" onchange="changesize('.$val['id'].')">';
-                                            foreach ($priceSelectbox as $val1) {
-                                                $html .= '<option value="' . $val1['price'] . '">' . $val1['sizeProduct'] . '</option>';
-                                                    }
-                                            $html .= '</select>';
-                                            echo $html;
-                                        }
-                                        else
-                                            echo 'mặc định';
-                                    }
-                                    
-                                    ?>
-                                </td>
-                                <?php
-                                if(isset($valCart['price'] ) && $valCart['price'] > 0)
-                                     echo '<td class="price-'.$idPro.'">'. $valCart['price'].'</td>';
+                            foreach ($this->cart[$val['id']] as $idPro => $valCart) {
+                                if ($idPro > 0)
+                                    echo '<tr id="' . $idPro . '">';
                                 else
-                                     echo '<td class="price-'.$val['id'].'">'. $val['price'].'</td>';
-                                if(isset($valCart['selloff'] ) && $valCart['selloff'] > 0)
-                                     echo '<td class="selloff-'.$idPro.'">'. $valCart['selloff'].'</td>';
-                                else
-                                     echo '<td class="selloff-'.$val['id'].'">'. $val['selloff'].'</td>'; 
+                                    echo '<tr id="' . $val['id'] . '">';
                                 ?>
-                                <td>
-                                    <label for="select"> 
-                                        <?php
-                                        if(isset($valCart['number'] ) && $valCart['number'] > 0){
-                                            echo '<input name="number" class="number" id="number-'.$idPro.'" data-id="'. $idPro .'" type="text" value="'.$valCart['number'].'">';
-                                        }
-                                        else
-                                           echo '<input name="number" class="number" id="number-'.$val['id'].'" data-id="'. $val['id'] .'" type="text" value="'.$this->cart[$val['id']]['number'].'">'; 
-                                        ?>
-                                    </label>
-                                </td>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo date("d-m-Y")?></td>
+                            <td>
+                                <a href="<?php echo $this->baseUrl($val['alias'] . '-' . $val['id'] . '.html') ?>"><?php echo $val['name'] ?></a>
+                            </td>
+                            <td>
+                                <?php echo $val['code'] ?>
+                            </td>
+                            <td>
+                                <img src="<?php echo $this->baseUrl() ?>/public/files/products/images100x100/<?php echo $val['picture'] ?>">
+                            </td>
+                            <td class="size">
                                 <?php
-                                if(isset($valCart['price'] ) && $valCart['price'] > 0){
-                                    echo '<td class="total-amount-' . $idPro . '">' . $valCart['price'] * $valCart['number'] . ' </span></td>';
+                                $tblPricePro = new Zendvn_Models_PricePro();
+                                $priceSelectbox = $tblPricePro->priceSelectbox($val['id']);
+                                if ($idPro > 0)
+                                    echo $valCart['size'];
+                                else {
+                                    echo 'mặc định';
                                 }
-                                else{
-                                    if ($val['selloff'] > 0) {
-                                        echo '<td class="total-amount-' . $val['id'] . '">' . $val['selloff'] * $this->cart[$val['id']]['number'] . ' </span></td>';
-                                    }
-                                    else
-                                        echo '<td class="total-amount-' . $val['id'] . '">' . $val['price'] * $this->cart[$val['id']]['number'] . ' </span></td>';
-                                }
-                                        ?>
-                                <td>
-                                    <a onclick="huycm(<?php echo $val['id'] ?>);" href="javascript:;" title="Hủy đặt mua">Hủy</a>
-                                </td>
-                            </tr> 
+                                ?>
+                            </td>
+                                <?php
+                                if ($idPro > 0)
+                                    echo '<td class="price-' . $idPro . '">' . $valCart['price'] . '</td>';
+                                else
+                                    echo '<td class="price-' . $val['id'] . '">' . $val['price'] . '</td>';
+                                if ($idPro > 0)
+                                    echo '<td class="selloff-' . $idPro . '">' . $valCart['selloff'] . '</td>';
+                                else
+                                    echo '<td class="selloff-' . $val['id'] . '">' . $val['selloff'] . '</td>';
+                                ?>
+                            <td>
+                                <label for="select"> 
+            <?php
+            if ($idPro > 0) {
+                echo '<input name="number" class="number" id="snumber-' . $val['id'] . '" data-id="' . $val['id'] . '" data-sId="' . $idPro . '" type="text" value="' . $valCart['number'] . '">';
+            }
+            else
+                echo '<input name="number" class="number" id="number-' . $val['id'] . '" data-id="' . $val['id'] . '" type="text" value="' . $this->cart[$val['id']]['number'] . '">';
+            ?>
+                                </label>
+                            </td>
+            <?php
+            if ($idPro > 0) {
+                echo '<td id="total-amount-' . $idPro . '">' . $valCart['price'] * $valCart['number'] . ' </span></td>';
+                $sum = $sum + $valCart['price'] * $valCart['number'];
+            } else {
+                if ($val['selloff'] > 0) {
+                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['selloff'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                    $sum = $sum + $val['selloff'] * $this->cart[$val['id']]['number'];
+                } else {
+                    echo '<td class="total-amount-' . $val['id'] . '">' . $val['price'] * $this->cart[$val['id']]['number'] . ' </span></td>';
+                    $sum = $sum + $val['price'] * $this->cart[$val['id']]['number'];
+                }
+            }
+            ?>
+                            <td>
                             <?php
+                            if ($idPro > 0)
+                                echo '<a onclick="huycm(' . $val['id'] . ',' . $idPro . ');" href="javascript:;" title="Hủy đặt mua">Hủy</a>';
+                            else
+                                echo '<a onclick="huycm(' . $val['id'] . ');" href="javascript:;" title="Hủy đặt mua">Hủy</a>';
+                            ?>
+                            </td>
+                            </tr> 
+                                <?php
+                                $i++;
                             }
                         }
                     }
                     ?>
                 </tbody></table>
-            <?php
-            if (empty($this->Items))
-                echo '<div id="thongbao"><h5>Không Có Sản Phẩm Nào Trong Giỏ Hàng</h5></div>'
-                ?>
+                <?php
+                if (empty($this->Items))
+                    echo '<div id="thongbao"><h5>Không Có Sản Phẩm Nào Trong Giỏ Hàng</h5></div>'
+                    ?>
             <table width="100%" id="pannel" class="yourCart">
                 <tbody><tr> 
-                        <td class="noborderTop"><a class="delall" href="cart/delete-all">Làm sạch giỏ hàng</a></td>
-                        <td class="noborderTop"><a class="toltall">Tổng  tiền: <br><span id="tonggia" style="color:#CD0A0A">0 VNĐ</span></a></td>
+                        <td class="noborderTop" width="494"><a class="delall" href="cart/delete-all">Làm sạch giỏ hàng</a></td>
+                        <td class="noborderTop" width="450"><a class="toltall">Tổng  tiền: <span id="tonggia" style="color:#CD0A0A"><?php echo number_format($sum, 0) ?> VNĐ</span></a></td>
                         <td class="noborderTop"><a data-toggle="modal" data-target=".buy" class="btn-buy">ĐẶT MUA</a></td>
                     </tr>
                 </tbody>
@@ -117,46 +114,152 @@
             <div class="modal fade buy" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="img-buy">
-                            <img src="<?php echo $this->imgUrl ?>/muahang.png"/>
+                        <div class="ppu_header">
+                            <p class="ppu_h_title">ĐẶT HÀNG - NGHE TƯ VẤN MIỄN PHÍ</p>
+                            <p class="ppu_h_noti">(Không mua không sao)</p>
                         </div>
-                        <div class="user-info">
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Họ Và Tên:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="full_name" id="name" placeholder="Họ Và Tên">
-                                </div>
+                        <div class="ppu_tabs_main">
+                            <!-- clear html when click list maps, changer to div.ppu_ss_main -->
+                            <!-- TAB MENU-->
+                            <div class="ppu_tab">
+                                <div class="ppu_tabshop current" key="1"><span>Đặt giữ hàng tại shop </span></div>
+                                <div class="ppu_tabhome" key="2"><span>Giao hàng miễn phí tại nhà </span></div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Đia Chỉ Email">
+                            <!-- #1 TAB HOME-->
+                            <div class="ppu_content" id="ppu-tab-home">
+                                <div class="ppu_tab_content clearfix">
+                                    <!-- LEFT TAB-->
+                                    <div class="ppu_tab_left">
+                                        <div class="ppu_tab_left_content">
+                                            <div class="clearfix">
+                                                <div class="ppu_tab_proimg">
+                                                    <img src="public/files/products/images100x100/picture_1427858623.jpg" alt="">
+                                                </div>
+
+                                                <div class="ppu_tab_pro_info">
+                                                    <h3 class="ppu_tab_pro_name">Nệm lò xo KOREA</h3>
+                                                    <p class="lineprice">
+                                                        <span class="ppu_tab_pro_price" data-currentid="36865" data-money="10990000">
+                                                            2,250,000
+                                                        </span><span>&nbsp;đ</span>
+                                                    </p>
+                                                    <div class="ppu_tab_pro_sales">
+                                                        <div class="ppu_tab_psales">Khuyến mãi đi kèm</div>
+                                                        <div class="ppu_tab_color_img">
+                                                            <img class="ppu_tab_cimg_arow" src="public/files/products/images100x100/picture_1427858623.jpg">
+                                                            <div class="ppu_tab_cimg_main">
+                                                                <p style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;">Đặt ngay tặng kèm:</p>
+
+                                                                <ul>
+                                                                    <li style="font-size: 14px; line-height: 24px; color: red; font-family:tahoma,geneva,sans-serif;">Phiếu mua hàng phụ kiện&nbsp;<b>500.000đ</b></li>
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="ppu_add_shop">
+                                                    <p class="ppu_add_shop_title">Chọn địa chỉ Shop</p>
+                                                    <div class="ppu_local_box clearfix">
+                                                        <div class="ppu_adds_city">
+                                                            <select id="ddlCity" name="city" class="sl-item-2 list-city">
+                                                                <option selected="selected" value="0">Chọn Tỉnh</option>
+                                                                <option value="1">TP Hồ Chí Minh</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ppu_adds_list">
+                                                        <ul id="ddlShop" style="display: none;">
+                                                            <li title="156 Đặng Văn Bi - Q. Thủ Đức" class="item-shop item-shop-1" onclick="showMap(10.846783, 106.760974, 1)">156 Đặng Văn Bi - Q. Thủ Đức<p></p></li>
+                                                            <li title="974 Kha Vạn Cân - Q. Thủ Đức" class="item-shop item-shop-2" onclick="showMap(10.857691, 106.757349, 2)">974 Kha Vạn Cân - Q. Thủ Đức<p></p></li>
+                                                            <li title="263 Lê Văn Việt - Q. 9" class="item-shop item-shop-3" onclick="showMap(10.844651, 106.790530, 3)">263 Lê Văn Việt - Q. 9<p></p></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ppu_tab_lmap_title lmap-1" style="display:none">
+                                                        <img src="/congtynem/public/templates/public/system/images/ppu_icon_map.png">
+                                                        <span id="chooseShopStoreID">Showroom 156 Đặng Văn Bi - Q. Thủ Đức</span>
+                                                        <span class="ppu_tab_lmap_close">
+                                                            <img src="/congtynem/public/templates/public/system/images/ppu_close_map.png" onclick="hideMap()">
+                                                        </span>
+                                                    </div>
+                                                    <div class="ppu_tab_lmap_title lmap-2" style="display:none">
+                                                        <img src="/congtynem/public/templates/public/system/images/ppu_icon_map.png">
+                                                        <span id="chooseShopStoreID">Showroom 974 Kha Vạn Cân - Q. Thủ Đức</span>
+                                                        <span class="ppu_tab_lmap_close">
+                                                            <img src="/congtynem/public/templates/public/system/images/ppu_close_map.png" onclick="hideMap()">
+                                                        </span>
+                                                    </div>
+                                                    <div class="ppu_tab_lmap_title lmap-3" style="display:none">
+                                                        <img src="/congtynem/public/templates/public/system/images/ppu_icon_map.png">
+                                                        <span id="chooseShopStoreID">Showroom 263 Lê Văn Việt - Q. 9</span>
+                                                        <span class="ppu_tab_lmap_close">
+                                                            <img src="/congtynem/public/templates/public/system/images/ppu_close_map.png" onclick="hideMap()">
+                                                        </span>
+                                                    </div>
+                                                    <div id="map-google" style="width: 400px;  height: 258px; position: absolute; display: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- RIGHT TAB-->
+                                    <div class="ppu_tab_right">
+                                        <div class="ppu_tab_right_box">
+                                             <input type="hidden" value="" name="address" id="diachigiaohang">
+                                            <span style="color:red">(*) Bạn buộc phải nhập thông tin vào!</span>
+                                            <p class="pform-inline">
+                                                <input name="full_name" id="full_name" class="ppu_rtxt" type="text" placeholder="Họ tên bạn" data-rule-required="true">
+                                                <i>*</i>
+                                            </p>
+                                            <p class="pform-inline">
+                                                <input id="phoneMuaHang" name="phone" class="ppu_rtxt" type="text" placeholder="Số điện thoại" data-rule-required="true">
+                                                <i>*</i>
+                                            </p>
+                                            <textarea name="address" id="address" class="ppu_rtextarea" placeholder="Địa chỉ giao hàng" style="display: none;"></textarea>
+                                            <div class="ppu_tab_tt_price">Tổng giá trị đơn hàng: 
+                                                <span class="textTotalMoney">2,250,000</span>đ</div>
+                                            <button class="ppu_rbnt_submit" onclick="datMuaNhieu()"> Đặt Ngay</button>
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Số Điện Thoại: </label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Số Điện Thoại">
+
+                                <!-- BOTTOM TAB-->
+                                <div class="ppu_bottom_noti">
+                                    <p>Chúng tôi sẽ liên hệ với bạn trong vòng <strong>1 tiếng</strong>  và cam kết giao hàng miễn phí trong <strong>1 ngày</strong>.</p>
+                                    <p class="ppu_bt_call">Tư vấn miễn phí: <strong>0917 311 001</strong></p>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Địa Chỉ Giao Hàng: </label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Dịa chỉ giao hàng">
-                                </div>
-                            </div>
-                            <label class="col-sm-2 control-label">Ghi Chú</label>
-                            <textarea class="form-control" rows="3" name="comment"></textarea>
-                            <div class="form-group nlg">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button  type="submit" class="btn btn-success" id="btn-success">Hoàn Tất</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
     <div style="clear:both"></div>
+</div>
+
+
+<!--------------------MODAL ĐẶT MUA HOÀN TẤT------------------->
+<div class="modal fade datmua" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="ppu_header">
+            <p class="ppu_h_title">ĐẶT HÀNG - NGHE TƯ VẤN MIỄN PHÍ</p>
+            <p class="ppu_h_noti">(Không mua không sao)</p>
+        </div>
+        <div class="ppu_ss_main">
+                <input type="hidden" id="orderID" value="1805861">
+            <img src="<?php echo  $this->imgUrl?>/ppu_ss_icon.png">
+            <p class="ppu_ss_title">Đặt hàng thành công!</p>
+            <div class="ppu_ss_infos">
+                    <p>Cảm ơn bạn <b id="ten-nguoi-mua"></b> đã cho chúng tôi cơ hội được phục vụ!</p>
+                                <p class="ppu_bt_call"><i>Tư vấn miễn phí: <strong><span class="popup-bfont popup-red">0917 311 001</span></strong></i></p>
+                <p>Chúng tôi sẽ liên hệ với bạn trong vòng <strong>1 tiếng</strong>  và cam kết giao hàng miễn phí trong <strong>1 ngày</strong>.</p>
+            </div>
+            <div class="popup-spt-bottom">
+            </div>
+        </div>
+    </div>
+  </div>
 </div>

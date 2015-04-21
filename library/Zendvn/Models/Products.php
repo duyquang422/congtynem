@@ -202,6 +202,11 @@ class Zendvn_Models_Products extends Zend_Db_Table{
 			$where = 'id = ' . $arrParam['id'];
 			$result = $this->fetchRow($where)->toArray();
 		}
+                if($options['task'] == 'installment-info'){
+                    $db = Zend_Registry::get('connectDb');
+                    $select = $db->select()->from($this->_name,array('id','name','price','selloff','picture','publisher'))->where('id = ?', $arrParam['id']);
+                    $result = $db->fetchRow($select);
+		}
 		if($options['task'] == 'delete-photo'){
 			$where = 'id = ' . $arrParam['id'];
 			$result = $this->fetchRow($where)->toArray();
